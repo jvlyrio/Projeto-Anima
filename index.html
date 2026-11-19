@@ -1720,6 +1720,15 @@ button.zh.ms b{font:900 15px system-ui}
 .cpmt{width:100%;border-collapse:collapse}
 .cpmt td{padding:5px 4px;border-bottom:1px solid #1e4a60;font:700 13px system-ui;color:#dff1fb}
 .cpmi{width:19px;height:19px;border-radius:5px;vertical-align:-4px;margin-right:6px;flex:none}
+.ttnew{position:relative;z-index:3;margin:0 16px 10px;display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap;
+ padding:11px 16px;border-radius:12px;border:2px solid #ffd23f;background:linear-gradient(180deg,#1b5f7ef2,#0f3f58f5);box-shadow:0 6px 18px #0007}
+.ttnew b{display:block;font:900 15px system-ui;color:#ffd93a}
+.ttnew span{display:block;font:600 12.5px/1.4 system-ui;color:#dff1fb;max-width:70ch}
+.ttsk{flex:none;background:#0b2a3b;border:2px solid #3c7f9e;border-radius:10px;color:#eaf6ff;font:800 13px system-ui;padding:8px 14px;cursor:pointer}
+.ttsk:hover{background:#15415a;border-color:#ffd23f}
+body.ph .ttnew{margin:0 10px 8px;padding:8px 11px;gap:8px}
+body.ph .ttnew b{font-size:13px}body.ph .ttnew span{font-size:11px}
+body.ph .ttsk{font-size:12px;padding:6px 11px}
 .cpmt td.v{text-align:right;font-weight:900}
 .cpmt td.v.up{color:#8affc0}.cpmt td.v.dn{color:#ff9a9a}
 .cpmt small{font:700 10px system-ui;color:#9fc4d6}
@@ -3459,12 +3468,15 @@ function showTut(){G.scr="t";const w=pgShell("Tutorial","tut"),bd=mk("div","ttbd
  const go=i=>{TUTI=(i+TUT.length)%TUT.length;TUTV[TUT[TUTI].n]=1;save();[...nav.querySelectorAll(".ttn")].forEach((b,x)=>{b.classList.toggle("on",x===TUTI);b.classList.toggle("ok",!!TUTV[TUT[x].n])});prog();const t=TUT[TUTI];
   ct.innerHTML="<small class='tgrp'>"+t.g+"</small><h2><span>"+t.i+"</span>"+t.n+"</h2><div class='ttx'>"+t.f()+"</div>";
   ct.querySelectorAll(".tresd").forEach(e=>{const k=e.dataset.k,rb=resBox(k,()=>{});if(!rb)return e.remove();const fb=rb.querySelector(".chfb");if(fb){fb.textContent="▾ Ver completo";fb.onclick=()=>card(k)}e.replaceWith(rb)});
-  const ft=mk("div","ttft"),pv=mk("button","ttpv","◀ Anterior"),nx=mk("button","ttnx",TUTI==TUT.length-1?"Voltar ao menu":"Próximo: "+TUT[TUTI+1].n+" ▶");pv.disabled=TUTI==0;pv.onclick=()=>go(TUTI-1);nx.onclick=()=>TUTI==TUT.length-1?showMenu():go(TUTI+1);ft.append(pv,mk("span","",(TUTI+1)+" / "+TUT.length),nx);ct.append(ft);ct.scrollTop=0;
+  const ft=mk("div","ttft"),pv=mk("button","ttpv","◀ Anterior"),nx=mk("button","ttnx",TUTI==TUT.length-1?"Voltar ao menu":"Próximo: "+TUT[TUTI+1].n+" ▶");pv.disabled=TUTI==0;pv.onclick=()=>go(TUTI-1);nx.onclick=()=>TUTI==TUT.length-1?(TUTNEW?tutSair():showMenu()):go(TUTI+1);ft.append(pv,mk("span","",(TUTI+1)+" / "+TUT.length),nx);ct.append(ft);ct.scrollTop=0;
   const a=nav.querySelector(".ttn.on");if(a&&a.scrollIntoView&&document.body.classList.contains("ph"))try{a.scrollIntoView({block:"nearest",inline:"center"})}catch(e){}
   const q=ct.querySelector(".tqs");if(q)q.oninput=()=>{const v=q.value.trim().toLowerCase();ct.querySelectorAll(".ttst[data-q]").forEach(e=>e.style.display=!v||e.dataset.q.includes(v)?"":"none")}};
  ct.addEventListener("click",e=>{const g=e.target.closest("[data-go]"),p=e.target.closest("[data-play]"),im=e.target.closest(".timg img");if(g){e.preventDefault();go(+g.dataset.go)}else if(p){e.preventDefault();tutPlay()}else if(im){const o=mk("div","tzoom","<img src='"+im.src+"' alt=''><span>Toque para fechar</span>");o.onclick=()=>o.remove();document.body.append(o)}});
  let lg="";TUT.forEach((t,i)=>{if(t.g!=lg){lg=t.g;nav.append(mk("div","ttgh",t.g))}const b=mk("button","ttn","<span>"+t.i+"</span><em>"+t.n+"</em><b class='tck'>✓</b>");b.onclick=()=>go(i);nav.append(b)});
  if(!document._tutk){document._tutk=1;document.addEventListener("keydown",e=>{if(G.scr!="t"||e.target&&/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;const b=e.key=="ArrowRight"?".ttnx":e.key=="ArrowLeft"?".ttpv":null;if(b){const x=document.querySelector(b);if(x&&!x.disabled&&!/menu/i.test(x.textContent)){e.preventDefault();x.click()}}})}
+ if(TUTNEW){const bk=w.querySelector(".pgbk");if(bk)bk.onclick=tutSair;
+  const bar=mk("div","ttnew","<div><b>Primeira vez na Z Arena?</b><span>Este é o tutorial. Dá para ler no seu tempo e voltar aqui quando quiser pelo Menu.</span></div>");
+  const sk=mk("button","ttsk","Pular tutorial");sk.onclick=tutSair;bar.append(sk);w.insertBefore(bar,bd)}
  go(TUTI)}
 /* ===== Treino guiado (Aprender jogando): roteiro passo a passo com destaque na tela ===== */
 const cU=c=>{const own=G.u.filter(x=>x.s==0),i=own.findIndex(x=>x.c==c);return i<0?null:document.querySelectorAll("#b .row.t0 .u")[i]};
@@ -3583,7 +3595,8 @@ const PATCH=[
   "<b>Ícones novos</b>: reviver, chance de crítico, dano crítico, dano fixo e todos os atributos da build do Inventário, que agora têm ícone na ficha.",
   "<b>Vozes novas</b>: Kirito e Naruto ganharam a voz do narrador no anúncio de entrada.",
   "As <b>esferas</b> saíram de baixo das opções do Menu Principal.",
-  "Nome de habilidade só vira ícone quando está escrito como o nome da habilidade: palavras comuns como “troca” não viram mais um efeito no texto."],
+  "Nome de habilidade só vira ícone quando está escrito como o nome da habilidade: palavras comuns como “troca” não viram mais um efeito no texto.",
+  "<b>Primeira vez no jogo</b>: depois de escolher o nick, o jogador vai direto para o Tutorial, com o botão <b>Pular tutorial</b> à mão. Ao sair dele vê as notas da atualização, o aviso do Jinwoo e cai no Inventário para montar a primeira build."],
  nv:[{i:"🩹",hl:1,n:"Leitura do turno",t:"As duas correções mais sentidas são de leitura: a barra de cura parou de encher e descer, e o turno agora mostra primeiro o dano e só depois a cura. Nada de número subindo e descendo ao mesmo tempo."},
   {i:"⚖️",n:"Sasuke e Goku Instinto Superior",t:"O Chibaku Tensei ganhou marca própria e a Flecha Chidori virou ultimate de Essência. O dano fixo de “Jamais irei te perdoar!” parou de passar de inimigo em inimigo até o fim da partida."}]},
  {t:"Patch 0.3.7",d:"18/11/2026",nw:[],ch:[
@@ -3851,13 +3864,26 @@ function rotAsk(){if(!ISPH||innerWidth>innerHeight||document.getElementById("rot
  const rotFim=()=>{try{ov.remove()}catch(x){}setTimeout(()=>{try{vvApply()}catch(x){}try{bnNext()}catch(x){}},300);if(!isLand())try{zToast("Deite o celular para jogar com a tela maior. Se ele não girar, desative a trava de rotação.")}catch(x){}};const rotSo=(pr,ms)=>Promise.race([Promise.resolve(pr).catch(()=>0),new Promise(r=>setTimeout(r,ms))]);const rotPode=()=>{try{return window.top===window.self&&document.fullscreenEnabled!==false}catch(x){return false}};b1.onclick=async()=>{b1.disabled=true;b1.textContent="Girando…";try{if(rotPode()){const el=document.documentElement;if(el.requestFullscreen&&!document.fullscreenElement)await rotSo(el.requestFullscreen({navigationUI:"hide"}),1200);if(screen.orientation&&screen.orientation.lock)await rotSo(screen.orientation.lock("landscape"),1200)}}catch(e){}rotFim()};
  b2.onclick=()=>{try{sessionStorage.setItem("za_rot","1")}catch(e){}try{ov.remove()}catch(e){}setTimeout(()=>{try{vvApply()}catch(x){}try{bnNext()}catch(x){}},300)};bx.append(b1,b2);ov.onclick=e=>{if(e.target===ov)b2.onclick()};document.body.append(ov);/* rede de seguranca: nenhuma janela de abertura fica presa na tela */setTimeout(()=>{if(document.getElementById("rotm")&&!isLand()&&!document.hidden){const sm=ov.querySelector(".rotsm");if(!sm)bx.append(mk("p","rotsm","Não conseguiu girar? Toque em <b>Continuar em pé</b> — dá para jogar assim também."))}},6000)}
 if(typeof addEventListener=="function"&&ISPH){addEventListener("resize",()=>{if(kbOpen())return;clearTimeout(window._vvT);window._vvT=setTimeout(()=>{if(kbOpen())return;vvApply();const r=document.getElementById("rotm");if(r&&isLand()){r.remove();setTimeout(bnNext,300)}},180)});try{screen.orientation&&screen.orientation.addEventListener("change",()=>setTimeout(()=>{vvApply();const r=document.getElementById("rotm");if(r&&isLand()){r.remove();setTimeout(bnNext,300)}},250))}catch(e){}setTimeout(vvApply,50)}
+/* primeira vez: depois do nick o jogador vai direto para o tutorial, com opção de pular */
+let TUTNEW=0,BQEND=null;
+function tutSeen(){try{if((window.LSMEM||{}).za_tut_ok==="1")return true;return localStorage.getItem("za_tut_ok")==="1"}catch(e){return true}}
+function tutSeenSet(){try{ls("za_tut_ok","1")}catch(e){}}
+function tutSair(){TUTNEW=0;tutSeenSet();
+ /* saindo do tutorial pela primeira vez: banner do patch, banner "em breve" do Jinwoo e depois o Inventário */
+ try{const jw=TEASE.find(x=>x.k=="jw");BQ=[{ty:"pt",p:PATCH[0]}];if(jw)BQ.push({ty:"sn",k:jw.k,t:jw});
+  BQEND=()=>{try{showInv()}catch(e){}}}catch(e){}
+ showMenu()}
 function nickOk(){try{if((window.LSMEM||{}).za_nick_ok==="1")return true;return localStorage.getItem("za_nick_ok")==="1"}catch(e){return true}}
 function nickAsk(){if(document.getElementById("nkm"))return;if(window.ZLOGIN&&window.ZLOGIN(nickAsk))return;const ov=mk("div","");ov.id="nkm";const bx=mk("form","nkbox");
  bx.innerHTML="<div class='nkz'>Z</div><h2>Bem-vindo à Z Arena!</h2><p>Escolha o seu nick. Ele aparece para os outros jogadores nas salas online e no chat.</p>";
  const inp=mk("input");inp.maxLength=18;inp.placeholder="Seu nick";let cur="";try{cur=localStorage.getItem("za_nick")||""}catch(e){}if(cur&&!/^Lutador /.test(cur))inp.value=cur;
  const er=mk("small","nker"),ok=mk("button","nkok","Confirmar");ok.type="submit";bx.append(inp,er,mk("p","nksub","Legendas dos vídeos"),subPick(),ok);ov.append(bx);document.body.append(ov);setTimeout(()=>inp.focus(),60);
- bx.onsubmit=e=>{e.preventDefault();const n=inp.value.trim().replace(/\s+/g," ");if(n.length<2){er.textContent="O nick precisa ter pelo menos 2 letras.";return}try{inp.blur()}catch(x){}ov.remove();try{oSetNick(n)}catch(x){}try{ls("za_nick_ok","1")}catch(x){}try{rotAsk()}catch(x){}try{lsWarn()}catch(x){}setTimeout(()=>{try{vvApply()}catch(x){}if(G.scr=="m")try{bnNext()}catch(x){}},400)}}
-function bnNext(){if(!nickOk()||document.getElementById("nkm")||document.getElementById("rotm"))return;if(!BQ||!BQ.length||document.getElementById("bnr")||G.scr!="m")return;const b=BQ.shift();try{if(b.ty=="news")return nwOpen(true);bnShow(b)}catch(e){const x=document.getElementById("bnr");if(x)x.remove();const y=document.getElementById("nws");if(y&&!y.querySelector(".nwc"))y.remove()}}
+ bx.onsubmit=e=>{e.preventDefault();const n=inp.value.trim().replace(/\s+/g," ");if(n.length<2){er.textContent="O nick precisa ter pelo menos 2 letras.";return}try{inp.blur()}catch(x){}ov.remove();try{oSetNick(n)}catch(x){}try{ls("za_nick_ok","1")}catch(x){}try{rotAsk()}catch(x){}try{lsWarn()}catch(x){}setTimeout(()=>{try{vvApply()}catch(x){}
+  if(!tutSeen()){TUTNEW=1;TUTI=0;try{return showTut()}catch(x){}}
+  if(G.scr=="m")try{bnNext()}catch(x){}},400)}}
+function bnNext(){if(!nickOk()||document.getElementById("nkm")||document.getElementById("rotm"))return;
+ if(BQEND&&(!BQ||!BQ.length)&&!document.getElementById("bnr")&&!document.getElementById("nws")&&G.scr=="m"){const f=BQEND;BQEND=null;return f()}
+ if(!BQ||!BQ.length||document.getElementById("bnr")||G.scr!="m")return;const b=BQ.shift();try{if(b.ty=="news")return nwOpen(true);bnShow(b)}catch(e){const x=document.getElementById("bnr");if(x)x.remove();const y=document.getElementById("nws");if(y&&!y.querySelector(".nwc"))y.remove()}}
 function bnShow(b){const ids=b.ty=="pt"?["pt_"+b.p.t]:b.ty=="nw"?["nw_"+b.k]:b.ty=="co"?["co_"+b.k]:b.ty=="sn"?["sn_"+b.k]:b.ty=="ft"?["ft_"+b.k]:b.ps.map(p=>"bal_"+p.t),ov=mk("div","");ov.id="bnr";const bx=mk("div","bnbox "+(b.ty=="sn"?"nw sn":b.ty=="ft"?"nw ft":b.ty));ov.append(bx);
  const close=()=>{if(cb.querySelector("input").checked)ids.forEach(bnHide);ov.remove();document.removeEventListener("keydown",esc,true)},esc=e=>{if(e.key=="Escape"){if(document.getElementById("chpop"))return;e.stopPropagation();close();setTimeout(bnNext,250)}};
  const cb=mk("label","bnck","<input type=checkbox> Não ver novamente hoje");
