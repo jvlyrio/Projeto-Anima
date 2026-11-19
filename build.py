@@ -22,6 +22,9 @@ CFG = {
     "url": "https://fpntdutdeisbbgiyjvjk.supabase.co",
     "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB",  # chave pública (pode ficar no site)
     "providers": ["google"],  # adicionar "discord" quando for configurado no Supabase
+    # Entrar por e-mail: desligado enquanto o envio for o do Supabase, que libera
+    # poucos links por hora. Virar True quando houver SMTP próprio configurado.
+    "email": False,
 }
 
 

@@ -7,6 +7,9 @@
   var CFG = window.ZCFG || {};
   var URL_ = CFG.url, KEY = CFG.key;
   var PROV = CFG.providers || []; // ex.: ["google","discord"] quando estiverem configurados
+  // entrar por e-mail depende do serviço de envio do Supabase, que é limitado:
+  // com "email": false no ZCFG, a tela mostra só os provedores e o modo convidado.
+  var EMAIL = CFG.email !== false;
   var HOME = location.origin + location.pathname;
   if (!window.supabase || !URL_ || !KEY) { console.warn("[ZSB] Supabase indisponível; jogo segue offline."); return; }
   var sb = window.supabase.createClient(URL_, KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storageKey: "za_auth" } });
@@ -197,16 +200,16 @@
     var col = el("div", "zlcol");
     if (PROV.indexOf("google") >= 0) { var g = provBtn("google", "Entrar com Google"); g.onclick = function () { sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: HOME } }) }; col.append(g) }
     if (PROV.indexOf("discord") >= 0) { var d = provBtn("discord", "Entrar com Discord"); d.onclick = function () { sb.auth.signInWithOAuth({ provider: "discord", options: { redirectTo: HOME } }) }; col.append(d) }
-    var eb = el("button", "zlb zl-mail", "✉️<span>Entrar com e-mail</span>"); eb.type = "button"; col.append(eb);
+    var eb = null, em = el("div", "zlemw"); em.hidden = true;
+    if (EMAIL) { eb = el("button", "zlb zl-mail", "✉️<span>Entrar com e-mail</span>"); eb.type = "button"; col.append(eb) }
     var or = el("div", "zlor", "<span>ou</span>");
     var gb = el("button", "nkok zlguest", "Jogar como convidado"); gb.type = "button";
     var note = el("p", "zlnote", "Convidado: seu progresso fica só neste aparelho. Dá para salvar a conta depois em <b>Opções</b>.");
-    var em = el("div", "zlemw"); em.hidden = true;
     var done = false, fin = function () { if (done) return; done = true; lss("za_login", "1"); ov.remove(); if (after) after() };
     var go = el("button", "zlcont", "Continuar jogando"); go.type = "button"; go.onclick = async function () { go.disabled = true; try { await ensure() } catch (e) {} fin() };
-    eb.onclick = function () { em.hidden = !em.hidden; if (!em.childNodes.length) em.append(emailForm(sendMagic, null, function () { if (!go.isConnected) em.append(go) })); var i = em.querySelector("input"); if (i && !em.hidden) i.focus() };
+    if (eb) eb.onclick = function () { em.hidden = !em.hidden; if (!em.childNodes.length) em.append(emailForm(sendMagic, null, function () { if (!go.isConnected) em.append(go) })); var i = em.querySelector("input"); if (i && !em.hidden) i.focus() };
     gb.onclick = async function () { gb.disabled = true; gb.textContent = "Entrando…"; try { await ensure() } catch (e) {} fin() };
-    col.append(em);
+    if (EMAIL) col.append(em);
     bx.append(col, or, gb, note); ov.append(bx); document.body.append(ov);
     // já tem sessão (ex.: voltou pelo link do e-mail)? fecha sozinho
     sessP.then(function (u) { if (u && !u.is_anonymous && ov.isConnected) fin() });
@@ -226,14 +229,17 @@
       var col = el("div", "zlcol");
       if (PROV.indexOf("google") >= 0) { var g = provBtn("google", "Vincular Google"); g.onclick = function () { link("google") }; col.append(g) }
       if (PROV.indexOf("discord") >= 0) { var d = provBtn("discord", "Vincular Discord"); d.onclick = function () { link("discord") }; col.append(d) }
-      col.append(el("p", "zlsm", "Vincular e-mail (vamos mandar um link de confirmação):"));
-      col.append(emailForm(async function (v) {
-        var r = await sb.auth.updateUser({ email: v }, { emailRedirectTo: HOME });
-        if (r.error) { if (/already|registered|exists/i.test(r.error.message)) { return { error: 1, msg: "Esse e-mail já tem uma conta. Use \"Entrar em outra conta\" abaixo (o progresso de convidado deste aparelho será trocado pelo dessa conta)." } } return { error: 1 } }
-        return {};
-      }, "Vincular e-mail"));
-      var other = el("details", "zlother"); other.append(el("summary", "", "Entrar em outra conta"), el("p", "zlsm", "⚠️ O progresso de convidado deste aparelho será trocado pelo da conta em que você entrar."), emailForm(sendMagic));
-      col.append(other); ACC.append(col);
+      if (EMAIL) {
+        col.append(el("p", "zlsm", "Vincular e-mail (vamos mandar um link de confirmação):"));
+        col.append(emailForm(async function (v) {
+          var r = await sb.auth.updateUser({ email: v }, { emailRedirectTo: HOME });
+          if (r.error) { if (/already|registered|exists/i.test(r.error.message)) { return { error: 1, msg: "Esse e-mail já tem uma conta. Use \"Entrar em outra conta\" abaixo (o progresso de convidado deste aparelho será trocado pelo dessa conta)." } } return { error: 1 } }
+          return {};
+        }, "Vincular e-mail"));
+        var other = el("details", "zlother"); other.append(el("summary", "", "Entrar em outra conta"), el("p", "zlsm", "⚠️ O progresso de convidado deste aparelho será trocado pelo da conta em que você entrar."), emailForm(sendMagic));
+        col.append(other);
+      }
+      ACC.append(col);
     } else {
       var ids = (u.identities || []).map(function (i) { return i.provider }).filter(function (p) { return p !== "anonymous" });
       var nm = { email: "E-mail", google: "Google", discord: "Discord" };
@@ -246,7 +252,7 @@
       col2.append(so); ACC.append(col2);
     }
   }
-  async function link(p) { var r = await sb.auth.linkIdentity({ provider: p, options: { redirectTo: HOME } }); if (r && r.error) alertBox(/already|exists/i.test(r.error.message) ? "Essa conta " + p + " já está ligada a outro jogador. Use \"Entrar em outra conta\"." : "Não foi possível vincular agora.") }
+  async function link(p) { var r = await sb.auth.linkIdentity({ provider: p, options: { redirectTo: HOME } }); if (r && r.error) alertBox(/already|exists/i.test(r.error.message) ? ("Essa conta " + p + " já está ligada a outro jogador. " + (EMAIL ? "Use \"Entrar em outra conta\"." : "Saia desta conta e entre de novo com ela — o progresso de convidado deste aparelho será trocado pelo dela.")) : "Não foi possível vincular agora.") }
   function alertBox(t) { if (!ACC) return; var m = el("p", "nker", t); ACC.append(m) }
   window.ZACC = function () { ACC = el("div", "zacc"); sessP.then(accRender); accRender(); return ACC };
 
