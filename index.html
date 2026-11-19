@@ -780,7 +780,9 @@ body:has(.mm2:not(.bgx)) .sndb{left:auto;right:16px;top:16px;bottom:auto}body:ha
 .ttft{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;padding-top:12px;border-top:1px solid #cfe9f533}.ttft span{font:700 13px system-ui;color:#9fd0e6}
 #dr .ttpv,#dr .ttnx{background:#0d3047;color:#fff;border:2px solid #cfe9f5aa;border-radius:8px;padding:9px 16px;font:800 14px system-ui}#dr .ttnx{background:linear-gradient(180deg,#ffe066,#ffb52e);color:#3a1500;border-color:#7a3d00}
 body:has(.mm2.pg) .sndb{left:auto;right:16px;top:16px;bottom:auto}
-body:has(.mm2.pg.gac) .sndb,body:has(.mm2.pg.inv) .sndb,body:has(.mm2.pg.msn) .sndb{left:16px;right:auto;top:auto;bottom:16px}
+body:has(.mm2.pg.gac) .sndb,body:has(.mm2.pg.msn) .sndb{left:16px;right:auto;top:auto;bottom:16px}
+/* no Inventario o canto de baixo é do painel da build: o Som vai para o alto, como nas outras páginas */
+body:has(.mm2.pg.inv) .sndb{left:auto!important;right:16px!important;top:16px!important;bottom:auto!important}
 body:has(.mm2.pg.gac) .sndp,body:has(.mm2.pg.inv) .sndp,body:has(.mm2.pg.msn) .sndp{left:16px;right:auto;top:auto;bottom:64px}body:has(.mm2.pg) .sndp{left:auto;right:16px;top:64px;bottom:auto}
 @media(max-width:760px){.mm2.pg{height:auto;min-height:100vh}.chbd,.ttbd{grid-template-columns:1fr}.chgr{max-height:36vh}.ttnav{flex-direction:row;overflow-x:auto}.ttn{flex:none}.chtop{flex-direction:column}.chsp{width:140px}.pghd{padding-right:110px}}
 .pvov{z-index:120}.pvbox{width:min(94vw,560px);max-height:88vh;overflow:auto}
@@ -2177,6 +2179,7 @@ body.php.bt #bar button.skordb{left:var(--sfw,120px)}
  body:not(.bt):not(.dm) #b{padding-right:var(--ochr,0px)}
  /* a splash aparece inteira, sem zoom, sem mexer no resto do inventario */
  .ivbd.v3 .ivart{background-size:contain;background-position:center center}
+ .ivbd.v3 .ivart,.ivbd.v3 .ivshade{bottom:var(--ivbot,0px);border-radius:12px}
  .ivbd.v3 .ivshade{background:linear-gradient(90deg,#04121bcc 0,#04121b5c 34%,#04121b00 52%,#04121b5c 68%,#04121bcc 100%)}
  .ivbd.v3 .ivlf .cpmt tbody{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}
  .ivbd.v3 .ivlf .cpmt tr{display:flex;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:1px solid #1e4a60}
@@ -3596,7 +3599,8 @@ const PATCH=[
   "<b>Vozes novas</b>: Kirito e Naruto ganharam a voz do narrador no anúncio de entrada.",
   "As <b>esferas</b> saíram de baixo das opções do Menu Principal.",
   "Nome de habilidade só vira ícone quando está escrito como o nome da habilidade: palavras comuns como “troca” não viram mais um efeito no texto.",
-  "<b>Primeira vez no jogo</b>: depois de escolher o nick, o jogador vai direto para o Tutorial, com o botão <b>Pular tutorial</b> à mão. Ao sair dele vê as notas da atualização, o aviso do Jinwoo e cai no Inventário para montar a primeira build."],
+  "<b>Primeira vez no jogo</b>: depois de escolher o nick, o jogador vai direto para o Tutorial, com o botão <b>Pular tutorial</b> à mão. Ao sair dele vê as notas da atualização, o aviso do Jinwoo e cai no Inventário para montar a primeira build.",
+  "<b>Inventário mais limpo</b>: o botão de Som foi para o canto de cima, longe do nome das cápsulas, e a splash art termina onde começam os controles — nada mais fica por cima dela."],
  nv:[{i:"🩹",hl:1,n:"Leitura do turno",t:"As duas correções mais sentidas são de leitura: a barra de cura parou de encher e descer, e o turno agora mostra primeiro o dano e só depois a cura. Nada de número subindo e descendo ao mesmo tempo."},
   {i:"⚖️",n:"Sasuke e Goku Instinto Superior",t:"O Chibaku Tensei ganhou marca própria e a Flecha Chidori virou ultimate de Essência. O dano fixo de “Jamais irei te perdoar!” parou de passar de inimigo em inimigo até o fim da partida."}]},
  {t:"Patch 0.3.7",d:"18/11/2026",nw:[],ch:[
@@ -4434,6 +4438,14 @@ function capRows(e){const o=[],m=capMap(e);capNums(e).forEach(([t,a,b],j)=>{o.pu
 /* chance e dano de crítico: base 0% e 100% */
 function capCrit(m){return[["Chance de crítico",m.as1?100:0,0,{s:"%",b:0}],["Dano crítico",50,0,{s:"%",b:50}]]}
 function capFxH(e){return"<div class='cpmx'>"+(UNOFF?[["ut","Utilidade"],["sp","Especial"]]:[["ut","Utilidade"],["sp","Especial"],["un","Única"]]).map(([k,t])=>{const x=CAPM[e[k]];return"<p class='k-"+k+"'><i></i><b>"+t+(x?": "+x.n:"")+"</b><span>"+(x?x.t:"Vazio")+"</span></p>"}).join("")+"</div>"}
+/* a arte do Inventário termina onde começam os controles (só no layout largo) */
+function ivFit(){try{const st=document.querySelector(".ivbd.v3 .ivstage");if(!st)return;
+ if(innerWidth<1240){st.style.setProperty("--ivbot","0px");return}
+ const r3=st.querySelector(".ivrow3"),ac=st.querySelector(".ivact");if(!r3||!ac)return;
+ const g=parseFloat(getComputedStyle(st).rowGap)||0,pb=parseFloat(getComputedStyle(st).paddingBottom)||0;
+ const h=r3.offsetHeight+ac.offsetHeight+g*2+pb;
+ st.style.setProperty("--ivbot",Math.max(0,Math.round(h))+"px")}catch(e){}}
+if(typeof addEventListener=="function")addEventListener("resize",()=>{clearTimeout(window._ivft);window._ivft=setTimeout(ivFit,90)});
 function showInv(){
  G.scr="inv";const w=pgShell("Inventário","inv"),bd=mk("div","ivbd v3");
  {const bg=mk("div","ivbg");bg.style.backgroundImage="url('"+IMG.ui_ivbg+"')";const sky=w.querySelector(".mmsky");w.insertBefore(bg,sky?sky.nextSibling:w.firstChild)}
@@ -4561,6 +4573,7 @@ function showInv(){
   drawSk();
   bd.append(lf,st,lsw);
   const on=ls.querySelector(".ivcr.on");if(on&&on.scrollIntoView)try{on.scrollIntoView({block:"nearest",inline:"nearest"})}catch(x){}
+  ivFit();setTimeout(ivFit,60);setTimeout(ivFit,260);
  };
  draw();
 }
