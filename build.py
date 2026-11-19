@@ -5,12 +5,19 @@ Uso: python3 build.py <caminho/do/z-arena.html>
 
 - tira o "envelope" da página do Claude;
 - troca os vídeos/imagens /_blob/<id> pelos arquivos da pasta media/;
-- injeta o Supabase (login, online e progresso) via src/zsb.js e src/zsb.css.
+- injeta o Supabase (login, online e progresso) via src/zsb.js e src/zsb.css;
+- escreve a política de segurança (CSP) da página.
+
+A biblioteca do Supabase: se existir src/supabase.min.js, ela vai embutida no
+próprio arquivo e o site deixa de depender de um servidor de fora. Sem esse
+arquivo, cai no CDN e o build avisa. Para baixar:
+    curl -o src/supabase.min.js https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js
 """
 import os, re, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SUPABASE_JS = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"
+SUPABASE_LOCAL = os.path.join(ROOT, "src", "supabase.min.js")
 CFG = {
     "url": "https://fpntdutdeisbbgiyjvjk.supabase.co",
     "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB",  # chave pública (pode ficar no site)
@@ -41,10 +48,37 @@ def main(src):
     import json
     zjs = open(os.path.join(ROOT, "src", "zsb.js"), encoding="utf-8").read()
     zcss = open(os.path.join(ROOT, "src", "zsb.css"), encoding="utf-8").read()
+
+    # a biblioteca do Supabase: de preferência embutida, sem depender de servidor de fora
+    if os.path.exists(SUPABASE_LOCAL):
+        sblib = "<script>" + open(SUPABASE_LOCAL, encoding="utf-8").read() + "</script>"
+        cdn = ""
+        print("supabase-js: embutido de src/supabase.min.js")
+    else:
+        sblib = '<script src="' + SUPABASE_JS + '"></script>'
+        cdn = " https://cdn.jsdelivr.net"
+        print("AVISO: src/supabase.min.js nao existe, usando o CDN.\n"
+              "       Para tirar essa dependencia de fora, rode:\n"
+              "       curl -o src/supabase.min.js " + SUPABASE_JS)
+
+    sb = CFG["url"]
+    # Mesmo que um dia escape algum texto de jogador como HTML, o navegador só deixa
+    # a página falar com o próprio Supabase: não dá para mandar a sessão para fora.
+    csp = ("default-src 'self'; "
+           "script-src 'self' 'unsafe-inline'" + cdn + "; "
+           "style-src 'self' 'unsafe-inline'; "
+           "img-src 'self' data: blob:; "
+           "media-src 'self' data: blob:; "
+           "font-src 'self' data:; "
+           "connect-src 'self' " + sb + " " + sb.replace("https://", "wss://") + "; "
+           "object-src 'none'; base-uri 'none'; form-action 'self'")
+
     head = (
         '<meta name="description" content="Z Arena: jogo de estratégia por turnos no navegador.">'
+        '<meta http-equiv="Content-Security-Policy" content="' + csp + '">'
+        '<meta name="referrer" content="strict-origin-when-cross-origin">'
         "<script>window.ZCFG=" + json.dumps(CFG) + ";</script>"
-        '<script src="' + SUPABASE_JS + '"></script>'
+        + sblib +
         "<style>" + zcss + "</style>"
         "<script>" + zjs + "</script>"
     )
