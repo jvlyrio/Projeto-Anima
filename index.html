@@ -137,6 +137,10 @@
     };
   }
   var DB = { doc: doc, collection: function (p) { return query(p, null, 0) } };
+  /* chamar uma função do servidor (a ranqueada calcula os pontos lá) */
+  DB.rpc = async function (nome, args) { await ensure(); var r = await sb.rpc(nome, args || {}); if (r.error) throw ERR(r.error); return r.data };
+  /* ler a minha linha numa tabela de "uma por jogador" */
+  DB.linha = async function (tabela) { await ensure(); var r = await sb.from(tabela).select("*").eq("uid", USER.id).maybeSingle(); if (r.error) throw ERR(r.error); return r.data };
   var USERAPI = {
     id: async function () { try { return (await ensure()).id } catch (e) { return null } },
     me: async function () { var u = await ensure(); return { id: u.id, name: lsg("za_nick") || "", guest: isGuest(u) } },
@@ -6433,11 +6437,45 @@ function rkPopResultado(i,meuMmr,euVenci){try{if(i==null)return;const P=rkPopLoa
 const rkBotMmr=st=>Math.max(0,Math.round(st.mmr+(Math.random()*160-80)));
 
 /* ===== fila ===== */
-const RKQ={on:0,t0:0,fase:"",timer:null,op:null,aceitei:0,opAceitou:0,tAceite:0,botT:null,pollT:null,msg:"",de:""};
+const RKQ={on:0,t0:0,fase:"",timer:null,op:null,aceitei:0,opAceitou:0,tAceite:0,botT:null,pollT:null,msg:"",de:"",sala:null,partida:null};
+/* ===== fila com gente de verdade =====
+   O servidor junta dois jogadores de MMR parecido e já devolve a sala montada, com os dois
+   sentados e prontos. Se ninguém aparecer no tempo da fila, cai para o bot, como antes. */
+let RKPV=null;
+function rkFilaSrvLiga(){if(!rkSrvPvp())return;clearInterval(RKPV);
+ const bate=async()=>{
+  if(!RKQ.on||RKQ.fase!="busca"){clearInterval(RKPV);RKPV=null;return}
+  let res=null;try{res=await O.db.rpc("fila_entrar",{p_nick:oNick()})}catch(e){return}
+  if(!res||!RKQ.on||RKQ.fase!="busca")return;
+  if(res.estado=="desligado"){clearInterval(RKPV);RKPV=null;return}
+  if(res.estado=="casado")rkAchouGente(res)};
+ bate();RKPV=setInterval(bate,2500)}
+function rkFilaSrvDesliga(){clearInterval(RKPV);RKPV=null;
+ if(rkDb())try{O.db.rpc("fila_sair",{}).catch(()=>{})}catch(e){}}
+function rkAchouGente(res){
+ clearInterval(RKPV);RKPV=null;clearTimeout(RKQ.botT);RKQ.botT=null;
+ const v=res.rival||{};
+ RKQ.fase="aceite";RKQ.tAceite=Date.now();RKQ.aceitei=1;RKQ.opAceitou=1;
+ RKQ.sala=res.sala;RKQ.partida=res.partida;
+ RKQ.op={bot:0,nome:v.nome||"Adversário",mmr:+v.mmr||RKCFG.mmr0,lv:0,
+  rank:+v.rank||1,div:+v.div||RKCFG.divs,pc:(v.pc==null?null:+v.pc)};
+ rkWidget();rkAceite();
+ setTimeout(()=>{if(RKQ.sala)rkTentaComeçar()},1600)}
+/* entra na sala que o servidor montou; dali em diante é o draft online de sempre */
+function rkEntraSala(){
+ const st=rkLoad(),op=RKQ.op||{},cod=RKQ.sala,pid=RKQ.partida;
+ clearInterval(RKQ.timer);clearTimeout(RKQ.botT);clearInterval(RKPV);RKPV=null;
+ RKQ.on=0;RKQ.fase="";RKQ.sala=null;RKQ.partida=null;RKQ.timer=RKQ.botT=null;rkUIoff();
+ G.rkm={id:pid,oppMmr:+op.mmr||RKCFG.mmr0,oppNome:op.nome||"Adversário",bot:0,pop:null,
+  sea:st.sea,mmrAnt:st.mmr,oppRank:op.rank||null,oppDiv:op.div||null,oppPc:(op.pc!=null?op.pc:null)};
+ G.rkBlv=null;G.rkNome=null;          /* online: o nome do adversário vem da sala */
+ try{dClear();G.mode="o";G.scr="o";oSub(cod)}
+ catch(e){G.rkm=null;try{zToast("Não deu para entrar na sala da partida.")}catch(x){}LBM="fila";showLobby()}}
 /* a busca roda em segundo plano: tira da tela tudo que pertence a ela */
 function rkUIoff(){["rkac","rkqw"].forEach(id=>{const e=document.getElementById(id);if(e)e.remove()})}
 function rkFilaSair(volta){RKQ.on=0;RKQ.fase="";clearInterval(RKQ.timer);clearTimeout(RKQ.botT);clearTimeout(RKQ.pollT);
- RKQ.timer=RKQ.botT=RKQ.pollT=null;RKQ.op=null;RKQ.aceitei=0;RKQ.opAceitou=0;try{rkQSai()}catch(e){}
+ RKQ.timer=RKQ.botT=RKQ.pollT=null;RKQ.op=null;RKQ.aceitei=0;RKQ.opAceitou=0;RKQ.sala=null;RKQ.partida=null;
+ try{rkFilaSrvDesliga()}catch(e){}try{rkQSai()}catch(e){}
  rkUIoff();
  if(volta)return showLobby();
  if(G.scr=="lb"){try{lbTickBotao()}catch(e){}}}
@@ -6479,6 +6517,7 @@ function rkEntraFila(semTela){const st=rkLoad();
  clearTimeout(RKQ.botT);
  const espera=Math.round(RKCFG.filaBotMin+Math.random()*(RKCFG.filaBot-RKCFG.filaBotMin));
  RKQ.botT=setTimeout(()=>{if(RKQ.on&&RKQ.fase=="busca")rkAchouBot()},espera);
+ try{rkFilaSrvLiga()}catch(e){}
  clearInterval(RKQ.timer);RKQ.timer=setInterval(rkFilaTick,250);
  if(semTela||(G.scr=="lb"&&LBM=="fila")){try{lbTickBotao()}catch(e){}return}
  LBM="fila";showLobby()}
@@ -6501,7 +6540,7 @@ function rkFilaTick(){if(!RKQ.on)return;
  rkWidget();
  if(G.scr=="lb"){try{lbTickBotao()}catch(e){}}
  if(RKQ.fase=="aceite")return rkAceite();}
-function rkTentaComeçar(){if(RKQ.aceitei&&RKQ.opAceitou&&RKQ.fase=="aceite"){RKQ.fase="indo";rkComeça()}}
+function rkTentaComeçar(){if(RKQ.aceitei&&RKQ.opAceitou&&RKQ.fase=="aceite"){RKQ.fase="indo";if(RKQ.sala)return rkEntraSala();rkComeça()}}
 function rkComeça(){const st=rkLoad(),op=RKQ.op;
  clearInterval(RKQ.timer);clearTimeout(RKQ.botT);clearTimeout(RKQ.pollT);RKQ.on=0;RKQ.fase="";rkUIoff();
  G.rkm={id:"rk-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,7),
@@ -6512,24 +6551,74 @@ function rkComeça(){const st=rkLoad(),op=RKQ.op;
  G.bot=1;G.mode="d";dClear();startDraft()}
 
 /* ===== fim da partida ranqueada ===== */
+/* ===== quem é o dono dos pontos =====
+   Na web o servidor calcula tudo: o navegador só reporta "partida X, ganhei ou perdi".
+   Sem banco nenhum (arquivo solto, desenvolvimento) a conta continua sendo feita aqui. */
+/* o que a ranqueada online faz é decidido pelo servidor, não por este arquivo:
+   enquanto vier desligado, tudo se comporta como sempre (pontos locais, fila com bot) */
+let RKMODO={pontos:false,pvp:false,tabela:false};
+const rkDb=()=>!!(typeof O!="undefined"&&O.db&&typeof O.db.rpc=="function"&&O.pid);
+const rkSrv=()=>rkDb()&&!!RKMODO.pontos;
+const rkSrvPvp=()=>rkDb()&&!!RKMODO.pvp;
+const rkSrvTab=()=>rkDb()&&!!RKMODO.tabela;
+async function rkModoLer(){if(!rkDb())return;
+ try{const m=await O.db.rpc("rk_modo",{});if(m)RKMODO={pontos:!!m.pontos,pvp:!!m.pvp,tabela:!!m.tabela}}catch(e){}
+ try{await rkSincroniza()}catch(e){}}
+/* a linha do servidor no formato que o jogo usa */
+function rkDoServidor(x){if(!x)return null;
+ return{sea:x.sea||rkSeasonId(),rank:+x.rank||1,div:+x.div||RKCFG.divs,pr:+x.pr||0,
+  pc:(x.pc==null?null:+x.pc),mmr:+x.mmr||RKCFG.mmr0,
+  n:+x.n||0,w:+x.w||0,l:+x.l||0,prot:+x.prot||0,dprot:+x.dprot||0,pen:+x.pen||0,
+  hiRank:+(x.hirank!=null?x.hirank:x.hiRank)||1,hiDiv:+(x.hidiv!=null?x.hidiv:x.hiDiv)||RKCFG.divs,
+  hiTop:null,ult:[],t0:x.t0?Date.parse(x.t0):Date.now()}}
+/* traz o estado do servidor para a cópia local, que é só o que a tela mostra */
+async function rkSincroniza(){if(!rkSrv())return null;
+ try{const x=await O.db.linha("ranked");if(!x)return null;
+  rkSave(rkDoServidor(x));
+  if(G.scr=="lb")try{showLobby()}catch(e){}
+  return rkLoad()}catch(e){return null}}
+
 function rkFimPartida(forc){const m=G.rkm;if(!m||G.sim)return;
  const fc=(forc===true||forc===false);        /* resultado forcado: desistencia antes da batalha comecar */
  if(!fc&&G.win==null)return;
  if(rkJaFoi(m.id))return;                       /* nunca processa a mesma partida duas vezes */
  const eu=G.online?(G.me>=0?G.me:null):0;if(eu==null)return;
  const win=fc?forc:(G.win===eu);
- let st=rkLoad();if(st.sea!==m.sea)return;      /* a temporada virou no meio: não conta */
+ const st=rkLoad();if(st.sea!==m.sea)return;    /* a temporada virou no meio: não conta */
+ const ficha=fc?rkFichaDraft():rkFicha();       /* a foto é tirada agora, antes de qualquer espera */
+ G.rkm=null;G.rkBlv=null;
+ if(rkSrv())return rkFimServidor(m,win,ficha,fc);
+ rkFimLocal(m,win,st,ficha,fc)}
+
+function rkFimLocal(m,win,st,ficha,fc){
  const noTop=!rkEstouNoTop(st);
  const o=rkApply(st,m.oppMmr,win,{top100:!noTop});
- rkSave(o.st);G.rkLast=Object.assign({},o.r,{oppNome:m.oppNome,bot:m.bot});
- try{rkPromoPend(o.r,o.st)}catch(e){}
- rkGrava({id:m.id,sea:m.sea,win:win,pts:o.r.pts,rankAnt:o.r.rankAnt,divAnt:o.r.divAnt,prAnt:o.r.prAnt,
-  rank:o.st.rank,div:o.st.div,pr:o.r.prDep,mmrAnt:o.r.mmrAnt,mmrDep:o.r.mmrDep,aj:o.r.aj,
-  promo:o.r.promo,demo:o.r.demo,opp:m.oppNome,oppRank:m.oppRank,oppDiv:m.oppDiv,oppPc:m.oppPc,
-  bot:m.bot?1:0,at:Date.now(),sn:fc?rkFichaDraft():rkFicha()});
- try{rkPublica(o.st)}catch(e){}
- try{if(m.pop!=null)rkPopResultado(m.pop,m.mmrAnt,win)}catch(e){}
- G.rkm=null;G.rkBlv=null;
+ rkSave(o.st);
+ rkRegistra(m,win,o.r,o.st,ficha,fc);
+ try{if(m.pop!=null)rkPopResultado(m.pop,m.mmrAnt,win)}catch(e){}}
+
+async function rkFimServidor(m,win,ficha,fc){
+ let res=null;
+ try{res=await O.db.rpc("rk_resultado",{p_partida:m.id,venceu:!!win,opp_mmr:(+m.oppMmr||RKCFG.mmr0)})}
+ catch(e){
+  try{zToast("Não deu para registrar a partida no servidor: ela não contou.")}catch(x){}
+  try{await rkSincroniza()}catch(x){}
+  return}
+ if(!res||res.repetida){try{await rkSincroniza()}catch(x){}return}
+ const st=rkDoServidor(Object.assign({},res.st,{sea:res.sea}));
+ rkSave(st);
+ rkRegistra(m,win,res.r||{},st,ficha,fc);
+ try{if(m.pop!=null)rkPopResultado(m.pop,m.mmrAnt,win)}catch(e){}}
+
+/* histórico, promoção e contador de pontos: igual nos dois caminhos */
+function rkRegistra(m,win,r,st,ficha,fc){
+ G.rkLast=Object.assign({},r,{win:!!win,oppNome:m.oppNome,bot:m.bot});
+ try{rkPromoPend(r,st)}catch(e){}
+ rkGrava({id:m.id,sea:m.sea,win:win,pts:r.pts,rankAnt:r.rankAnt,divAnt:r.divAnt,prAnt:r.prAnt,
+  rank:st.rank,div:st.div,pr:r.prDep,mmrAnt:r.mmrAnt,mmrDep:r.mmrDep,aj:r.aj,
+  promo:r.promo,demo:r.demo,opp:m.oppNome,oppRank:m.oppRank,oppDiv:m.oppDiv,oppPc:m.oppPc,
+  bot:m.bot?1:0,at:Date.now(),sn:ficha});
+ try{rkPublica(st)}catch(e){}
  if(!G.sim)setTimeout(()=>{try{rkPontosShow(G.rkLast)}catch(e){}},fc?320:1700)}
 
 /* ===== promoção de rank: fundo escuro, a animação do ícone e o novo posto ===== */
@@ -6618,7 +6707,11 @@ function lbPos(){const R=document.querySelector(".lbR"),W=document.querySelector
 function showLobby(){
  G.scr="lb";const st=rkLoad(),w=pgShell("Lobby","lb");lbArena(w);
  try{rkBuscaTop()}catch(e){}
- if(LBM=="top"){try{rkPopSync();clearTimeout(RKPT2);RKPT2=setTimeout(()=>{if(G.scr=="lb"&&LBM=="top")rkPopSync()},60000)}catch(e){}}
+ if(LBM=="top"){try{
+  if(rkSrvTab()){/* tabela de verdade: reconsulta sozinha enquanto a aba estiver aberta */
+   clearTimeout(RKPT2);const volta=()=>{if(G.scr=="lb"&&LBM=="top"){RKTOP.at=0;rkBuscaTop();RKPT2=setTimeout(volta,15000)}};
+   RKPT2=setTimeout(volta,15000)}
+  else{rkPopSync();clearTimeout(RKPT2);RKPT2=setTimeout(()=>{if(G.scr=="lb"&&LBM=="top")rkPopSync()},60000)}}catch(e){}}
  const wrap=mk("div","lbw");w.append(wrap);
 
  /* ---- esquerda: o posto do jogador ---- */
@@ -6737,15 +6830,30 @@ const rkOrd=(a,b)=>{const ca=a.pc!=null?1:0,cb=b.pc!=null?1:0;
  if(ca)return (b.pc-a.pc)||(b.mmr-a.mmr)||(b.w-a.w)||(a.t-b.t);
  return (b.rank-a.rank)||(a.div-b.div)||(b.pr-a.pr)||(b.mmr-a.mmr)||(a.t-b.t)};
 function rkTopLista(){const st=rkLoad();
+ if(RKTOP.srv){                                  /* tabela do servidor: só gente de verdade */
+  const S=(RKTOP.lista||[]).map(x=>({nome:x.nome,pc:x.pc,pr:x.pr,rank:x.rank,div:x.div,mmr:x.mmr,w:x.w,l:x.l,t:x.t,eu:x.eu}));
+  if(!S.some(x=>x.eu))S.push({nome:(typeof oNick=="function"?oNick():"Você"),pc:st.pc,pr:st.pr,
+   rank:st.rank,div:st.div,mmr:st.mmr,w:st.w,l:st.l,t:st.t0||0,eu:true});
+  return S.sort(rkOrd)}
  const L=(RKTOP.lista||[]).map(x=>({nome:x.nome,pc:x.pc,pr:0,rank:RKCFG.ranks,div:1,mmr:x.mmr,w:x.w,l:x.l,t:x.t,eu:x.eu}));
  try{rkPopTabela().forEach(x=>L.push(x))}catch(e){}
  if(!L.some(x=>x.eu))L.push({eu:1,nome:(typeof oNick=="function"?oNick():"Você"),pc:st.pc,pr:st.pr,
   rank:st.rank,div:st.div,mmr:st.mmr,w:st.w,l:st.l,t:st.t0||0});
  return L.sort(rkOrd)}
-const RKTOP={lista:[],em:0,at:0};
+const RKTOP={lista:[],em:0,at:0,srv:0};
+/* a tabela de verdade: a mesma para todos, montada pelo servidor */
+async function rkBuscaTopSrv(){RKTOP.em=1;
+ try{const L=await O.db.rpc("rk_tabela",{limite:200});
+  RKTOP.lista=(L||[]).map(x=>({nome:String(x.nome==null?"":x.nome).replace(/[\u0000-\u001f]/g,"").slice(0,24)||"—",
+   rank:+x.rank||1,div:+x.div||RKCFG.divs,pc:(x.pc==null?null:+x.pc),pr:+x.pr||0,mmr:+x.mmr||0,
+   w:+x.w||0,l:+x.l||0,t:+x.n||0,eu:!!x.eu}));
+  RKTOP.srv=1;RKTOP.at=Date.now();
+  if(G.scr=="lb"&&LBM=="top")showLobby()}catch(e){}finally{RKTOP.em=0}}
 async function rkPublica(st){if(!rkComp(st)||!O||!O.db||!O.pid)return;
  try{await O.db.doc("rktop_"+st.sea+"/"+O.pid).set({nome:oNick(),pc:st.pc,mmr:st.mmr,w:st.w,l:st.l,n:st.n,t:st.t0||0,at:Date.now()})}catch(e){}}
-async function rkBuscaTop(){if(RKTOP.em||!O||!O.db)return;if(Date.now()-RKTOP.at<20000)return;RKTOP.em=1;
+async function rkBuscaTop(){if(RKTOP.em||!O||!O.db)return;if(Date.now()-RKTOP.at<20000)return;
+ if(rkSrvTab())return rkBuscaTopSrv();
+ RKTOP.em=1;
  try{const sea=rkSeasonId(),sn=await O.db.collection("rktop_"+sea).orderBy("pc","desc").limit(RKCFG.top).get();
   /* tudo isto foi escrito por outro jogador: vira texto puro e número, nunca HTML */
   const nmr=(v,mx)=>{const n=Math.floor(+v);return isFinite(n)?Math.max(0,Math.min(mx,n)):0};
@@ -7176,7 +7284,7 @@ async function oInit(){if(O.st!="off")return;O.st="loading";oRender();
  if(!db){O.st="nodb";return oRender()}
  O.db=db;O.user=user;let id=user?await user.id():null;
  if(!id){id=ls("za_pid");if(!id){id="local-"+Math.random().toString(36).slice(2,12);ls("za_pid",id)}}
- O.pid=id;O.st="ready";if(!O.tick)O.tick=setInterval(()=>{try{oTick()}catch(e){}},1000);if(!O.poll)O.poll=setInterval(oPoll,1500);oRender()}
+ O.pid=id;O.st="ready";try{rkModoLer()}catch(e){}if(!O.tick)O.tick=setInterval(()=>{try{oTick()}catch(e){}},1000);if(!O.poll)O.poll=setInterval(oPoll,1500);oRender()}
 function showOnline(){dClear();G.scr="o";if(G.mode!="o")G.botPrev=G.bot;G.mode="o";oInit();oRender()}
 function oAfterWrite(){O.busy=0;O.last=0;oPoll()}
 async function oPoll(){const esp=(typeof D!="undefined"&&D&&D.spec)||O.seat==null;/* quem assiste busca o estado com mais frequência */
