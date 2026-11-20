@@ -125,6 +125,10 @@
     };
   }
   var DB = { doc: doc, collection: function (p) { return query(p, null, 0) } };
+  /* chamar uma função do servidor (a ranqueada calcula os pontos lá) */
+  DB.rpc = async function (nome, args) { await ensure(); var r = await sb.rpc(nome, args || {}); if (r.error) throw ERR(r.error); return r.data };
+  /* ler a minha linha numa tabela de "uma por jogador" */
+  DB.linha = async function (tabela) { await ensure(); var r = await sb.from(tabela).select("*").eq("uid", USER.id).maybeSingle(); if (r.error) throw ERR(r.error); return r.data };
   var USERAPI = {
     id: async function () { try { return (await ensure()).id } catch (e) { return null } },
     me: async function () { var u = await ensure(); return { id: u.id, name: lsg("za_nick") || "", guest: isGuest(u) } },
