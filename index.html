@@ -1077,6 +1077,16 @@ body:has(#bnr) #och,body:has(#nkm) #och,body:has(.mmopt) #och,body:has(#chpop) #
 .nker{color:#ff8a80;min-height:16px;font-size:12.5px}.nkok{background:#ffd23f;color:#14110a;border:0;border-radius:10px;padding:12px;font:800 16px system-ui;cursor:pointer}
 .sndr{grid-template-columns:56px 22px 1fr 22px 38px!important}.sndpm{width:22px;height:22px;padding:0;border-radius:6px;border:1px solid #6aa8ff88;background:#1c2a55;color:#dfe8ff;font:800 14px/1 system-ui;cursor:pointer}.sndpm:active{background:#ffd23f;color:#14110a}
 .mmosnd .sndr{grid-template-columns:72px 26px 1fr 26px 44px!important}.mmosnd .sndpm{width:26px;height:26px}
+#pwaios{position:fixed;inset:0;z-index:150;background:#03060de8;display:grid;place-items:center;padding:16px}
+.pwabx{width:min(430px,94vw);background:linear-gradient(160deg,#122a4a,#0b1020 70%);border:2px solid #ffd23f;border-radius:16px;padding:22px;color:#e6ecf8;max-height:88vh;overflow:auto}
+.pwabx h2{margin:0 0 10px;color:#ffd23f;font:900 italic 22px system-ui;text-align:center}
+.pwabx p{margin:0 0 12px;font:15px/1.55 system-ui}
+.pwalst{margin:0 0 14px;padding-left:22px;font:15px/1.7 system-ui}
+.pwalst b{color:#ffd23f}
+.pwaic{display:inline-block;border:1px solid #7db4ff;border-radius:4px;padding:0 5px;color:#7db4ff;font-size:12px;line-height:1.4}
+.pwadic{background:#0b1b33;border-left:3px solid #7db4ff;padding:10px 12px;border-radius:0 8px 8px 0;font-size:14px!important;color:#c9d8f0}
+.pwaok{display:block;width:100%;margin-top:4px;padding:12px;border:0;border-radius:10px;background:linear-gradient(180deg,#ffe36b,#ffa31a);color:#2a1200;font:800 16px system-ui;cursor:pointer}
+@media(max-height:520px){.pwabx{padding:14px 16px;max-height:94vh}.pwabx h2{font-size:18px;margin-bottom:6px}.pwabx p{font-size:13.5px;line-height:1.45;margin-bottom:8px}.pwalst{font-size:13.5px;line-height:1.5;margin-bottom:9px}.pwadic{padding:7px 10px;font-size:12.5px!important}.pwaok{padding:9px;font-size:14px}}
 #rotm{position:fixed;inset:0;z-index:118;background:radial-gradient(ellipse at center,#0b1f3af2,#03060df8);display:grid;place-items:center;padding:16px}
 .rotbx{width:min(380px,94vw);background:linear-gradient(160deg,#122a4a,#0b1020 70%);border:2px solid #ffd23f;border-radius:16px;padding:22px;text-align:center;color:#e6ecf8;display:flex;flex-direction:column;gap:10px}
 .rotph{font-size:46px;animation:rotph 1.8s ease-in-out infinite}@keyframes rotph{0%,30%{transform:rotate(0)}60%,100%{transform:rotate(-90deg)}}
@@ -7131,6 +7141,47 @@ function rkBatalha(x){
  const v=mk("button","lam","Voltar");v.onclick=fecha;ft.append(v);
  ov.append(bx);document.body.append(ov);return ov}
 
+/* ===== instalar o jogo como aplicativo =====
+   O navegador avisa quando a instalação é possível, e esse aviso só pode ser
+   usado uma vez, num clique de verdade. Por isso ele fica guardado aqui até o
+   jogador apertar o botão. O iPhone não tem esse aviso: a Apple não deixa o
+   site oferecer instalação, então lá mostramos o passo a passo. */
+let PWAC=null;
+const pwaInstalado=()=>{try{return !!(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||window.navigator.standalone===true}catch(e){return false}};
+const pwaIOS=()=>{try{return /iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)}catch(e){return false}};
+/* dentro de um quadro (o link de testes) não existe instalação: nem oferece */
+const pwaEmQuadro=()=>{try{return window.self!==window.top}catch(e){return true}};
+const pwaPode=()=>!pwaInstalado()&&!pwaEmQuadro()&&(!!PWAC||pwaIOS());
+if(typeof window!="undefined"){
+ window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();PWAC=e;if(G.scr=="m")try{showMenu()}catch(x){}});
+ window.addEventListener("appinstalled",()=>{PWAC=null;try{zToast("Jogo instalado. Agora ele abre direto pelo ícone.")}catch(x){}if(G.scr=="m")try{showMenu()}catch(x){}});
+}
+async function pwaInstala(){
+ if(pwaIOS()&&!PWAC)return pwaAjudaIOS();
+ if(!PWAC)return;
+ const c=PWAC;PWAC=null;
+ try{c.prompt();const r=await c.userChoice;
+  if(r&&r.outcome!=="accepted"){PWAC=c;try{zToast("Sem problema. O botão continua aqui quando quiser.")}catch(e){}}
+ }catch(e){PWAC=c}
+ if(G.scr=="m")try{showMenu()}catch(e){}}
+/* iPhone: a Apple não deixa o site abrir a instalação, então ensinamos o caminho */
+function pwaAjudaIOS(){
+ const o=document.getElementById("pwaios");if(o)o.remove();
+ const ov=mk("div","");ov.id="pwaios";
+ ov.innerHTML="<div class='pwabx'><h2>Instalar no iPhone</h2>"
+  +"<p>O iPhone não deixa o site instalar sozinho, mas são três toques:</p>"
+  +"<ol class='pwalst'>"
+  +"<li>Toque no botão <b>Compartilhar</b> do Safari <span class='pwaic'>&#9650;</span>, na barra de baixo.</li>"
+  +"<li>Role a lista e toque em <b>Adicionar à Tela de Início</b>.</li>"
+  +"<li>Confirme em <b>Adicionar</b>, no canto de cima.</li></ol>"
+  +"<p class='pwadic'>Dica: entre com o Google antes. O aplicativo tem memória separada do navegador no iPhone, e é o login que traz o seu progresso de volta.</p>"
+  +"<button class='pwaok'>Entendi</button></div>";
+ document.body.append(ov);
+ const fecha=()=>ov.remove();
+ ov.querySelector(".pwaok").onclick=fecha;
+ ov.onclick=e=>{if(e.target===ov)fecha()};
+ document.addEventListener("keydown",function k(e){if(e.key=="Escape"){fecha();document.removeEventListener("keydown",k)}});}
+
 function showMenu(){try{oInit()}catch(e){}   /* para reconectar sozinho numa partida que ficou aberta */
 dClear();pannOff(1);G.rkm=null;G.rkBlv=null;G.rkNome=null;/* saiu da ranqueada: a próxima partida é comum de novo */if(typeof O!="undefined"&&(O.code||G.online))oLeave();G.scr="m";document.body.classList.remove("bt");document.body.classList.add("dm");const r=$("#dr");r.innerHTML="";
  const go=sub=>{MSUB=sub;MSEL=0;showMenu()},leave=f=>()=>{MSUB=null;MSEL=0;f()};
@@ -7147,7 +7198,11 @@ dClear();pannOff(1);G.rkm=null;G.rkBlv=null;G.rkNome=null;/* saiu da ranqueada: 
   ["Corporação Cápsula","Gaste Zeni e abra cápsulas novas para equipar no Inventário.",showGac,2,"cc"], */
   ["Patch de Balanceamento","Todas as mudanças nos personagens e nas regras do jogo, da mais nova para a mais antiga.",showPatch,6,"pa"],
   ["Tutorial","Novo por aqui? Comece aqui: aprenda com imagens, vídeo e uma partida guiada contra o bot.",showTut,5,"km"],
-  ["Configurações","Som, vídeo, imagem, tamanho da letra e o nível do bot.",mmOpts,3,"op"]];
+  ["Configurações","Som, vídeo, imagem, tamanho da letra e o nível do bot.",mmOpts,3,"op"]]
+  .concat(pwaPode()?[["Instalar o jogo",pwaIOS()
+    ?"Coloque o Projeto Ânima na tela de início do iPhone: abre sem barra de navegador e carrega na hora."
+    :"Instale o Projeto Ânima no aparelho: abre pelo ícone, sem barra de navegador, e carrega na hora.",
+    pwaInstala,2,"dl"]]:[]);
  if(MSEL>=IT.length)MSEL=0;
  const w=mk("div","mm2");w.innerHTML="<div class='mmcam'><div class='mmbgi' style=\"background-image:url('"+IMG.ui_mbg+"')\"></div></div><div class='mmshaft'></div><div class='mmvig'></div>";mbAnim(w.querySelector(".mmbgi"));
  const art=mk("div","mmart","<img src='"+IMG.ui_poster+"' alt=''>");
