@@ -56,12 +56,25 @@ self.addEventListener("fetch", e => {
     e.respondWith((async () => {
       const achou = await caches.match(r);
       if (achou) return achou;
-      const res = await fetch(r);
+
+      /* O GitHub Pages recusa requisições (503) nos primeiros minutos depois de
+         uma publicação, quando a página pede centenas de mídias de uma vez. Sem
+         uma segunda tentativa a imagem fica quebrada na tela até o jogador
+         recarregar. Só repete quando o erro é passageiro — recusa do servidor
+         ou falha de rede; repetir um 404 não adianta nada. */
+      const passageiro = x => !x || x.status === 408 || x.status === 429 || x.status >= 500;
+      let res = null;
+      for (let tentativa = 0; tentativa < 3; tentativa++) {
+        if (tentativa) await new Promise(ok => setTimeout(ok, 400 * tentativa));
+        res = null;
+        try { res = await fetch(r) } catch (x) {}
+        if (!passageiro(res)) break;
+      }
       /* 206 (pedaço de vídeo) não pode ser guardado: o cache recusa */
       if (res && res.status === 200) {
         const c = await caches.open(CACHE); c.put(r, res.clone());
       }
-      return res;
+      return res || Response.error();
     })());
   }
 });
