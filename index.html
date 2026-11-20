@@ -1848,6 +1848,26 @@ body.php .rkha,body.phl .rkha{display:none}
 .rkdv{display:flex;gap:6px;flex-wrap:wrap;padding:0 2px 8px}
 .rkfrb.dvb{min-width:46px;min-height:0;padding:7px 12px}
 .rkfrb.dvb b{font-size:12.5px}
+/* ===== classificação em tela baixa: os filtros comem o espaço da tabela =====
+   Os postos viram chips deitados (ícone ao lado do nome) e as divisões ficam
+   todas numa linha só, rolando de lado se faltar largura. */
+@media (max-height:620px){
+ .rktop{padding:8px 10px}
+ .rkfr{gap:4px;padding:0 2px 5px}
+ .rkfrb{flex-direction:row;gap:5px;min-width:0;min-height:0;padding:4px 8px;border-radius:8px}
+ .rkfrb img{width:18px;height:18px}
+ .rkfrb b{font-size:11.5px;white-space:nowrap}
+ .rkfrb.tp small{display:none}
+ .rkdv{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:4px;padding:0 2px 5px;scrollbar-width:none}
+ .rkdv::-webkit-scrollbar{display:none}
+ .rkfrb.dvb{min-width:34px;padding:4px 9px}
+ .rkfrb.dvb b{font-size:11.5px}
+ .rktop h3{font-size:14.5px;margin:2px 0 1px}
+ .rktop>.rknada{font-size:10.5px;line-height:1.35;margin:0 0 4px}
+ .rktab th{font-size:9.5px;padding:3px 4px}
+ .rktab td{padding:3px 4px;font-size:11.5px}
+ .rkmi{width:20px;height:20px}
+}
 .rktab td.rkwl{white-space:nowrap;font-variant-numeric:tabular-nums}
 .rktab td.rkwl i{font-style:normal;color:#5f8da3;padding:0 2px}
 .rktab td.rkpt{color:#ffd93a;font-weight:900;white-space:nowrap}
@@ -2749,7 +2769,7 @@ body.phl .rkprtt{margin-top:8px}
 .lbpan .rkfr::-webkit-scrollbar{height:6px}
 .lbpan .rkfr::-webkit-scrollbar-thumb{background:#ffffff26;border-radius:3px}
 .lbpan .rkfrb{flex:0 0 auto}
-.lbpan .rkdv{flex-wrap:wrap}
+.lbpan .rkdv{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}.rkdv::-webkit-scrollbar{display:none}/* as divisões numa linha só, rolando de lado: quebrar comia a tabela */
 .lbpan .rkrol{flex:1;min-height:0;max-height:none;overflow:auto;overscroll-behavior:contain}
 .lbpan .rkhl{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
 /* telas baixas: os modos encolhem um pouco para caberem acima do chat */
@@ -2759,12 +2779,14 @@ body.phl .rkprtt{margin-top:8px}
 }
 /* ===== histórico: uma linha por partida, com o botão de detalhes ===== */
 .rkhl{display:flex;flex-direction:column;gap:8px}
-.rkhi{display:flex;align-items:center;gap:clamp(8px,1.4vw,20px);padding:12px 14px;border-radius:12px;
+/* quebra em qualquer largura: o que é estreito aqui é a coluna do lobby, não a
+   tela, então regra por tamanho de tela não resolvia e as partes se sobrepunham */
+.rkhi{display:flex;flex-wrap:wrap;align-items:center;gap:8px clamp(8px,1.4vw,20px);padding:12px 14px;border-radius:12px;
  background:linear-gradient(90deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
  border:1px solid #ffffff14;border-left:4px solid #5f8da3}
 .rkhi.v{border-left-color:#4fd48a}
 .rkhi.d{border-left-color:#ff6b61}
-.rkhres{display:flex;align-items:center;gap:10px;flex:0 0 auto;min-width:clamp(140px,15vw,210px)}
+.rkhres{display:flex;align-items:center;gap:10px;flex:1 1 140px;min-width:0}
 .rkhsw{display:grid;place-items:center;width:40px;height:40px;flex:0 0 40px;border-radius:10px;
  font:900 20px/1 system-ui;font-style:normal}
 .rkhi.v .rkhsw{background:#1b4c35;color:#7fe0a0;border:1px solid #4fd48a66}
@@ -2772,13 +2794,21 @@ body.phl .rkprtt{margin-top:8px}
 .rkhres b{display:block;font:900 15px/1.2 system-ui;color:#eef4ff}
 .rkhres small{display:block;font:700 11.5px/1.3 system-ui;color:#ffd23f}
 .rkhres em{display:block;font:700 11px/1.3 system-ui;font-style:normal;color:#8fa6c4}
-.rkhvs{display:flex;align-items:center;gap:9px;flex:1 1 auto;min-width:0;
+.rkhvs{display:flex;align-items:center;gap:9px;flex:1 1 130px;min-width:0;
  border-left:1px solid #ffffff14;padding-left:clamp(8px,1.2vw,18px)}
 .rkhvs img{width:38px;height:38px;flex:0 0 38px;object-fit:contain}
 .rkhsemed{width:38px;height:38px;flex:0 0 38px;border-radius:50%;background:#ffffff12;border:1px solid #ffffff1f}
 .rkhvs b{display:block;font:900 15px/1.2 system-ui;color:#eef4ff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rkhvs small{display:block;font:700 11.5px/1.3 system-ui;color:#9fb3cf}
-.rkhpts{flex:0 0 auto;font:900 18px/1 system-ui;letter-spacing:.01em}
+.rkhpts{flex:0 0 auto;margin-left:auto;font:900 18px/1 system-ui;letter-spacing:.01em}
+/* a medalha some quando o espaço é curto: o nome do adversário importa mais */
+@media (max-height:620px){.rkhi{padding:9px 11px;gap:6px 10px}
+ .rkhres b,.rkhvs b{font-size:13.5px}
+ .rkhres small,.rkhvs small,.rkhres em{font-size:10.5px}
+ .rkhvs img,.rkhsemed{width:26px;height:26px;flex-basis:26px}
+ .rkhsw{width:30px;height:30px;font-size:15px}
+ .rkhpts{font-size:15px}
+ .rkhdet{padding:6px 10px!important;font-size:11.5px!important}}
 .rkhpts small{font:800 10px/1 system-ui;margin-left:3px;opacity:.8}
 .rkhpts.v{color:#7fe0a0}.rkhpts.d{color:#ff8a80}
 #dr .rkhdet,.rkhdet{flex:0 0 auto;padding:11px 18px!important;font-size:14px!important}
@@ -3788,7 +3818,21 @@ const vol=k=>Math.max(0,Math.min(1,VOL.g/100*VOL[k]/100));
 const SFXM=["media/b64/b6196ebeb5ec2b6f.mp3","media/b64/c581848dcfc84d80.mp3","media/b64/b6df8bbbd5d20e4f.mp3","media/b64/0ccd940d23cd5995.mp3","media/b64/020f07e7448833cb.mp3","media/b64/5cceb76fdf3e1f96.mp3","media/b64/9e7b35f3f1ef9f36.mp3","media/b64/c8f6b1d5be24ac45.mp3","media/b64/dadbf928767315f0.mp3","media/b64/0f634a668ad28bc4.mp3","media/b64/d24a13a0df0739b9.mp3","media/b64/07e97358c7674d93.mp3","media/b64/5dd0dc7a236eedc4.mp3","media/b64/f4b3953d4d3d50a3.mp3"];let ACX=null,BUS=null;const SBUF={},SLAST={};let SFXN=0;
 function acx(){try{if(!ACX){const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;ACX=new A();const cmp=ACX.createDynamicsCompressor();cmp.threshold.value=-18;cmp.knee.value=12;cmp.ratio.value=4;cmp.attack.value=.004;cmp.release.value=.25;BUS=ACX.createGain();BUS.gain.value=vol("e");BUS.connect(cmp);cmp.connect(ACX.destination);sload()}if(ACX.state=="suspended")ACX.resume();BUS.gain.setTargetAtTime(vol("e"),ACX.currentTime,.05);return ACX}catch(e){return null}}
 const SSRC=()=>Object.assign({ban:AU.ban,rng:"media/b64/5354d405697dabeb.mp3",rngc:"media/b64/01520d6a8d8756cc.mp3"},Object.fromEntries(SFXM.map((s,i)=>["m"+i,s])));
-function sload(){const S=SSRC();Object.keys(S).forEach(k=>{if(SBUF[k])return;SBUF[k]=1;try{const bin=atob(S[k].split(",")[1]),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);ACX.decodeAudioData(u.buffer,bf=>{SBUF[k]=bf},()=>{SBUF[k]=0})}catch(e){SBUF[k]=0}})}
+/* O som pode chegar de duas formas: embutido na página (data:...;base64) ou como
+   arquivo do site (media/...). O build tira as mídias grandes para fora, então
+   ler só base64 deixava o jogo mudo. Aqui os dois caminhos viram bytes. */
+function audBytes(src){
+ if(typeof src!="string")return Promise.reject(new Error("som sem endereço"));
+ if(src.slice(0,5)=="data:"){
+  try{const bin=atob(src.split(",")[1]||""),u=new Uint8Array(bin.length);
+   for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
+   return Promise.resolve(u.buffer)}catch(e){return Promise.reject(e)}}
+ return fetch(src).then(r=>{if(!r.ok)throw new Error("som "+r.status);return r.arrayBuffer()})}
+function decAud(src){return audBytes(src).then(ab=>new Promise((ok,no)=>{
+ /* decodeAudioData aceita os dois feitios de chamada conforme o navegador */
+ try{const r=ACX.decodeAudioData(ab,ok,no);if(r&&r.then)r.then(ok,no)}catch(e){no(e)}}))}
+function sload(){const S=SSRC();Object.keys(S).forEach(k=>{if(SBUF[k])return;SBUF[k]=1;
+ decAud(S[k]).then(bf=>{SBUF[k]=bf},()=>{SBUF[k]=0})})}
 function splay(k,at,g){const c=ACX,bf=SBUF[k];if(!bf||bf===1)return 0;const s=c.createBufferSource(),gg=c.createGain(),n=SFXN;s.buffer=bf;const lv=(g||1)/Math.sqrt(1+n*.6);gg.gain.setValueAtTime(0,at);gg.gain.linearRampToValueAtTime(lv,at+.008);s.connect(gg);gg.connect(BUS);SFXN++;s.onended=()=>{SFXN=Math.max(0,SFXN-1)};s.start(at);return 1}
 function sfx(kind,delay){if(vol("e")<=0)return;const c=acx();if(!c)return;const t=c.currentTime+(delay||0)/1000;
  if(SLAST[kind]!=null&&Math.abs(t-SLAST[kind])<.2&&kind!="sel")return;SLAST[kind]=t;
@@ -3804,7 +3848,7 @@ function sfx(kind,delay){if(vol("e")<=0)return;const c=acx();if(!c)return;const 
  else if(kind=="sel"){osc("triangle",880,1200,.06,.25,t)}
  else if(kind=="ok"){osc("triangle",660,660,.08,.25,t);osc("triangle",990,990,.12,.25,t+.07)}}
 const VOX=new Set(),VBC=new Map();let VG=null;
-function vbuf(src){if(VBC.has(src))return VBC.get(src);const p=new Promise((ok,no)=>{try{const bin=atob(src.split(",")[1]),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);ACX.decodeAudioData(u.buffer,ok,no)}catch(e){no(e)}});VBC.set(src,p);p.catch(()=>VBC.delete(src));return p}
+function vbuf(src){if(VBC.has(src))return VBC.get(src);const p=decAud(src);VBC.set(src,p);p.catch(()=>VBC.delete(src));return p}
 function voxEl(src){try{const a=new Audio(src);a.volume=vol("v");VOX.add(a);const off=()=>VOX.delete(a);a.addEventListener("ended",off);a.addEventListener("error",off);a.addEventListener("pause",off);const p=a.play();if(p&&p.catch)p.catch(()=>{off();try{a.dispatchEvent(new Event("error"))}catch(e){}});return a}catch(e){return null}}
 function vox(src){const c=acx();if(!c)return voxEl(src);if(!VG){VG=c.createGain();VG.connect(c.destination)}VG.gain.setValueAtTime(vol("v"),c.currentTime);
  const H={paused:false,ended:false,onended:null,onerror:null,src:null,pause(){if(H.ended)return;H.ended=H.paused=true;VOX.delete(H);try{H.src&&H.src.stop()}catch(e){}}};VOX.add(H);
@@ -7092,7 +7136,7 @@ function rkPainelHist(st,nav){const H=rkHist(),t=mk("div","rktop");
       "<span><b>"+(x.win?"Vitória":"Derrota")+"</b><small>Fila Ranqueada</small><em>"+rkQuando(x.at)+"</em></span></div>"+
      "<div class='rkhvs'>"+(med?"<img src='"+med+"' alt='' title='"+posto+"'>":"<i class='rkhsemed'></i>")+
       "<span><b>"+(x.opp||"Adversário")+"</b><small>"+(posto||"adversário")+"</small></span></div>"+
-     "<div class='rkhpts "+(x.win?"v":"d")+"'>"+(x.win?"+":"−")+x.pts+"<small>"+(x.sn&&x.sn.cf?"":"")+"PR</small></div>";
+     "<div class='rkhpts "+(x.win?"v":"d")+"'>"+(x.win?"+":"−")+Math.abs(+x.pts||0)+"<small>"+(x.sn&&x.sn.cf?"":"")+"PR</small></div>";
     const b=mk("button","lam lam-g rkhdet","Detalhes");
     b.onclick=()=>rkBatalha(x);
     it.append(b);lst.append(it)});
