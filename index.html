@@ -6442,7 +6442,11 @@ const RKQ={on:0,t0:0,fase:"",timer:null,op:null,aceitei:0,opAceitou:0,tAceite:0,
    O servidor junta dois jogadores de MMR parecido e já devolve a sala montada, com os dois
    sentados e prontos. Se ninguém aparecer no tempo da fila, cai para o bot, como antes. */
 let RKPV=null;
-function rkFilaSrvLiga(){if(!rkSrvPvp())return;clearInterval(RKPV);
+async function rkFilaSrvLiga(){
+ if(!rkDb())return;
+ if(!RKMODO.lido)await rkModoLer();      /* o jogador pode clicar antes da resposta chegar */
+ if(!rkSrvPvp()||!RKQ.on||RKQ.fase!="busca")return;
+ clearInterval(RKPV);
  const bate=async()=>{
   if(!RKQ.on||RKQ.fase!="busca"){clearInterval(RKPV);RKPV=null;return}
   let res=null;try{res=await O.db.rpc("fila_entrar",{p_nick:oNick()})}catch(e){return}
@@ -6556,13 +6560,13 @@ function rkComeça(){const st=rkLoad(),op=RKQ.op;
    Sem banco nenhum (arquivo solto, desenvolvimento) a conta continua sendo feita aqui. */
 /* o que a ranqueada online faz é decidido pelo servidor, não por este arquivo:
    enquanto vier desligado, tudo se comporta como sempre (pontos locais, fila com bot) */
-let RKMODO={pontos:false,pvp:false,tabela:false};
+let RKMODO={pontos:false,pvp:false,tabela:false,lido:false};
 const rkDb=()=>!!(typeof O!="undefined"&&O.db&&typeof O.db.rpc=="function"&&O.pid);
 const rkSrv=()=>rkDb()&&!!RKMODO.pontos;
 const rkSrvPvp=()=>rkDb()&&!!RKMODO.pvp;
 const rkSrvTab=()=>rkDb()&&!!RKMODO.tabela;
 async function rkModoLer(){if(!rkDb())return;
- try{const m=await O.db.rpc("rk_modo",{});if(m)RKMODO={pontos:!!m.pontos,pvp:!!m.pvp,tabela:!!m.tabela}}catch(e){}
+ try{const m=await O.db.rpc("rk_modo",{});if(m)RKMODO={pontos:!!m.pontos,pvp:!!m.pvp,tabela:!!m.tabela,lido:true}}catch(e){}
  try{await rkSincroniza()}catch(e){}}
 /* a linha do servidor no formato que o jogo usa */
 function rkDoServidor(x){if(!x)return null;
@@ -6705,6 +6709,7 @@ function lbPos(){const R=document.querySelector(".lbR"),W=document.querySelector
  if(topoNatural-t>8){R.classList.add("compacto");t=poe();
   if(topoNatural-t>8&&!(limite()<w.height))R.classList.remove("compacto")}}
 function showLobby(){
+ try{oInit()}catch(e){}   /* a fila precisa do banco, e só a tela de salas abria ele */
  G.scr="lb";const st=rkLoad(),w=pgShell("Lobby","lb");lbArena(w);
  try{rkBuscaTop()}catch(e){}
  if(LBM=="top"){try{
