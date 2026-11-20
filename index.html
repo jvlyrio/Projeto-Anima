@@ -904,7 +904,7 @@ body.lite .mmart img{box-shadow:0 0 0 3px #c2410c}body.lite .vcd,body.lite .dpop
 .skpv{display:flex;align-items:center;gap:6px;margin-top:4px;font-size:12px}.skpf{width:22px;height:22px;border-radius:5px;object-fit:cover;flex:none;border:1px solid #fff5}.skpv span{display:flex;flex-wrap:wrap;gap:3px;align-items:center}.skpv em{font-style:normal;color:#b8d6e6;margin-right:3px}.skpv b.neg{color:#ff8a80}.skpv b.pos{color:#7ff2a8}
 .chsk p .skr,.ttx .skr{color:#ffe9a0}
 @media(max-width:640px){.qobox{padding:14px 12px}.qobt{gap:8px!important;flex-wrap:nowrap}.qobt button{min-width:0!important;flex:1;padding:9px 6px;font-size:14px;letter-spacing:.02em}.qoit{width:104px!important}}
-.rsc{display:inline-flex;gap:6px;margin-top:3px}.rsc>span{position:relative;display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:12px;font:700 12px system-ui;color:#fff}
+.rsc{display:inline-flex;flex-wrap:wrap;gap:6px;margin-top:3px;max-width:100%;min-width:0}/* a quebra só valia abaixo de 640px e a barra do Jogador 2 saía da tela no celular deitado de 667 */.rsc>span{position:relative;display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:12px;font:700 12px system-ui;color:#fff}
 .rsk{background:#1d4fa8;border:1px solid #7fb4ff}.rsz{background:#9a3d0a;border:1px solid #ffb04a}.rszg{margin-left:6px;padding-left:6px;border-left:1px solid #ffb04a88;font-size:.8em;font-weight:600;opacity:.9;white-space:nowrap}.rsc b{font:900 14px system-ui}
 .rsbar{display:flex;gap:8px}.rsb{position:relative;display:flex;align-items:baseline;gap:6px;padding:6px 14px;border-radius:12px;color:#fff;box-shadow:0 3px 10px #0006}
 .rsb.k{background:linear-gradient(180deg,#3b7bff,#1d4fa8);border:2px solid #9cc6ff}.rsb.z{background:linear-gradient(180deg,#ff8a1f,#b8460c);border:2px solid #ffd08a}
@@ -2169,7 +2169,22 @@ body.php .ivpn.ivlf{max-height:none;overflow-y:visible}
 
 /* ===== celular deitado: botoes do inventario numa linha so ===== */
 @media(max-width:1100px) and (max-height:560px){
- .ivstage .ivact{width:max-content;max-width:calc(100vw - 24px);justify-self:center;flex-wrap:nowrap;gap:5px}
+ /* a linha de botões precisa de ~627px e a coluna tem ~370px no celular:
+    em vez de centralizar e vazar pelos dois lados, ela ocupa a coluna e rola de lado.
+    A grade também espremia a linha dela até 0px e o container cortava: agora a barra
+    reserva a própria altura e quem cede espaço é a área de encaixes, que já rola. */
+ /* a grade espremia a linha dos botões até 0px e o container cortava.
+    A área de encaixes só aceita encolher com min-height:0; sem isso ela trava
+    na altura do conteúdo e não sobra nada para a barra. */
+ .ivstage{grid-template-rows:minmax(0,1fr) auto auto}
+ .ivstage>.ivcol,.ivstage>.ivmid{min-height:0}
+ .ivstage>.ivcol{overflow-y:auto;scrollbar-width:none}
+ .ivstage>.ivcol::-webkit-scrollbar{display:none}
+ .ivstage .ivact{width:100%;max-width:100%;justify-self:stretch;flex-wrap:nowrap;gap:5px;
+  justify-content:flex-start;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+ .ivstage .ivact::-webkit-scrollbar{display:none}
+ .ivstage .ivact>*{flex:0 0 auto}
+ .ivstage .ivact{align-items:center}
  #dr .ivab,.ivab{font-size:10.5px;padding:4px 7px;white-space:nowrap}
 }
 /* ===== celular deitado: Gerenciar capsulas cabe na tela ===== */
@@ -3176,10 +3191,22 @@ function run(){const s=G.cur;G.rn=1;G.kkU=0;G.u.forEach(x=>x.nx=0);G.q.forEach(a
 function fireReps(s){G.rep=G.rep.filter(r=>{if(r.u.s!=s||r.w==null)return true;if(r.fx&&!r.t.alive)return false;/* o dano fixo acaba com o alvo */
   if(r.u.alive&&r.t.alive&&(!has(r.t,"INV")||r.u.c=="tr")){G.ic=IMG[r.u.c+"_"+(r.i||0)];G.cl="A Distância";G.su=r.u;G.ski=r.i||0;G.nul=[];G.cp=[];G.ar=0;if(r.kr&&r.t.nxp===0)r.kg=(r.kg||0)+15;/* o dano acumula a cada turno parado */{const _rh=hit(r.u,r.t,(r.v||15)+(r.kg||0),r.ty||"e");if(r.dr&&r.u.c=="sak")sakDr(r.u,_rh.d)}G.ic=null;G.su=null;G.ski=null}
   return r.fx?r.u.alive:--r.n>0});}
-function endTurn(){if(G.scr!="p"||G.win!=null||RFZ)return;const s=G.cur;run();G.u.forEach(x=>{if(x.c=="mg"&&x.s==s)x.mgl=Math.max(0,(x.nx||0)-1)});G.ski=null;fireReps(s);stPush();G.rep.forEach(r=>{if(r.w==null)r.w=G.t});
+const EMPT=15;   /* turnos sem ninguém perder vida que encerram a partida */
+/* soma da vida de quem ainda está de pé, por lado */
+const hpLado=n=>G.u.filter(x=>x.s==n&&x.alive).reduce((a,x)=>a+Math.max(0,x.hp),0);
+const empate=()=>G.win===2;
+function endTurn(){if(G.scr!="p"||G.win!=null||RFZ)return;const s=G.cur;const hp0=G.u.map(x=>x.hp);run();G.u.forEach(x=>{if(x.c=="mg"&&x.s==s)x.mgl=Math.max(0,(x.nx||0)-1)});G.ski=null;fireReps(s);stPush();G.rep.forEach(r=>{if(r.w==null)r.w=G.t});
  G.u.filter(x=>x.s==s).forEach(x=>{x.nxp=x.nx||0});sasIkaz(s);
  G.u.filter(x=>x.s==s).forEach(x=>{x.st.forEach(y=>{if(y.f)y.f=0;else y.t--});brExp(x);x.st=x.st.filter(y=>y.t>0)});
  const dead=n=>!G.u.some(x=>x.s==n&&x.alive);if(dead(0)||dead(1)){G.win=dead(0)?1:0;G.q=[];G.sel=null;render();return}
+ /* defesas permanentes podem travar a partida: ninguém morre e ninguém desiste.
+    Se ninguém perder vida por EMPT turnos, decide quem tem mais vida somada. */
+ if(G.u.some((x,i)=>x.hp<hp0[i]))G.tDano=G.t;
+ else if(G.t-(G.tDano==null?0:G.tDano)>=EMPT){
+  const a=hpLado(0),b=hpLado(1);
+  G.win=a>b?0:b>a?1:2;G.porTempo=1;
+  log(EMPT+" turnos sem ninguém perder vida: decidido pela vida restante ("+a+" x "+b+")");
+  G.q=[];G.sel=null;render();return}
  G.cur=1-s;G.q=[];G.sel=null;G.kkc={};begin()}
 function newGame(){pannOff();G.tutp=G._tutn?1:0;G._tutn=0;const T=G.tm;try{lbSalvaTime()}catch(e){}try{[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps]].forEach(([c,v])=>{if(T&&T.some(t=>t.slice(1).includes(c)))vPre(v)});ULTV.forEach(V=>{if(T&&T.some(t=>t.slice(1).includes(V.c)))vPre(V.src)})}catch(e){}RFZ=0;G.g2m=0;G.g2v=0;G.g2seen={};Object.assign(G,{t:0,ki:[0,0],zk:[0,0],zg:[0,0],tc:[0,0],q:[],sel:null,u:[],rep:[],log:[],win:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,kz:0,zs:[0,0],zd:[0,0],dr:[0,0],lead:G.ann?["none","none"]:[T[0][0],T[1][0]],ldisp:[T[0][0],T[1][0]],scr:"p",cf:G.fd=="x"?"x":G.fd&&G.fd!="r"?G.fd:FDS[Math.floor(Math.random()*FDS.length)].k});
  T.forEach((t,s)=>t.slice(1).forEach(c=>G.u.push({s,c,hp:100,mx:100,ar:0,br:0,st:[],cd:C[c].sk.map(()=>0),bn:0,rec:0,alive:true,im:0,rv:0,dbl:0,rvt:0,nx:0,fm:0,gk:0,gz:0,ept:0,al:{hp:100,mx:100}})));
@@ -3251,13 +3278,13 @@ function eInfo(u){let o=document.getElementById("einfo");if(o&&o.dataset.i==G.u.
  ch.sk.forEach((k,i)=>{if(k.fm!=null&&k.fm!==u.fm)return;it(IMG[u.c+"_"+i],k.n,k.ho?(k.hc?"−"+k.hc+" HP":"Sem custo"):k.zk?k.zk+" Essência":k.kz||k.vz?"Essência variável":(k.ki||0)+" Energia",()=>sTip(k,u,1))});
  o.append(row,det,mk("p","eino","Toque numa habilidade para ler o que ela faz. Recargas e uso das habilidades do inimigo ficam ocultos."));document.body.append(o)}
 function winAnn(){if(G.win==null||G.sim||G.scr!="p"){return}const key=(G.gid||"")+":"+G.u.length+":"+G.t+":"+G.win;if(G._wan===key)return;G._wan=key;capReward();try{rkFimPartida()}catch(e){}const v=fogView(),me=G.online?(G.me>=0?G.me:null):G.bot?0:null;
- if(me==null)PANN.win=[(G.online?pn(G.win):"Jogador "+(G.win+1))+" Venceu!","Fim da batalha.","pw"];else if(G.win===me)PANN.win=["Você Venceu!","Parabéns, a vitória é sua!","pwin"];else PANN.win=["Você Perdeu!","Não foi dessa vez. Tente de novo!","plose"];
+ if(empate())PANN.win=["Empate!","Ninguém conseguiu tirar vida do outro: os times terminaram com a mesma vida.","pw"];else if(me==null)PANN.win=[(G.online?pn(G.win):"Jogador "+(G.win+1))+" Venceu!","Fim da batalha.","pw"];else if(G.win===me)PANN.win=["Você Venceu!","Parabéns, a vitória é sua!","pwin"];else PANN.win=["Você Perdeu!","Não foi dessa vez. Tente de novo!","plose"];
  G._rem={tm:JSON.parse(JSON.stringify(G.tm||[])),fd:G.cf,ann:G.ann,mode:G.mode};G._endAt=Date.now()+5000;setTimeout(()=>{if(G._wan===key&&G.scr=="p")phaseAnn("win",1)},600);setTimeout(()=>{if(G.win!=null&&G.scr=="p")endScreen()},5100)}
 
 function endClose(){const o=document.getElementById("endov");if(o)o.remove()}
 function endRematch(){const R=G._rem;if(!R)return;endClose();G.tm=R.tm;G.ann=R.ann;G.mode=R.mode;const k=G.fd;G.fd=R.fd;G.intro=1;newGame();G.fd=k}
 function endScreen(){if(G.win==null||G.scr!="p")return endClose();let o=document.getElementById("endov");if(!o){o=mk("div","");o.id="endov";document.body.append(o);try{rkPromoSolta()}catch(e){}if(window.ZGUESTNAG)setTimeout(window.ZGUESTNAG,2500)}
- const me=G.online?(G.me>=0?G.me:null):G.bot?0:null,cls=me==null?"pw":G.win===me?"pwin":"plose",tt=me==null?(G.online?pn(G.win):"Jogador "+(G.win+1))+" Venceu!":G.win===me?"Você Venceu!":"Você Perdeu!";
+ const me=G.online?(G.me>=0?G.me:null):G.bot?0:null,cls=empate()?"pw":me==null?"pw":G.win===me?"pwin":"plose",tt=empate()?"Empate!":me==null?(G.online?pn(G.win):"Jogador "+(G.win+1))+" Venceu!":G.win===me?"Você Venceu!":"Você Perdeu!";
  let st="",btns=[];
  if(!G.online){
   if(rkEmJogo())btns=[["Menu",()=>{endClose();showMenu()}],["Voltar ao lobby",()=>{endClose();LBM="fila";showLobby()}]];
@@ -4075,7 +4102,7 @@ function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=ZOFF
    k.append(sk);us.append(k)});row.append(us);b.append(row)});
  const bar=$("#bar");bar.innerHTML="";const p=spent();bar.append(mk("div","tturn","<small>Turno</small><b>"+G.t+"</b>"));
  if(tAtiva()){const tb=mk("div","tmrb");tb.id="tmrb";tb.hidden=true;bar.append(tb);setTimeout(()=>{try{tPinta()}catch(e){}},0)}
- if(G.win!=null)bar.append(mk("b","",G.online?(G.me>=0&&G.win===G.me?"Você venceu!":pn(G.win)+" venceu!"):"Jogador "+(G.win+1)+" venceu!"));
+ if(G.win!=null)bar.append(mk("b","",empate()?"Empate!":G.online?(G.me>=0&&G.win===G.me?"Você venceu!":pn(G.win)+" venceu!"):"Jogador "+(G.win+1)+" venceu!"));
  else{bar.append(mk("span","",(G.online?(G.me<0?"👁 Assistindo · vez de <b>"+pn(G.cur)+"</b>":G.cur===G.me?"<b>Sua vez</b>":"Vez de <b>"+pn(G.cur)+"</b> · aguardando a jogada"):rkEmJogo()?(G.cur===0?"<b>Sua vez</b>":"Vez de <b>"+pn(1)+"</b>"):"Vez do <b>Jogador "+(G.cur+1)+"</b>")));{const vw=fogView(),rs=vw==null?G.cur:vw;bar.append(resBar(rs,rs===G.cur?p:[0,0]))}
   if(!(G.bot&&G.cur==1)&&!(G.online&&(G.cur!==G.me||O.sending||O.retry))){const d=mk("button","g","↩ Desfazer"),e=mk("button","endt","Encerrar turno");d.disabled=!(G.q.length||G.sel);d.onclick=()=>{if(G.sel)G.sel=null;else G.q.splice(G.q.reduce((m,a,j)=>(a.o||0)>(G.q[m].o||0)?j:m,0),1);render()};e.onclick=openOrder;const pv=mk("button","g pvb","<img src='"+IMG.ui_baba+"' alt='Prever turno'>");pv.title="Prever turno";pv.setAttribute("aria-label","Prever turno");pv.disabled=!G.q.length;pv.onclick=showPredict;bar.append(e,pv,d)}
   if(G.sel&&ch2(G.sel).vz&&!G.sel.z){const fr=G.zk[G.cur]-p[1];for(let n=1;n<=Math.min(ch2(G.sel).vzm||4,fr);n++){const bt=mk("button","g","Gastar "+n+" Essência");bt.onclick=()=>{G.sel.z=n;render()};bar.append(bt)}}else if(G.sel)bar.append(mk("span","",(tgu(ch2(G.sel),G.sel.u)=="E"?"Clique em qualquer inimigo (atinge todos)":ch2(G.sel).tg=="S"?"Clique em "+sLab(G.sel.u,ch2(G.sel)).toLowerCase().replace("em si mesmo","si mesmo")+" para confirmar":"Escolha o alvo")+" (contorno vermelho)"));
@@ -4504,7 +4531,7 @@ function coach(){let c=document.getElementById("coach");const kill=()=>{if(c)c.r
  {const pa=document.getElementById("pann");if(pa&&pa.className&&G.win==null){if(c)c.style.visibility="hidden";const s0=document.getElementById("cspot");if(s0)s0.remove();clearTimeout(G._cpt);G._cpt=setTimeout(coach,500);return}}
  const T=G.tutd||(G.tutd={}),me=0;if(document.querySelector(".pvov")){T.vv=1;if(c)c.style.visibility="hidden";const s=document.getElementById("cspot");if(s)s.remove();return}if(c)c.style.visibility="";
  let k,t,btn=null,el=null,top=0;
- if(G.win!=null){k="win";t=G.win==me?"🎉 <b>Você venceu!</b> Agora você já sabe jogar. Dois próximos passos: suba o bot para <b>Fácil</b> no Modo Treino, e passe no <b>Inventário</b> para montar as cápsulas do seu personagem favorito.":"Não foi dessa vez, e tudo bem: cada partida ensina alguma coisa. Tente de novo, ou passe no <b>Inventário</b> para deixar o seu time mais forte com as cápsulas."}
+ if(G.win!=null){k="win";t=empate()?"<b>Empate!</b> Ninguém conseguiu abrir vantagem.":G.win==me?"🎉 <b>Você venceu!</b> Agora você já sabe jogar. Dois próximos passos: suba o bot para <b>Fácil</b> no Modo Treino, e passe no <b>Inventário</b> para montar as cápsulas do seu personagem favorito.":"Não foi dessa vez, e tudo bem: cada partida ensina alguma coisa. Tente de novo, ou passe no <b>Inventário</b> para deixar o seu time mais forte com as cápsulas."}
  else{let i=T.si||0;while(i<CSTEP.length&&CSTEP[i].done(T))i++;
   if(i<3&&cQ("g2"))i=Math.max(i,3);if(i<5&&cQ("a17"))i=Math.max(i,5);if(i<7&&(G.q||[]).filter(a=>a.u&&a.u.s==0).length>=3)i=Math.max(i,7);
   if(i<9&&(document.getElementById("qord")||G.cur!=0))i=Math.max(i,9);while(i<CSTEP.length&&CSTEP[i].done(T))i++;T.si=i;
@@ -6661,6 +6688,8 @@ function rkFimPartida(forc){const m=G.rkm;if(!m||G.sim)return;
  if(!fc&&G.win==null)return;
  if(rkJaFoi(m.id))return;                       /* nunca processa a mesma partida duas vezes */
  const eu=G.online?(G.me>=0?G.me:null):0;if(eu==null)return;
+ if(!fc&&G.win===2){G.rkm=null;G.rkBlv=null;
+  try{zToast("Empate: a partida não valeu pontos.")}catch(e){}return}
  const win=fc?forc:(G.win===eu);
  const st=rkLoad();if(st.sea!==m.sea)return;    /* a temporada virou no meio: não conta */
  const ficha=fc?rkFichaDraft():rkFicha();       /* a foto é tirada agora, antes de qualquer espera */
@@ -7396,7 +7425,7 @@ const OCH="ABCDEFGHJKMNPQRSTUVWXYZ23456789";
 const ls=(k,v)=>{const M=window.LSMEM||(window.LSMEM={});if(v===undefined){try{const r=localStorage.getItem(k);if(r!=null)return r}catch(e){}return (k in M)?M[k]:null}if(v===null){delete M[k];try{localStorage.removeItem(k)}catch(e){}return}M[k]=String(v);try{localStorage.setItem(k,String(v))}catch(e){window.LSBAD=1}};
 const ss=(k,v)=>{const M=window.SSMEM||(window.SSMEM={});if(v===undefined){try{const r=sessionStorage.getItem(k);if(r!=null)return r}catch(e){}return (k in M)?M[k]:null}M[k]=String(v);try{sessionStorage.setItem(k,String(v))}catch(e){window.LSBAD=1}};
 let RIM=null;const rimg=()=>RIM||(RIM=new Map(Object.entries(IMG).map(([k,v])=>[v,k])));
-function ser(){return JSON.stringify({gid:G.gid,t:G.t,cur:G.cur,afk:G.afk||[0,0],ki:G.ki,zk:G.zk,zg:G.zg,tc:G.tc,lead:G.lead,ldisp:G.ldisp,cf:G.cf,win:G.win,ann:G.ann||0,kz:G.kz,zs:G.zs,zd:G.zd,dr:G.dr,sth:G.sth||[],lk:G.lk||null,
+function ser(){return JSON.stringify({gid:G.gid,t:G.t,cur:G.cur,afk:G.afk||[0,0],tDano:(G.tDano==null?null:G.tDano),porTempo:G.porTempo?1:0,ki:G.ki,zk:G.zk,zg:G.zg,tc:G.tc,lead:G.lead,ldisp:G.ldisp,cf:G.cf,win:G.win,ann:G.ann||0,kz:G.kz,zs:G.zs,zd:G.zd,dr:G.dr,sth:G.sth||[],lk:G.lk||null,
  log:G.log.slice(0,400).map(l=>({m:l.m,t:l.t,hv:l.hv,ic:l.ic?rimg().get(l.ic)||null:null})),
  u:G.u.map(x=>({...x,st:x.st.map(y=>({...y,v:y.v&&typeof y.v=="object"?{__u:G.u.indexOf(y.v)}:y.v}))})),
  rep:G.rep.map(r=>({...r,u:G.u.indexOf(r.u),t:G.u.indexOf(r.t)}))})}
@@ -7406,6 +7435,7 @@ function des(S){const d=JSON.parse(S);if(G.gid!==d.gid||!G.u||G.u.length!==d.u.l
  G.rep=d.rep.map(r=>({...r,u:G.u[r.u],t:G.u[r.t]}));
  ["gid","t","cur","ki","zk","zg","tc","lead","ldisp","cf","win","ann","kz","zs","zd","dr","sth","lk"].forEach(k=>G[k]=d[k]);
  G.afk=Array.isArray(d.afk)?d.afk.slice():[0,0];
+ G.tDano=(d.tDano==null?null:d.tDano);G.porTempo=d.porTempo?1:0;
  G.log=d.log.map(l=>({m:l.m,t:l.t,hv:l.hv,ic:l.ic?IMG[l.ic]:null}));
  Object.assign(G,{q:[],sel:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,cp:[],rf:0,rn:0,bot:0,online:1,mode:"o",scr:"p"})}
 function PVr(){ANI.clear()}
