@@ -143,6 +143,13 @@ def main(src):
 
     head = (
         '<meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador.">'
+        '<link rel="icon" href="favicon.ico" sizes="any">'
+        '<link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png">'
+        '<link rel="apple-touch-icon" href="icons/icone-180.png">'
+        '<link rel="manifest" href="manifest.webmanifest">'
+        '<meta name="theme-color" content="#261b33">'
+        '<meta name="mobile-web-app-capable" content="yes">'
+        '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">'
         '<meta http-equiv="Content-Security-Policy" content="' + csp + '">'
         '<meta name="referrer" content="strict-origin-when-cross-origin">'
         "<script>window.ZCFG=" + json.dumps(CFG) + ";</script>"
@@ -153,7 +160,22 @@ def main(src):
     j = s.find("<head>") + len("<head>")
     j = s.find(">", s.find("<meta", j)) + 1  # depois do <meta charset>
     s = s[:j] + head + s[j:]
+
+    # registro do service worker, no fim da página para não atrasar a abertura
+    s = s.replace("</body></html>",
+                  "<script>if('serviceWorker' in navigator)addEventListener('load',function(){"
+                  "navigator.serviceWorker.register('sw.js').catch(function(){})});</script>"
+                  "</body></html>", 1)
+
     open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(s)
+
+    # o service worker carimba a versão da página: assim cada publicação
+    # troca o nome do cache e o aparelho do jogador larga o conteúdo antigo
+    versao = hashlib.sha1(s.encode("utf-8")).hexdigest()[:12]
+    sw = open(os.path.join(ROOT, "src", "sw.js"), encoding="utf-8").read()
+    open(os.path.join(ROOT, "sw.js"), "w", encoding="utf-8").write(
+        sw.replace("__VERSAO__", versao))
+    print("sw.js: versao", versao)
     print("index.html:", len(s), "bytes")
 
 
