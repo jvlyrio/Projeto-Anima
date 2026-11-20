@@ -1,4 +1,4 @@
-/* Z Arena — ligação do jogo com o Supabase (site próprio).
+/* Projeto Ânima — ligação do jogo com o Supabase (site próprio).
    Imita a mesma interface que o jogo usava dentro do Claude:
    window.claude.use("db") e window.claude.use("user").
    Também cuida do login (convidado / e-mail / Google / Discord) e de salvar o progresso. */
@@ -200,7 +200,7 @@
     if (lsg("za_login") === "1" || (USER && !USER.is_anonymous)) return false;
     if (document.getElementById("nkm")) return true;
     var ov = el("div", ""); ov.id = "nkm"; var bx = el("div", "nkbox zlbox");
-    bx.innerHTML = "<div class='nkz'>Z</div><h2>Bem-vindo à Z Arena!</h2><p>Como você quer entrar?</p>";
+    bx.innerHTML = "<div class='nkz'>Â</div><h2>Bem-vindo ao Projeto Ânima!</h2><p>Como você quer entrar?</p>";
     var col = el("div", "zlcol");
     if (PROV.indexOf("google") >= 0) { var g = provBtn("google", "Entrar com Google"); g.onclick = function () { sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: HOME } }) }; col.append(g) }
     if (PROV.indexOf("discord") >= 0) { var d = provBtn("discord", "Entrar com Discord"); d.onclick = function () { sb.auth.signInWithOAuth({ provider: "discord", options: { redirectTo: HOME } }) }; col.append(d) }

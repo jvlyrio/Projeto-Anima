@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Z Arena: jogo de estratégia por turnos no navegador."><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
 .zlb{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border-radius:10px;padding:11px 14px;font:700 15px system-ui;cursor:pointer;border:1.5px solid #ffffff33;background:#ffffff10;color:#fff}
 .zlb:hover{border-color:#ffd23f}.zl-google{background:#fff;color:#1f1f1f;border-color:#fff}.zl-discord{background:#5865f2;border-color:#5865f2}.zl-out{background:transparent;color:#ff8a80;border-color:#ff8a8066}
 .zlor{display:flex;align-items:center;gap:10px;color:#8fa0c4;font-size:12px}.zlor::before,.zlor::after{content:"";flex:1;height:1px;background:#ffffff26}
@@ -10,7 +10,7 @@
 .zlst{margin:0;font-size:13.5px;line-height:1.45;color:#e6ecf8}.zlsm{margin:2px 0;font-size:12.5px;color:#9fb3e0}
 .zlother summary{cursor:pointer;color:#9fb3e0;font-size:13px;margin:6px 0}
 .znag{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:150;background:#0b1020f2;border:1.5px solid #ffd23f;color:#fff;border-radius:12px;padding:10px 14px;font:600 13.5px system-ui;box-shadow:0 10px 30px #000c;max-width:92vw;text-align:center}
-</style><script>/* Z Arena — ligação do jogo com o Supabase (site próprio).
+</style><script>/* Projeto Ânima — ligação do jogo com o Supabase (site próprio).
    Imita a mesma interface que o jogo usava dentro do Claude:
    window.claude.use("db") e window.claude.use("user").
    Também cuida do login (convidado / e-mail / Google / Discord) e de salvar o progresso. */
@@ -212,7 +212,7 @@
     if (lsg("za_login") === "1" || (USER && !USER.is_anonymous)) return false;
     if (document.getElementById("nkm")) return true;
     var ov = el("div", ""); ov.id = "nkm"; var bx = el("div", "nkbox zlbox");
-    bx.innerHTML = "<div class='nkz'>Z</div><h2>Bem-vindo à Z Arena!</h2><p>Como você quer entrar?</p>";
+    bx.innerHTML = "<div class='nkz'>Â</div><h2>Bem-vindo ao Projeto Ânima!</h2><p>Como você quer entrar?</p>";
     var col = el("div", "zlcol");
     if (PROV.indexOf("google") >= 0) { var g = provBtn("google", "Entrar com Google"); g.onclick = function () { sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: HOME } }) }; col.append(g) }
     if (PROV.indexOf("discord") >= 0) { var d = provBtn("discord", "Entrar com Discord"); d.onclick = function () { sb.auth.signInWithOAuth({ provider: "discord", options: { redirectTo: HOME } }) }; col.append(d) }
@@ -280,7 +280,7 @@
 })();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Z Arena</title><style>
+<title>Projeto Ânima</title><style>
 :root{--bg:#eceff6;--pn:#fff;--in:#e3e7f1;--tx:#151a28;--mu:#5b6379;--a:#f08a00;--r:#d63a30;--g:#23a35f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1220;--pn:#182038;--in:#0e1527;--tx:#e8ecf7;--mu:#8e98b3;--a:#ffa31a;--r:#ff5a4d;--g:#3fd17f}}
 :root[data-theme="dark"]{--bg:#0e1220;--pn:#182038;--in:#0e1527;--tx:#e8ecf7;--mu:#8e98b3;--a:#ffa31a;--r:#ff5a4d;--g:#3fd17f}
@@ -2924,7 +2924,7 @@ body.phl .rkptm .rkmed{width:44px;height:44px}
  background:linear-gradient(180deg,#fff6d6,#ffd23f 60%,#e09200);-webkit-background-clip:text;background-clip:text;color:transparent}
 body.php .rkptbx,body.phl .rkptbx{padding:14px 20px;margin-top:clamp(30px,16vh,120px)}
 body.phl .rkptn em{font-size:46px}
-</style></head><body><main><h1>Z Arena</h1><div id="bar"></div><div id="b"></div><div id="lg"></div></main><div id="dr"></div><div id="tip"></div>
+</style></head><body><main><h1>Projeto Ânima</h1><div id="bar"></div><div id="b"></div><div id="lg"></div></main><div id="dr"></div><div id="tip"></div>
 <script>
 /* MSUB só existia depois que alguém escrevia nela: ler antes disso quebrava a tela */
 var MSUB=null;
@@ -3260,7 +3260,7 @@ function endScreen(){if(G.win==null||G.scr!="p")return endClose();let o=document
    st=d.rc?"":mine&&!oth?"Aguardando o oponente aceitar a revanche…":oth&&!mine?"O oponente quer revanche!":""}}
 btns.push([scic("%SC%")+"<i class='stbt'>Estatísticas</i>",showStats,"stb"]);
  const sig=cls+"|"+tt+"|"+st+"|"+btns.map(b=>b[0]+(b[2]||"")).join(",")+"|"+(G.online&&O.d&&O.d.rc||0);if(o.dataset.sig===sig)return;o.dataset.sig=sig;
- o.innerHTML="";const bx=mk("div","endbox"),t=mk("div","pbox "+cls);t.append(mk("div","pk","Z ARENA"),mk("div","pt",tt));bx.append(t);
+ o.innerHTML="";const bx=mk("div","endbox"),t=mk("div","pbox "+cls);t.append(mk("div","pk","PROJETO ÂNIMA"),mk("div","pt",tt));bx.append(t);
  const row=mk("div","endbt");btns.forEach(([n,f,c])=>{const b=mk("button","endb"+(c?" "+c:""),"<span>"+n+"</span>");b.onclick=f;row.append(b)});bx.append(row);
  if(st)bx.append(mk("p","endst",st));if(G.online&&O.d&&O.d.rc){bx.append(mk("div","endcd","<small>Revanche em</small><b id='endcd'>5</b>"))}o.append(bx)}
 async function oEnd(a){if(!O.ref)return;try{await O.ref.update({ph:"lobby",r0:false,r1:false,lr0:false,lr1:false,cd:0,rm0:false,rm1:false,rc:0,note:"",ea:a+":"+Date.now()})}catch(e){O.err="Não foi possível sair.";endScreen()}}
@@ -4019,7 +4019,7 @@ const MUSWGP="media/c64c8dbc47be982fe01aff8c59b533b6.webm";/* We Gotta Power - t
 const MUSBB="media/14642c9ea196098365c4fb6c6360fa03.webm";/* Blue Bird instrumental - collab com Naruto */
 const MUSD={g2:"media/8b2488b63e77847431ceb29e84ef92ff.mp4",menu:MUSBB,draft:"media/9b054f9efcc82b1adf46bc4cfdd6db9a.webm",battle:"media/e15a032ca679f9ad0fa2319233aea2d5.webm"};AU.ban="media/b64/495500f7abf7ad86.mp3";const MUSA={};
 function musWant(){if(document.hidden)return null;if(G.scr=="d")return"draft";if(G.scr=="p")return G.g2v?null:G.g2m?"g2":"battle";return["m","c","t","b","o","pt"].includes(G.scr)?"menu":null}
-let MDK=1;function thmSync(){const on=G.scr=="b"||G.scr=="o";document.body.classList.toggle("thm",on);{const t=document.querySelector("main>h1");if(t){const w=G.scr=="b"?"Modo Treino":"Z Arena";if(t.textContent!==w)t.textContent=w}}if(on&&!document.getElementById("pgbg")&&typeof mmScene=="function"){const b=document.createElement("div");b.id="pgbg";b.setAttribute("aria-hidden","true");b.innerHTML="<div class='mm2 bgx'><div class='mmsky'><i class='mmsun'></i><i class='cl c1'></i><i class='cl c2'></i><i class='cl c3'></i></div><div class='mmcam'>"+mmScene()+"</div><div class='pgdim'></div></div>";document.body.prepend(b)}}
+let MDK=1;function thmSync(){const on=G.scr=="b"||G.scr=="o";document.body.classList.toggle("thm",on);{const t=document.querySelector("main>h1");if(t){const w=G.scr=="b"?"Modo Treino":"Projeto Ânima";if(t.textContent!==w)t.textContent=w}}if(on&&!document.getElementById("pgbg")&&typeof mmScene=="function"){const b=document.createElement("div");b.id="pgbg";b.setAttribute("aria-hidden","true");b.innerHTML="<div class='mm2 bgx'><div class='mmsky'><i class='mmsun'></i><i class='cl c1'></i><i class='cl c2'></i><i class='cl c3'></i></div><div class='mmcam'>"+mmScene()+"</div><div class='pgdim'></div></div>";document.body.prepend(b)}}
 function musSync(){try{thmSync();if(document.getElementById("endov")&&(G.scr!="p"||G.win==null))endClose();const w=vol("m")>0?musWant():null;if(w&&!MUSA[w]){MUSA[w]=new Audio(MUSD[w]);MUSA[w].loop=true;MUSA[w].volume=0}
  const talk=[...VOX].some(a=>!a.paused&&!a.ended)||G.inOn;MDK+=((talk?.25:1)-MDK)*(talk?.35:.08);const base=vol("m")*MDK;
  Object.keys(MUSA).forEach(k=>{const a=MUSA[k],tg=k===w?base:0;let v=a.volume+(tg-a.volume)*(k===w?.12:.22);if(Math.abs(tg-v)<.004)v=tg;a.volume=Math.max(0,Math.min(1,v));
@@ -4353,7 +4353,7 @@ const tLeg=a=>"<ol class='tleg'>"+a.map(x=>"<li><b>"+x[0]+"</b><span>"+x[1]+"</s
 const tLegN=a=>tLeg(a.map((x,i)=>[String(i+1),"<b>"+x[0]+":</b> "+x[1]]));const tKey=()=>HOVPC?"passe o mouse":"segure o dedo";
 const tStIc=k=>IMG["st_"+k]?"<img src='"+IMG["st_"+k]+"' alt=''>":"";
 const TUT=[
- {g:"Comece aqui",i:"👋",n:"Bem-vindo!",f:()=>"<p class='tbig'>Que bom ter você na <b>Z Arena</b>! Se você nunca jogou um jogo de turnos, fique tranquilo: <b>ninguém precisa decorar nada</b> para começar.</p>"+
+ {g:"Comece aqui",i:"👋",n:"Bem-vindo!",f:()=>"<p class='tbig'>Que bom ter você no <b>Projeto Ânima</b>! Se você nunca jogou um jogo de turnos, fique tranquilo: <b>ninguém precisa decorar nada</b> para começar.</p>"+
   tSum("Dois times se enfrentam. Cada um tem <b>3 lutadores</b> em campo. Na sua vez, você escolhe um golpe para cada lutador e encerra o turno. Quem derrubar os 3 lutadores do outro time primeiro vence.")+
   "<h3>O jeito mais fácil de aprender</h3><div class='tcards'><button class='tcard hot' data-go='1'><span>🖥️</span><b>Ler em 3 minutos</b><small>Os 5 primeiros tópicos já bastam para jogar.</small></button><button class='tcard' data-go='"+tIdx("Draft em 1 minuto")+"'><span>🏆</span><b>Entender o Draft</b><small>A parte mais importante: como montar o seu time. Com vídeos.</small></button><button class='tcard' data-go='"+tIdx("Equipamentos")+"'><span>🎒</span><b>Equipamentos</b><small>As cápsulas que melhoram os números do seu personagem.</small></button></div>"+
   "<h3>Combinados para não se perder</h3><ul><li>Errou um clique? Dá para <b>desfazer</b> antes de encerrar o turno. Nada acontece até você confirmar.</li><li>Não sabe o que um ícone faz? <b>"+(HOVPC?"Passe o mouse em cima":"Segure o dedo em cima")+"</b> e o jogo explica.</li><li>Os tópicos marcados com <b class='tck'>✓</b> são os que você já viu. Pode voltar quando quiser.</li><li>No fim do tutorial tem o <b>Aprender jogando</b>: uma partida com o guia na tela explicando cada passo.</li></ul>"},
@@ -4462,7 +4462,7 @@ function showTut(){G.scr="t";const w=pgShell("Tutorial","tut"),bd=mk("div","ttbd
  let lg="";TUT.forEach((t,i)=>{if(t.g!=lg){lg=t.g;nav.append(mk("div","ttgh",t.g))}const b=mk("button","ttn","<span>"+t.i+"</span><em>"+t.n+"</em><b class='tck'>✓</b>");b.onclick=()=>go(i);nav.append(b)});
  if(!document._tutk){document._tutk=1;document.addEventListener("keydown",e=>{if(G.scr!="t"||e.target&&/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;const b=e.key=="ArrowRight"?".ttnx":e.key=="ArrowLeft"?".ttpv":null;if(b){const x=document.querySelector(b);if(x&&!x.disabled&&!/menu/i.test(x.textContent)){e.preventDefault();x.click()}}})}
  if(TUTNEW){const bk=w.querySelector(".pgbk");if(bk)bk.onclick=tutSair;
-  const bar=mk("div","ttnew","<div><b>Primeira vez na Z Arena?</b><span>Este é o tutorial. Dá para ler no seu tempo e voltar aqui quando quiser pelo Menu.</span></div>");
+  const bar=mk("div","ttnew","<div><b>Primeira vez no Projeto Ânima?</b><span>Este é o tutorial. Dá para ler no seu tempo e voltar aqui quando quiser pelo Menu.</span></div>");
   const sk=mk("button","ttsk","Pular tutorial");sk.onclick=tutSair;bar.append(sk);w.insertBefore(bar,bd)}
  go(TUTI)}
 /* ===== Treino guiado (Aprender jogando): roteiro passo a passo com destaque na tela ===== */
@@ -4736,7 +4736,7 @@ const PATCH=[
   "<b>Aprender jogando ficou no fim do tutorial</b>, no lugar do antigo \"Jogar agora\", e ficou bem maior: além dos cliques do primeiro turno, o guia agora ensina a ler as habilidades, a recarga, os efeitos, a passiva, o líder, barreira contra armadura, foco de alvo e a hora de usar a ultimate."],
  nv:[{"i": "⚖️", "hl": 1, "n": "Rework Patch", "t": "Rebalanceamento geral: partidas mais longas, menos dano explosivo e winrate parelha entre todos os personagens. Nenhum efeito mudou, só números."},{"i": "🎒", "n": "Equipamentos no tutorial", "t": "Tópico novo explicando as cápsulas do zero, e o Aprender jogando agora acompanha a partida inteira com dicas na tela."}]},
  {t:"Patch 0.3.1",d:"12/11/2026",nw:["sas"],ch:[],
- sy:["<b>Sasuke Uchiha chegou à Z Arena.</b> Segundo ninja da collab DBZ × Naruto Shippuden, classe Carregador / Assassino.",
+ sy:["<b>Sasuke Uchiha chegou ao Projeto Ânima.</b> Segundo ninja da collab DBZ × Naruto Shippuden, classe Carregador / Assassino.",
   "<b>Susano Perfeito:</b> a ultimate começa com 3 turnos de recarga, dá 30 de BARREIRA e 30 de ARMADURA permanentes e troca as três habilidades dele pelas versões do Susano.",
   "<b>Marca do Ikazuchi:</b> um novo status. Se o inimigo marcado não usar nenhuma habilidade no turno seguinte, Sasuke fica INALVEJÁVEL por 1 turno.",
   "Como líder, ele mostra a Energia, a Essência e os tempos de recarga do time inimigo.",
@@ -4753,7 +4753,7 @@ const PATCH=[
   "<b>Cápsulas:</b> as que dão bônus <b>a cada turno seu</b> (Fúria Crescente, Treino Constante, Casca Viva e Aura Protetora) agora acumulam no máximo <b>3 turnos</b>. O Fluxo de Energia continua dando Energia a cada 4 turnos, sem limite."],
  nv:[{i:"⚡",hl:1,n:"Sasuke Uchiha",t:"Marca o inimigo, atordoa para acertar o time inteiro e depois vira Susano Perfeito, com 30 de BARREIRA, 30 de ARMADURA e três habilidades novas."}]},
  {t:"Patch 0.3.0",d:"11/11/2026",nw:["sak"],ch:[["g2",["<b>Golpe Explosivo!</b>: o limite de <b>100 de dano</b> que dá o desconto de 3 de Essência agora fica fixo na descrição. Antes esse número subia junto com os bônus de dano e parecia que nunca ativava."],"b"],["mg",["<b>Kaaa...Meee...Haaa...Meee...</b>: os +35 de dano (e o desconto de 2 de Essência) por habilidade extra agora contam também a habilidade extra usada no <b>turno anterior</b>, não só no mesmo turno. O bônus aparece na descrição da habilidade."],"b"]],
- sy:["<b>Sakura Haruno chegou à Z Arena.</b> Primeira ninja da collab DBZ \u00d7 Naruto Shippuden, classe Suporte / Lutador.",
+ sy:["<b>Sakura Haruno chegou ao Projeto Ânima.</b> Primeira ninja da collab DBZ \u00d7 Naruto Shippuden, classe Suporte / Lutador.",
   "<b>Byakugou:</b> ela come\u00e7a com 3 ac\u00famulos (m\u00e1ximo 4) e n\u00e3o pode ter o HP m\u00e1ximo reduzido. Toque na passiva para ligar o Byakugou: a pr\u00f3xima habilidade gasta 1 ac\u00famulo e fica mais forte. Se ela n\u00e3o usar nenhuma habilidade no turno, recupera 25 de HP e 1 ac\u00famulo.",
   "<b>Novo status: CURA CONT\u00cdNUA</b> \u2014 recupera HP no in\u00edcio de cada turno aliado, enquanto durar. \u00c9 um buff: pode ser removido.",
   "Como l\u00edder, cada aliado sobrevive uma vez a um golpe fatal e volta com 75 de HP."],
@@ -4810,7 +4810,7 @@ const FEAT=[{k:"unicas",n:"Cápsulas Únicas",d:"13/11/2026",sb:"Aprimorar habil
  ft:"Vale em todos os modos: Treino, Draft, contra o Bot e no Online."},{k:"caps",n:"Equipamentos",d:"12/11/2026",sb:"Cápsulas e Inventário",im:"ft_caps",h:"Monte a build do seu personagem",tx:"Cada personagem tem uma <b>build de cápsulas</b> que melhora os números dele. A cápsula não muda <i>o que</i> a habilidade faz — muda <i>o quanto</i>.",li:[["🎒","<b>Inventário</b>: 10 slots Ofensivos/Defensivos + 1 Utilidade + 1 Especial, por personagem"],["✅","As <b>36 cápsulas</b> já vêm liberadas: é só equipar"],["🔍","A aba <b>Habilidades</b> mostra o dano, a cura e a defesa mudando enquanto você monta"],["📚","O tutorial tem um tópico só sobre isso: <b>Equipamentos</b>"]],ft:"As cápsulas valem em todos os modos: Treino, Draft, contra o Bot e no Online."},{k:"draftaj",n:"Ajuda no Draft",d:"07/11/2026",sb:"Escolhas e tutorial",im:"dr_pick",h:"Draft mais fácil",tx:"Escolher o time ficou bem mais simples, principalmente para quem está começando.",li:[["💡","<b>Sugestão de escolha</b>: quem é bom contra o time do oponente, e por quê"],["📖","<b>Em poucas palavras</b>: cada personagem explicado em uma frase"],["🏆","Tutorial novo do Draft, com vídeos de cada fase"],["🎮","<b>Aprender jogando</b> guiado passo a passo"]],ft:"A sugestão vem ligada e pode ser desativada no próprio Draft."},{k:"stats",n:"Estatísticas",d:"07/11/2026",sb:"Pós-batalha",im:"ft_stats",h:"Estatísticas pós-batalha",tx:"Agora, no fim de cada partida, o botão <b>%SC% Estatísticas</b> mostra tudo o que aconteceu na luta.",li:[["🏆","<b>MVP</b> do time vencedor e <b>SVP</b> do perdedor"],["🗡️","Quem deu mais dano, curou, tankou e protegeu mais"],["✨","As habilidades fundamentais para a vitória e o golpe final"],["📈","Gráficos de dano, cura e proteção por personagem e por habilidade"],["⏱️","Linha do tempo com a vida dos times a cada turno"]],ft:"Funciona no Treino, no Draft, contra o Bot e no Online, para jogadores e espectadores."}];IMG.tz_bo="media/b64/5b4e8af0874592b2.webp";
 IMG.tz_jw="media/b64/ced514ce23e0f7c4.webp";/* Banners "Em breve": personagem anunciado antes de ter kit. k=id, n=nome, im=chave em IMG */IMG.co_dbxn="media/b64/e0d0f6117b90e217.webp";IMG.co_dbxn_c="media/b64/fac6e68c28aeeed7.webp";
 Object.assign(IMG,{"co_sl": "media/b64/581400da3abffb38.webp", "co_sl_c": "media/b64/f43d0b35f77e4511.webp"});
-const COLLAB=[{k:"sl",n:"DBZ × Solo Leveling",d:"14/11/2026",im:"co_sl",imc:"co_sl_c",tx:"A terceira collab da Z Arena vem das Masmorras: o Caçador de Rank E que virou o Monarca das Sombras está a caminho.",ch:["Jinwoo"],sb:"Jinwoo chega em breve. Líder, passiva e habilidades ainda não foram revelados."},{k:"sao",n:"DBZ × Sword Art Online",d:"14/11/2026",im:"co_sao",imc:"co_sao_c",tx:"Collab surpresa! O espadachim de preto saiu de Aincrad direto para a Z Arena, com as duas espadas na mão.",ch:["Kirito"],sb:"Kirito já está jogável, com Empunhadura Dupla, a Pedra Divina do Retorno da Alma e o Starburst Stream."},{k:"dbxn",n:"DBZ × Naruto Shippuden",d:"08/11/2026",im:"co_dbxn",imc:"co_dbxn_c",tx:"Anunciada a primeira grande collab da Z Arena! Quatro ninjas da saga Naruto estão a caminho para enfrentar os guerreiros de Dragon Ball.",ch:["Sasuke Uchiha","Sakura Haruno","Naruto Uzumaki","Boruto Uzumaki"],sb:"Sakura Haruno, Sasuke Uchiha e Naruto Uzumaki já estão jogáveis, e Boruto chega em breve. Em comemoração, o <b>Blue Bird</b> é o novo tema do menu."}];
+const COLLAB=[{k:"sl",n:"DBZ × Solo Leveling",d:"14/11/2026",im:"co_sl",imc:"co_sl_c",tx:"A terceira collab do Projeto Ânima vem das Masmorras: o Caçador de Rank E que virou o Monarca das Sombras está a caminho.",ch:["Jinwoo"],sb:"Jinwoo chega em breve. Líder, passiva e habilidades ainda não foram revelados."},{k:"sao",n:"DBZ × Sword Art Online",d:"14/11/2026",im:"co_sao",imc:"co_sao_c",tx:"Collab surpresa! O espadachim de preto saiu de Aincrad direto para o Projeto Ânima, com as duas espadas na mão.",ch:["Kirito"],sb:"Kirito já está jogável, com Empunhadura Dupla, a Pedra Divina do Retorno da Alma e o Starburst Stream."},{k:"dbxn",n:"DBZ × Naruto Shippuden",d:"08/11/2026",im:"co_dbxn",imc:"co_dbxn_c",tx:"Anunciada a primeira grande collab do Projeto Ânima! Quatro ninjas da saga Naruto estão a caminho para enfrentar os guerreiros de Dragon Ball.",ch:["Sasuke Uchiha","Sakura Haruno","Naruto Uzumaki","Boruto Uzumaki"],sb:"Sakura Haruno, Sasuke Uchiha e Naruto Uzumaki já estão jogáveis, e Boruto chega em breve. Em comemoração, o <b>Blue Bird</b> é o novo tema do menu."}];
 IMG.ui_ivbg="media/b64/179afc3ff9b85392.webp";
 IMG.ui_news="media/b64/e5f78659180271a7.webp";IMG.tz_jw_c="media/b64/9f16ae9e4a0cc2c9.webp";
 /* collab: nome anunciado -> personagem ja jogavel, para o banner nunca ficar preso em "em breve" */
@@ -4818,7 +4818,7 @@ const coRel=n=>{const lp=x=>String(x||"").replace(/\s*\([^)]*\)\s*$/,"").trim().
  return ROS.find(k=>C[k]&&lp(C[k].n)==a)||null};
 const coTz=n=>{const lp=x=>String(x||"").replace(/\s*\([^)]*\)\s*$/,"").trim().toLowerCase();const a=lp(n);
  return TEASE.find(t=>{const b=lp(t.n);return a==b||a.startsWith(b+" ")||b.startsWith(a+" ")})||null};
-const TEASE=[{k:"bo",n:"Boruto",co:"DBZ × Naruto",d:"12/11/2026",im:"tz_bo",tx:"O filho do Naruto está a caminho da Z Arena, e vem com a marca Karma no braço.",sb:"Líder, passiva e habilidades serão revelados em breve."},{k:"jw",n:"Jinwoo",co:"DBZ × Solo Leveling",d:"07/11/2026",im:"tz_jw",imc:"tz_jw_c",tx:"Um novo desafiante saiu das sombras e está a caminho da Z Arena.",sb:"Líder, passiva e habilidades serão revelados em breve."}];let BQ=null;
+const TEASE=[{k:"bo",n:"Boruto",co:"DBZ × Naruto",d:"12/11/2026",im:"tz_bo",tx:"O filho do Naruto está a caminho do Projeto Ânima, e vem com a marca Karma no braço.",sb:"Líder, passiva e habilidades serão revelados em breve."},{k:"jw",n:"Jinwoo",co:"DBZ × Solo Leveling",d:"07/11/2026",im:"tz_jw",imc:"tz_jw_c",tx:"Um novo desafiante saiu das sombras e está a caminho do Projeto Ânima.",sb:"Líder, passiva e habilidades serão revelados em breve."}];let BQ=null;
 function bnSeen(id){try{const v=localStorage.getItem("za_bn2_"+id);if(!v)return false;if(v==="1"){localStorage.setItem("za_bn2_"+id,String(Date.now()));return true}return Date.now()-Number(v)<24*3600*1000}catch(e){return false}}
 function bnHide(id){try{localStorage.setItem("za_bn2_"+id,String(Date.now()))}catch(e){}}
 const unlSeen=k=>{try{return localStorage.getItem("za_unl2_"+k)==="1"}catch(e){return true}};/* já viu a revelação com cadeado */
@@ -4848,7 +4848,7 @@ function vvApply(){if(!ISPH||!document.body)return;{const land=isLand();if(docum
  else{VVOFF.forEach(s=>s.media="");if(VVCSS)VVCSS.media="not all";document.documentElement.classList.remove("vv");document.documentElement.style.zoom="";VV=0}
  try{render()}catch(e){}}
 function rotAsk(){if(!ISPH||innerWidth>innerHeight||document.getElementById("rotm"))return;try{if(sessionStorage.getItem("za_rot")=="1")return}catch(e){}
- const ov=mk("div","");ov.id="rotm";ov.innerHTML="<div class='rotbx'><div class='rotph'>📱</div><h2>Vire o celular</h2><p>A Z Arena fica bem melhor deitada: a batalha inteira cabe na tela, com ícones maiores para tocar.</p></div>";
+ const ov=mk("div","");ov.id="rotm";ov.innerHTML="<div class='rotbx'><div class='rotph'>📱</div><h2>Vire o celular</h2><p>O Projeto Ânima fica bem melhor deitado: a batalha inteira cabe na tela, com ícones maiores para tocar.</p></div>";
  const bx=ov.querySelector(".rotbx"),b1=mk("button","nkok","↻ Virar tela"),b2=mk("button","rotno","Continuar em pé");
  const rotFim=()=>{try{ov.remove()}catch(x){}setTimeout(()=>{try{vvApply()}catch(x){}try{bnNext()}catch(x){}},300);if(!isLand())try{zToast("Deite o celular para jogar com a tela maior. Se ele não girar, desative a trava de rotação.")}catch(x){}};const rotSo=(pr,ms)=>Promise.race([Promise.resolve(pr).catch(()=>0),new Promise(r=>setTimeout(r,ms))]);const rotPode=()=>{try{return window.top===window.self&&document.fullscreenEnabled!==false}catch(x){return false}};b1.onclick=async()=>{b1.disabled=true;b1.textContent="Girando…";try{if(rotPode()){const el=document.documentElement;if(el.requestFullscreen&&!document.fullscreenElement)await rotSo(el.requestFullscreen({navigationUI:"hide"}),1200);if(screen.orientation&&screen.orientation.lock)await rotSo(screen.orientation.lock("landscape"),1200)}}catch(e){}rotFim()};
  b2.onclick=()=>{try{sessionStorage.setItem("za_rot","1")}catch(e){}try{ov.remove()}catch(e){}setTimeout(()=>{try{vvApply()}catch(x){}try{bnNext()}catch(x){}},300)};bx.append(b1,b2);ov.onclick=e=>{if(e.target===ov)b2.onclick()};document.body.append(ov);/* rede de seguranca: nenhuma janela de abertura fica presa na tela */setTimeout(()=>{if(document.getElementById("rotm")&&!isLand()&&!document.hidden){const sm=ov.querySelector(".rotsm");if(!sm)bx.append(mk("p","rotsm","Não conseguiu girar? Toque em <b>Continuar em pé</b> — dá para jogar assim também."))}},6000)}
@@ -4883,7 +4883,7 @@ function tutSair(){TUTNEW=0;tutSeenSet();
  showMenu()}
 function nickOk(){try{if((window.LSMEM||{}).za_nick_ok==="1")return true;return localStorage.getItem("za_nick_ok")==="1"}catch(e){return true}}
 function nickAsk(){if(document.getElementById("nkm"))return;if(window.ZLOGIN&&window.ZLOGIN(nickAsk))return;const ov=mk("div","");ov.id="nkm";const bx=mk("form","nkbox");
- bx.innerHTML="<div class='nkz'>Z</div><h2>Bem-vindo à Z Arena!</h2><p>Escolha o seu nick. Ele aparece para os outros jogadores nas salas online e no chat.</p>";
+ bx.innerHTML="<div class='nkz'>Â</div><h2>Bem-vindo ao Projeto Ânima!</h2><p>Escolha o seu nick. Ele aparece para os outros jogadores nas salas online e no chat.</p>";
  const inp=mk("input");inp.maxLength=18;inp.placeholder="Seu nick";let cur="";try{cur=localStorage.getItem("za_nick")||""}catch(e){}if(cur&&!/^Lutador /.test(cur))inp.value=cur;
  const er=mk("small","nker"),ok=mk("button","nkok","Confirmar");ok.type="submit";bx.append(inp,er,mk("p","nksub","Legendas dos vídeos"),subPick(),ok);ov.append(bx);document.body.append(ov);setTimeout(()=>inp.focus(),60);
  bx.onsubmit=e=>{e.preventDefault();const n=inp.value.trim().replace(/\s+/g," ");if(n.length<2){er.textContent="O nick precisa ter pelo menos 2 letras.";return}try{inp.blur()}catch(x){}ov.remove();try{oSetNick(n)}catch(x){}try{ls("za_nick_ok","1")}catch(x){}try{rotAsk()}catch(x){}try{lsWarn()}catch(x){}setTimeout(()=>{try{vvApply()}catch(x){}
@@ -4899,16 +4899,16 @@ function bnShow(b){const ids=b.ty=="pt"?["pt_"+b.p.t]:b.ty=="nw"?["nw_"+b.k]:b.t
   const w=mk("div","bnptw");w.append(pcCover(b.p,0));bx.append(w)}
  else if(b.ty=="ft"){const F=b.f,art=mk("div","bnart");art.style.backgroundImage='url("'+IMG[F.im]+'")';
   art.append(mk("div","bntag","Novidade"),mk("div","bnnm","<small>Novo no jogo</small><h2>"+F.n+"</h2><span>"+(F.sb||"")+"</span>"));
-  const inf=mk("div","bninf");inf.append(mk("h3","","Novidade na Z Arena!"),mk("div","ftnm",F.h),mk("p","sntx",scic(F.tx)),mk("ul","ftli",F.li.map(x=>"<li><span>"+x[0]+"</span><p>"+x[1]+"</p></li>").join("")),mk("p","snsb",F.ft));bx.append(art,inf)}
+  const inf=mk("div","bninf");inf.append(mk("h3","","Novidade no Projeto Ânima!"),mk("div","ftnm",F.h),mk("p","sntx",scic(F.tx)),mk("ul","ftli",F.li.map(x=>"<li><span>"+x[0]+"</span><p>"+x[1]+"</p></li>").join("")),mk("p","snsb",F.ft));bx.append(art,inf)}
  else if(b.ty=="co"){const Q=b.c,art=mk("div","bnart");art.style.backgroundImage='url("'+IMG[Q.im]+'")';art.append(mk("div","bntag co","Collab"));
-   const inf=mk("div","bninf");inf.append(mk("h3","","Collab anunciada!"),mk("div","conm",Q.n),mk("p","sntx",Q.tx),mk("small","bnsl","Chegando à Z Arena"),(()=>{const ch=mk("div","coch",Q.ch.map(n=>{const r=coRel(n);const z=r?null:coTz(n);
+   const inf=mk("div","bninf");inf.append(mk("h3","","Collab anunciada!"),mk("div","conm",Q.n),mk("p","sntx",Q.tx),mk("small","bnsl","Chegando ao Projeto Ânima"),(()=>{const ch=mk("div","coch",Q.ch.map(n=>{const r=coRel(n);const z=r?null:coTz(n);
    return "<span"+(r?" class='rel' data-k='"+r+"'":z?" class='tz' data-tz='"+z.k+"'":"")+((r||z)?" role='button' tabindex='0'":"")+"><b>"+n+"</b><i>"+(r?"Já disponível ▸":z?"Em breve ▸":"Em breve")+"</i></span>"}).join(""));/* quem ja saiu abre o banner de lancamento dele */ch.querySelectorAll("span[data-k],span[data-tz]").forEach(sp=>{const ir=()=>{ov.remove();document.removeEventListener("keydown",esc,true);
     if(sp.dataset.tz){const t=TEASE.find(x=>x.k==sp.dataset.tz);if(t)bnShow({ty:"sn",k:t.k,t});return}
     const k=sp.dataset.k,p=PATCH.find(x=>(x.nw||[]).includes(k));if(p)bnShow({ty:"nw",k,p});else{showChars();setTimeout(()=>card(k),60)}};sp.onclick=ir;sp.onkeydown=e=>{if(e.key=="Enter"||e.key==" "){e.preventDefault();ir()}}});return ch})(),mk("p","snsb",Q.sb));bx.append(art,inf)}
  else if(b.ty=="sn"){const T=b.t,art=mk("div","bnart");
   art.style.backgroundImage='url("'+IMG[T.im]+'")';/* sempre a arte limpa: o título vem do próprio banner */
-  art.append(mk("div","bntag","Em breve"));art.append(mk("div","bnnm","<small>"+(T.co?"Collab "+T.co:"Novo personagem")+"</small><h2>"+T.n+"</h2><span>Chegando à Z Arena</span>"));
-  const inf=mk("div","bninf");inf.append(mk("h3","",T.co?"Collab "+T.co+"!":"Em breve na Z Arena!"),mk("div","snnm",T.n),mk("p","sntx",T.tx),mk("p","snsb",T.sb));
+  art.append(mk("div","bntag","Em breve"));art.append(mk("div","bnnm","<small>"+(T.co?"Collab "+T.co:"Novo personagem")+"</small><h2>"+T.n+"</h2><span>Chegando ao Projeto Ânima</span>"));
+  const inf=mk("div","bninf");inf.append(mk("h3","",T.co?"Collab "+T.co+"!":"Em breve no Projeto Ânima!"),mk("div","snnm",T.n),mk("p","sntx",T.tx),mk("p","snsb",T.sb));
   const q=mk("div","snq");for(let i=0;i<5;i++)q.append(mk("span","","?"));inf.append(mk("small","bnsl","Habilidades"),q);bx.append(art,inf)}
  else if(b.ty=="nw"){const c=C[b.k];const art=mk("div","bnart");art.style.backgroundImage='url("'+(IMG[b.k+"_h"]||IMG[b.k+"_s"]||IMG[b.k+"_f"])+'")';
   art.append(mk("div","bntag","Novo personagem"),mk("div","bnnm","<small>"+b.p.t+" · "+b.p.d+"</small><h2>"+shn(b.k)+"</h2><span>"+(sphere(b.k)||"")+" · "+c.cl+"</span>"));
@@ -4916,7 +4916,7 @@ function bnShow(b){const ids=b.ty=="pt"?["pt_"+b.p.t]:b.ty=="nw"?["nw_"+b.k]:b.t
    if(!seen){bx.classList.add("unlb");art.classList.add("unl");const lk=mk("div","bnlk");lk.style.backgroundImage=art.style.backgroundImage;
     lk.innerHTML="<div class='bnpad'><svg viewBox='0 0 64 80' aria-hidden='true'><path class='sh' d='M18 38V25a14 14 0 0 1 28 0v13' fill='none' stroke='#e2e2e2' stroke-width='7' stroke-linecap='round'/><rect x='9' y='36' width='46' height='38' rx='8' fill='#c4c4c4' stroke='#6e6e6e' stroke-width='2.5'/><rect x='9' y='36' width='46' height='9' rx='4' fill='#fff' opacity='.25'/><circle cx='32' cy='53' r='5.5' fill='#4a4a4a'/><rect x='29.6' y='55' width='4.8' height='11' rx='2.4' fill='#4a4a4a'/></svg><i class='bnflash'></i></div><b class='bnlkt'>Em breve</b>";
     art.prepend(lk);art.onclick=()=>art.classList.add("skip");art.title="Clique para revelar"}}
-  const inf=mk("div","bninf");inf.append(mk("h3","","Chegou à Z Arena!"));
+  const inf=mk("div","bninf");inf.append(mk("h3","","Chegou ao Projeto Ânima!"));
   const it=(ic,lb,n,t)=>{const e=mk("div","bnit");e.innerHTML="<img src='"+ic+"' alt=''><div><small>"+lb+"</small><b>"+n+"</b><p>"+skIcons(t,b.k)+"</p></div>";inf.append(e)};
   it(IMG[b.k+"_b"]||IMG[b.k+"_f"],"Habilidade de líder","Quando é o líder",c.ld);it(IMG[b.k+"_p"],"Passiva",c.ps.n,c.ps.t);
   const sk=mk("div","bnsk"),skd=mk("div","bnskd");skd.hidden=true;
@@ -4946,7 +4946,7 @@ const NWT=[["pers","Novos personagens e Em breve"],["bal","Balanceamentos"],["ev
 const nwD=s=>{const m=/(\d+)\/(\d+)\/(\d+)/.exec(s||"");return m?new Date(+m[3],+m[2]-1,+m[1]).getTime():0};
 function nwItems(){const L={pers:[],bal:[],ev:[]};
  TEASE.forEach(t=>L.pers.push({ty:"sn",k:t.k,t,id:"sn_"+t.k,d:t.d||PATCH[0].d,tag:"Em breve",tc:"sn",h:"Em breve: "+t.n+(t.co?" · "+t.co:""),img:IMG[t.imc||t.im],baked:!!t.imc,sub:t.tx}));
- PATCH.forEach(p=>(p.nw||[]).forEach(k=>{if(C[k])L.pers.push({ty:"nw",k,p,id:"nw_"+k,d:p.d,tag:"Novo personagem",tc:"nw",h:shn(k)+" chegou à Z Arena!",img:IMG[k+"_h"]||IMG[k+"_s"]||IMG[k+"_f"],sub:(C[k].cl||"")+" · "+p.t})}));
+ PATCH.forEach(p=>(p.nw||[]).forEach(k=>{if(C[k])L.pers.push({ty:"nw",k,p,id:"nw_"+k,d:p.d,tag:"Novo personagem",tc:"nw",h:shn(k)+" chegou ao Projeto Ânima!",img:IMG[k+"_h"]||IMG[k+"_s"]||IMG[k+"_f"],sub:(C[k].cl||"")+" · "+p.t})}));
  PATCH.forEach((p,pi)=>{const E=p.ch.filter(x=>C[x[0]]);if(!E.length&&!(p.sy&&p.sy.length))return;
   L.bal.push({ty:"bal",ps:[p],id:"bal_"+p.t,d:p.d,tag:"Balanceamento",tc:"bal",h:p.t+(E.length?" · "+E.length+" "+(E.length>1?"personagens":"personagem"):" · Sistema"),faces:E.map(x=>x[0]),pt:p.t,last:pi==0,sub:E.length?E.slice(0,4).map(x=>shn(x[0])).join(", ")+(E.length>4?" e mais "+(E.length-4):""):"Mudanças nas regras do jogo"})});
  COLLAB.forEach(c=>{const it={ty:"co",k:c.k,c,id:"co_"+c.k,d:c.d,tag:"Collab",tc:"co",h:"Anunciada: collab "+c.n,img:IMG[c.imc],sub:(()=>{const f=c.ch.filter(x=>!coRel(x)).map(x=>x.split(" ")[0]);
@@ -4967,7 +4967,7 @@ function nwOpen(auto){if(document.getElementById("nws"))return;const L=nwItems()
   A.forEach(it=>{const c=mk("button","nwc"+(fresh.has(it.id)?" fr":""));c.type="button";
    const hd=mk("div","nwch","<span class='nwtg "+it.tc+"'>"+it.tag+"</span><b>"+it.h+"</b>"+(fresh.has(it.id)?"<em>NOVO</em>":""));
    const ban=mk("div","nwban "+it.tc+(it.baked?" bk":""));
-   if(it.img){ban.style.backgroundImage='url("'+it.img+'")';if(it.ty!="ft"&&it.ty!="co"&&!it.baked)ban.append(mk("div","nwbt","<small>"+(it.ty=="sn"?(it.t.co||"Em breve na Z Arena"):it.ty=="nw"?"Novo personagem":"Novidade")+"</small><strong>"+(it.ty=="ft"?it.f.n:it.ty=="sn"?it.t.n:shn(it.k))+"</strong>"))}
+   if(it.img){ban.style.backgroundImage='url("'+it.img+'")';if(it.ty!="ft"&&it.ty!="co"&&!it.baked)ban.append(mk("div","nwbt","<small>"+(it.ty=="sn"?(it.t.co||"Em breve no Projeto Ânima"):it.ty=="nw"?"Novo personagem":"Novidade")+"</small><strong>"+(it.ty=="ft"?it.f.n:it.ty=="sn"?it.t.n:shn(it.k))+"</strong>"))}
    else{const fc=mk("div","nwfc");const nf=matchMedia("(max-width:560px)").matches?3:5;it.faces.slice(0,nf).forEach(k=>{const im=mk("img","");im.src=IMG[k+"_f"];im.alt="";fc.append(im)});if(it.faces.length>nf)fc.append(mk("span","","+"+(it.faces.length-nf)));
     ban.append(mk("div","nwbt","<small>Patch de Balanceamento</small><strong>"+it.pt.replace("Patch ","PATCH ")+"</strong>"),fc)}
    c.append(hd,ban,mk("div","nwft","<span>"+it.sub+"</span><time>"+it.d+"</time>"));
@@ -7151,7 +7151,7 @@ dClear();pannOff(1);G.rkm=null;G.rkBlv=null;G.rkNome=null;/* saiu da ranqueada: 
  if(MSEL>=IT.length)MSEL=0;
  const w=mk("div","mm2");w.innerHTML="<div class='mmcam'><div class='mmbgi' style=\"background-image:url('"+IMG.ui_mbg+"')\"></div></div><div class='mmshaft'></div><div class='mmvig'></div>";mbAnim(w.querySelector(".mmbgi"));
  const art=mk("div","mmart","<img src='"+IMG.ui_poster+"' alt=''>");
- const L=mk("div","mml"),hd=mk("div","mmhd","<span class='mmem'>Z</span><h1>"+(MSUB=="play"?"Jogar":MSUB=="off"?"Jogar Offline":"Menu Principal")+"</h1>");
+ const L=mk("div","mml"),hd=mk("div","mmhd","<span class='mmem'>Â</span><h1>"+(MSUB=="play"?"Jogar":MSUB=="off"?"Jogar Offline":"Menu Principal")+"</h1>");
  const up=mk("button","mmar u","<span>︿</span>"),dn=mk("button","mmar d","<span>﹀</span>");up.setAttribute("aria-label","Opção anterior");dn.setAttribute("aria-label","Próxima opção");
  const lst=mk("div","mmlist"+(IT.length>6?" many":""));lst.setAttribute("role","menu");
  const ds=mk("div","mmdesc"),dt=mk("p","");ds.append(dt);
@@ -7326,7 +7326,7 @@ const pkey=()=>!D?null:D.ph=="seq"?(D.seq[D.si]&&D.seq[D.si].t):D.ph;
 let PLAST=null,PT=0;
 const PBT=["yt","win","battle","g2rv","turv"];function pannOff(all){if(all){const c=document.getElementById("coach");if(c)c.remove();const sp=document.getElementById("cspot");if(sp)sp.remove()}const o=document.getElementById("pann");if(o&&(all||PBT.includes(o.dataset.k))){clearTimeout(PT);o.className="";o.dataset.k=""}}
 function phaseAnn(k,force){if(!k||!PANN[k]||(k===PLAST&&!force))return;if(PBT.includes(k)&&G.scr!="p")return;PLAST=k;let o=document.getElementById("pann");if(!o){o=document.createElement("div");o.id="pann";document.body.append(o)}o.dataset.k=k;
- o.innerHTML="";const t=PANN[k],box=mk("div","pbox"+(t[2]?" "+t[2]:""));box.append(mk("div","pk","Z ARENA"),mk("div","pt",t[0]));if(t[1])box.append(mk("div","ps",t[1]));o.append(box);
+ o.innerHTML="";const t=PANN[k],box=mk("div","pbox"+(t[2]?" "+t[2]:""));box.append(mk("div","pk","PROJETO ÂNIMA"),mk("div","pt",t[0]));if(t[1])box.append(mk("div","ps",t[1]));o.append(box);
  o.className="";void o.offsetWidth;o.className="show";if(k=="battle"&&typeof AU!="undefined"&&AU.start){vox(AU.start);G.holdT=Date.now()+7200}clearTimeout(PT);PT=setTimeout(()=>{o.className="out";PT=setTimeout(()=>{o.className=""},700)},k=="battle"?3000:k=="win"?4200:2300)}
 function dRender(){if(!D)return showMenu();pannOff();if(typeof banSfx=="function")banSfx();{const fk=pkey();if(D._fk!==fk){D._fk=fk;D.flt="all";D.q=""}}G.scr="d";document.body.classList.remove("bt");document.body.classList.add("dm");const r=$("#dr");r.innerHTML="";
  const ph=D.ph,cur=ph=="seq"?D.seq[D.si]:null,phk=ph=="seq"?cur.t:ph=="prerev"?"pre":ph=="newlead"||ph=="fbanrev"?"fban":ph=="banrev"?"ban":ph,still=(ph=="field"&&!D.rolled)||ph=="prerev"||ph=="done"||ph=="sur"||((ph=="banrev"||ph=="fbanrev")&&!D.on);

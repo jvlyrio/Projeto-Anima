@@ -101,7 +101,7 @@ def main(src):
     s = re.sub(r"/_blob/([0-9a-f]{32})", rep, s)
     if missing:
         sys.exit("faltam arquivos em media/: " + ", ".join(sorted(missing)))
-    s = s.replace("<title>Z Arena · Etapa 1</title>", "<title>Z Arena</title>", 1)
+    s = s.replace("<title>Projeto Ânima · Etapa 1</title>", "<title>Projeto Ânima</title>", 1)
     s = tira_embutidas(s)
     import json
     zjs = open(os.path.join(ROOT, "src", "zsb.js"), encoding="utf-8").read()
@@ -142,7 +142,7 @@ def main(src):
            "object-src 'none'; base-uri 'none'; form-action 'self'")
 
     head = (
-        '<meta name="description" content="Z Arena: jogo de estratégia por turnos no navegador.">'
+        '<meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador.">'
         '<meta http-equiv="Content-Security-Policy" content="' + csp + '">'
         '<meta name="referrer" content="strict-origin-when-cross-origin">'
         "<script>window.ZCFG=" + json.dumps(CFG) + ";</script>"
