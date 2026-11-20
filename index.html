@@ -461,6 +461,13 @@ button.g.sur{color:var(--r);border-color:var(--r)}
 button.qa{padding:2px 6px;font-size:11px;background:transparent;color:var(--tx);border:1px solid var(--mu);border-radius:6px}button.qa:disabled{opacity:.3}
 .w .qn{position:absolute;left:-5px;top:-6px;min-width:18px;height:18px;border-radius:9px;background:var(--a);color:#161616;font:800 11px/18px system-ui;text-align:center;pointer-events:none}
 .tturn{display:none}
+.tmrb{display:none;text-align:center;line-height:1;padding:2px 10px;border-radius:10px;background:#1b1206;border:2px solid #5a3c12}
+body.bt .tmrb{display:block}.tmrb[hidden]{display:none!important}
+.tmrb small{display:block;font:900 italic 10px system-ui;letter-spacing:.14em;text-transform:uppercase;color:#ffcf4a;opacity:.85}
+.tmrb b{font:900 italic 26px/1.05 system-ui;color:#ffe9a8}
+.tmrb.tmry b{color:#ffb547}.tmrb.tmrx{border-color:#b83a2a;background:#2a0f0a}.tmrb.tmrx b{color:#ff6a52;animation:tmrp .9s infinite}
+@keyframes tmrp{50%{opacity:.35}}
+body.ph.bt .tmrb{padding:1px 7px}body.ph.bt .tmrb b{font-size:17px}body.ph.bt .tmrb small{font-size:8px}
 @media(min-width:900px){
 body.bt{--bg:#05070c;--pn:#0c1220d9;--in:#111a2ccc;--tx:#eef1f8;--mu:#9aa4bb;background:#05070c var(--fbg,none) center/cover fixed no-repeat;color:var(--tx)}
 body.bt::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% 45%,#05070c55 0%,#05070cc4 55%,#05070cf2 100%);pointer-events:none;z-index:0}
@@ -3246,6 +3253,9 @@ function endScreen(){if(G.win==null||G.scr!="p")return endClose();let o=document
   if(rkEmJogo())btns=[["Menu",()=>{endClose();showMenu()}],["Voltar ao lobby",()=>{endClose();LBM="fila";showLobby()}]];
   else btns=[["Menu",()=>{endClose();showMenu()}],[G.mode=="d"?"Novo draft":"Seleção de personagens",()=>{endClose();if(G.mode=="d")startDraft();else{G.mode="t";G.scr="b";build()}}],["Revanche",endRematch]]}
  else{const d=O.d||{};if(G.me<0){btns=[["Menu",()=>{endClose();oLeave();showMenu()}],["Voltar à sala",()=>{endClose();O.specOut=d.gid||G.gid;G.online=0;G.scr="o";document.body.classList.remove("bt");oRender()}]];st="Você estava assistindo."}
+  else if(d.rk){/* ranqueada: não tem revanche nem voltar à sala */
+   const sai=f=>()=>{endClose();try{ls("za_room",null)}catch(e){}try{oLeave()}catch(e){}f()};
+   btns=[["Menu",sai(showMenu)],["Voltar ao lobby",sai(()=>{LBM="fila";showLobby()})]]}
   else{const mine=!!d["rm"+G.me],oth=!!d["rm"+(1-G.me)];btns=[["Menu",()=>oEnd("menu")],["Voltar à sala",()=>oEnd("room")],[mine?"✓ Revanche":"Revanche",()=>oRematch(!mine),mine?"on":""]];
    st=d.rc?"":mine&&!oth?"Aguardando o oponente aceitar a revanche…":oth&&!mine?"O oponente quer revanche!":""}}
 btns.push([scic("%SC%")+"<i class='stbt'>Estatísticas</i>",showStats,"stb"]);
@@ -4053,18 +4063,23 @@ function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=ZOFF
    else skOrd(ch,u).forEach(i=>{const kk=ch.sk[i];const _wu=(typeof upSk=="function"&&upSk(u,i));const w=mk("div","w"+(_wu?" wup":"")+(kk.pv?" pv":"")+(kk.zn?" zn":"")+(G.rqf&&G.rqf.u===G.u.indexOf(u)&&G.rqf.i===i&&Date.now()-G.rqf.t<1500?" rqf":""));w.dataset.i=i;w.dataset.c=u.c,qd=G.q.some(a=>a.u==u&&a.i==i),im=mk("img","ic"+(qd?" q on":ok(u,i)?" on":" off"));im.src=IMG[u.c+"_"+i];w.append(im);if(_wu)w.append(mk("span","wupm","<img src='"+(IMG.ui_cap_un||"")+"' alt='Cápsula Única'>"));if(qd)w.append(mk("span","qn",String(G.q.findIndex(a=>a.u==u&&a.i==i)+1)));if(u.cd[i]>0)w.append(mk("em","",u.cd[i]>=50?"✖":u.cd[i]));if(kk.vz){const sl=G.sel&&G.sel.u==u&&G.sel.i==i,qa=G.q.find(a=>a.u==u&&a.i==i);if(sl||qa)w.append(zStep(u,kk,sl?G.sel:qa,!!qa))}if(G.lead[u.s]=="gbk"&&kkDmg(kk)&&G.bot&&u.s==1&&G.q.some(a=>a.u==u&&a.i==i&&a.kk))w.append(mk("span","kkt on","Kaioken ✓"));if(G.lead[u.s]=="gbk"&&kkDmg(kk)&&!(G.bot&&u.s==1)&&!fogHid(u.s)){const sl=G.sel&&G.sel.u==u&&G.sel.i==i,qa=G.q.some(a=>a.u==u&&a.i==i);if(sl||qa)w.append(kkTog(u,i))}att(w,()=>sTip(kk,u)+(kk.pv?pstat(u):""),()=>pick(u,i));hovTip(w,()=>sTip(kk,u)+(kk.pv?pstat(u):""));sk.append(w)});
    k.append(sk);us.append(k)});row.append(us);b.append(row)});
  const bar=$("#bar");bar.innerHTML="";const p=spent();bar.append(mk("div","tturn","<small>Turno</small><b>"+G.t+"</b>"));
+ if(tAtiva()){const tb=mk("div","tmrb");tb.id="tmrb";tb.hidden=true;bar.append(tb);setTimeout(()=>{try{tPinta()}catch(e){}},0)}
  if(G.win!=null)bar.append(mk("b","",G.online?(G.me>=0&&G.win===G.me?"Você venceu!":pn(G.win)+" venceu!"):"Jogador "+(G.win+1)+" venceu!"));
  else{bar.append(mk("span","",(G.online?(G.me<0?"👁 Assistindo · vez de <b>"+pn(G.cur)+"</b>":G.cur===G.me?"<b>Sua vez</b>":"Vez de <b>"+pn(G.cur)+"</b> · aguardando a jogada"):rkEmJogo()?(G.cur===0?"<b>Sua vez</b>":"Vez de <b>"+pn(1)+"</b>"):"Vez do <b>Jogador "+(G.cur+1)+"</b>")));{const vw=fogView(),rs=vw==null?G.cur:vw;bar.append(resBar(rs,rs===G.cur?p:[0,0]))}
   if(!(G.bot&&G.cur==1)&&!(G.online&&(G.cur!==G.me||O.sending||O.retry))){const d=mk("button","g","↩ Desfazer"),e=mk("button","endt","Encerrar turno");d.disabled=!(G.q.length||G.sel);d.onclick=()=>{if(G.sel)G.sel=null;else G.q.splice(G.q.reduce((m,a,j)=>(a.o||0)>(G.q[m].o||0)?j:m,0),1);render()};e.onclick=openOrder;const pv=mk("button","g pvb","<img src='"+IMG.ui_baba+"' alt='Prever turno'>");pv.title="Prever turno";pv.setAttribute("aria-label","Prever turno");pv.disabled=!G.q.length;pv.onclick=showPredict;bar.append(e,pv,d)}
   if(G.sel&&ch2(G.sel).vz&&!G.sel.z){const fr=G.zk[G.cur]-p[1];for(let n=1;n<=Math.min(ch2(G.sel).vzm||4,fr);n++){const bt=mk("button","g","Gastar "+n+" Essência");bt.onclick=()=>{G.sel.z=n;render()};bar.append(bt)}}else if(G.sel)bar.append(mk("span","",(tgu(ch2(G.sel),G.sel.u)=="E"?"Clique em qualquer inimigo (atinge todos)":ch2(G.sel).tg=="S"?"Clique em "+sLab(G.sel.u,ch2(G.sel)).toLowerCase().replace("em si mesmo","si mesmo")+" para confirmar":"Escolha o alvo")+" (contorno vermelho)"));
 }
  if(G.online){if(O.sending)bar.append(mk("span","osend","Enviando jogada…"));if(O.err)bar.append(mk("span","oerr2",O.err));if(O.retry&&!O.sending){const rb=mk("button","","Reenviar jogada");rb.onclick=oResend;bar.append(rb)}
-  if(G.win==null)bar.append(surBtn(),skOrdBtn());else{const bb=mk("button","","Voltar à sala");bb.onclick=oBack;bar.append(bb)}
-  const sx=mk("button","g opt","Sair");sx.onclick=()=>{oLeave();showMenu()};bar.append(sx,mk("span","odim2","Sala "+O.code))}
+  /* no meio da batalha não há saída: quem quer parar usa Render-se, e a partida termina */
+  if(G.win==null)bar.append(surBtn(),skOrdBtn());
+  else{const bb=mk("button","","Voltar à sala");bb.onclick=oBack;
+   const sx=mk("button","g opt","Sair");sx.onclick=()=>{oLeave();showMenu()};bar.append(bb,sx)}
+  bar.append(mk("span","odim2","Sala "+O.code))}
  else{if(G.win==null)bar.append(surBtn(),skOrdBtn())
-  if(rkEmJogo()){const mn=mk("button","g opt","Menu");mn.onclick=showMenu;
-   const lb=mk("button","g opt","Lobby");lb.onclick=()=>{LBM="fila";showLobby()};bar.append(mn,lb)}
-  else{const nb=mk("button",G.win!=null?"":"g opt",G.mode=="d"?"Novo draft":"Montar times");nb.onclick=()=>{if(G.mode=="d")startDraft();else build()};const mn=mk("button","g opt","Menu");mn.onclick=showMenu;const bb=botBox();bb.classList.add("opt");bar.append(nb,mn,bb)}}
+  if(G.win!=null){if(rkEmJogo()){const mn=mk("button","g opt","Menu");mn.onclick=showMenu;
+    const lb=mk("button","g opt","Lobby");lb.onclick=()=>{LBM="fila";showLobby()};bar.append(mn,lb)}
+   else{const nb=mk("button","",G.mode=="d"?"Novo draft":"Montar times");nb.onclick=()=>{if(G.mode=="d")startDraft();else build()};const mn=mk("button","g opt","Menu");mn.onclick=showMenu;const bb=botBox();bb.classList.add("opt");bar.append(nb,mn,bb)}}
+  else if(!rkEmJogo()){const bb=botBox();bb.classList.add("opt");bar.append(bb)}}
  {const tb=mk("button","tgl",BCOL?"▾ Mais opções":"▴ Menos opções");tb.setAttribute("aria-expanded",String(!BCOL));tb.onclick=()=>{BCOL=!BCOL;try{localStorage.setItem("za_bcol",BCOL?"1":"0")}catch(e){}render()};bar.append(tb);bar.classList.toggle("col",BCOL)}
  hovRe();resTrack();fxShow();g2Check();rvCheck();zaCheck();coach();winAnn();if(G.win!=null&&G._endAt&&Date.now()>=G._endAt)endScreen();if(G.annB&&!G.sim){G.annB=0;const VS=G.t<=1?[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps]].filter(([c])=>G.u.some(u=>u.c==c)):[],ann=()=>phaseAnn("battle",1),aft=()=>{let pl=0;const nx=i=>{if(i>=VS.length){if(!pl)return ann();G.holdT=Math.max(G.holdT||0,Date.now()+3600);return setTimeout(()=>{if(G.t<=1&&G.scr=="p"&&G.win==null)ann()},3000)}const [c,src]=VS[i];let sy=1;G.vskd=0;vidPlay(src,"<b>"+C[c].ps.n+"</b><span>"+shn(c)+" entra na batalha</span>",()=>{if(!sy&&!G.vskd)pl=1;nx(i+1)});sy=0};nx(0)};if(G.intro){G.intro=0;playIntro(aft)}else aft()}turnAnn();lgFill()}
 const DRV={cl:7,gbk:7,gi:9,gd:8,a17:8,gu:8,ab:8,black:7,beast:7,tr:7,kf:7,za:7,gg:7,mg:7,ar:6,rd:6,tu:6,mv:6},
@@ -6093,6 +6108,16 @@ const rkClamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 /* arredondamento consistente em todo o sistema: metade sempre para cima */
 const rkRound=v=>Math.floor(v+.5);
 
+/* zerada da temporada: quando este número muda, todo aparelho recomeça do Aprendiz V.
+   Serve para apagar o rank de teste sem depender do servidor. */
+const RKZERO="2026-11-20a";
+let RKZOK=0;
+function rkZeradaCheca(){if(RKZOK)return;RKZOK=1;try{
+ if(ls("za_rk_zero")===RKZERO)return;
+ ["za_rk","za_rk_hist","za_rk_arq","za_rk_pop","za_rk_bag","za_rk_promo"].forEach(k=>{try{ls(k,null)}catch(e){}});
+ ls("za_rk_zero",RKZERO);
+ RKPS=null;RKPB=null;for(const k in RKBAG)delete RKBAG[k];
+}catch(e){}}
 function rkNovo(sea){return{sea:sea||rkSeasonId(),rank:1,div:RKCFG.divs,pr:0,pc:null,mmr:RKCFG.mmr0,
  n:0,w:0,l:0,prot:0,dprot:0,pen:0,hiRank:1,hiDiv:RKCFG.divs,hiTop:null,ult:[],t0:Date.now()}}
 
@@ -6180,7 +6205,7 @@ const RKBOT=[0,1,2,2,3,3,4];
 const rkBotLv=st=>RKBOT[Math.min(RKCFG.ranks,Math.max(1,(st&&st.rank)||1))-1];
 
 /* ===== estado do jogador, guardado por temporada ===== */
-function rkLoad(){let st=null;try{st=JSON.parse(ls("za_rk")||"null")}catch(e){}
+function rkLoad(){rkZeradaCheca();let st=null;try{st=JSON.parse(ls("za_rk")||"null")}catch(e){}
  const sea=rkSeasonId();
  if(!st||!st.sea){st=rkNovo(sea);rkSave(st);return st}
  if(st.sea!==sea){const velho=JSON.parse(JSON.stringify(st));rkArquiva(velho);st=rkReset(velho,sea);rkSave(st)}
@@ -6243,61 +6268,72 @@ function rkGrava(reg){try{const h=rkHist();h.unshift(reg);
    Nunca "bot", nunca números. Cada nível tem o seu "sotaque": os fáceis parecem contas novas e
    brincalhonas, os difíceis parecem gente que leva a fila a sério. ===== */
 const RKBOTN=[
-/* 0 · Muito fácil */
-["Pipoca","Brigadeiro","Pudim","Chiclete","Capivara","Jabuti","Lagartixa","Cebolinha","Mandioca","Goiaba",
- "Fuba","Paozinho","Pastelzin","Gelatina","Quiabo","Tatuzinho","Bolinho","Mingau","Cuscuz","Tapioca",
- "Pipokinha","Marmita","Sanduba","Churros","Picole","Sorvetin","Biscoito","Bolacha","Salgadinho","Refri",
- "Guarana","Limonada","Cafezin","Leitinho","Queijinho","Requeijao","Manteiga","Torradinha","Panqueca","Waffle",
- "Rosquinha","Cupcake","Pacoca","Cocada","Beijinho","Maracuja","Abacaxi","Melancia","Morangui","Uvinha",
- "Bananinha","Mamao","Caju","Acerola","Jaquinha","Pequizin","Amendoim","Pistache","Castanha","Jujuba",
- "Novato","Calourinho","Estagiario","Recruta","Soldadinho","Escudeiro","Ajudante","Carregado","Sortudo","Azarado",
- "Dorminhoco","Sonolento","Preguicoso","Devagar","Tartaruga","Caracol","Lesma","Girino","Pintinho","Patinho",
- "Gatinho","Cachorrin","Hamster","Coelhinho","Esquilo","Ouricinho","Porquinho","Bezerro","Potrinho","Filhote",
- "Pequenin","Mirim","Juninho","Zezinho","Toninho","Vovozinho","Primeiravez","Tutorial","Cliqueiaqui","Tentando"],
-/* 1 · Fácil */
-["Lucas","Gabi","Rafa","Vini","Duda","Bia","Caio","Theo","Gui","Leo",
- "Nina","Pedro","Ana","Bruno","Carol","Diego","Elisa","Felipe","Gusta","Helo",
- "Igor","Jade","Kaue","Lari","Malu","Nando","Otavio","Paty","Quique","Rick",
- "Sofia","Tiago","Uriel","Vitor","Wesley","Yara","Zeca","Alice","Breno","Clara",
- "Davi","Enzo","Fabio","Giovana","Hugo","Isa","Joao","Kiko","Luana","Murilo",
- "Natan","Olivia","Pablo","Renan","Samuel","Tati","Ulisses","Wagner","Xande","Yuri",
- "Artur","Bento","Cauan","Dani","Edu","Flavia","Gael","Heitor","Ian","Jorge",
- "Keila","Mateus","Pietro","Sara","Tom","Vivi","Lele","Kaka","Dudu","Fefe",
- "Nando Jr","Juju","Tetê","Bibi","Nenem","Pepe","Lipe","Guto","Tuca","Binho",
- "Dedé","Tonho","Mazinho","Neto","Serginho","Val","Rafinha","Camis","Jujuba Roxa","Maromba"],
-/* 2 · Médio */
-["Shadow","Blaze","Storm","Raven","Frost","Ember","Phantom","Viper","Falcon","Spectre",
- "Nova","Onyx","Comet","Drift","Echo","Flux","Havoc","Ironside","Jetstream","Kodiak",
- "Lynx","Mirage","Nitro","Orbit","Pulse","Quartz","Rogue","Saber","Titan","Umbra",
- "Vandal","Warden","Xenon","Yonder","Zephyr","Ashen","Basalt","Cinder","Dusk","Eclipse",
- "Fable","Glacier","Halo","Ivory","Jade Wolf","Kestrel","Lumen","Monsoon","Nocturne","Obsidian",
- "Prism","Quiver","Riptide","Solstice","Tempest","Undertow","Vertigo","Wisp","Yield","Zenith",
- "Lobo Cinza","Corvo","Tempestade","Relampago","Trovao","Neblina","Cinzas","Aurora","Eclipse Azul","Marfim",
- "Caçador","Andarilho","Vigia","Sentinela","Peregrino","Forasteiro","Mercenario","Nomade","Errante","Vagalume",
- "Sky","Ace","Blitz","Crimson","Delta","Edge","Fury","Gale","Hex","Idol",
- "Juno","Karma","Lucid","Myst","Nyx","Omen","Pyre","Quill","Rune","Solace"],
-/* 3 · Difícil */
-["Kaito","Akira","Ryuu","Kenji","Shiro","Hayato","Daichi","Sora","Renji","Tsukiyo",
- "Hikari","Kuro","Mamoru","Nagisa","Oribe","Raiden","Sanosuke","Tatsuya","Ushio","Yukimura",
- "Zangetsu","Amaterasu","Benkei","Chidori","Daimon","Enma","Fujin","Gekko","Hanzo","Izanagi",
- "Jinrai","Kagura","Kirin","Masamune","Nobunaga","Okami","Raijin","Sasaki","Takeda","Uesugi",
- "Yamato","Zenko","Arashi","Byakko","Genbu","Seiryu","Suzaku","Kitsune","Tengu","Oni",
- "Ronin","Shogun","Daimyo","Kensei","Bushido","Katana","Shuriken","Nodachi","Kusanagi","Muramasa",
- "Vulcano","Meteoro","Cometa","Nebulosa","Supernova","Eclipse Total","Pulsar","Quasar","Orion","Sirius",
- "Antares","Vega","Altair","Rigel","Deneb","Polaris","Arcturus","Capella","Bellatrix","Mintaka",
- "Lamina","Presagio","Ocaso","Abismo","Rancor","Vendaval","Estilhaço","Fragor","Ruina","Mortalha",
- "Ferrao","Garra","Colmilho","Chifre","Escama","Cicatriz","Vertebra","Osso","Ferrugem","Silencio"],
-/* 4 · Impiedoso */
-["Apex","Vortex","Nemesis","Ragnar","Oblivion","Reaper","Wraith","Carnage","Havok","Scourge",
- "Pariah","Tyrant","Warlord","Overlord","Executioner","Harbinger","Cataclysm","Doomsday","Annihilus","Requiem",
- "Zero","Null","Void","Abyss","Entropy","Paradox","Singular","Infinite","Absolute","Omega",
- "Alpha Prime","Kaizen","Ultima","Final","Terminal","Vertex","Helix","Matrix","Cipher","Enigma",
- "Juggernaut","Behemoth","Leviathan","Colossus","Titanfall","Goliath","Bastion","Fortress","Bulwark","Aegis",
- "Algoz","Carrasco","Flagelo","Ceifador","Verdugo","Inquisidor","Tirano","Despota","Soberano","Imperador",
- "Juizo","Sentença","Veredito","Condenaçao","Perdiçao","Calamidade","Desolaçao","Extinçao","Colapso","Fim",
- "Kaguya","Madara","Shinigami","Hollow","Bankai","Susanoo","Amaterasu Negra","Izanami","Tsukuyomi","Rinnegan",
- "Blackout","Deadlock","Headshot","Clutch","Smurf","Tryhard","Sweat","Cracked","Goat","Unreal",
- "Rush","Snap","Flick","Clip","Frag","Ace Pro","Main","Carry","Peak","Endgame"]
+/* 0 · conta nova */
+["kz1","vrt0","nxs07","dmz4","rvn21","lkz9","pxl3","tmp08","srq2","bzr5",
+ "zno4","kpt3","mrv9","tvs2","lrd6","hvy1","cbr8","nkt5","slv3","grt7",
+ "pvz2","dkr4","mzn6","rsk9","tbx1","vlk5","jcb2","hzn8","ftx0","gmz3",
+ "lowpeek","dryfire","whiffed","onetap0","sprayz","ecorush","sitedown","plantit","holdw","retake1",
+ "br4vo","ch4rlie","d3lta","ech0","f0xtrot","g0lfy","h0tel","1ndia","juli3t","k1lo",
+ "l1ma","m1key","n0vmbr","0scar","p4pa","qu3bec","r0meo","s13rra","t4ngo","un1form",
+ "v1ctor","wh1skey","xr4y","y4nkee","zul00","ad4pt","bl1nk","cr4sh","dr1ft","edg3",
+ "fl1ck","gr1nd","h0ldit","1nsta","j1tter","kn0ck","l1neup","m1cro","n4de","0ffang",
+ "p1xel","qu1ck","r3coil","sm0ked","tr4ck","upt1lt","v4ult","wh1ff","x4nder","y1eld",
+ "z0ned","aim2","brv4","cs1x","dz7","ez9","fps5","gg3","hp0","ko8"],
+/* 1 · casual */
+["Vortek","Kryptus","Nocturn","Severan","Halcyon","Tempest","Riftborn","Ashfall","Grimlock","Starfall",
+ "Blackout","Deadzone","Overdrive","Sentry","Breachr","Lowground","Highpeek","Crossfire","Flashbang","Deadangle",
+ "Rhenix","Vyndor","Korath","Solmar","Draven7","Kaelix","Zephyros","Orvane","Thalorn","Nemesys",
+ "Skyfall","Nightfall","Downrange","Longshot","Closeqtr","Fireteam","Bluecall","Redzone","Hardpoint","Gulagking",
+ "Sleight","Lowkey","Offmeta","Tiltproof","Nohands","Wallbang","Prefire","Jiggle","Backstab","Noscope",
+ "Vexil","Draxen","Solvyn","Korvane","Mirael","Zantor","Veltrix","Nyxar","Orrath","Kaltrix",
+ "Ironclad","Stonewall","Hardstuck","Lategame","Powerspike","Splitpush","Teleport","Roamgank","Countergank","Smiteoff",
+ "Bravado","Cavalier","Marauder","Outrider","Vanguard","Warden7","Zealot","Harbinger","Revenant","Stormcall",
+ "Kryos","Vandric","Nortek","Ascend","Obscura","Paragon","Quietus","Ravager","Scythen","Tenebris",
+ "Umbrak","Valkyr","Wraithe","Xenith","Yggros","Zarvok","Aetherx","Bastion","Cryptek","Dominion"],
+/* 2 · entrosado */
+["Kr1pt","N0vah","Z3rolag","Fr0stbyte","Sh4dowz","V1perx","Phant0m","Bl4zeon","Rav3nwolf","3mberfall",
+ "Darkmode","Quickscope","Deadeye","Sharpshot","Headglitch","Ratholed","Peekers","Aimdown","Centermass","Triggerd",
+ "Lykos","Rhenv","Dovak","Syrax","Kaev","Torvyn","Melrak","Zenvar","Ophiel","Narvek",
+ "Fadeaway","Holdangle","Dryclear","Smokeoff","Molotov","Retakex","Anchorman","Lurkerz","Entryfrag","Tradekill",
+ "Onyxfang","Ironveil","Nightveil","Stormveil","Duskfall","Palefire","Greyward","Coldiron","Blackvein","Hollowpt",
+ "Apexfade","Crownfall","Divefall","Echofade","Frostline","Ghostline","Hexline","Ironline","Jadeline","Kiteline",
+ "Mythos","Oblivia","Pyrrhus","Quasar7","Revenan","Solaris","Thanato","Umbriel","Vortexa","Wyrmfang",
+ "Zenkai7","Astralis","Balefire","Cindrel","Drakkar","Elysian","Fenrirz","Galeforc","Hadesx","Ignitus",
+ "Jotunn","Kratosz","Lazarus","Morrigan","Nyxtide","Orphean","Perseus","Quietus7","Ragnarok","Sablewolf",
+ "Tyrfing","Ulfheim","Vaelora","Wotanz","Xiphos","Ymirr","Zagreus","Aegisx","Basilisk","Cerberx"],
+/* 3 · competitivo */
+["VLX Rhen","KRX Dov","NXS Vyn","ARC Kael","ZTH Mor","OBL Syr","TDR Lkz","PHX Ven","GRV Ash","QNT Dra",
+ "Hollowpoint","Blindfire","Doubleswap","Softpeek","Hardpeek","Rotateb","Callouts","Clutchgod","Anchorsite","Flashover",
+ "Kaelvorn","Rhenvar","Dovakis","Synthra","Velkrim","Maelrun","Zorvath","Nyxhall","Orvahl","Thessar",
+ "Ghostpeek","Quietstep","Nullzone","Deadsilent","Overclock","Underlap","Crosshair","Rangefind","Ironsight","Zeroin",
+ "Severance","Insurgent","Obsidion","Wraithex","Phantasm","Specterz","Umbralis","Nocturna","Eclipsar","Voidwalk",
+ "Lowelo","Highelo","Smurfhunt","Tiltqueen","Mmrgod","Soloqz","Duoqz","Flexpik","Autofill","Lanekill",
+ "Krysalis","Valkorin","Drakhen","Morvaine","Sylvarn","Tenebrae","Ashvault","Ironhelm","Stormgate","Nightfort",
+ "Blitzkrg","Echopoint","Fathomx","Gravitas","Horizonz","Impulsew","Junction","Keystone","Lanternx","Meridian",
+ "Nebulaz","Odyssey","Pinnacle","Quantumx","Resolute","Summitx","Threshld","Ultimaxx","Vertexia","Watchman",
+ "Xenolith","Yardline","Zenithal","Absolute","Benchmrk","Catalyst","Decisive","Endgamex","Flagship","Guardian"],
+/* 4 · alto nível */
+["ONYX Kael","TMP Rhen","VYR Sol","NRX Dov","SVR Mal","ECL Nyx","ATR Vex","PRM Kry","SIG Tor","AXM Zan",
+ "Bulletproof","Mechanical","Unkillable","Frametight","Pixelperf","Reactiont","Flickgod","Sprayctrl","Peekadv","Timingdif",
+ "Kaelmorrow","Rhenvarok","Dovakhin7","Synthravn","Velkrimon","Maelrunex","Zorvathen","Nyxhallow","Orvahlsin","Thessaran",
+ "Firstblood","Baronsteal","Dragonsoul","Backdoorx","Pentakillz","Quadrafed","Tripletake","Doublelift","Soloshot","Aceclutch",
+ "Immortalz","Radiantxx","Challengr","Grandmstr","Predatorx","Conqueror","Ascendnt","Sovereign","Supremacy","Apexlord",
+ "Nullified","Terminus","Paradigm","Omnisight","Hyperlane","Kineticx","Momentum","Precision","Trajector","Velocityx",
+ "Ironcrown","Shadowrit","Stormborn","Frostborn","Flameborn","Voidborn","Dawnbrkr","Duskbindr","Starweavr","Moonrend",
+ "Aegisfall","Blackrose","Crimsonvl","Dreadnaut","Everdusk","Foxhollow","Grimward","Hallowed","Inferno7","Judicator",
+ "Kingslayr","Lionheart","Mournblad","Nightwatc","Oathkeepr","Pathfindr","Quicksilv","Ravenholm","Sableclaw","Thornfiel",
+ "Umbrahart","Vanguardz","Warcrownz","Xanthosx","Yorvathen","Zealotryx","Arclightz","Brimstone","Cindervow","Dawnsword"],
+/* 5 · topo da tabela */
+["s0vrn","ze1th","kryv","n0cte","vyrx","axl0","dr3n","qu1l","m0rv","t3ndr",
+ "Oneshotone","Zeroexcuse","Framedrop0","Nomisclick","Perfectaim","Cleansheet","Flawlessx","Untouchbl","Noequalz","Finalboss",
+ "Kaelmorrowx","Rhenvaroken","Dovakhinarr","Synthravnix","Velkrimonde","Maelrunexar","Zorvatheris","Nyxhallowed","Orvahlsinde","Thessaranix",
+ "Worldsfinal","Majorwinner","Trophylift","Lanplayerx","Stagelight","Grandslamz","Backtoback","Dynastyera","Hallofame","Legacyrun",
+ "Eternalnox","Infinitumx","Omegapoint","Singularty","Absolutezr","Transcend0","Apotheosis","Ascensionx","Culmination","Denouement",
+ "Erebusvow","Fenrisulf","Gungnirx","Hyperionz","Ichorblad","Jormungan","Kaleidos","Leviathnz","Mjolnirz","Nidhoggr",
+ "Ouroboros","Pandorabx","Quetzalco","Ragnarokz","Seraphimz","Tartaros","Uroborosz","Valhallaz","Wyrmsbane","Xerxesxz",
+ "Yggdrasil","Zoroaster","Ambrosial","Bellerphn","Chimeraxz","Daedalusz","Elysiumx","Fatesealr","Gorgonvow","Hecatombz",
+ "Icarusfal","Jupiterxz","Keraunosx","Lachesisx","Minotaurx","Nemesisxz","Olympusxz","Prometheu","Quirinusx","Rhadamant",
+ "Styxborn","Thanatosx","Uraniumxz","Veritasxz","Wotanrune","Xanaduxz","Ymirsonx","Zephyrusz","Aionbreak","Boreasrun"]
 ];
 /* a sacola embaralha os 100 nomes do nível e vai tirando um por vez: o jogador passa por
    todos antes de ver qualquer nome repetido, e a ordem muda a cada volta. */
@@ -6476,6 +6512,7 @@ function rkEntraSala(){
   sea:st.sea,mmrAnt:st.mmr,oppRank:op.rank||null,oppDiv:op.div||null,oppPc:(op.pc!=null?op.pc:null)};
  G.rkBlv=null;G.rkNome=null;          /* online: o nome do adversário vem da sala */
  /* a sala da ranqueada não aparece: o jogador vê a contagem e cai direto no draft */
+ try{ls("za_room",cod)}catch(e){}
  try{dClear();G.mode="o";O.rkSala=1;O.rkT0=Date.now();oSub(cod);rkCdLiga()}
  catch(e){G.rkm=null;O.rkSala=0;try{zToast("Não deu para entrar na sala da partida.")}catch(x){}LBM="fila";showLobby()}}
 
@@ -6602,7 +6639,8 @@ function rkDoServidor(x){if(!x)return null;
   hiTop:null,ult:[],t0:x.t0?Date.parse(x.t0):Date.now()}}
 /* traz o estado do servidor para a cópia local, que é só o que a tela mostra */
 async function rkSincroniza(){if(!rkSrv())return null;
- try{const x=await O.db.linha("ranked");if(!x)return null;
+ try{const x=await O.db.linha("ranked");
+  if(!x){const st=rkLoad();if(st.n||st.rank>1||st.div<RKCFG.divs||st.mmr!==RKCFG.mmr0){rkSave(rkNovo());if(G.scr=="lb")try{showLobby()}catch(e){}}return rkLoad()}
   rkSave(rkDoServidor(x));
   if(G.scr=="lb")try{showLobby()}catch(e){}
   return rkLoad()}catch(e){return null}}
@@ -6648,6 +6686,7 @@ function rkRegistra(m,win,r,st,ficha,fc){
   promo:r.promo,demo:r.demo,opp:m.oppNome,oppRank:m.oppRank,oppDiv:m.oppDiv,oppPc:m.oppPc,
   bot:m.bot?1:0,at:Date.now(),sn:ficha});
  try{rkPublica(st)}catch(e){}
+ try{ls("za_room",null)}catch(e){}
  if(!G.sim)setTimeout(()=>{try{rkPontosShow(G.rkLast)}catch(e){}},fc?320:1700)}
 
 /* ===== promoção de rank: fundo escuro, a animação do ícone e o novo posto ===== */
@@ -6862,6 +6901,9 @@ const rkOrd=(a,b)=>{const ca=a.pc!=null?1:0,cb=b.pc!=null?1:0;
 function rkTopLista(){const st=rkLoad();
  if(RKTOP.srv){                                  /* tabela do servidor: só gente de verdade */
   const S=(RKTOP.lista||[]).map(x=>({nome:x.nome,pc:x.pc,pr:x.pr,rank:x.rank,div:x.div,mmr:x.mmr,w:x.w,l:x.l,t:x.t,eu:x.eu}));
+  const vis={};S.forEach(x=>{vis[String(x.nome).toLowerCase()]=1});
+  /* a escada da temporada entra junto: sem ela a tabela fica vazia enquanto a base é pequena */
+  try{rkPopTabela().forEach(x=>{if(!vis[String(x.nome).toLowerCase()])S.push(x)})}catch(e){}
   if(!S.some(x=>x.eu))S.push({nome:(typeof oNick=="function"?oNick():"Você"),pc:st.pc,pr:st.pr,
    rank:st.rank,div:st.div,mmr:st.mmr,w:st.w,l:st.l,t:st.t0||0,eu:true});
   return S.sort(rkOrd)}
@@ -7087,7 +7129,8 @@ function rkBatalha(x){
  const v=mk("button","lam","Voltar");v.onclick=fecha;ft.append(v);
  ov.append(bx);document.body.append(ov);return ov}
 
-function showMenu(){dClear();pannOff(1);G.rkm=null;G.rkBlv=null;G.rkNome=null;/* saiu da ranqueada: a próxima partida é comum de novo */if(typeof O!="undefined"&&(O.code||G.online))oLeave();G.scr="m";document.body.classList.remove("bt");document.body.classList.add("dm");const r=$("#dr");r.innerHTML="";
+function showMenu(){try{oInit()}catch(e){}   /* para reconectar sozinho numa partida que ficou aberta */
+dClear();pannOff(1);G.rkm=null;G.rkBlv=null;G.rkNome=null;/* saiu da ranqueada: a próxima partida é comum de novo */if(typeof O!="undefined"&&(O.code||G.online))oLeave();G.scr="m";document.body.classList.remove("bt");document.body.classList.add("dm");const r=$("#dr");r.innerHTML="";
  const go=sub=>{MSUB=sub;MSEL=0;showMenu()},leave=f=>()=>{MSUB=null;MSEL=0;f()};
  const IT=MSUB=="play"?[["Jogar Offline","Sozinho ou com alguém no mesmo aparelho: Modo Draft e Modo Treino.",()=>go("off"),4,"off"],
   ["Jogar Online","O lobby da arena: entre na Fila Ranqueada valendo rank ou crie uma sala para jogar com um amigo.",leave(showLobby),7,"gl"],
@@ -7296,7 +7339,7 @@ const OCH="ABCDEFGHJKMNPQRSTUVWXYZ23456789";
 const ls=(k,v)=>{const M=window.LSMEM||(window.LSMEM={});if(v===undefined){try{const r=localStorage.getItem(k);if(r!=null)return r}catch(e){}return (k in M)?M[k]:null}if(v===null){delete M[k];try{localStorage.removeItem(k)}catch(e){}return}M[k]=String(v);try{localStorage.setItem(k,String(v))}catch(e){window.LSBAD=1}};
 const ss=(k,v)=>{const M=window.SSMEM||(window.SSMEM={});if(v===undefined){try{const r=sessionStorage.getItem(k);if(r!=null)return r}catch(e){}return (k in M)?M[k]:null}M[k]=String(v);try{sessionStorage.setItem(k,String(v))}catch(e){window.LSBAD=1}};
 let RIM=null;const rimg=()=>RIM||(RIM=new Map(Object.entries(IMG).map(([k,v])=>[v,k])));
-function ser(){return JSON.stringify({gid:G.gid,t:G.t,cur:G.cur,ki:G.ki,zk:G.zk,zg:G.zg,tc:G.tc,lead:G.lead,ldisp:G.ldisp,cf:G.cf,win:G.win,ann:G.ann||0,kz:G.kz,zs:G.zs,zd:G.zd,dr:G.dr,sth:G.sth||[],lk:G.lk||null,
+function ser(){return JSON.stringify({gid:G.gid,t:G.t,cur:G.cur,afk:G.afk||[0,0],ki:G.ki,zk:G.zk,zg:G.zg,tc:G.tc,lead:G.lead,ldisp:G.ldisp,cf:G.cf,win:G.win,ann:G.ann||0,kz:G.kz,zs:G.zs,zd:G.zd,dr:G.dr,sth:G.sth||[],lk:G.lk||null,
  log:G.log.slice(0,400).map(l=>({m:l.m,t:l.t,hv:l.hv,ic:l.ic?rimg().get(l.ic)||null:null})),
  u:G.u.map(x=>({...x,st:x.st.map(y=>({...y,v:y.v&&typeof y.v=="object"?{__u:G.u.indexOf(y.v)}:y.v}))})),
  rep:G.rep.map(r=>({...r,u:G.u.indexOf(r.u),t:G.u.indexOf(r.t)}))})}
@@ -7305,6 +7348,7 @@ function des(S){const d=JSON.parse(S);if(G.gid!==d.gid||!G.u||G.u.length!==d.u.l
  G.u.forEach(u=>u.st.forEach(y=>{if(y.v&&typeof y.v=="object"&&y.v.__u!=null)y.v=G.u[y.v.__u]}));
  G.rep=d.rep.map(r=>({...r,u:G.u[r.u],t:G.u[r.t]}));
  ["gid","t","cur","ki","zk","zg","tc","lead","ldisp","cf","win","ann","kz","zs","zd","dr","sth","lk"].forEach(k=>G[k]=d[k]);
+ G.afk=Array.isArray(d.afk)?d.afk.slice():[0,0];
  G.log=d.log.map(l=>({m:l.m,t:l.t,hv:l.hv,ic:l.ic?IMG[l.ic]:null}));
  Object.assign(G,{q:[],sel:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,cp:[],rf:0,rn:0,bot:0,online:1,mode:"o",scr:"p"})}
 function PVr(){ANI.clear()}
@@ -7314,12 +7358,23 @@ async function oInit(){if(O.st!="off")return;O.st="loading";oRender();
  if(!db){O.st="nodb";return oRender()}
  O.db=db;O.user=user;let id=user?await user.id():null;
  if(!id){id=ls("za_pid");if(!id){id="local-"+Math.random().toString(36).slice(2,12);ls("za_pid",id)}}
- O.pid=id;O.st="ready";try{rkModoLer()}catch(e){}if(!O.tick)O.tick=setInterval(()=>{try{oTick()}catch(e){}},1000);if(!O.poll)O.poll=setInterval(oPoll,1500);oRender()}
+ O.pid=id;O.st="ready";try{rkModoLer()}catch(e){}try{oVolta()}catch(e){}if(!O.tick)O.tick=setInterval(()=>{try{oTick()}catch(e){}},1000);if(!O.poll)O.poll=setInterval(oPoll,1500);oRender()}
 function showOnline(){dClear();G.scr="o";if(G.mode!="o")G.botPrev=G.bot;G.mode="o";oInit();oRender()}
 function oAfterWrite(){O.busy=0;O.last=0;oPoll()}
 async function oPoll(){const esp=(typeof D!="undefined"&&D&&D.spec)||O.seat==null;/* quem assiste busca o estado com mais frequência */
  if(!O.ref||O.busy||O.polling||Date.now()-(O.last||0)<(esp?1500:4000))return;const ref=O.ref;O.polling=1;try{const sn=await ref.get();if(ref!==O.ref||!sn.exists)return;const nd=sn.data();if(O.d&&JSON.stringify(nd)===JSON.stringify(O.d))return;O.d=nd;O.last=Date.now();oApply()}catch(e){}finally{O.polling=0}}
 function oLeave(){if(O.ref&&O.d&&O.d.ph=="lobby"){const up={};OSL.forEach(k=>{if(O.d[k]===O.pid)up[k]=null});if(Object.keys(up).length){if(O.d.p0===O.pid||O.d.p1===O.pid){up.lr0=false;up.lr1=false;up.cd=0}O.ref.update(up).catch(()=>{})}}O.left=1;if(typeof D!="undefined"&&D&&D.on)D=null;if(O.unsub){try{O.unsub()}catch(e){}}O.unsub=null;O.ref=null;O.d=null;O.code="";O.seat=null;O.err="";O.msg="";O.ask=null;O.retry=null;clearTimeout(O.slowT);G.online=0;if(G.botPrev!=null)G.bot=G.botPrev}
+/* o jogo abriu e havia uma partida em andamento: volta para ela sozinho */
+async function oVolta(){try{
+ const cod=ls("za_room");
+ if(!cod||O.code||!O.db||!O.pid||G.scr=="p"||G.scr=="d"||G.win!=null)return;
+ const sn=await O.db.doc("rooms/"+cod).get();
+ if(!sn||!sn.exists){ls("za_room",null);return}
+ const d=sn.data()||{},meu=(d.p0===O.pid)?0:(d.p1===O.pid)?1:null;
+ if(meu==null||(d.ph!="draft"&&d.ph!="battle")){if(d.ph=="lobby"&&!d.rk)ls("za_room",null);return}
+ try{zToast("Reconectando à sua partida…")}catch(e){}
+ dClear();G.mode="o";O.rkSala=0;oSub(cod)
+}catch(e){}}
 function oSub(code){O.eaSeen=undefined;if(O.unsub){try{O.unsub()}catch(e){}}O.code=code;O.ref=O.db.doc("rooms/"+code);O.d=null;O.slow=0;clearTimeout(O.slowT);O.slowT=setTimeout(()=>{if(!O.d){O.slow=1;oRender()}},10000);
  O.unsub=O.ref.onSnapshot(sn=>{O.last=Date.now();O.slow=0;O.busy=0;clearTimeout(O.slowT);if(!sn.exists){O.d=null;O.err="Essa sala não existe mais.";return oRender()}const nd=sn.data();if(O.d&&JSON.stringify(nd)===JSON.stringify(O.d))return;O.d=nd;oApply()},e=>{O.err="A conexão com a sala caiu ("+(e&&e.code||"erro")+"). Saia e entre de novo.";oRender()})}
 function oApply(){const d=O.d;if(!d)return;if(O.eaSeen===undefined)O.eaSeen=d.ea||"";if(d.ea&&d.ea!==O.eaSeen){O.eaSeen=d.ea;endClose();if(d.ea.startsWith("menu")){oLeave();return showMenu()}}
@@ -7327,6 +7382,12 @@ function oApply(){const d=O.d;if(!d)return;if(O.eaSeen===undefined)O.eaSeen=d.ea
  O.inRoom=OSL.some(k=>d[k]===O.pid);
  if(O.seat!=null)ss("za_seat_"+O.code,String(O.seat));
  G.me=O.seat==null?-1:O.seat;
+ /* sala da fila ranqueada: entrou ou voltou, a partida continua valendo rank */
+ if(d.rk&&d.rkp&&O.seat!=null&&(!G.rkm||G.rkm.id!==d.rkp)){const q=1-O.seat,me=rkLoad();
+  G.rkm={id:d.rkp,oppMmr:+d["mm"+q]||RKCFG.mmr0,oppNome:oName(d,d["p"+q]),bot:0,pop:null,
+   sea:me.sea,mmrAnt:me.mmr,oppRank:+d["rr"+q]||null,oppDiv:+d["rd"+q]||null,
+   oppPc:(+d["rp"+q]>=0?+d["rp"+q]:null)};
+  try{ls("za_room",O.code)}catch(e){}}
  if(!O.inRoom&&d.ph=="lobby"&&!O.claiming&&!O.left){O.claiming=1;oClaimSlot().finally(()=>{O.claiming=0})}
  if(oIsHost()&&d.ph=="lobby"&&!O.busy){const all=d.p0&&d.p1&&d.lr0&&d.lr1;if(all&&!d.cd){O.busy=1;O.ref.update({cd:Date.now()+3600}).then(oAfterWrite,()=>{O.busy=0})}else if(!all&&d.cd){O.busy=1;O.ref.update({cd:0}).then(oAfterWrite,()=>{O.busy=0})}}
  if(d.ph=="battle"&&d.st&&(O.seat!=null||O.inRoom)&&!(O.seat==null&&O.specOut&&O.specOut===d.gid)){if(d.gid!==G.gid||(d.seq||0)>(G.seq||0)){const nw=d.gid!==G.gid;des(d.st);G.seq=d.seq||0;if(nw&&G.t<=1&&!G.log.some(l=>/ usa | → /.test(l.m||""))){G.intro=1;G.annB=1}}G.me=O.seat==null?-1:O.seat;G.online=1;G.scr="p";const lvL=G.me<0?lvPre(d.lv):null;render();if(lvL)lvUI(lvL);else if(G.me<0){const q=document.getElementById("qord");if(q)q.remove();const pv=document.querySelector(".pvov");if(pv)pv.remove();LVK=""}return}
@@ -7354,6 +7415,38 @@ async function oPush(){if(!G.online||!O.ref)return;const body={st:ser(),seq:(G.s
  try{await O.ref.update(body);O.retry=null;O.err=""}catch(e){O.err="A jogada não foi enviada ("+(e&&e.code||"erro")+"). Toque em Reenviar."}O.sending=0;render()}
 async function oResend(){if(!O.retry)return;O.sending=1;render();try{await O.ref.update(O.retry);O.retry=null;O.err=""}catch(e){O.err="Ainda não foi possível enviar. Verifique a conexão e tente de novo."}O.sending=0;render()}
 function oConcede(){if(!G.online||G.win!=null)return;mtQuit=1;G.win=1-G.me;G.q=[];G.sel=null;log(pn(G.me)+" se rendeu");oPush()}
+/* ===== Relógio do turno: 60s, e menos a cada turno que o jogador deixa passar ===== */
+const TCFG=[60,40,20,10];
+let TMR={ch:"",fim:0,av:0};
+function tAtiva(){try{return !!(G.online&&G.scr=="p"&&G.win==null&&G.me>=0&&O.d&&O.d.ph=="battle"&&oBotSeat()!==G.cur)}catch(e){return false}}
+function tSeg(s){const f=(G.afk&&G.afk[s])||0;return TCFG[Math.min(TCFG.length-1,f)]}
+function tZera(s){G.afk=(G.afk||[0,0]).slice();G.afk[s]=0}
+function tFalta(s){G.afk=(G.afk||[0,0]).slice();G.afk[s]=Math.min(9,(G.afk[s]||0)+1)}
+function tPinta(){const el=document.getElementById("tmrb");if(!el)return;
+ if(!TMR.fim||!tAtiva()){el.hidden=true;return}
+ const n=Math.max(0,Math.ceil((TMR.fim-Date.now())/1000));
+ el.hidden=false;el.className="tmrb"+(n<=10?" tmrx":n<=20?" tmry":"");
+ el.innerHTML="<small>"+(G.cur===G.me?"Seu tempo":"Tempo de "+pn(G.cur))+"</small><b>"+n+"s</b>"}
+function tCheca(){
+ if(!tAtiva()){if(TMR.ch){TMR.ch="";TMR.fim=0;tPinta()}return}
+ const ch=G.gid+"|"+G.t+"|"+G.cur;
+ if(ch!==TMR.ch){TMR.ch=ch;TMR.av=0;
+  /* quem está só esperando dá uma folga, para o próprio jogador passar o turno primeiro */
+  TMR.fim=Date.now()+tSeg(G.cur)*1000+(G.cur===G.me?0:6000)}
+ tPinta();
+ if(Date.now()<TMR.fim||TMR.av||O.sending||O.retry)return;
+ if(G.inOn||G.g2v||(G.holdT||0)>Date.now())return;
+ TMR.av=1;tEstoura()}
+function tEstoura(){try{
+ if(!tAtiva())return;
+ const s=G.cur,n=G.q.length;
+ G.sel=null;   /* habilidade escolhida sem alvo nao entra na jogada */
+ tFalta(s);
+ log((s===G.me?"Você":pn(s))+" demorou demais: o turno passou"+(n?" com "+n+" habilidade"+(n>1?"s":"")+" já escolhida"+(n>1?"s":""):" sem jogar"));
+ try{zToast(s===G.me?"Tempo esgotado: o turno passou.":"O tempo de "+pn(s)+" acabou.")}catch(e){}
+ _endTurn();oPush()
+}catch(e){}}
+if(typeof setInterval=="function")setInterval(()=>{try{tCheca()}catch(e){}},250);
 let LVL="",LVT=0,LVK="";
 function lvState(){if(!G.online||G.me<0||G.cur!==G.me||G.win!=null||G.scr!="p")return null;const ix=x=>G.u.indexOf(x);
  const q=G.q.map(a=>({u:ix(a.u),i:a.i,t:a.t?ix(a.t):-1,ts:(a.ts||[]).map(ix),z:a.z||0,o:a.o||0}));
@@ -7367,7 +7460,7 @@ function lvUI(L){const ord=document.getElementById("qord"),pv=document.querySele
  if(L.ui=="o"){if(!ord||LVK!==L._v)openOrder()}else if(ord)ord.remove();
  if(L.ui=="p"){if(!pv||LVK!==L._v){if(pv)pv.remove();showPredict()}}else if(pv)pv.remove();LVK=L._v}
 if(typeof setInterval=="function")setInterval(()=>{if(G.online&&G.me>=0&&G.scr=="p")lvSend()},400);
-const _endTurn=endTurn;endTurn=function(){if(G.online&&(G.cur!==G.me||O.sending||O.retry))return;const w=G.win;_endTurn();if(G.online&&(G.win!==w||G.scr=="p"))oPush()};
+const _endTurn=endTurn;endTurn=function(){if(G.online&&(G.cur!==G.me||O.sending||O.retry))return;if(G.online)tZera(G.cur);const w=G.win;_endTurn();if(G.online&&(G.win!==w||G.scr=="p"))oPush()};
 
 
 /* ===== Bot na sala online (controlado pelo líder da sala) ===== */
