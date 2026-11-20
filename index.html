@@ -1154,7 +1154,10 @@ body.ph.bt .fw{grid-area:f;width:var(--fs);height:var(--fs);align-self:center}bo
 body.ph.bt .nm{grid-area:n;font:700 11px/1.2 system-ui;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}body.ph.bt .nm small{display:none}
 body.ph.bt .row.t1 .nm{text-align:right}
 body.ph.bt .bars{grid-area:b;display:flex;flex-direction:row;gap:3px;padding:0}body.ph.bt .row.t1 .bars{flex-direction:row-reverse}
-body.ph.bt .bar{height:13px;border-radius:7px;flex:1 1 0;min-width:0}body.ph.bt .bar.h{flex:2.4 1 0}body.ph.bt .bar.z{display:none}
+body.ph.bt .bar{height:13px;border-radius:7px;flex:1 1 0;min-width:0}body.ph.bt .bar.h{flex:2.4 1 0}
+/* sem o rotulo, barreira e armadura so mostram um numero: largura fixa, e o que
+   sobra vai todo para a barra de HP, que divide a linha com o nome */
+body.ph.bt .bar.b,body.ph.bt .bar.a{flex:0 0 34px;text-align:center}body.ph.bt .bar.z{display:none}
 body.ph.bt .bar span{font-size:9px;line-height:13px;padding:0 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 body.ph.bt .sk{grid-area:s;display:flex;flex-wrap:nowrap;gap:3px;align-items:center;padding:0;background:none;border:0;box-shadow:none;margin:0}
 body.ph.bt .row.t1 .sk{flex-direction:row-reverse}
@@ -1324,7 +1327,16 @@ body.ph .qobt,body.php .qobt{flex:none;margin-top:8px!important}body.ph .qobt bu
 /* celular deitado: nome dentro da barra de HP para sobrar espaço para os buffs */
 body.ph.bt .u{grid-template-areas:"f b" "f s" "c c"!important;grid-template-rows:auto auto auto!important}
 body.ph.bt .row.t1 .u{grid-template-areas:"b f" "s f" "c c"!important}
-body.ph.bt .nm{grid-area:b!important;z-index:2;align-self:center;justify-self:start;max-width:58%;padding:0 6px;font-size:10px!important;line-height:15px;pointer-events:none;text-shadow:0 1px 2px #000,0 0 3px #000}
+body.ph.bt .nm{grid-area:b!important;z-index:2;align-self:center;justify-self:start;max-width:calc(100% - 58px);padding:0 6px;font-size:10px!important;line-height:15px;pointer-events:none;text-shadow:0 1px 2px #000,0 0 3px #000}
+/* o nome fica por cima da linha de barras, e o numero do HP na ponta da barra
+   de HP. Barras zeradas somem, entao a de HP mede 100% da linha sozinha, ~70%
+   com duas e ~54% com tres: o nome so pode ocupar o que sobra dela. */
+body.ph.bt .u:has(.bar.b:not(.z)) .nm,
+body.ph.bt .u:has(.bar.a:not(.z)) .nm{max-width:calc(100% - 95px)}
+body.ph.bt .u:has(.bar.b:not(.z)):has(.bar.a:not(.z)) .nm{max-width:calc(100% - 132px)}
+/* o rotulo das barras ("HP", "Barreira", "Armadura") sai no celular: a cor ja
+   diz qual e cada uma, e o texto inteiro nao cabe junto do nome */
+body.ph.bt .bar .brl{display:none}
 body.ph.bt .row.t1 .nm{justify-self:end}
 body.ph.bt .bar{height:15px!important}body.ph.bt .bar span{line-height:15px!important;font-size:9.5px!important}
 body.ph.bt .bar.h span{text-align:right}body.ph.bt .row.t1 .bar.h span{text-align:left}
@@ -2622,6 +2634,9 @@ body.phl .rkprtt{margin-top:8px}
 .lbL .rkmed{width:clamp(104px,10.5vw,142px);height:clamp(104px,10.5vw,142px);margin-bottom:8px}
 .lbL .rkmed img{width:100%;height:100%;object-fit:contain}
 .lbmod{font:800 13px/1.3 system-ui;letter-spacing:.2em;text-transform:uppercase;color:#9db3d0;margin:2px 0 0}
+.lbnick{margin:1px 0 0;font:700 14px/1.25 system-ui;color:#cfe0ff;opacity:.88;max-width:100%;
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.ph .lbnick{font-size:12px}
 .lbnome{margin:2px 0 14px;font:900 clamp(23px,2.1vw,31px)/1.12 system-ui;
  background:linear-gradient(180deg,#fff6d6,#ffd23f 55%,#e09200);-webkit-background-clip:text;background-clip:text;color:transparent}
 .lbL .rkbar{width:100%;margin:0 0 16px;height:30px}
@@ -3073,7 +3088,7 @@ function stPush(){if(G.sim)return;(G.sth||(G.sth=[])).push([G.t,stHp(0),stHp(1)]
 const SXN={dmg:"Dano causado",blk:"Dano em defesas",heal:"Cura feita",hrec:"Cura recebida",tk:"Dano recebido",abs:"Absorvido por defesas",bar:"Barreira concedida",arm:"Armadura concedida",kill:"Abates",deb:"Debuffs aplicados",buf:"Buffs concedidos",use:"Habilidades usadas",kis:"Energia gasta",zks:"Essência gasta"};
 const sv=(u,k)=>(u.sx&&u.sx[k])||0,stTank=u=>sv(u,"tk")+sv(u,"abs"),stProt=u=>sv(u,"bar")+sv(u,"arm");
 const stScore=u=>Math.round(sv(u,"dmg")+sv(u,"blk")*.5+sv(u,"heal")+stProt(u)*.6+stTank(u)*.4+sv(u,"kill")*20+sv(u,"deb")*4+sv(u,"buf")*3);
-const stTeam=s=>G.online||(typeof D!="undefined"&&D&&D.on)?pn(s):rkEmJogo()?(s==0?"Você":pn(1)):G.bot?(s==0?"Você":"Bot"):"Jogador "+(s+1);
+const stTeam=s=>pnv(s);
 const stCol=s=>s==0?"#4d9bff":"#ff6b5e";
 function stSkills(){const L=[];G.u.forEach(u=>{const K=u.sxk||{};Object.keys(K).forEach(i=>{const o=K[i],ii=+i,k=ii>=0?C[u.c].sk[ii]:null;L.push({u,i:ii,n:k?k.n:"Passiva e efeitos contínuos",ic:ii>=0?IMG[u.c+"_"+ii]:IMG[u.c+"_p"],dmg:o.dmg||0,heal:o.heal||0,prot:(o.bar||0)+(o.arm||0),use:o.use||0,kill:o.kill||0,deb:o.deb||0,blk:o.blk||0,imp:(o.dmg||0)+(o.blk||0)*.5+(o.heal||0)+((o.bar||0)+(o.arm||0))*.6+(o.kill||0)*20+(o.deb||0)*4+(o.buf||0)*3})})});return L}
 function showStats(){const old=document.getElementById("stv");if(old)old.remove();if(!G.u)return;
@@ -3309,13 +3324,13 @@ function eInfo(u){let o=document.getElementById("einfo");if(o&&o.dataset.i==G.u.
  ch.sk.forEach((k,i)=>{if(k.fm!=null&&k.fm!==u.fm)return;it(IMG[u.c+"_"+i],k.n,k.ho?(k.hc?"−"+k.hc+" HP":"Sem custo"):k.zk?k.zk+" Essência":k.kz||k.vz?"Essência variável":(k.ki||0)+" Energia",()=>sTip(k,u,1))});
  o.append(row,det,mk("p","eino","Toque numa habilidade para ler o que ela faz. Recargas e uso das habilidades do inimigo ficam ocultos."));document.body.append(o)}
 function winAnn(){if(G.win==null||G.sim||G.scr!="p"){return}const key=(G.gid||"")+":"+G.u.length+":"+G.t+":"+G.win;if(G._wan===key)return;G._wan=key;capReward();try{rkFimPartida()}catch(e){}const v=fogView(),me=G.online?(G.me>=0?G.me:null):G.bot?0:null;
- if(empate())PANN.win=["Empate!","Ninguém conseguiu tirar vida do outro: os times terminaram com a mesma vida.","pw"];else if(me==null)PANN.win=[(G.online?pn(G.win):"Jogador "+(G.win+1))+" Venceu!","Fim da batalha.","pw"];else if(G.win===me)PANN.win=["Você Venceu!","Parabéns, a vitória é sua!","pwin"];else PANN.win=["Você Perdeu!","Não foi dessa vez. Tente de novo!","plose"];
+ if(empate())PANN.win=["Empate!","Ninguém conseguiu tirar vida do outro: os times terminaram com a mesma vida.","pw"];else if(me==null)PANN.win=[pn(G.win)+" Venceu!","Fim da batalha.","pw"];else if(G.win===me)PANN.win=["Você Venceu!","Parabéns, a vitória é sua!","pwin"];else PANN.win=["Você Perdeu!","Não foi dessa vez. Tente de novo!","plose"];
  G._rem={tm:JSON.parse(JSON.stringify(G.tm||[])),fd:G.cf,ann:G.ann,mode:G.mode};G._endAt=Date.now()+5000;setTimeout(()=>{if(G._wan===key&&G.scr=="p")phaseAnn("win",1)},600);setTimeout(()=>{if(G.win!=null&&G.scr=="p")endScreen()},5100)}
 
 function endClose(){const o=document.getElementById("endov");if(o)o.remove()}
 function endRematch(){const R=G._rem;if(!R)return;endClose();G.tm=R.tm;G.ann=R.ann;G.mode=R.mode;const k=G.fd;G.fd=R.fd;G.intro=1;newGame();G.fd=k}
 function endScreen(){if(G.win==null||G.scr!="p")return endClose();let o=document.getElementById("endov");if(!o){o=mk("div","");o.id="endov";document.body.append(o);try{rkPromoSolta()}catch(e){}if(window.ZGUESTNAG)setTimeout(window.ZGUESTNAG,2500)}
- const me=G.online?(G.me>=0?G.me:null):G.bot?0:null,cls=empate()?"pw":me==null?"pw":G.win===me?"pwin":"plose",tt=empate()?"Empate!":me==null?(G.online?pn(G.win):"Jogador "+(G.win+1))+" Venceu!":G.win===me?"Você Venceu!":"Você Perdeu!";
+ const me=G.online?(G.me>=0?G.me:null):G.bot?0:null,cls=empate()?"pw":me==null?"pw":G.win===me?"pwin":"plose",tt=empate()?"Empate!":me==null?pn(G.win)+" Venceu!":G.win===me?"Você Venceu!":"Você Perdeu!";
  let st="",btns=[];
  if(!G.online){
   if(rkEmJogo())btns=[["Menu",()=>{endClose();showMenu()}],["Voltar ao lobby",()=>{endClose();LBM="fila";showLobby()}]];
@@ -3383,7 +3398,7 @@ function hovRe(){if(!HVON||HVLK)return;if(document.body.contains(HVON))return;ho
 /* ===== Painel da habilidade (PC) — desativado, substituído pela dica flutuante ===== */
 function g2Pre(){if(window._g2pv||vidSkip("g2"))return;try{const v=document.createElement("video");v.src=SUBV[subGet()];v._sv=subGet();v.preload="auto";v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.load();window._g2pv=v}catch(e){}}
 /* Anúncio de revive para personagens sem vídeo. Personagem novo que revive: adicionar aqui [código, chave do PANN] (o Gohan SSJ2 usa o vídeo ou o anúncio g2rv em g2Play). */const RVANN={tu:"turv"};function rvCheck(){if(G.sim||G.scr!="p")return;G.rvseen=G.rvseen||{};G.u.forEach((u,i)=>{const k=u.rvk=="div"?"divrv":RVANN[u.c];if(!k||!u.rv||!u.alive)return;const key=(G.gid||"")+":"+i+":"+u.rvt;if(G.rvseen[key])return;G.rvseen[key]=1;if(G.t-u.rvt>1)return;phaseAnn(k,1)})}function g2Check(){if(G.sim||G.scr!="p")return;if(G.u.some(u=>u.c=="g2"))g2Pre();G.g2seen=G.g2seen||{};G.u.forEach((u,i)=>{if(u.c!="g2"||!u.rv||!u.alive)return;const key=(G.gid||"")+":"+i+":"+u.rvt;if(G.g2seen[key])return;G.g2seen[key]=1;if(G.t-u.rvt>1)return;g2Play(i)})}
-function g2Play(i){const old=document.getElementById("g2v");if(old)old.remove();if(vidSkip("g2")){G.g2m=1;phaseAnn("g2rv",1);const M=MUSA&&MUSA.g2;if(M){try{M.currentTime=0}catch(e){}}return}const a=ANI.get(i+":h");if(a){a.cur=0;a.hold=1;const el=document.querySelector('#b .bar[data-k="'+i+':h"]');if(el){el.querySelector("i").style.width="0%";el.querySelector("span").textContent=a.n+" 0/"+a.mx;el.classList.add("z")}}G.g2v=1;G.holdT=Math.max(G.holdT||0,Date.now()+19000);
+function g2Play(i){const old=document.getElementById("g2v");if(old)old.remove();if(vidSkip("g2")){G.g2m=1;phaseAnn("g2rv",1);const M=MUSA&&MUSA.g2;if(M){try{M.currentTime=0}catch(e){}}return}const a=ANI.get(i+":h");if(a){a.cur=0;a.hold=1;const el=document.querySelector('#b .bar[data-k="'+i+':h"]');if(el){el.querySelector("i").style.width="0%";el.querySelector("span").innerHTML="<b class='brl'>"+a.n+" </b>0/"+a.mx;el.classList.add("z")}}G.g2v=1;G.holdT=Math.max(G.holdT||0,Date.now()+19000);
  const ov=mk("div","");ov.id="g2v";const v=window._g2pv&&window._g2pv._sv===subGet()?window._g2pv:document.createElement("video");window._g2pv=null;if(!v.src)v.src=SUBV[subGet()];v.muted=false;try{v.currentTime=0}catch(e){}v.playsInline=true;v.setAttribute("playsinline","");v.preload="auto";v.volume=vol("v");
  const sk=mk("button","g2sk","Pular ▸▸"),sp=vspdBtn("g2sp"),cap=mk("div","g2cap","<b>Eu prometi que salvaria a Terra!</b><span>"+shn("g2")+" revive com o HP completo</span>");vspdApply(v);const fr=mk("div","g2fr");fr.append(v,sp,sk);ov.append(fr,cap);document.body.append(ov);
  let done=0;const fin=()=>{if(done)return;done=1;try{v.pause()}catch(e){}ov.classList.add("out");setTimeout(()=>ov.remove(),450);G.g2v=0;G.g2m=1;const M=MUSA&&MUSA.g2;if(M){try{M.currentTime=0}catch(e){}}const b=ANI.get(i+":h");if(b){b.hold=0}G.holdT=Math.min(G.holdT||0,Date.now()+2200);if(G.bot&&G.cur==1&&typeof botPlay=="function")setTimeout(botPlay,2300)};
@@ -3644,7 +3659,7 @@ function aniTick(){if(!ANI.size||G.scr!="p"||document.hidden)return;const red=ty
    else if(dn)return/* espera o dano terminar antes de subir com a cura */}
   const d=a.to-a.cur,st=Math.abs(d)>60?2:1;a.cur+=Math.sign(d)*Math.min(st,Math.abs(d));dirty.push(key)});
  dirty.forEach(key=>{const a=ANI.get(key),el=document.querySelector('#b .bar[data-k="'+key+'"]');if(!el)return;const i=el.querySelector("i"),s=el.querySelector("span");
-  i.style.width=Math.min(100,100*a.cur/a.mx)+"%";s.textContent=a.n+" "+(a.hp?a.cur+"/"+a.mx:a.cur);el.classList.toggle("z",a.cur<=0);if(a.hp)el.classList.toggle("lo",a.cur<a.mx*.3)})}
+  i.style.width=Math.min(100,100*a.cur/a.mx)+"%";s.innerHTML="<b class='brl'>"+a.n+" </b>"+(a.hp?a.cur+"/"+a.mx:a.cur);el.classList.toggle("z",a.cur<=0);if(a.hp)el.classList.toggle("lo",a.cur<a.mx*.3)})}
 setInterval(aniTick,45);
 Object.assign(IMG,{"lk_vgb_f": "media/b64/843a702ea1f120dd.webp", "lk_vgb_s": "media/b64/706f36521933bc60.webp", "lk_xen_f": "media/b64/13c848d48fdc16bb.webp", "lk_xen_s": "media/b64/be1a80a5392c5023.webp", "lk_gfz_f": "media/b64/07fa50fca7893d2e.webp", "lk_gfz_s": "media/b64/17a75173b2711820.webp", "lk_hir_f": "media/b64/397e1556424ee669.webp", "lk_hir_s": "media/b64/bfc2788c52c3a70a.webp"});const LCK=[["mcl","Metal Cooler (Z)"],["mvj","Majin Vegeta (Z)"],["s17","Super Android 17 (GT)"],["cl","Cooler Forma Final (Z)"],["g2","Gohan SSJ2 (Z)"],["ji","Jiren Full Power (S)"],["vgb","Vegeta SSJ Blue Evolution (S)"],["xen","Gohan Future Xeno SSJ + Trunks Xeno SSJ Deus (H)"],["gfz","Golden Freeza (S)"],["hir","Hirudegarn (Z)"],["brs","Broly SSJ Full Power (S)"],["brl","Broly SSJ Lendário (Z)"],["jan","Janemba (Z)"]].filter(x=>!C[x[0]]);
 const lkZoom=k=>{const n=(LCK.find(x=>x[0]==k)||[,""])[1];const o=document.getElementById("spz");if(o)o.remove();const ov=mk("div","");ov.id="spz";const im=mk("img","");im.src=IMG["lk_"+k+"_s"];if(IMG["lk_"+k+"_h"]){const hi=new Image();hi.onload=()=>{im.src=hi.src};hi.src=IMG["lk_"+k+"_h"]}ov.append(im,mk("b","",n+" · em breve"));ov.onclick=()=>ov.remove();document.body.append(ov)};
@@ -3733,7 +3748,7 @@ function openOrder(){if(G.win!=null)return;closeOrder();if(G.tutp)setTimeout(coa
  ov.onclick=e=>{if(e.target===ov)closeOrder()};draw()}
 
 function closeSur(){const o=document.getElementById("surc");if(o)o.remove()}
-function doSurrender(){closeSur();if(G.win!=null||(G.online&&G.me<0))return;if(G.online)return oConcede();const L=G.bot?0:G.cur;mtQuit=1;G.win=1-L;G.q=[];G.sel=null;log((G.bot&&L==0?"Você":"Jogador "+(L+1))+" se rendeu");render()}
+function doSurrender(){closeSur();if(G.win!=null||(G.online&&G.me<0))return;if(G.online)return oConcede();const L=G.bot?0:G.cur;mtQuit=1;G.win=1-L;G.q=[];G.sel=null;log((ehEu(L)?"Você":pn(L))+" se rendeu");render()}
 function askSur(yes,msg){closeSur();closeOrder();const ov=document.createElement("div");ov.id="surc";const b=mk("div","surbox");
  b.append(mk("img","surimg"),mk("div","surt","Tem certeza que deseja desistir?"),mk("p","surp",rkEmJogo()?"A partida termina, a vitória vai para o oponente e você perde pontos na ranqueada.":(typeof msg=="function"?msg():msg||(G.online||G.bot?"A partida termina e a vitória vai para o oponente.":"A partida termina e a vitória vai para o Jogador "+(2-G.cur)+"."))));
  b.querySelector("img").src=IMG.ui_goku;b.querySelector("img").alt="";const bt=mk("div","qobt"),y=mk("button","qok","Sim"),n=mk("button","qcn","Cancelar");y.onclick=()=>{closeSur();(typeof yes=="function"?yes:doSurrender)()};n.onclick=closeSur;bt.append(y,n);b.append(bt);ov.append(b);
@@ -4115,7 +4130,7 @@ function inEnd(){if(!IN)return;const o=IN.o,cb=IN.cb;try{IN.au&&IN.au.pause()}ca
 function playIntro(cb){const old=document.getElementById("vsi");if(old)old.remove();G.inOn=1;
  const o=mk("div","");o.id="vsi";const ff=FDS.find(x=>x.k==G.cf);if(ff)o.style.setProperty("--vbg",'url("'+IMG["fd_"+ff.k]+'")');
  const st=mk("div","vst"),sk=mk("button","vskip","Pular ▸▸");sk.onclick=inEnd;o.append(st,sk);document.body.append(o);IN={o,cb,tm:[]};
- const T=s=>G.u.filter(x=>x.s==s).filter((x,i,a)=>a.findIndex(y=>y.c==x.c)===i),nm=s=>G.online?pn(s)+(G.me>=0&&s===G.me?" (você)":""):rkEmJogo()?(s?pn(1):"Você"):G.bot?(s?"Bot":"Você"):"Jogador "+(s+1);
+ const T=s=>G.u.filter(x=>x.s==s).filter((x,i,a)=>a.findIndex(y=>y.c==x.c)===i),nm=s=>pnv(s);
  const half=s=>{const w=mk("div","vhalf t"+s),hd=mk("div","vhd",nm(s)),row=mk("div","vrow");w.append(hd,row);T(s).forEach(u=>{const c=mk("div","vcd");c.innerHTML="<div class='vim'><img src='"+(IMG[u.c+"_s"]||IMG[u.c+"_f"])+"' alt=''></div><b>"+C[u.c].n+"</b>";row.append(c)});return w};
  const H=[half(0),null,half(1)],V=mk("div","vsb","<img src='"+IMG.ui_vs+"' alt='VS'>");H[1]=V;st.append(H[0],V,H[2]);
  const side=(s,k)=>{if(!IN)return;const w=H[s?2:0],L=T(s),row=w.querySelector(".vrow");w.classList.add("on");
@@ -4125,13 +4140,16 @@ function playIntro(cb){const old=document.getElementById("vsi");if(old)old.remov
 function lgFill(){const el=$("#lg");if(!el)return;const sig=G.log.length+"|"+fogView()+"|"+G.log.map(l=>(l.t||0)+l.m).join("¦");if(el._sg===sig)return;const h0=el.scrollHeight,st=el.scrollTop;let pt=null,h="";G.log.forEach(l=>{if(l.hv!=null&&fogHid(l.hv))return;if(l.t&&l.t!==pt){pt=l.t;h+="<div class='lgt'>Turno "+l.t+"</div>"}h+="<div>"+(l.ic?"<img src='"+l.ic+"' alt=''>":"")+"<span>"+l.m+"</span></div>"});el.innerHTML=h+"<div>Dica: "+(HOVPC?"passe o mouse":"segure o clique")+" em um ícone para ver o que ele faz. Clique de novo numa habilidade da fila para cancelá-la.</div>";el._sg=sig;if(st>0)el.scrollTop=st+(el.scrollHeight-h0)}
 function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=ZOFF||!["m","inv","gac","ms"].includes(G.scr)}if(G.scr!="p")pannOff();if(RFZ){if(G.scr=="p")return;RFZ=0}if(G.scr=="p"&&zaPre())return;if(G.scr=="pt")return;if(G.scr=="o")return oRender();if(G.scr=="m")return showMenu();if(G.scr=="d")return dRender();document.body.classList.remove("dm");if(G.scr!="p"||G.win!=null||(G.bot&&G.cur==1))closeOrder();if(G.scr!="p"||G.win!=null)closeSur();if(G.scr!="p")return G.scr=="b"?build():undefined;/* so o montador de times se redesenha aqui; inventario, tutorial e companhia nao */document.body.classList.add("bt");{const ff=FDS.find(x=>x.k==G.cf);document.body.style.setProperty("--fbg",ff?'url("'+IMG["fd_"+ff.k]+'")':"none")}const b=$("#b");b.innerHTML="";{const f=FDS.find(x=>x.k==G.cf);if(f){const fb=mk("div","fdb","<span><b>Campo: "+f.n+"</b>"+(G.cf=="tp"?" · turno "+G.t+(tp()?" (cura, armadura e barreira anuladas)":""):"")+" · "+f.d+"</span>");fb.style.backgroundImage='url("'+IMG["fd_"+f.k]+'")';b.append(fb)}if(0)b.append(mk("div","fdb","<b>Campo: "+f.n+"</b>"+(G.cf=="tp"?" · turno "+G.t+(tp()?" (cura, armadura e barreira anuladas)":""):"")+" · "+f.d))}
  [0,1].forEach(s=>{const row=mk("div","row t"+s+(s==G.cur&&G.win==null?" cur":"")),hd=mk("div","hd"),L0=(G.ldisp||G.lead)[s],L=C[L0]?L0:null,an=!!L&&G.lead[s]=="none",lf=mk("img");if(L){lf.src=IMG[L+"_f"];if(an)lf.style.filter="grayscale(1)";att(lf,()=>pTip(C[L].n,C[L].ld,an?"Líder anulado: os dois times escolheram o mesmo":"Habilidade de Líder"))}else lf.style.visibility="hidden";
-  hd.append(lf,mk("div","","<b>"+(G.online?pn(s)+(G.me>=0&&s===G.me?" (você)":""):rkEmJogo()?(s==1?pn(1):"Você"):"Jogador "+(s+1)+(s==1&&G.bot?" (bot)":""))+"</b> · "+(L?"líder "+C[L].n+(an?" (anulado)":""):"sem líder")+"<br>"+resChips(s)));row.append(hd);
+  hd.append(lf,mk("div","","<b>"+pnv(s)+"</b> · "+(L?"líder "+C[L].n+(an?" (anulado)":""):"sem líder")+"<br>"+resChips(s)));row.append(hd);
   const us=mk("div","us");
   G.u.filter(x=>x.s==s).forEach(u=>{const ch=C[u.c],can=G.sel&&(!ch2(G.sel).vz||G.sel.z)&&selT(G.sel.u,ch2(G.sel)).includes(u)&&!(G.sel.ts||[]).includes(u),k=mk("div","u"+(u.alive?"":" dead")+(can?" tg":"")),tc=()=>k.onclick&&k.onclick();
    if(can&&!(G.online&&G.me<0))k.onclick=()=>{const S=G.sel;if(ch2(S).tg=="S"||tgu(ch2(S),S.u)=="E"){qpush({u:S.u,i:S.i,z:S.z,o:S.o});G.sel=null;render();return}if(ch2(S).tg=="2"){S.ts=(S.ts||[]).concat(u);if(S.ts.length<2&&tgts(S.u,ch2(S)).length>S.ts.length){render();return}qpush({u:S.u,i:S.i,ts:S.ts,o:S.o})}else qpush({u:S.u,i:S.i,t:u,z:S.z,o:S.o});G.sel=null;render()};
    const fw=mk("div","fw"),f=mk("img","f");f.src=IMG[u.c+(u.fm?"_f2":"_f")];fw.append(f);if(can)fw.append(mk("b","tint "+(u.s==G.sel.u.s?"ta":"te")));if(!u.alive)fw.append(mk("b","xx","✖"));else if(has(u,"ATORD"))fw.append(mk("b","sp","🌀"));
    const HID=fogHid(u.s);if(HID)fw.classList.add("fogf");att(fw,()=>HID?"<b>"+ch.n+"</b><small>"+ch.cl+"</small><p>Toque para ver as habilidades deste inimigo.</p>":pTip(ch.ps.n,ch.ps.t,ch.n+" · "+ch.cl+(ch.fms?" · "+ch.fms[u.fm]+" em campo · "+ch.fms[1-u.fm]+": "+u.al.hp+"/"+u.al.mx+" HP":"")),()=>{if(k.onclick)k.onclick();else if(HID)eInfo(u)});
-   const ui=G.u.indexOf(u),br=(c,n,v,hp)=>{const key=ui+":"+c;let a=ANI.get(key);if(!a){a={cur:v};ANI.set(key,a)}a.to=v;a.mx=u.mx;a.n=n;a.hp=hp;const cv=a.cur;return"<div class='bar "+c+(cv>0?"":" z")+(hp&&cv<u.mx*.3?" lo":"")+"' data-k='"+key+"'><i style='width:"+Math.min(100,100*cv/u.mx)+"%'></i><span>"+n+" "+(hp?cv+"/"+u.mx:cv)+"</span></div>"};
+   const ui=G.u.indexOf(u),br=(c,n,v,hp)=>{const key=ui+":"+c;let a=ANI.get(key);if(!a){a={cur:v};ANI.set(key,a)}a.to=v;a.mx=u.mx;a.n=n;a.hp=hp;const cv=a.cur;/* o rotulo vai sempre no HTML, dentro de <b class=brl>, e o CSS o esconde no
+   celular. Decidir isso aqui pela classe do body nao serve: a barra fica
+   guardada no DOM, e unidades que nao mudaram manteriam o texto anterior. */
+   return"<div class='bar "+c+(cv>0?"":" z")+(hp&&cv<u.mx*.3?" lo":"")+"' data-k='"+key+"' title='"+n+"'><i style='width:"+Math.min(100,100*cv/u.mx)+"%'></i><span><b class='brl'>"+n+" </b>"+(hp?cv+"/"+u.mx:cv)+"</span></div>"};
    k.append(fw,mk("div","nm",ch.fms?ch.fms[u.fm]+"<small style='display:block;color:var(--mu);font-size:11px'>"+ch.fms[1-u.fm]+": "+u.al.hp+"/"+u.al.mx+" HP</small>":ch.n),mk("div","bars",br("h","HP",u.hp,1)/* a chave da barra nunca muda: "lo" vira classe, senao a animacao da cura reaproveita o cur antigo */+br("b","Barreira",u.br)+br("a","Armadura",arm(u))));
    const cs=mk("div","ch");u.st.filter(x=>x.k!="ARM"&&x.k!="BRS"&&!(x.iv!=null&&fogHid(x.iv))).forEach(x=>{const d=SI[x.k],sk=SKI[x.k],src=sk?IMG[sk[0]]:IMG["st_"+x.k];if(sk){const e=mk("div","si sk2"+(d[1]?" d":""),"<img src='"+src+"' alt=''><em>"+(x.k=="RAJ"||x.k=="FNOVA"?x.v:x.t>=99||x.k=="TOON"?"∞":x.t)+"</em>"+(x.k=="TOON"?"<i class='tnc' title='Turnos sem buff'>"+Math.min(3,x.c||0)+"/3</i>":""));att(e,()=>skTip(x,u),tc);cs.append(e);return}const e=mk("div","si"+(d[1]?" d":"")+(src?" im":""),(src?"<img src='"+src+"' alt=''>":d[0])+"<em>"+(x.k=="RAJ"?x.v:x.t>=99?"∞":x.t)+"</em>");att(e,()=>"<b>"+NM[x.k]+"</b><small>"+(d[1]?"Debuff":"Buff")+" · "+(x.t>=99?"permanente":x.t+" turno(s)")+(x.nr?" · não pode ser removido":"")+(x.k=="RAJ"?" · "+x.v+" acúmulo(s)":"")+"</small><p>"+GL[d[2]]+"</p>",tc);cs.append(e)});
    G.u.forEach(o=>o.st.forEach(y=>{if(y.k=="SCOUT"&&y.v===u&&o.alive){const e=mk("div","si sk2","<img src='"+IMG.rd_0+"' alt=''><em>"+y.t+"</em>");att(e,()=>"<b>Scouter</b><small>Habilidade de Raditz · "+y.t+" turno(s)</small><p>Marcando <b>"+shn(o.c)+"</b>: Raditz não sofre debuffs desse inimigo enquanto a marca durar.</p>",tc);cs.append(e)}}));
@@ -4147,8 +4165,8 @@ function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=ZOFF
    k.append(sk);us.append(k)});row.append(us);b.append(row)});
  const bar=$("#bar");bar.innerHTML="";const p=spent();bar.append(mk("div","tturn","<small>Turno</small><b>"+G.t+"</b>"));
  if(tAtiva()){const tb=mk("div","tmrb");tb.id="tmrb";tb.hidden=true;bar.append(tb);setTimeout(()=>{try{tPinta()}catch(e){}},0)}
- if(G.win!=null)bar.append(mk("b","",empate()?"Empate!":G.online?(G.me>=0&&G.win===G.me?"Você venceu!":pn(G.win)+" venceu!"):"Jogador "+(G.win+1)+" venceu!"));
- else{bar.append(mk("span","",(G.online?(G.me<0?"👁 Assistindo · vez de <b>"+pn(G.cur)+"</b>":G.cur===G.me?"<b>Sua vez</b>":"Vez de <b>"+pn(G.cur)+"</b> · aguardando a jogada"):rkEmJogo()?(G.cur===0?"<b>Sua vez</b>":"Vez de <b>"+pn(1)+"</b>"):"Vez do <b>Jogador "+(G.cur+1)+"</b>")));{const vw=fogView(),rs=vw==null?G.cur:vw;bar.append(resBar(rs,rs===G.cur?p:[0,0]))}
+ if(G.win!=null)bar.append(mk("b","",empate()?"Empate!":ehEu(G.win)?"Você venceu!":pn(G.win)+" venceu!"));
+ else{bar.append(mk("span","",(G.online&&G.me<0?"👁 Assistindo · vez de <b>"+pn(G.cur)+"</b>":ehEu(G.cur)?"<b>Sua vez</b>":"Vez de <b>"+pn(G.cur)+"</b>"+(G.online?" · aguardando a jogada":""))));{const vw=fogView(),rs=vw==null?G.cur:vw;bar.append(resBar(rs,rs===G.cur?p:[0,0]))}
   if(!(G.bot&&G.cur==1)&&!(G.online&&(G.cur!==G.me||O.sending||O.retry))){const d=mk("button","g","↩ Desfazer"),e=mk("button","endt","Encerrar turno");d.disabled=!(G.q.length||G.sel);d.onclick=()=>{if(G.sel)G.sel=null;else G.q.splice(G.q.reduce((m,a,j)=>(a.o||0)>(G.q[m].o||0)?j:m,0),1);render()};e.onclick=openOrder;const pv=mk("button","g pvb","<img src='"+IMG.ui_baba+"' alt='Prever turno'>");pv.title="Prever turno";pv.setAttribute("aria-label","Prever turno");pv.disabled=!G.q.length;pv.onclick=showPredict;bar.append(e,pv,d)}
   if(G.sel&&ch2(G.sel).vz&&!G.sel.z){const fr=G.zk[G.cur]-p[1];for(let n=1;n<=Math.min(ch2(G.sel).vzm||4,fr);n++){const bt=mk("button","g","Gastar "+n+" Essência");bt.onclick=()=>{G.sel.z=n;render()};bar.append(bt)}}else if(G.sel)bar.append(mk("span","",(tgu(ch2(G.sel),G.sel.u)=="E"?"Clique em qualquer inimigo (atinge todos)":ch2(G.sel).tg=="S"?"Clique em "+sLab(G.sel.u,ch2(G.sel)).toLowerCase().replace("em si mesmo","si mesmo")+" para confirmar":"Escolha o alvo")+" (contorno vermelho)"));
 }
@@ -4176,8 +4194,20 @@ function escH(t){return String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;"
 const rkEmJogo=()=>!!(G.rkNome&&!G.online);
 function pn(s){try{const d=typeof O!="undefined"&&O.d;if(d&&(G.online||(D&&D.on))&&d["p"+s])return escH(oName(d,d["p"+s]).slice(0,24))}catch(e){}
  if(rkEmJogo()&&s==1)return escH(String(G.rkNome).slice(0,24));
+ /* fora da sala online quem joga neste aparelho e o assento 0: mostra o nick
+    dele em vez de "Jogador 1". No treino nao, porque la o jogador controla os
+    dois lados e os dois continuam "Jogador 1" e "Jogador 2". */
+ if(s==0&&G.bot)try{return escH(String(oNick()).slice(0,24))}catch(e){}
  return G.bot&&s==1&&!G.online?"Bot":"Jogador "+(s+1)}
-const dn=s=>D&&D.on?pn(s)+(!D.spec&&s===O.seat?" (você)":""):(s==1&&G.bot&&!rkEmJogo()?"Bot":"Jogador "+(s+1)),isBot=s=>D&&D.on?s!==O.seat:!!G.bot&&s==1,need=()=>D.ph=="pre"?((D.cfg&&D.cfg.pre)||3):D.ph=="fvote"?2:1;
+/* este assento e o deste aparelho? na sala vem do assento, no draft do O.seat,
+   e na partida local e sempre o 0 */
+function ehEu(s){try{
+ if(G.online)return G.me>=0&&s===G.me;
+ if(typeof D!="undefined"&&D&&D.on)return !D.spec&&s===O.seat;
+ return s===0&&!!G.bot}catch(e){return false}}
+/* o nome como aparece num titulo: com "(você)" quando for este aparelho */
+function pnv(s){return pn(s)+(ehEu(s)?" (você)":"")}
+const dn=s=>pn(s),isBot=s=>D&&D.on?s!==O.seat:!!G.bot&&s==1,need=()=>D.ph=="pre"?((D.cfg&&D.cfg.pre)||3):D.ph=="fvote"?2:1;
 function fvPick(fv){const w=FDS.map(f=>1+2*((fv[0]||[]).includes(f.k)+(fv[1]||[]).includes(f.k))),T=w.reduce((a,b)=>a+b,0);let r=Math.random()*T;for(let i=0;i<FDS.length;i++){r-=w[i];if(r<0)return FDS[i].k}return FDS[FDS.length-1].k}
 function fvChance(fv,k){const w=f=>1+2*((fv[0]||[]).includes(f)+(fv[1]||[]).includes(f)),T=FDS.reduce((a,f)=>a+w(f.k),0);return Math.round(100*w(k)/T)}
 /* ===== Cérebro do draft (bots Difícil e Extremo) ===== */
@@ -6439,7 +6469,8 @@ function rkBotNome(lv){lv=Math.max(0,Math.min(RKBOTN.length-1,(lv|0)));rkBagLoad
 const RKPOP={
  n:420,                           /* quantos adversários vivem a temporada */
  lanc:Date.UTC(2026,10,19,0,0,0), /* o dia em que a população começou do zero */
- tick:9e5,                        /* o relógio da simulação anda de 15 em 15 minutos */
+ tick:3e5,                        /* o relógio da simulação anda de 5 em 5 minutos: de 15 em 15
+                                        a escada ficava parada entre duas partidas seguidas */
  fatia:700,                       /* ticks por pedaço, para a aba não congelar */
  hsd:260,                         /* espalhamento da habilidade, em escala de Elo */
  banda:150,                       /* MMR de diferença aceito ao te arrumar um adversário */
@@ -6463,6 +6494,8 @@ function rkSeasonIni(d){d=d||new Date();const y=d.getUTCFullYear(),m=d.getUTCMon
 /* na temporada do lançamento a população começa no dia do lançamento; nas seguintes, no dia 1 */
 const rkPopIni=()=>Math.max(rkSeasonIni(),RKPOP.lanc);
 const rkPopTickAgora=()=>Math.max(0,Math.floor((Date.now()-rkPopIni())/RKPOP.tick));
+/* quantos ticks cabem num dia: sai do passo, para nao ficar escrito a mao */
+const rkPopDia=()=>Math.round(864e5/RKPOP.tick);
 
 /* ---- identidade fixa: habilidade, ritmo e nome de cada adversário ---- */
 function rkPopBase(){const sea=rkSeasonId();
@@ -6473,7 +6506,7 @@ function rkPopBase(){const sea=rkSeasonId();
   const r=rkH(sd,i,91);
   const e=rkH(sd,i,77);
   /* nem todo mundo cria a conta no primeiro dia: as outras vão chegando ao longo da temporada */
-  const ent=e<RKPOP.naLargada?0:Math.floor(Math.pow((e-RKPOP.naLargada)/(1-RKPOP.naLargada),1.7)*RKPOP.entra*96);
+  const ent=e<RKPOP.naLargada?0:Math.floor(Math.pow((e-RKPOP.naLargada)/(1-RKPOP.naLargada),1.7)*RKPOP.entra*rkPopDia());
   L.push({i:i,hab:RKCFG.mmr0+g*RKPOP.hsd,porDia:r<.12?12:(r<.57?6:3),ent:ent,nome:""})}
  /* o nick combina com a força: os mais fracos ficam com nome de conta nova, os mais fortes com nome de pro player */
  const ord=L.slice().sort((a,b)=>a.hab-b.hab),por=Math.ceil(L.length/RKBOTN.length);
@@ -6488,9 +6521,9 @@ const rkPopNovo=()=>({rank:1,div:RKCFG.divs,pr:0,pc:null,mmr:RKCFG.mmr0,n:0,w:0,
 function rkPopLoad(){const sea=rkSeasonId();
  if(RKPS&&RKPS.sea===sea)return RKPS;
  try{const r=JSON.parse(ls("za_rk_pop")||"null");
-  if(r&&r.sea===sea&&Array.isArray(r.st)&&r.st.length===RKPOP.n&&typeof r.t=="number"){
+  if(r&&r.sea===sea&&r.tk===RKPOP.tick&&Array.isArray(r.st)&&r.st.length===RKPOP.n&&typeof r.t=="number"){
    RKPS=r;if(!RKPS.topM)RKPS.topM={};return RKPS}}catch(e){}
- RKPS={sea:sea,t:0,st:[],topM:{}};
+ RKPS={sea:sea,tk:RKPOP.tick,t:0,st:[],topM:{}};
  for(let i=0;i<RKPOP.n;i++)RKPS.st.push(rkPopNovo());
  return RKPS}
 function rkPopSave(){try{ls("za_rk_pop",JSON.stringify(RKPS))}catch(e){}}
@@ -6505,10 +6538,10 @@ function rkPopAvanca(ate){const P=rkPopLoad(),B=rkPopBase().L,sd=rkSH("sim|"+P.s
  let fatia=0;
  while(P.t<ate&&fatia<RKPOP.fatia){
   const T=P.t;
-  if(T%96===0)rkPopTop(P);
+  if(T%rkPopDia()===0)rkPopTop(P);
   const hb=Math.floor(((((ini+T*RKPOP.tick)/36e5)%24)+21)%24);   /* hora de Brasília (UTC−3) */
   const peso=RKPOP.hora[hb],fila=[];
-  for(let i=0;i<RKPOP.n;i++)if(B[i].ent<=T&&rkH(sd,i,T)<B[i].porDia/96*peso)fila.push(i);
+  for(let i=0;i<RKPOP.n;i++)if(B[i].ent<=T&&rkH(sd,i,T)<B[i].porDia/rkPopDia()*peso)fila.push(i);
   fila.sort((a,b)=>P.st[a].mmr-P.st[b].mmr);                     /* pareia por MMR, como o matchmaking faria */
   for(let k=0;k+1<fila.length;k+=2){
    const a=fila[k],c=fila[k+1],sa=P.st[a],sc=P.st[c];
@@ -6863,10 +6896,14 @@ function showLobby(){
  G.scr="lb";const st=rkLoad(),w=pgShell("Lobby","lb");lbArena(w);
  try{rkBuscaTop()}catch(e){}
  if(LBM=="top"){try{
+  /* a escada da temporada entra na tabela nos dois casos, entao ela precisa
+     estar em dia tambem quando a tabela do servidor esta ligada. Sem isto a
+     simulacao ficava parada no tick em que estava e ninguem se mexia. */
+  rkPopSync();clearTimeout(RKPT2);
   if(rkSrvTab()){/* tabela de verdade: reconsulta sozinha enquanto a aba estiver aberta */
-   clearTimeout(RKPT2);const volta=()=>{if(G.scr=="lb"&&LBM=="top"){RKTOP.at=0;rkBuscaTop();RKPT2=setTimeout(volta,15000)}};
+   const volta=()=>{if(G.scr=="lb"&&LBM=="top"){RKTOP.at=0;rkBuscaTop();rkPopSync();RKPT2=setTimeout(volta,15000)}};
    RKPT2=setTimeout(volta,15000)}
-  else{rkPopSync();clearTimeout(RKPT2);RKPT2=setTimeout(()=>{if(G.scr=="lb"&&LBM=="top")rkPopSync()},60000)}}catch(e){}}
+  else RKPT2=setTimeout(()=>{if(G.scr=="lb"&&LBM=="top")rkPopSync()},60000)}catch(e){}}
  const wrap=mk("div","lbw");w.append(wrap);
 
  /* ---- esquerda: o posto do jogador ---- */
@@ -6875,6 +6912,8 @@ function showLobby(){
  L.innerHTML=rkMedalha(st,1)+
   "<p class='lbmod'>"+(LBM=="sala"?"Sala particular":"Fila Ranqueada")+"</p>"+
   "<h2 class='lbnome'>"+(LBM=="sala"?(ls("za_nick")||"Você"):rkNome(st))+"</h2>"+
+  /* na sala o titulo ja e o nick; na fila o titulo e o rank, entao o nick vem logo abaixo */
+  (LBM=="sala"?"":"<p class='lbnick'>"+escH(oNick())+"</p>")+
   (LBM=="sala"?"":rkBarra(st))+
   "<div class='lbkv'><span>Taxa de Vitórias</span><b>"+pct.toFixed(1)+"%</b></div>"+
   "<div class='lbkv'><span>Vitórias Consecutivas</span><b>"+lbSeq()+"</b></div>"+
@@ -7344,7 +7383,7 @@ function tipAt(html){tip.innerHTML=html;tip.style.display="block";const r=tip.ge
 function dSlot(k,lab,cl){const e=mk("div","dslot"+(cl?" "+cl:""));if(k){e.style.backgroundImage='url("'+(IMG[k+"_b"]||IMG[k+"_f"])+'")';if(/\bld\b/.test(cl||""))att(e,()=>ldTip(k),()=>tipAt(ldTip(k)));else att(e,()=>card(k))}e.append(mk("small","",lab));if(k)e.append(mk("b","",shn(k)));else if(cl&&cl.includes("cur"))e.append(mk("b","q","Escolhendo…"));return e}
 function dHid(k){const e=mk("div","dslot ld hid");if(k){const f=mk("div","faint");f.style.backgroundImage='url("'+(IMG[k+"_b"]||IMG[k+"_f"])+'")';e.append(f);att(e,()=>ldTip(k),()=>tipAt(ldTip(k)))}
  e.append(mk("small","",k?"Seu líder · secreto":"Líder escolhido"),mk("b","qm","?"));return e}
-function dCol(s){const live=!["fvote","field","prerev","done","banrev","fbanrev","sur"].includes(D.ph),c=mk("div","dcol "+(s?"r":"l")+(live&&D.who==s&&!(D.on&&D.wait)?" act":""));c.append(mk("div","dteam",dn(s)));if(D.ph!="field"&&D.ph!="fvote"&&D.bf!=null){const t=mk("div","dfirst");if((D.nb>0||D.ph=="pre")&&D.bf===s)t.append(mk("span","fb","🥇 Bane primeiro"));if(1-D.bf===s)t.append(mk("span","fp","🥇 Escolhe primeiro"));if(t.children.length)c.append(t)}
+function dCol(s){const live=!["fvote","field","prerev","done","banrev","fbanrev","sur"].includes(D.ph),c=mk("div","dcol "+(s?"r":"l")+(live&&D.who==s&&!(D.on&&D.wait)?" act":""));c.append(mk("div","dteam",pnv(s)));if(D.ph!="field"&&D.ph!="fvote"&&D.bf!=null){const t=mk("div","dfirst");if((D.nb>0||D.ph=="pre")&&D.bf===s)t.append(mk("span","fb","🥇 Bane primeiro"));if(1-D.bf===s)t.append(mk("span","fp","🥇 Escolhe primeiro"));if(t.children.length)c.append(t)}
  const rev=["fban","fbanrev","newlead","done"].includes(D.ph),L=D.lead[s],cur=D.ph=="seq"?D.seq[D.si]:null;
  if(D.noLead)c.append(dSlot(null,"Sem líder","ld none"));
  else if(D.ph=="newlead"&&D.who==s&&!L)c.append(dSlot(D.sel[0]||null,"Novo líder","ld cur"));
@@ -7368,7 +7407,7 @@ function dCenter(){const c=mk("div","dcen"),ph=D.ph,top=mk("div","dctop"),mb=mk(
  if(ph!="done"&&ph!="sur"&&!D.spec){const sb=surBtn(dSurrender,()=>D&&!D.on&&!G.bot?"A partida termina e a vitória vai para o Jogador "+(2-D.who)+".":"A partida termina e a vitória vai para o oponente.");if(ISPH)sb.className="surdr";top.append(sb)}
  {const k=pkey();if(PANN[k])top.insertBefore(mk("div","dphase",PANN[k][0]),top.children[1]||null)}
  c.append(top);
- if(ph=="sur"){const L=D.loser,W=1-L;c.append(mk("div","dbig","<small>Draft encerrado</small><h2>"+(G.bot&&L==0?"Você se rendeu":dn(L)+" se rendeu")+"</h2><p>"+(G.bot&&L==0?"Vitória do bot.":"Vitória de "+dn(W)+".")+"</p>"));if(rkEmJogo()){/* na ranqueada nao da para refazer o draft depois de se render */const lb=mk("button","dgo","Voltar ao lobby");lb.onclick=()=>{D=null;G.rkm=null;G.rkBlv=null;G.rkNome=null;LBM="fila";showLobby()};const mn2=mk("button","dlink","Voltar ao menu");mn2.onclick=()=>{D=null;showMenu()};c.append(lb,mn2);return c}
+ if(ph=="sur"){const L=D.loser,W=1-L;c.append(mk("div","dbig","<small>Draft encerrado</small><h2>"+(ehEu(L)?"Você se rendeu":dn(L)+" se rendeu")+"</h2><p>"+(G.bot&&L==0&&!rkEmJogo()?"Vitória do bot.":"Vitória de "+dn(W)+".")+"</p>"));if(rkEmJogo()){/* na ranqueada nao da para refazer o draft depois de se render */const lb=mk("button","dgo","Voltar ao lobby");lb.onclick=()=>{D=null;G.rkm=null;G.rkBlv=null;G.rkNome=null;LBM="fila";showLobby()};const mn2=mk("button","dlink","Voltar ao menu");mn2.onclick=()=>{D=null;showMenu()};c.append(lb,mn2);return c}
   const nb=mk("button","dgo","Novo draft");nb.onclick=startDraft;const mn=mk("button","dlink","Voltar ao menu");mn.onclick=()=>{D=null;showMenu()};c.append(nb,mn);return c}
  if(ph=="banrev"||ph=="fbanrev"){c.append(banReveal());return c}
  if(ph=="fvote"&&!(D.on&&D.wait)){c.append(fieldVote());return c}
@@ -7380,7 +7419,7 @@ function dCenter(){const c=mk("div","dcen"),ph=D.ph,top=mk("div","dctop"),mb=mk(
   const f=FDS.find(x=>x.k==D.fd),n=["Campo: "+f.n+"."];if(D.ann)n.push("Os dois times ficaram com o mesmo líder, então as duas habilidades de líder estão anuladas.");n.push("As esferas ainda não estão no jogo; essa fase entra depois.");
   w.append(mk("p","",n.join(" ")));c.append(w);const b=mk("button","dgo","Iniciar batalha");b.onclick=dBattle;const r=mk("button","dlink","Refazer draft");r.onclick=startDraft;if(D.on){if(O.busy){b.disabled=true;b.textContent="Iniciando…"}c.append(b)}else if(rkEmJogo())c.append(b);/* na ranqueada o draft vale, nao da para refazer */else c.append(b,r);return c}
  if(D.on&&D.wait){c.append(mk("div","dbig","<small>Escolha enviada</small><h2>Aguardando o oponente</h2><p>Assim que ele confirmar, o draft continua. Se o tempo acabar, o jogo escolhe por ele.</p>"));return c}
- const bt=isBot(D.who);c.append(mk("div","dhead t"+D.who,bt?(D.on?"O oponente está escolhendo…":"Bot está escolhendo…"):ph=="pre"?"Escolha 3 personagens. Eles só poderão ser líderes e ficam fora do draft.":ph=="seq"?(D.seq[D.si].t=="ban"?"Escolha um personagem para banir.":"Escolha um personagem para o seu time."):ph=="lead"?"Escolha seu líder entre os pré-líderes. O oponente só descobre no ban final.":ph=="fban"?"Os líderes foram revelados. Bana 1 dos personagens do oponente (o líder também pode ser banido).":"Escolha um dos seus 4 personagens para ser o novo líder."));
+ const bt=isBot(D.who);c.append(mk("div","dhead t"+D.who,bt?(D.on?"O oponente está escolhendo…":rkEmJogo()?pn(1)+" está escolhendo…":"Bot está escolhendo…"):ph=="pre"?"Escolha 3 personagens. Eles só poderão ser líderes e ficam fora do draft.":ph=="seq"?(D.seq[D.si].t=="ban"?"Escolha um personagem para banir.":"Escolha um personagem para o seu time."):ph=="lead"?"Escolha seu líder entre os pré-líderes. O oponente só descobre no ban final.":ph=="fban"?"Os líderes foram revelados. Bana 1 dos personagens do oponente (o líder também pode ser banido).":"Escolha um dos seus 4 personagens para ser o novo líder."));
  if(["pre","seq"].includes(ph)){const tl=mk("div","dtools"),inp=mk("input");inp.type="search";inp.placeholder="Buscar personagem…";inp.value=D.q;inp.setAttribute("aria-label","Buscar personagem");
   inp.oninput=()=>{D.q=inp.value;dGrid(c.querySelector(".dgrid"))};tl.append(inp);const fl=mk("div","dflts");
   [["all","Todos"]].concat(CLS.map(x=>[x,x])).forEach(([v,n])=>{const b=mk("button","dflt"+(D.flt==v?" on":""),n);b.onclick=()=>{D.flt=v;fl.querySelectorAll(".dflt").forEach(x=>x.classList.toggle("on",x===b));dGrid(c.querySelector(".dgrid"))};fl.append(b)});tl.append(fl);const fx=fxSel(D.fx,v=>{D.fx=v;dGrid(c.querySelector(".dgrid"))});fx.classList.add("dfx");tl.append(fx);c.append(tl)}
@@ -7550,7 +7589,15 @@ function oConcede(){if(!G.online||G.win!=null)return;mtQuit=1;G.win=1-G.me;G.q=[
 /* ===== Relógio do turno: 60s, e menos a cada turno que o jogador deixa passar ===== */
 const TCFG=[60,40,20,10];
 let TMR={ch:"",fim:0,av:0};
-function tAtiva(){try{return !!(G.online&&G.scr=="p"&&G.win==null&&G.me>=0&&O.d&&O.d.ph=="battle"&&oBotSeat()!==G.cur)}catch(e){return false}}
+/* de quem e a vez do lado deste aparelho: online vem do assento da sala, e na
+   partida local quem joga e sempre o assento 0 */
+function tEu(){return G.online?G.me:0}
+function tAtiva(){try{
+ if(G.scr!="p"||G.win!=null)return false;
+ /* a ranqueada contra bot roda local, mas vale pontos da temporada: tem relogio
+    igual ao das salas. So no turno do jogador, porque o bot joga sozinho. */
+ if(!G.online)return !!(rkEmJogo()&&G.bot&&G.cur===0);
+ return !!(G.me>=0&&O.d&&O.d.ph=="battle"&&oBotSeat()!==G.cur)}catch(e){return false}}
 function tSeg(s){const f=(G.afk&&G.afk[s])||0;return TCFG[Math.min(TCFG.length-1,f)]}
 function tZera(s){G.afk=(G.afk||[0,0]).slice();G.afk[s]=0}
 function tFalta(s){G.afk=(G.afk||[0,0]).slice();G.afk[s]=Math.min(9,(G.afk[s]||0)+1)}
@@ -7558,13 +7605,13 @@ function tPinta(){const el=document.getElementById("tmrb");if(!el)return;
  if(!TMR.fim||!tAtiva()){el.hidden=true;return}
  const n=Math.max(0,Math.ceil((TMR.fim-Date.now())/1000));
  el.hidden=false;el.className="tmrb"+(n<=10?" tmrx":n<=20?" tmry":"");
- el.innerHTML="<small>"+(G.cur===G.me?"Seu tempo":"Tempo de "+pn(G.cur))+"</small><b>"+n+"s</b>"}
+ el.innerHTML="<small>"+(G.cur===tEu()?"Seu tempo":"Tempo de "+pn(G.cur))+"</small><b>"+n+"s</b>"}
 function tCheca(){
  if(!tAtiva()){if(TMR.ch){TMR.ch="";TMR.fim=0;tPinta()}return}
  const ch=G.gid+"|"+G.t+"|"+G.cur;
  if(ch!==TMR.ch){TMR.ch=ch;TMR.av=0;
   /* quem está só esperando dá uma folga, para o próprio jogador passar o turno primeiro */
-  TMR.fim=Date.now()+tSeg(G.cur)*1000+(G.cur===G.me?0:6000)}
+  TMR.fim=Date.now()+tSeg(G.cur)*1000+(G.cur===tEu()?0:6000)}
  tPinta();
  if(Date.now()<TMR.fim||TMR.av||O.sending||O.retry)return;
  if(G.inOn||G.g2v||(G.holdT||0)>Date.now())return;
@@ -7574,8 +7621,8 @@ function tEstoura(){try{
  const s=G.cur,n=G.q.length;
  G.sel=null;   /* habilidade escolhida sem alvo nao entra na jogada */
  tFalta(s);
- log((s===G.me?"Você":pn(s))+" demorou demais: o turno passou"+(n?" com "+n+" habilidade"+(n>1?"s":"")+" já escolhida"+(n>1?"s":""):" sem jogar"));
- try{zToast(s===G.me?"Tempo esgotado: o turno passou.":"O tempo de "+pn(s)+" acabou.")}catch(e){}
+ log((s===tEu()?"Você":pn(s))+" demorou demais: o turno passou"+(n?" com "+n+" habilidade"+(n>1?"s":"")+" já escolhida"+(n>1?"s":""):" sem jogar"));
+ try{zToast(s===tEu()?"Tempo esgotado: o turno passou.":"O tempo de "+pn(s)+" acabou.")}catch(e){}
  _endTurn();oPush()
 }catch(e){}}
 if(typeof setInterval=="function")setInterval(()=>{try{tCheca()}catch(e){}},250);
