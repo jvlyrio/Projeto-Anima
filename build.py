@@ -13,11 +13,21 @@ próprio arquivo e o site deixa de depender de um servidor de fora. Sem esse
 arquivo, cai no CDN e o build avisa. Para baixar:
     curl -o src/supabase.min.js https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js
 """
-import os, re, sys
+import base64, hashlib, os, re, sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SUPABASE_JS = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"
 SUPABASE_LOCAL = os.path.join(ROOT, "src", "supabase.min.js")
+
+# Mídia embutida (data:...;base64,...) vira arquivo em media/b64/.
+# O arquivo de trabalho continua com tudo dentro; quem emagrece é só o site.
+# Abaixo deste tamanho a mídia fica embutida: são os ícones da interface, que
+# precisam aparecer junto com a tela, sem esperar rede.
+B64_LIMITE = 4096
+B64_DIR = "media/b64"
+B64_EXT = {"image/webp": "webp", "image/png": "png", "image/jpeg": "jpg", "image/gif": "gif",
+           "image/svg+xml": "svg", "audio/mpeg": "mp3", "audio/ogg": "ogg", "audio/wav": "wav",
+           "video/mp4": "mp4", "video/webm": "webm"}
 CFG = {
     "url": "https://fpntdutdeisbbgiyjvjk.supabase.co",
     "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB",  # chave pública (pode ficar no site)
@@ -26,6 +36,50 @@ CFG = {
     # poucos links por hora. Virar True quando houver SMTP próprio configurado.
     "email": False,
 }
+
+
+def tira_embutidas(s):
+    """Grava cada mídia embutida como arquivo e deixa o caminho no lugar dela.
+
+    O nome sai do conteúdo (sha1), então o mesmo desenho sempre vira o mesmo
+    arquivo: build repetido não mexe em nada, e o navegador aproveita o cache.
+    """
+    saida = os.path.join(ROOT, *B64_DIR.split("/"))
+    os.makedirs(saida, exist_ok=True)
+    usados, novos, ficaram, bytes_fora = set(), 0, 0, 0
+
+    def rep(m):
+        nonlocal novos, ficaram, bytes_fora
+        inteiro, mime, b64 = m.group(0), m.group(1), m.group(2)
+        ext = B64_EXT.get(mime)
+        if ext is None or len(inteiro) <= B64_LIMITE:
+            ficaram += 1
+            return inteiro
+        try:
+            dados = base64.b64decode(b64, validate=True)
+        except Exception:
+            ficaram += 1
+            return inteiro
+        nome = hashlib.sha1(dados).hexdigest()[:16] + "." + ext
+        usados.add(nome)
+        caminho = os.path.join(saida, nome)
+        if not os.path.exists(caminho) or os.path.getsize(caminho) != len(dados):
+            open(caminho, "wb").write(dados)
+            novos += 1
+        bytes_fora += len(inteiro)
+        return B64_DIR + "/" + nome
+
+    s = re.sub(r"data:([a-z]+/[a-z0-9.+-]+);base64,([A-Za-z0-9+/=]+)", rep, s)
+
+    # tira do repositório o que esta versão não usa mais
+    velhos = 0
+    for f in os.listdir(saida):
+        if f not in usados and os.path.isfile(os.path.join(saida, f)):
+            os.remove(os.path.join(saida, f))
+            velhos += 1
+    print("midia embutida: %d arquivos em %s (%.2f MB tirados do HTML), %d novos, %d removidos, %d ficaram embutidas"
+          % (len(usados), B64_DIR, bytes_fora / 1048576, novos, velhos, ficaram))
+    return s
 
 
 def main(src):
@@ -48,6 +102,7 @@ def main(src):
     if missing:
         sys.exit("faltam arquivos em media/: " + ", ".join(sorted(missing)))
     s = s.replace("<title>Z Arena · Etapa 1</title>", "<title>Z Arena</title>", 1)
+    s = tira_embutidas(s)
     import json
     zjs = open(os.path.join(ROOT, "src", "zsb.js"), encoding="utf-8").read()
     zcss = open(os.path.join(ROOT, "src", "zsb.css"), encoding="utf-8").read()
