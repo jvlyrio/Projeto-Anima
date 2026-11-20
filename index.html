@@ -1682,6 +1682,8 @@ button.zh.ms b{font:900 15px system-ui}
 .cpcd p{margin:2px 0 0;font:600 12px system-ui;color:#cfe6f2}
 .cpcd em{display:block;margin-top:3px;font:700 11px system-ui;color:#9fc4d6;font-style:normal}
 .cpgh{margin:14px 0 2px;font:900 12px system-ui;color:#ffd93a;text-transform:uppercase;letter-spacing:.4px}
+.rkcdt{margin:14px 0 0;font:800 15px/1.3 system-ui;color:#cfe0f5;text-align:center}
+.rkcdt b{display:inline-block;min-width:1.2em;font:900 26px/1 system-ui;color:#ffd23f;vertical-align:-3px}
 .ivact{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
 #ivad{position:fixed;inset:0;z-index:95;display:flex;align-items:center;justify-content:center;padding:18px;background:#04070ecc;backdrop-filter:blur(3px)}
 .ivadbx{width:min(460px,96vw);text-align:center;padding:clamp(16px,3vw,26px);border-radius:16px;
@@ -6473,12 +6475,35 @@ function rkEntraSala(){
  G.rkm={id:pid,oppMmr:+op.mmr||RKCFG.mmr0,oppNome:op.nome||"Adversário",bot:0,pop:null,
   sea:st.sea,mmrAnt:st.mmr,oppRank:op.rank||null,oppDiv:op.div||null,oppPc:(op.pc!=null?op.pc:null)};
  G.rkBlv=null;G.rkNome=null;          /* online: o nome do adversário vem da sala */
- try{dClear();G.mode="o";G.scr="o";oSub(cod)}
- catch(e){G.rkm=null;try{zToast("Não deu para entrar na sala da partida.")}catch(x){}LBM="fila";showLobby()}}
+ /* a sala da ranqueada não aparece: o jogador vê a contagem e cai direto no draft */
+ try{dClear();G.mode="o";O.rkSala=1;O.rkT0=Date.now();oSub(cod);rkCdLiga()}
+ catch(e){G.rkm=null;O.rkSala=0;try{zToast("Não deu para entrar na sala da partida.")}catch(x){}LBM="fila";showLobby()}}
+
+/* contagem de 3 segundos por cima do lobby, no lugar da tela de sala */
+let RKCD=null;
+function rkCdLiga(){clearInterval(RKCD);rkContagem();RKCD=setInterval(rkContagem,120)}
+function rkCdDesliga(){clearInterval(RKCD);RKCD=null;const o=document.getElementById("rkcd");if(o)o.remove()}
+function rkContagem(){
+ if(!O.rkSala||!G.rkm){return rkCdDesliga()}
+ const d=O.d;
+ if(d&&d.ph&&d.ph!="lobby"){O.rkSala=0;return rkCdDesliga()}     /* o draft começou */
+ if(Date.now()-(O.rkT0||0)>25000){                                /* nada aconteceu: desiste sem travar o jogador */
+  O.rkSala=0;rkCdDesliga();G.rkm=null;try{oLeave()}catch(e){}
+  try{zToast("O adversário não entrou na partida.")}catch(e){}
+  LBM="fila";return showLobby()}
+ let ov=document.getElementById("rkcd");
+ if(!ov){ov=mk("div","rkacov");ov.id="rkcd";const bx=mk("div","rkacbx");bx.id="rkcdbx";ov.append(bx);document.body.append(ov)}
+ const n=(d&&d.cd)?Math.max(0,Math.min(3,Math.ceil((d.cd-Date.now())/1000))):3;
+ const bx=document.getElementById("rkcdbx");
+ bx.innerHTML="<div class='rkach'><b>Partida encontrada!</b></div>"+
+  "<div class='rkvs'><span>"+escH(typeof oNick=="function"?oNick():"Você")+"</span><em>VS</em>"+
+   "<span>"+escH((G.rkm&&G.rkm.oppNome)||"Adversário")+"</span></div>"+
+  "<p class='rkcdt'>A partida começa em <b>"+n+"</b></p>"}
 /* a busca roda em segundo plano: tira da tela tudo que pertence a ela */
 function rkUIoff(){["rkac","rkqw"].forEach(id=>{const e=document.getElementById(id);if(e)e.remove()})}
 function rkFilaSair(volta){RKQ.on=0;RKQ.fase="";clearInterval(RKQ.timer);clearTimeout(RKQ.botT);clearTimeout(RKQ.pollT);
  RKQ.timer=RKQ.botT=RKQ.pollT=null;RKQ.op=null;RKQ.aceitei=0;RKQ.opAceitou=0;RKQ.sala=null;RKQ.partida=null;
+ O.rkSala=0;try{rkCdDesliga()}catch(e){}
  try{rkFilaSrvDesliga()}catch(e){}try{rkQSai()}catch(e){}
  rkUIoff();
  if(volta)return showLobby();
