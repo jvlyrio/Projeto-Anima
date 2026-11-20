@@ -107,11 +107,21 @@ def main(src):
     zjs = open(os.path.join(ROOT, "src", "zsb.js"), encoding="utf-8").read()
     zcss = open(os.path.join(ROOT, "src", "zsb.css"), encoding="utf-8").read()
 
-    # a biblioteca do Supabase: de preferência embutida, sem depender de servidor de fora
+    # A biblioteca do Supabase fica hospedada aqui, não num servidor de fora.
+    # Ela NÃO pode ir embutida: é um pacote webpack que descobre o próprio endereço
+    # pela tag <script src>. Inline não existe src, e ela aborta com
+    # "Automatic publicPath is not supported in this browser" — login e online morrem.
+    # Por isso vira arquivo do site, carregado por caminho relativo.
     if os.path.exists(SUPABASE_LOCAL):
-        sblib = "<script>" + open(SUPABASE_LOCAL, encoding="utf-8").read() + "</script>"
+        destino = os.path.join(ROOT, "lib")
+        os.makedirs(destino, exist_ok=True)
+        dados = open(SUPABASE_LOCAL, "rb").read()
+        alvo = os.path.join(destino, "supabase.min.js")
+        if not os.path.exists(alvo) or open(alvo, "rb").read() != dados:
+            open(alvo, "wb").write(dados)
+        sblib = '<script src="lib/supabase.min.js"></script>'
         cdn = ""
-        print("supabase-js: embutido de src/supabase.min.js")
+        print("supabase-js: hospedado no proprio site (lib/supabase.min.js, %d bytes)" % len(dados))
     else:
         sblib = '<script src="' + SUPABASE_JS + '"></script>'
         cdn = " https://cdn.jsdelivr.net"
