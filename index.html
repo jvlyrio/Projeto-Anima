@@ -1132,7 +1132,8 @@ body.ph .snnm{font-size:26px}body.ph .sntx{font-size:12.5px}body.ph .snq span{wi
 .chsp{cursor:zoom-in;transition:transform .15s}.chsp:hover{transform:scale(1.02)}
 #spz{position:fixed;inset:0;z-index:90;background:#000d;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:zoom-out;animation:bnin .25s ease-out}#spz img{height:min(80vh,calc(92vw*4/3));width:auto;max-width:92vw;object-fit:contain;border-radius:14px;border:2px solid #d27285;box-shadow:0 0 50px #d2728544,0 20px 60px #000c;animation:bnpop .35s cubic-bezier(.2,1.3,.4,1)}#spz b{font:900 italic clamp(18px,2.6vw,28px) system-ui;color:#d27285;text-transform:uppercase;text-shadow:0 2px 8px #000}#spz .chzx{position:absolute;top:14px;right:14px}
 .w.rqf .ic{animation:rqf 1.2s ease-out}@keyframes rqf{0%,40%{box-shadow:0 0 0 3px #d27285,0 0 18px #d27285}100%{box-shadow:none}}
-body:has(#bnr) #och,body:has(#nkm) #och,body:has(.mmopt) #och,body:has(#chpop) #och,body:has(#spz) #och,body:has(#rotm) #och{display:none!important}#och{position:fixed;right:12px;bottom:12px;z-index:96;width:300px;height:340px;display:flex;flex-direction:column;background:rgba(11,16,32,var(--chop,.92));border:1.5px solid #d2728588;border-radius:12px;box-shadow:0 10px 30px #0008;color:#f1efed;font-size:var(--chfs,13px);overflow:hidden}
+body:has(#bnr) #och,body:has(#nkm) #och,body:has(.mmopt) #och,body:has(#chpop) #och,body:has(#spz) #och,body:has(#rotm) #och,
+body:has(#bnr) #ofr,body:has(#nkm) #ofr,body:has(.mmopt) #ofr,body:has(#chpop) #ofr,body:has(#spz) #ofr,body:has(#rotm) #ofr{display:none!important}#och{position:fixed;right:12px;bottom:12px;z-index:96;width:300px;height:340px;display:flex;flex-direction:column;background:rgba(11,16,32,var(--chop,.92));border:1.5px solid #d2728588;border-radius:12px;box-shadow:0 10px 30px #0008;color:#f1efed;font-size:var(--chfs,13px);overflow:hidden}
 #och.sz-p{width:240px;height:240px}#och.sz-g{width:380px;height:460px}#och.min{height:auto!important}#och.min .ochs,#och.min .ochl,#och.min .ochf{display:none}
 #och.bt{bottom:12px;right:12px}
 .ochh{display:flex;align-items:center;gap:6px;padding:6px 8px;background:#0006;border-bottom:1px solid #ffffff1a}.ochh b{flex:1;font:800 13px system-ui;color:#d27285;cursor:pointer}.ochu{min-width:18px;height:18px;border-radius:9px;background:#ff3b30;color:#fff;font:800 11px/18px system-ui;text-align:center;padding:0 5px}.ochu:empty{display:none}
@@ -1539,7 +1540,7 @@ body.php .bnbox.co,body.ph .bnbox.co{grid-template-columns:1fr;grid-template-row
 .nwcl{background:linear-gradient(180deg,#d4788b,#bd5574);color:#3a1500;border:2px solid #fff3;border-radius:10px;padding:10px 34px;font:900 italic 16px system-ui;cursor:pointer;box-shadow:inset 0 2px 0 #ffffff55}
 #bnr.fromnw .bnck{visibility:hidden}
 .mmnwb{display:inline-block;margin-left:8px;min-width:20px;height:20px;border-radius:10px;background:#e8322a;color:#fff;font:800 12px/20px system-ui;font-style:normal;text-align:center;vertical-align:middle;border:2px solid #fff}.mmnwb[hidden]{display:none}
-body:has(#nws) #och{display:none!important}
+body:has(#nws) #och,body:has(#nws) #ofr{display:none!important}
 @media(max-width:560px){.nwban.bal{padding:0 12px;gap:10px}.nwfc{gap:5px}#nws{padding:0}.nwbox{max-height:100dvh;height:100dvh;border-radius:0;border-width:0}.nwtab{font-size:11.5px}.nwch b{font-size:13.5px}.nwban{aspect-ratio:16/6}}
 body.ph #nws{padding:4px}body.ph .nwbox{max-height:96vh}body.ph .nwhd{margin:6px 10px 6px;padding:4px}body.ph .nwhd span{font-size:18px}body.ph .nwban{aspect-ratio:16/4}
 .tflow{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px;margin:6px 0 16px}.tflow>div{position:relative;background:#2e2032;border:1px solid #624d69;border-radius:10px;padding:10px 8px 8px;text-align:center}.tflow i{position:absolute;top:-8px;left:-6px;width:22px;height:22px;border-radius:50%;background:#d27285;color:#3a1500;font:800 12px/22px system-ui;font-style:normal}.tflow span{font-size:22px;display:block}.tflow b{display:block;color:#d27285;font-size:14px;margin:2px 0}.tflow p{margin:0;font-size:12.5px;color:#e3deda;line-height:1.3}.tord{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}.tord span{display:flex;flex-direction:column;align-items:center;min-width:64px;padding:6px 8px;border-radius:8px;font:700 12.5px system-ui}.tord small{font-size:10.5px;opacity:.8}.tord .ta{background:#4a3252;border:1px solid #b6849d;color:#eae7e4}.tord .tb{background:#4a1820;border:1px solid #ff5a5a;color:#ffd6d6}.tex{background:#0f2f22;border:1px solid #3fbf7f;border-radius:10px;padding:10px 12px;margin:10px 0;font-size:14px;line-height:1.45}.tres .chres{margin:6px 0 10px}.tvid{margin:4px 0 16px}.timg.wide img{max-width:none}.tvid video{display:block;width:100%;max-width:980px;border-radius:10px;border:3px solid #d27285;box-shadow:0 8px 24px #000a;background:#000;aspect-ratio:1280/712}.tvid figcaption{font:700 13px system-ui;color:#eabdc6;margin-top:6px}
@@ -4278,7 +4279,7 @@ body main>h1::before{content:"";display:inline-block;width:.92em;height:.92em;
 #dr .dphase .on,.dphase .on{background:var(--a2ros3);border-color:var(--a2ros);color:var(--a2cre)}
 #dr .dbody .dcol,.dbody .dcol{background:#221d29;border:1px solid var(--a2lin);border-radius:0;box-shadow:none;padding:10px}
 #dr .dcol>b,.dcol>b{color:var(--a2cre);font:800 italic clamp(14px,1.6vw,20px)/1.2 system-ui}
-#dr .dtm,.dtm{color:var(--a2ros2);font:900 italic clamp(30px,3.2vw,50px)/1 system-ui;font-variant-numeric:tabular-nums;text-shadow:0 2px 0 #0007;letter-spacing:.02em}
+#dr .dtm,.dtm{color:var(--a2ros2);font:900 italic clamp(42px,4.6vw,74px)/1 system-ui;font-variant-numeric:tabular-nums;text-shadow:0 2px 0 #0007;letter-spacing:.02em}
 #dr .dslot,.dslot{background:#2b2430;border:1px solid var(--a2lin);border-radius:0;box-shadow:none;
  color:var(--a2cre2)}
 #dr .dslot.on,.dslot.on{border-color:var(--a2ros);background:var(--a2ros3)}
@@ -4672,7 +4673,10 @@ body.ph #dr .cfR img{object-position:center 8%;filter:brightness(1.06)}
  color:var(--a2cre2);font:700 clamp(11px,1.1vw,13px)/1 system-ui;padding:7px 12px;box-shadow:none}
 #dr .dphase>.on,.dphase>.on{background:var(--a2ros);border-color:var(--a2ros);color:var(--a2cre)}
 /* o relogio da fase */
-#dr .dmid,.dmid{display:flex;align-items:center;gap:10px}
+#dr .dmid,.dmid{display:flex;align-items:center;justify-content:center;gap:clamp(10px,1.6vw,26px)}
+#dr .dmid>.dst,.dmid>.dst{order:1;margin:0}
+#dr .dmid>.dtm,.dmid>.dtm{order:2;flex:none}
+#dr .dmid>.dprog,.dmid>.dprog{order:3}
 #dr .dprog,.dprog{font:900 italic clamp(20px,2.4vw,34px)/1 system-ui;color:#f0c674;
  background:#241f2b;border:1px solid var(--a2lin);padding:6px 14px;
  clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
@@ -4918,6 +4922,94 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
  text-shadow:0 2px 6px #000b}#bnr .pcov.temart>.pccol{position:relative;z-index:1}body.php #bnr .pcov.temart,body.ph #bnr .pcov.temart{padding-right:0}body.php #bnr .pcov .pcart,body.ph #bnr .pcov .pcart{width:58%;opacity:.28}body.php #bnr .pcov .pcartt,body.ph #bnr .pcov .pcartt{display:none}/* ===== ANIMA2 VISUAL FIM ===== */
 </style>
 <style id="a2n">
+/* ===== MAESTRIA ===== */
+/* selo no canto da arte, com o nivel e os destaques */
+.chcard figure{position:relative}
+/* selo grande no canto da arte, no desenho do print: medalha + nivel, e a
+   contagem de destaques numa pilula ao lado */
+#dr .chcard:not(.lk) figure,.chcard:not(.lk) figure{overflow:visible}
+#dr .chcard:not(.lk),.chcard:not(.lk){gap:30px}
+#dr .chcard .mxsl,.chcard .mxsl{position:absolute;left:-10px;bottom:-34px;z-index:4;
+ display:flex;align-items:center;gap:5px;width:auto;height:auto;font-style:normal;
+ background:none;border:0;padding:0}
+#dr .chcard .mxsli,.chcard .mxsli{position:relative;display:block;width:80px;height:80px;flex:none}
+#dr .chcard .mxsl img,.chcard .mxsl img{width:80px!important;height:80px!important;
+ object-fit:contain!important;display:block;border:0!important;border-radius:0!important;
+ aspect-ratio:auto!important;filter:drop-shadow(0 2px 5px #000c)}
+#dr .chcard .mxsli b,.chcard .mxsli b{position:absolute;left:0;right:0;bottom:-2px;text-align:center;
+ font:900 italic 21px/1 system-ui;color:#fdf6ee;
+ text-shadow:0 1px 0 #000,0 0 5px #000,0 2px 4px #000}
+#dr .chcard .mxsl u,.chcard .mxsl u{display:inline-flex;align-items:center;gap:3px;
+ font:800 11.5px/1 system-ui;color:#f0e6dc;text-decoration:none;
+ padding:4px 8px 4px 6px;border-radius:999px;background:#14101ad9;border:1px solid #ffffff24;
+ backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.mxsld{width:9px;height:9px;display:block;flex:none;border-radius:2px;transform:rotate(45deg);
+ background:linear-gradient(135deg,#e9c87a,#c98b43)}
+.mxsl.max .mxsli b{color:#eaf6fb;text-shadow:0 1px 0 #000,0 0 7px #7fc9e8}
+.mxsl.max u{border-color:#9fd6ee6b;box-shadow:0 0 10px #7fc9e840}
+/* celular: um pouco menor, para nao comer a arte */
+@media (max-width:760px){
+ #dr .chcard .mxsli,.chcard .mxsli{width:58px;height:58px}
+ #dr .chcard .mxsl img,.chcard .mxsl img{width:58px!important;height:58px!important}
+ #dr .chcard .mxsli b,.chcard .mxsli b{font-size:16px}
+ #dr .chcard .mxsl u,.chcard .mxsl u{font-size:10px;padding:3px 6px 3px 5px}}
+/* resumo do elenco no alto da galeria */
+.mxres{display:flex;gap:18px;margin-left:auto}
+.mxres>div{text-align:right;line-height:1.1}
+.mxres b{display:block;font:900 italic 19px/1 system-ui;color:var(--gd,#d9a74e)}
+.mxres small{font:700 9.5px/1 system-ui;letter-spacing:.1em;text-transform:uppercase;opacity:.72}
+.chgh{display:flex;align-items:center;gap:12px}
+/* painel da ficha */
+.mxp{border:1px solid #ffffff1f;border-radius:14px;padding:14px 16px;margin:0 0 16px;
+ background:linear-gradient(135deg,#ffffff0f,#ffffff05)}
+.mxpc{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.mxpc .mxslg{position:relative;display:block;width:78px;height:78px;flex:none}
+.mxpc .mxslg img{width:78px;height:78px;object-fit:contain;display:block;
+ filter:drop-shadow(0 3px 7px #000a)}
+.mxpc .mxslg b{position:absolute;left:0;right:0;bottom:-2px;text-align:center;
+ font:900 italic 20px/1 system-ui;color:#fdf6ee;margin:0;
+ text-shadow:0 1px 0 #000,0 0 6px #000,0 2px 5px #000}
+@media (max-width:760px){.mxpc .mxslg,.mxpc .mxslg img{width:60px;height:60px}
+ .mxpc .mxslg b{font-size:16px}}
+.mxpc small{display:block;font:800 9.5px/1 system-ui;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.mxpc b{display:block;font:900 italic clamp(17px,2vw,23px)/1.15 system-ui;margin:2px 0 1px}
+.mxpc em{font:600 12.5px/1.3 system-ui;opacity:.8;font-style:normal}
+.mxbr{display:flex;align-items:center;gap:10px;margin:7px 0}
+.mxbr span{font:700 11.5px/1 system-ui;opacity:.78;flex:none;min-width:5.6em}
+.mxbr i{flex:1 1 auto;height:9px;border-radius:999px;background:#ffffff1a;overflow:hidden;display:block}
+.mxbr i u{display:block;height:100%;border-radius:999px;text-decoration:none;
+ background:linear-gradient(90deg,#c98b43,#e9c87a)}
+.mxbr b{font:800 11.5px/1 system-ui;flex:none;min-width:5.2em;text-align:right}
+.mxsub{font:500 12px/1.45 system-ui;opacity:.76;margin:6px 0 0}
+.mxdt{font:900 italic 14px/1.2 system-ui;color:#e9c87a;margin:2px 0 8px;
+ letter-spacing:.02em;text-transform:uppercase}
+.mxmax{font:900 italic clamp(16px,2vw,21px)/1.2 system-ui;margin:2px 0 4px;
+ background:linear-gradient(90deg,#cfe9f5,#9fd6ee 50%,#e6d9f5);-webkit-background-clip:text;
+ background-clip:text;color:transparent;letter-spacing:.03em}
+.mxnum{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:13px 0 0;
+ border-top:1px solid #ffffff14;padding-top:11px}
+.mxnum>div{text-align:center;line-height:1.15}
+.mxnum b{display:block;font:900 15px/1 system-ui}
+.mxnum small{font:700 9px/1.1 system-ui;letter-spacing:.06em;text-transform:uppercase;opacity:.66}
+.mxpr{margin-top:12px;border-top:1px solid #ffffff14;padding-top:10px}
+.mxpr small{font:800 9.5px/1 system-ui;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.mxpr ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.mxpr li{display:flex;align-items:center;gap:8px;font:600 12.5px/1.3 system-ui}
+.mxpr li i{font:900 10px/1 system-ui;font-style:normal;flex:none;min-width:22px;text-align:center;
+ padding:3px 5px;border-radius:6px;background:#d9a74e26;border:1px solid #d9a74e4d;color:#e9c87a}
+/* celular: os numeros em duas linhas */
+@media (max-width:760px){.mxnum{grid-template-columns:repeat(3,1fr)}}
+/* comemoracao ao subir de nivel */
+.mxfes{position:fixed;inset:0;z-index:999;display:grid;place-items:center;
+ background:#0a080ad9;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);cursor:pointer}
+.mxfbx{text-align:center;animation:mxpop .45s cubic-bezier(.2,1.3,.4,1)}
+.mxfev{width:min(300px,62vw);height:auto;display:block;margin:0 auto 10px;
+ filter:drop-shadow(0 8px 22px #000a)}
+.mxfbx b{display:block;font:900 italic clamp(24px,5vw,38px)/1.1 system-ui;color:#f2e7dd;
+ text-shadow:0 3px 0 #0008}
+.mxfbx span{display:block;font:800 clamp(14px,2.4vw,19px)/1.3 system-ui;color:#e9c87a;margin-top:3px}
+.mxfbx small{display:block;font:600 12.5px/1.3 system-ui;opacity:.78;margin-top:6px}
+@keyframes mxpop{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:scale(1)}}
 /* "Nao banir ninguem" como card da grade do draft, no lugar da barra larga */
 .dch.nbch .nbbox{width:100%;aspect-ratio:1;border:2px dashed var(--dln);border-radius:9px;
  display:grid;place-items:center;background:#1b16201f;box-sizing:border-box;transition:border-color .12s}
@@ -5305,7 +5397,7 @@ body.ph #ofr.fz-g,body.php #ofr.fz-g{width:min(366px,calc(100vw - 16px))}
 #ofr .ofrz:hover{background:#d2728533}
 #ofr.rzg{opacity:.9;user-select:none}#ofr.rzg .ofrz{background:#d2728533}
 #ofr.drg{opacity:.92}
-#ofr.min .ofrz,#ofr.lkd .ofrz,body.ph #ofr .ofrz,body.php #ofr .ofrz{display:none}
+#ofr.min #ofr.lkd .ofrz,#ofr.min .ofrz,body.ph #ofr .ofrz,body.php #ofr .ofrz{display:none}
 @media not all and (hover:hover) and (pointer:fine){#ofr .ofrz{display:none}}
 #ofr:not(.lkd):not(.min) .ofrh{cursor:move}
 #ofr .ofrlk.on{border-color:var(--a2ros);background:#d2728522}
@@ -5786,7 +5878,7 @@ GL.PURIFICAR="Remove a quantidade de debuffs indicada na habilidade (por exemplo
 function run(){const s=G.cur;G.rn=1;G.kkU=0;G.u.forEach(x=>x.nx=0);G.q.forEach(a=>{const u=a.u;if(!u.alive||has(u,"ATORD"))return;const k=C[u.c].sk[a.i];let t=a.t;if(t&&t.c=="bj"&&t.s!=u.s&&tgu(k,u)=="e"&&!np(t)&&t.bjp!=null){const g=G.u[t.bjp];if(g&&g.alive&&g.s==t.s&&g!==t){log("Morra por mim!: "+C[g.c].n+" recebeu a habilidade no lugar de Boujack");t=g}}
   if(a.ts)a.ts=a.ts.filter(x=>x.alive);
   if(t&&t.s!=s&&!t.alive){const f=foes(u);if(!f.length)return;t=f[0]}
-  G.su=u;G.nul=[];G.cp=[];G.dst=0;G.nvpd=0;G.ar=tgu(k,u)=="E"||k.tg=="2";if(u.c=="mg"&&!np(u)&&(u.nx||0)>=1&&!k.zk){pst(u,"seg");pst(u,"eco",Math.max(0,(k.ki||0)+(has(u,"SOBR")?1:0)-(G.lead[u.s]=="mg"?lf():0)+fk(u)))}{let _k=ck(u,k,a),_z=cz(u,k,a);if(cpn(u,"ut5")&&!G.sim&&Math.random()<.25){if(_k||_z)log(C[u.c].n+" não gastou recursos (Cápsula: Sorte do Guerreiro)");_k=0;_z=0}G.ki[s]-=_k;G.zk[s]-=_z;G.ski=a.i;sx(u,"use",1);sx(u,"kis",_k);sx(u,"zks",_z);if(!G.sim&&!G.ann){G.skU=G.skU||[0,0];G.skU[u.s]=(G.skU[u.s]||0)+1}}if(u.free&&(u.nx||0)==0)u.free=0;if(u.sed&&(u.nx||0)==0)u.sed=0;u.nx=(u.nx||0)+1;if(u.c=="sak")u.byu0=1;u.cd[a.i]=k.cd?Math.max(2,k.cd+1-(u.cp?(capUlt(k)?cpn(u,"ut3"):cpn(u,"ut1")):0)-cdUp(u,k)):0;
+  G.su=u;G.nul=[];G.cp=[];G.dst=0;G.nvpd=0;G.ar=tgu(k,u)=="E"||k.tg=="2";if(u.c=="mg"&&!np(u)&&(u.nx||0)>=1&&!k.zk){pst(u,"seg");pst(u,"eco",Math.max(0,(k.ki||0)+(has(u,"SOBR")?1:0)-(G.lead[u.s]=="mg"?lf():0)+fk(u)))}{let _k=ck(u,k,a),_z=cz(u,k,a);if(cpn(u,"ut5")&&!G.sim&&Math.random()<.25){if(_k||_z)log(C[u.c].n+" não gastou recursos (Cápsula: Sorte do Guerreiro)");_k=0;_z=0}G.ki[s]-=_k;G.zk[s]-=_z;G.ski=a.i;sx(u,"use",1);sx(u,"kis",_k);sx(u,"zks",_z);if(!G.sim){G.skU=G.skU||[0,0];G.skU[u.s]=(G.skU[u.s]||0)+1}}if(u.free&&(u.nx||0)==0)u.free=0;if(u.sed&&(u.nx||0)==0)u.sed=0;u.nx=(u.nx||0)+1;if(u.c=="sak")u.byu0=1;u.cd[a.i]=k.cd?Math.max(2,k.cd+1-(u.cp?(capUlt(k)?cpn(u,"ut3"):cpn(u,"ut1")):0)-cdUp(u,k)):0;
   if(has(u,"INVEST")){const it=tgu(k,u)=="E"?foes(u):k.tg=="2"?(a.ts||[]).filter(x=>x.alive):t&&t.s!=s?[t]:[];if(it.length){rm(u,"INVEST");G.su=u;G.ar=tgu(k,u)=="E"||k.tg=="2";it.forEach(x=>add(x,"ATORD",1))}}
   if(k.hc){const hcv=hcOf(u,k);if(u.kfree){u.kfree=0;log("Kaioken x10!: "+C[u.c].n+" não consumiu HP");pst(u,"free")}else if(hcv>0){u.hp=Math.max(1,u.hp-hcv);pst(u,"hpc",hcv)}}
   G.kkb=0;if(G.lead[u.s]=="gbk"&&!G.kkU&&(a.kk||(G.kkc&&G.kkc[kkKey(u,a.i)]))&&kkDmg(k)&&u.hp>20){G.kkU=1;u.hp-=20;G.kkb=20*lf();log("Kaioken do líder: "+C[u.c].n+" consumiu 20 de HP para +"+G.kkb+" de dano")}
@@ -5820,7 +5912,10 @@ function endTurn(){if(G.scr!="p"||G.win!=null||RFZ)return;const s=G.cur;const hp
  G.cur=1-s;G.q=[];G.sel=null;G.kkc={};begin()}
 function newGame(){pannOff();G.dsnap=G.dsnapN||null;G.dsnapN=null;G.tutp=G._tutn?1:0;G._tutn=0;const T=G.tm;try{lbSalvaTime()}catch(e){}try{[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups],["lv",ZAV.lvps]].forEach(([c,v])=>{if(T&&T.some(t=>t.slice(1).includes(c)))vPre(v)});ULTV.forEach(V=>{if(T&&T.some(t=>t.slice(1).includes(V.c)))vPre(V.src)})}catch(e){}RFZ=0;G.g2m=0;G.g2v=0;G.g2seen={};SBV=[0,0];Object.assign(G,{t:0,ki:[0,0],zk:[0,0],zg:[0,0],tc:[0,0],sbcd:[0,0],q:[],sel:null,u:[],rep:[],log:[],win:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,kz:0,zs:[0,0],zd:[0,0],dr:[0,0],lead:G.ann?["none","none"]:[T[0][0],T[1][0]],ldisp:[T[0][0],T[1][0]],scr:"p",cf:G.fd=="x"?"x":G.fd&&G.fd!="r"?G.fd:FDS[Math.floor(Math.random()*FDS.length)].k});
  T.forEach((t,s)=>t.slice(1).forEach(c=>G.u.push({s,c,hp:100,mx:100,ar:0,br:0,st:[],cd:C[c].sk.map(()=>0),bn:0,rec:0,alive:true,im:0,rv:0,dbl:0,rvt:0,nx:0,fm:0,gk:0,gz:0,ept:0,al:{hp:100,mx:100}})));
- G.cap=(G.ann||G.tutp)?[null,null]:((G.online&&G.capO)?G.capO:[capLoad(),G.mode=="t"?capLoad():null]);capApply();G.skU=[0,0];G.u.forEach(x=>{if(x.c=="sak"){x.byk=uq(x,"uq_sak_1")?4:3;x.bya=0;x.byu0=0}if(x.c=="sas")x.cd[6]=3;x.sld=0;if(x.c=="tr"&&uq(x,"uq_tr_2")){add0(x,"HER",999);const y=x.st.find(z=>z.k=="HER");if(y)y.nr=1;x.cd[0]=99;x.herP=1}if(x.c=="tr"&&uq(x,"uq_tr_1")){}});
+ /* G.ann diz que os dois times tiraram o mesmo lider e as habilidades de lider
+    se anulam. Nao tem nada a ver com capsula: a flag estava desligando a build
+    inteira dos dois times nessas partidas. So o tutorial joga sem capsula. */
+ G.cap=G.tutp?[null,null]:((G.online&&G.capO)?G.capO:[capLoad(),G.mode=="t"?capLoad():null]);capApply();G.skU=[0,0];G.u.forEach(x=>{if(x.c=="sak"){x.byk=uq(x,"uq_sak_1")?4:3;x.bya=0;x.byu0=0}if(x.c=="sas")x.cd[6]=3;x.sld=0;if(x.c=="tr"&&uq(x,"uq_tr_2")){add0(x,"HER",999);const y=x.st.find(z=>z.k=="HER");if(y)y.nr=1;x.cd[0]=99;x.herP=1}if(x.c=="tr"&&uq(x,"uq_tr_1")){}});
  G.u.filter(x=>x.c=="gu").forEach(g=>G.u.filter(x=>x.s==g.s).forEach(x=>x.st.push({k:"ARM",t:2,v:15,g:1})));[0,1].forEach(s=>{if(G.lead[s]=="gd")G.u.filter(x=>x.s==s).forEach(x=>x.st.push({k:"IMUN",t:2}))});[0,1].forEach(s=>{if(G.lead[s]=="kf")G.u.filter(x=>x.s!=s).forEach(x=>{if(!x.st.some(y=>y.k=="IMUN"))x.st.push({k:"SOBR",t:2*lf()})})});
  G.u.filter(x=>x.c=="gi").forEach(x=>{add(x,"ESQ",999);const r=x.st.find(y=>y.k=="ESQ");if(r)r.nr=1});
  [0,1].forEach(s=>{if(G.lead[s]=="gi")G.u.filter(x=>x.s==s).forEach(x=>{x.mx+=35*lf();x.hp+=35*lf()})});[0,1].forEach(s=>{if(G.lead[s]=="mv")G.u.filter(x=>x.s!=s).forEach(x=>x.hp-=20*lf()+10*Math.floor(Math.max(0,x.mx-100)/10))});
@@ -6540,12 +6635,16 @@ AU.nar="media/b64/c039a512547499dd.mp3";
 AU.start="media/b64/9013f7266824ea10.mp3";
 AU.bj="media/b64/788322a17b15fda3.mp3";
 AU.gbk="media/b64/d22eece4d1c51e34.mp3";
-AU.g2="media/b64/eb8e1038ebfd0a05.mp3";const AUK={ab:["a18"]};let IN=null;
+AU.g2="media/b64/eb8e1038ebfd0a05.mp3";Object.assign(AU,{bo:"media/82bded0c6b3733db4c71da73174a9497.webm",
+ jw:"media/3b9332734768f9f94b2391afecedff35.webm",
+ lv:"media/dbf5a7b1c771e6c74d00d62d8d750a1a.webm",
+ cd10:"media/b01757655cd22b0498c010d956e8c640.webm"});
+const AUK={ab:["a18"]};let IN=null;
 const VOL=(()=>{let v={g:45,v:80,m:35,e:55};try{const s=JSON.parse(localStorage.getItem("za_vol")||"null");if(s&&localStorage.getItem("za_vol2")){v=Object.assign(v,s)}else if(s){const o={g:80,v:100,m:60,e:80};Object.keys(v).forEach(k=>{if(s[k]!=null&&s[k]!==o[k])v[k]=s[k]})}localStorage.setItem("za_vol2","1")}catch(e){}return v})();
 const vol=k=>Math.max(0,Math.min(1,VOL.g/100*VOL[k]/100));
 const SFXM=["media/b64/b6196ebeb5ec2b6f.mp3","media/b64/c581848dcfc84d80.mp3","media/b64/b6df8bbbd5d20e4f.mp3","media/b64/0ccd940d23cd5995.mp3","media/b64/020f07e7448833cb.mp3","media/b64/5cceb76fdf3e1f96.mp3","media/b64/9e7b35f3f1ef9f36.mp3","media/b64/c8f6b1d5be24ac45.mp3","media/b64/dadbf928767315f0.mp3","media/b64/0f634a668ad28bc4.mp3","media/b64/d24a13a0df0739b9.mp3","media/b64/07e97358c7674d93.mp3","media/b64/5dd0dc7a236eedc4.mp3","media/b64/f4b3953d4d3d50a3.mp3"];let ACX=null,BUS=null;const SBUF={},SLAST={};let SFXN=0;
 function acx(){try{if(!ACX){const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;ACX=new A();const cmp=ACX.createDynamicsCompressor();cmp.threshold.value=-18;cmp.knee.value=12;cmp.ratio.value=4;cmp.attack.value=.004;cmp.release.value=.25;BUS=ACX.createGain();BUS.gain.value=vol("e");BUS.connect(cmp);cmp.connect(ACX.destination);sload()}if(ACX.state=="suspended")ACX.resume();BUS.gain.setTargetAtTime(vol("e"),ACX.currentTime,.05);return ACX}catch(e){return null}}
-const SSRC=()=>Object.assign({ban:AU.ban,rng:"media/b64/5354d405697dabeb.mp3",rngc:"media/b64/01520d6a8d8756cc.mp3"},Object.fromEntries(SFXM.map((s,i)=>["m"+i,s])));
+const SSRC=()=>Object.assign({ban:AU.ban,cd10:AU.cd10,rng:"media/b64/5354d405697dabeb.mp3",rngc:"media/b64/01520d6a8d8756cc.mp3"},Object.fromEntries(SFXM.map((s,i)=>["m"+i,s])));
 /* O som pode chegar de duas formas: embutido na página (data:...;base64) ou como
    arquivo do site (media/...). O build tira as mídias grandes para fora, então
    ler só base64 deixava o jogo mudo. Aqui os dois caminhos viram bytes. */
@@ -6561,6 +6660,9 @@ function decAud(src){return audBytes(src).then(ab=>new Promise((ok,no)=>{
  try{const r=ACX.decodeAudioData(ab,ok,no);if(r&&r.then)r.then(ok,no)}catch(e){no(e)}}))}
 function sload(){const S=SSRC();Object.keys(S).forEach(k=>{if(SBUF[k])return;SBUF[k]=1;
  decAud(S[k]).then(bf=>{SBUF[k]=bf},()=>{SBUF[k]=0})})}
+let CD10K=null;
+/* contagem regressiva: avisa uma unica vez por etapa, quando faltam 10s ou menos */
+function cdAviso(ch,n){try{if(!(n>0&&n<=10))return;if(CD10K===ch)return;CD10K=ch;sfx("cd10")}catch(e){}}
 function splay(k,at,g){const c=ACX,bf=SBUF[k];if(!bf||bf===1)return 0;const s=c.createBufferSource(),gg=c.createGain(),n=SFXN;s.buffer=bf;const lv=(g||1)/Math.sqrt(1+n*.6);gg.gain.setValueAtTime(0,at);gg.gain.linearRampToValueAtTime(lv,at+.008);s.connect(gg);gg.connect(BUS);SFXN++;s.onended=()=>{SFXN=Math.max(0,SFXN-1)};s.start(at);return 1}
 function sfx(kind,delay){if(vol("e")<=0)return;const c=acx();if(!c)return;const t=c.currentTime+(delay||0)/1000;
  if(SLAST[kind]!=null&&Math.abs(t-SLAST[kind])<.2&&kind!="sel")return;SLAST[kind]=t;
@@ -6572,6 +6674,7 @@ function sfx(kind,delay){if(vol("e")<=0)return;const c=acx();if(!c)return;const 
  else if(kind=="hit"){if(!splay("rng",t)){osc("sine",150,45,.18,.9,t);noise(.14,900,.8,1.1,t)}}
  else if(kind=="crit"){if(!splay("rngc",t)){osc("sine",120,35,.28,1,t);noise(.22,1400,.6,1.4,t);spark(t+.02)}}
  else if(kind=="ban"){splay("ban",t,1.1)}
+ else if(kind=="cd10"){splay("cd10",t,1)}
  else if(kind=="heal"){[660,880,1320].forEach((f,i)=>osc("sine",f,f*1.01,.35,.22,t+i*.07))}
  else if(kind=="sel"){osc("triangle",880,1200,.06,.25,t)}
  else if(kind=="ok"){osc("triangle",660,660,.08,.25,t);osc("triangle",990,990,.12,.25,t+.07)}}
@@ -7177,12 +7280,12 @@ function showChars(){G.scr="c";const w=pgShell("Personagens","chs"),bd=mk("div",
  q.oninput=()=>{CHF.q=q.value;fill()};cs.onchange=()=>{CHF.c=cs.value;fill2();fill()};cs2.onchange=()=>{CHF.c2=cs2.value;fill()};
  const grp=(rot,...el)=>{const d=mk("div","chfg","<label>"+rot+"</label>");el.forEach(x=>d.append(x));return d};
  side.append(grp("Buscar",q),grp("Classe",cs,cs2),grp("Efeitos",fs),clr,cnt);
- main.append(mk("div","chgh","<span>Galeria</span>"),gr);
+ main.append(mk("div","chgh","<span>Galeria</span>"+mxResumo()),gr);
  bd.append(side,main);w.append(bd);
  const keys=ROS.filter(k=>C[k]);if(!CHSEL||!C[CHSEL])CHSEL=keys[0];
  function fill(){gr.innerHTML="";const qq=CHF.q.trim().toLowerCase(),act=CHF.c!="all"||CHF.c2!="all"||CHF.f!="all"||qq;clr.hidden=!act;
   const ks=keys.filter(k=>(CHF.c=="all"||cls(k).includes(CHF.c))&&(CHF.c2=="all"||cls(k).includes(CHF.c2))&&hasFx(k,CHF.f)&&(!qq||C[k].n.toLowerCase().includes(qq)));
-  ks.forEach(k=>{const e=mk("button","chcard","<figure><img src='"+(IMG[k+"_s"]||IMG[k+"_f"])+"' alt='' loading='lazy'></figure><span>"+C[k].n+"</span>");
+  ks.forEach(k=>{const e=mk("button","chcard","<figure><img src='"+(IMG[k+"_s"]||IMG[k+"_f"])+"' alt='' loading='lazy'>"+mxSelo(k)+"</figure><span>"+C[k].n+"</span>");
    e.dataset.k=k;e.onclick=()=>showFicha(k);gr.append(e)});
   if(!act)LCKV.forEach(([k,n])=>{const e=mk("div","chcard lk","<figure><img src='"+(IMG["lk_"+k+"_s"]||IMG["lk_"+k+"_f"]||"")+"' alt='' loading='lazy'><i>🔒 Em breve</i></figure><span>"+n+"</span>");
    e.onclick=()=>lkZoom(k);e.style.cursor="zoom-in";gr.append(e)});
@@ -7205,6 +7308,7 @@ function showFicha(k){if(!C[k])return;G.scr="cf";CHSEL=k;
  const fr=sphere(k);
  L.append(mk("div","cfhd","<small class='cfr'>Ficha do personagem</small><h2>"+escH(C[k].n.replace(/\s*\([^)]*\)\s*$/,""))+"</h2>"
   +"<div class='cftags'>"+cls(k).map(c=>"<span>"+clsIc(c)+escH(c)+"</span>").join("")+(fr?"<span class='cffr'>"+escH(fr)+"</span>":"")+"</div>"));
+ try{L.append(mxPainel(k))}catch(e){}
  const abas=mk("div","cfab"),box=mk("div","cfbox");
  const pinta=()=>{[...abas.children].forEach((b,i)=>b.classList.toggle("on",i===CFAB));
   const it=ITENS[CFAB];
@@ -7445,6 +7549,7 @@ const TUT=[
   "<div class='tcards'><button class='tcard hot' data-go='"+tIdx("Draft em 1 minuto")+"'><span>🏆</span><b>Aprender o Draft</b><small>7 tópicos curtos com vídeos e imagens de cada fase.</small></button><button class='tcard' data-go='"+tIdx("Em poucas palavras e Sugestão")+"'><span>💡</span><b>Em poucas palavras e Sugestão</b><small>Como escolher bem sem ler o kit inteiro.</small></button></div>"+tTip("Antes do Draft, jogue algumas partidas de Treino para conhecer os personagens.")},
  {g:"Modos de jogo",i:"🌐",n:"Jogar online",f:()=>tSum("Crie uma sala, mande o código para um amigo e joguem cada um na sua tela.")+
   "<ol><li>No menu, entre em <b>Jogar → Jogar Online</b>, escolha seu apelido e crie uma sala.</li><li>Mande o <b>código da sala</b>. Seu amigo entra em Jogar Online e digita o código.</li><li>A sala tem <b>2 lugares de jogador</b> e <b>6 de espectador</b>. O dono da sala pode trocar as pessoas de lugar, mudar as regras e até colocar um bot.</li><li>Os dois apertam <b>Pronto</b> e o draft começa.</li></ol><p><b>Espectadores</b> veem os dois times e acompanham cada clique ao vivo.</p>"},
+ {g:"Modos de jogo",i:"🏅",n:"Maestria",f:()=>tSum("Cada personagem tem a sua própria Maestria, que sobe conforme você joga com ele. São 10 níveis, e os pontos <b>nunca caem</b>: perder também soma.")+"<h3>Como ganhar pontos</h3>"+"<ul><li><b>Vitória</b>: 90 pontos.</li>"+"<li><b>Derrota</b>: 55 pontos. Jogar já conta, mesmo quando a partida não sai do jeito que você queria.</li>"+"<li><b>MVP</b> (melhor do time que venceu): +35.</li>"+"<li><b>SVP</b> (melhor do time que perdeu): +25.</li></ul>"+"<p>Os <b>quatro personagens</b> do seu time ganham os pontos da partida. Já o bônus de MVP ou SVP vai só para quem conquistou.</p>"+"<p>Só a <b>fila ranqueada</b> dá Maestria. Treino, sala particular e tutorial não contam.</p>"+"<h3>O nível 10</h3>"+tImg("mx_10","Selo de Maestria 10","O selo de quem chegou ao nível máximo","timgp")+"<p>Chegar ao 10 pede <b>duas</b> coisas com o mesmo personagem: <b>9.000 pontos</b> e <b>3 destaques</b> (cada MVP ou SVP vale 1). Os destaques contam desde a sua primeira partida, então não precisa esperar o nível 9 para juntá-los.</p>"+"<p>Se os pontos chegarem antes dos destaques, o personagem espera no nível 9 e a ficha mostra o que ainda falta.</p>"+"<h3>Onde ver</h3>"+"<p>Em <b>Personagens</b>, cada card mostra o selo com o nível. Abra a ficha para ver a barra de progresso, suas partidas, MVPs, SVPs e as recompensas que já liberou.</p>"+"<p class='tnota'>Maestria é dedicação, não vantagem: as recompensas são só visuais e <b>nenhuma</b> muda dano, vida ou qualquer número da batalha.</p>"},
  {g:"Modos de jogo",i:"💡",n:"Dicas de iniciante",f:()=>"<div class='ttips'>"+[["🎯","Foque um alvo","Derrubar um inimigo de cada vez é melhor do que machucar todos um pouco: lutador caído não ataca."],["🔢","A ordem importa","Atordoe antes do inimigo agir e quebre a barreira antes do golpe forte."],["🔥","Essência é rara","Guarde para a ultimate que vai fazer diferença."],[icHTML("ui_tt_oponente","tti","")+"","Olhe os efeitos do inimigo","Inalvejável, Esquiva e Anulador podem fazer o seu golpe não pegar."],["🛡️","Escolha o tipo de dano","Muita barreira? Use ENERGIZADO. Muita armadura? Use PERFURANTE."],["🔮","Na dúvida, Vovó","A previsão mostra o resultado antes de confirmar."]].map(x=>"<div><span>"+x[0]+"</span><b>"+x[1]+"</b><p>"+x[2]+"</p></div>").join("")+"</div>"+
   "<p class='tbig'>Agora é a hora de jogar. Perder faz parte: cada partida ensina alguma coisa, e quando se sentir pronto é só subir o nível do bot.</p><div class='tcards'><button class='tcard hot' data-play='1'><span>"+icHTML("ui_tt_jogando","tti","","\ud83c\udfae")+"</span><b>Aprender jogando</b><small>Uma partida inteira contra o bot Iniciante, com o guia na tela: cada clique, os efeitos, a recarga, os tipos de dano e a ultimate.</small></button></div>"}];
 const TUTVID="media/f5757587d5fb16780b71ddeb46635830.mp4";
@@ -7558,26 +7663,9 @@ function coach(){let c=document.getElementById("coach");const kill=()=>{if(c)c.r
 })();
 
 const PATCH=[
-{t:"Patch 0.6.0",d:"22/11/2026",nw:["lv"],ch:[
+ {t:"Patch 0.5.0",d:"22/11/2026",nw:["lv","bo","jw"],ch:[
   ["lv",{q:"<b>Personagem novo!</b> O Soldado Mais Forte da Humanidade abre a collab com Attack on Titan como <b>Carregador / Lutador</b>. Ele n\u00e3o come\u00e7a forte: cada inimigo que ele finaliza o deixa mais perigoso, com <b>+5 de DANO</b> em tudo e <b>+10% de REDU\u00c7\u00c3O DE DANO</b>, para sempre. Como l\u00edder, cada abate do time passa a gerar <b>+1 de Energia por turno</b>.",
-   it:[]},"nw"]],
- sy:["<b>Levi Ackerman</b> entrou com quatro habilidades, tr\u00eas delas de DANO DIRETO ou com marca\u00e7\u00e3o: o <b>Corte Girat\u00f3rio</b> deixa uma marca de 2 turnos e a ultimate l\u00ea essa marca para decidir se o dano passa pelas defesas.",
-  "<b>Elo de Dor</b>: a barra de HP no alto dos Equipamentos n\u00e3o somava os +70 da c\u00e1psula. A pr\u00e9via tinha uma conta pr\u00f3pria; agora usa a mesma da batalha.",
-  "<b>Personagens</b>: a galeria n\u00e3o rolava com a roda do mouse no visual novo, e no Legado ela ficava sem arte nenhuma.",
-  "<b>Draft no celular deitado</b>: os banidos voltaram a aparecer em cinza, o bot\u00e3o Render-se parou de cair sobre os filtros e a grade de personagens passou a rolar dentro do quadro.",
-  "<b>Fila de v\u00eddeos</b>: os v\u00eddeos de passiva do seu time tocam antes dos do advers\u00e1rio.",
-  "<b>Levi Ackerman \u2014 for\u00e7a medida</b>: 47,5% de vit\u00f3rias em 500 partidas com a build recomendada. Na primeira medi\u00e7\u00e3o deu 45,9%, e a ultimate passou de 5 para 4 de Ess\u00eancia antes de estrear. O <b>Corte Girat\u00f3rio</b> ficou na recarga 4: o <b>Reflexo R\u00e1pido</b> da build recomendada j\u00e1 a baixa para 3, e em 2 ele saltava para 58,3%.",
-  "<b>Levi no resto do jogo</b>: entrou na ficha (resumo, l\u00edder e dificuldade), na lista de confrontos (Gohan Beast, Trunks, Kefla e Sakura lidam bem com ele), na build recomendada e no c\u00e9rebro do draft dos bots.",
-  "<b>Collab Ânima × Attack on Titan</b>: entrou na lista de collabs com cartaz, faixa e os três nomes (Levi já jogável, Eren e Mikasa em breve). As collabs deixaram de se chamar <b>DBZ ×</b> e passaram a <b>Ânima ×</b> nas quatro.",
-  "<b>Peso do arquivo</b>: o pôster e o fundo do menu saíram de imagem embutida para arquivo próprio. O jogo ficou 258 KB mais leve, e a folga até o teto passou de 180 KB para mais de 1 MB.",
-  "<b>Build recomendada do Jin Woo e do Boruto</b>: os dois estrearam sem receita escrita e caíam no conjunto genérico da classe. Agora o Jin Woo recomenda Reserva Profunda e a cápsula do Igris, para sair rápido da fila de invocações de uso único, e o Boruto recomenda Elo de Dor e a cápsula do Karma Rasengan, para ter HP de sobra e não perder a REDUÇÃO DE DANO do time ao usar a ultimate. Com isso o elenco inteiro (27) tem build recomendada. Vale só para os botões da tela de Equipamentos: bot em partida não usa."],
- nv:[{i:"\u2694\ufe0f",im:"lv_f",hl:1,n:"Levi Ackerman chega de Attack on Titan",t:"A quarta collab do Projeto \u00c2nima. Ele cresce durante a luta: cada abate d\u00e1 +5 de DANO e +10% de REDU\u00c7\u00c3O DE DANO pelo resto da batalha. O <b>Corte Girat\u00f3rio</b> fica dois turnos no alvo, e a ultimate <b>N\u00e3o est\u00e1 se divertindo!?</b> vira DANO DIRETO se o alvo estiver com essa marca."},
-  {i:"\u2694\ufe0f",im:"co_aot",hl:1,n:"Collab \u00c2nima \u00d7 Attack on Titan",t:"A collab ganhou cartaz pr\u00f3prio, e o menu principal mudou de cara: o p\u00f4ster agora \u00e9 o de <b>Attack on Titan</b> e o fundo passou a ser a cidade dentro das muralhas, no lugar da Vila da Folha. <b>Eren Yeager</b> e <b>Mikasa Ackerman</b> entraram como \u201cem breve\u201d."},
-  {i:"\ud83c\udfb5",n:"Trilha nova",t:"O <b>Shinzou wo Sasageyo</b> \u00e9 o novo tema do menu, no lugar do Blue Bird, e o <b>The Rumbling</b> toca durante as batalhas. As duas entraram no mesmo volume das que sa\u00edram."},
-  {i:"\ud83c\udfdf\ufe0f",n:"Cen\u00e1rio pr\u00f3prio em cada lobby",t:"A sala personalizada ganhou um dojo ao entardecer e a fila ranqueada ganhou a arena \u00e0 noite. O v\u00e9u que cobria o fundo saiu: agora o cen\u00e1rio aparece de verdade."},
-  {i:"\ud83c\udf9b\ufe0f",n:"Menu do seu tamanho",t:"Em <b>Configura\u00e7\u00f5es \u2192 V\u00eddeo</b> entraram duas barras: <b>tamanho</b> (70% a 130%) e <b>opacidade</b> (40% a 100%) do menu principal, com volta ao padr\u00e3o. Vale nos dois visuais e fica salvo no aparelho."},
-  {i:"\ud83d\udd27",n:"O que mais foi acertado",t:"O HP m\u00e1ximo do <b>Elo de Dor</b> agora aparece na pr\u00e9via dos Equipamentos; a galeria de <b>Personagens</b> rola com a roda do mouse; e o <b>draft no celular deitado</b> parou de empilhar os bot\u00f5es uns sobre os outros."}]},
- {t:"Patch 0.5.0",d:"21/11/2026",nw:["bo","jw"],ch:[
+   it:[]},"nw"],
   ["bo",{q:"<b>Personagem novo!</b> O quarto ninja da collab com Naruto chega como <b>Tanque / Blaster</b>. Ele não cura de frente: cada habilidade usada vira um acúmulo de KARMA, e cada acúmulo protege o time inteiro. Para se sustentar, rouba vida — inclusive dos próprios aliados — e devolve o dano de quem foi PROVOCADO.",
    it:[]},"nw"],
   ["jw",{q:"<b>Personagem novo!</b> A collab com Solo Leveling estreia um <b>Blaster / Assassino</b> que luta acompanhado. Invocar Igris, Beru e Bellion é de <b>uso único</b>: cada invocação melhora o time para sempre e abre um Comando no lugar dela. E todo inimigo derrotado se levanta como SOMBRA do seu lado por 2 turnos, com as habilidades dele menos a ultimate — na prática, um personagem a mais em campo.",
@@ -7657,7 +7745,19 @@ const PATCH=[
     {i:3,ln:[["Cura para a equipe","30","25"]]}]},"n"],
   ["g2",{q:"O Gohan SSJ2 venceu <b>52,0%</b> e foi subindo junto com os ajustes até 52,6%. O Ataque do dragão cresce +5 para cada 10 de HP que o alvo já perdeu, ou seja, bate mais quanto mais perto o inimigo está de morrer — e ainda soma +10 ao Golpe Explosivo. O que baixou foi só a base dele.",
    it:[{i:1,ln:[["Dano de base","20","15"]]}]},"n"]],
- sy:["<b>Boruto já estava anunciado como “em breve”</b> na collab Ânima × Naruto Shippuden sob o nome “Boruto Uzumaki”. Como o personagem entrou com o nome <b>Otsutsuki Boruto</b>, o cartaz da collab não reconheceria que ele já saiu e continuaria dizendo que está a caminho — o mesmo que aconteceu com o Jin Woo. O nome anunciado foi acertado e ele saiu da lista de “em breve”.",
+ sy:["<b>Levi Ackerman</b> entrou com quatro habilidades, tr\u00eas delas de DANO DIRETO ou com marca\u00e7\u00e3o: o <b>Corte Girat\u00f3rio</b> deixa uma marca de 2 turnos e a ultimate l\u00ea essa marca para decidir se o dano passa pelas defesas.",
+  "<b>Elo de Dor</b>: a barra de HP no alto dos Equipamentos n\u00e3o somava os +70 da c\u00e1psula. A pr\u00e9via tinha uma conta pr\u00f3pria; agora usa a mesma da batalha.",
+  "<b>Personagens</b>: a galeria n\u00e3o rolava com a roda do mouse no visual novo, e no Legado ela ficava sem arte nenhuma.",
+  "<b>Draft no celular deitado</b>: os banidos voltaram a aparecer em cinza, o bot\u00e3o Render-se parou de cair sobre os filtros e a grade de personagens passou a rolar dentro do quadro.",
+  "<b>Fila de v\u00eddeos</b>: os v\u00eddeos de passiva do seu time tocam antes dos do advers\u00e1rio.",
+  "<b>Levi Ackerman \u2014 for\u00e7a medida</b>: 47,5% de vit\u00f3rias em 500 partidas com a build recomendada. Na primeira medi\u00e7\u00e3o deu 45,9%, e a ultimate passou de 5 para 4 de Ess\u00eancia antes de estrear. O <b>Corte Girat\u00f3rio</b> ficou na recarga 4: o <b>Reflexo R\u00e1pido</b> da build recomendada j\u00e1 a baixa para 3, e em 2 ele saltava para 58,3%.",
+  "<b>Levi no resto do jogo</b>: entrou na ficha (resumo, l\u00edder e dificuldade), na lista de confrontos (Gohan Beast, Trunks, Kefla e Sakura lidam bem com ele), na build recomendada e no c\u00e9rebro do draft dos bots.",
+  "<b>Collab Ânima × Attack on Titan</b>: entrou na lista de collabs com cartaz, faixa e os três nomes (Levi já jogável, Eren e Mikasa em breve). As collabs deixaram de se chamar <b>DBZ ×</b> e passaram a <b>Ânima ×</b> nas quatro.",
+  "<b>Cápsulas e líder espelhado</b>: a mesma marca interna servia para anular as habilidades de líder e para decidir se a build entrava na partida. Com líderes iguais, os dois times jogavam sem cápsula nenhuma, sem recompensa de cápsula e sem contagem de habilidades usadas. Só o tutorial joga sem build.",
+  "<b>Maestria</b>: progresso por personagem, separado da ranqueada e guardado na conta. MVP e SVP saem da mesma nota da tela de Estatísticas (dano, cura, proteção, o que tankou e abates). Desistência no draft não paga, para não virar farm, e a mesma partida nunca credita duas vezes. Pontos, bônus, destaques exigidos, modos elegíveis e recompensas ficam todos num bloco de configuração.",
+  "<b>Peso do arquivo</b>: o pôster e o fundo do menu saíram de imagem embutida para arquivo próprio. O jogo ficou 258 KB mais leve, e a folga até o teto passou de 180 KB para mais de 1 MB.",
+  "<b>Build recomendada do Jin Woo e do Boruto</b>: os dois estrearam sem receita escrita e caíam no conjunto genérico da classe. Agora o Jin Woo recomenda Reserva Profunda e a cápsula do Igris, para sair rápido da fila de invocações de uso único, e o Boruto recomenda Elo de Dor e a cápsula do Karma Rasengan, para ter HP de sobra e não perder a REDUÇÃO DE DANO do time ao usar a ultimate. Com isso o elenco inteiro (27) tem build recomendada. Vale só para os botões da tela de Equipamentos: bot em partida não usa.",
+  "<b>Boruto já estava anunciado como “em breve”</b> na collab Ânima × Naruto Shippuden sob o nome “Boruto Uzumaki”. Como o personagem entrou com o nome <b>Otsutsuki Boruto</b>, o cartaz da collab não reconheceria que ele já saiu e continuaria dizendo que está a caminho — o mesmo que aconteceu com o Jin Woo. O nome anunciado foi acertado e ele saiu da lista de “em breve”.",
   "<b>Tutorial</b>: “Vida e defesas” agora ensina as três defesas, com a imagem refeita e a conta na ordem certa. “Tipos de dano” passou a dizer que DANO DIRETO atravessa as três, não duas.",
 "<b>Zamasu Fundido · Punição Divina</b>: a habilidade prometia PARALISIA por 2 turnos e não estava aplicando. Agora aplica. A cápsula <i>Punição Divina II</i>, que dá 15 de BARREIRA ao Zamasu, também voltou a funcionar, e a habilidade passou a contar como ataque em área para ESQUIVA e REFLEXO. Em algumas partidas a tela de batalha travava quando ela era usada; não trava mais.",
   "<b>Arena do Cell virou “Sem Efeito”</b>: é um campo neutro de verdade — a batalha corre pelas regras de sempre, sem nenhuma regra extra. O “CLASH” que ele anunciava saiu. Ele passou a ser o primeiro da lista de campos.",
@@ -7673,10 +7773,18 @@ const PATCH=[
   "<b>Notícias</b>: a collab do Solo Leveling continuava anunciando “Jinwoo chega em breve” com ele já jogável.",
   "<b>Tutorial</b>: a seção “Líder e passiva” passou a explicar a SOMBRA — uma passiva pode colocar mais um lutador em campo.",
   "<b>Personagens “Em breve”</b> não ocupam mais espaço nas telas de Personagens, Montar times e Draft."],
- nv:[{i:"\ud83d\udee1\ufe0f",hl:1,n:"Redução de Dano",t:"A terceira defesa do jogo, ao lado da ARMADURA e da BARREIRA. Corta uma porcentagem de cada golpe <b>antes</b> de a armadura absorver, e aparece na barra de defesa ao lado do A. O limite é 50%, somando tudo. Como as outras duas, não segura DANO DIRETO."},
+ nv:[{i:"\u2694\ufe0f",im:"lv_f",hl:1,n:"Levi Ackerman chega de Attack on Titan",t:"A quarta collab do Projeto \u00c2nima. Ele cresce durante a luta: cada abate d\u00e1 +5 de DANO e +10% de REDU\u00c7\u00c3O DE DANO pelo resto da batalha. O <b>Corte Girat\u00f3rio</b> fica dois turnos no alvo, e a ultimate <b>N\u00e3o est\u00e1 se divertindo!?</b> vira DANO DIRETO se o alvo estiver com essa marca."},
+  {i:"\ud83e\uddea",hl:1,n:"C\u00e1psulas sumindo em partidas de l\u00edder espelhado",t:"Quando os dois times escolhiam o <b>mesmo l\u00edder</b>, o jogo desligava <b>todas as c\u00e1psulas de todos os personagens</b>, dos dois lados: ningu\u00e9m entrava com a build montada. A marca que diz \u201cas habilidades de l\u00edder se anulam\u201d estava sendo usada tamb\u00e9m para decidir se a build valia. Nessas partidas voc\u00ea ainda deixava de ganhar <b>recompensa de c\u00e1psula</b>. Agora l\u00edder espelhado anula s\u00f3 as habilidades de l\u00edder, como sempre deveria."},
+  {i:"\ud83c\udfc5",im:"mx_10",hl:1,n:"Maestria de personagens",t:"Cada personagem passou a ter a sua pr\u00f3pria <b>Maestria</b>, com 10 n\u00edveis e pontos que <b>nunca caem</b>: vit\u00f3ria d\u00e1 90, derrota d\u00e1 55, e ser <b>MVP</b> ou <b>SVP</b> soma mais. Os quatro do seu time ganham os pontos; o b\u00f4nus do destaque vai s\u00f3 para quem conquistou. O <b>n\u00edvel 10</b> pede 9.000 pontos <i>e</i> 3 destaques com o mesmo personagem. S\u00f3 a fila ranqueada conta, e nenhuma recompensa muda um n\u00famero sequer de batalha."},
+  {i:"\u2694\ufe0f",im:"co_aot",hl:1,n:"Collab \u00c2nima \u00d7 Attack on Titan",t:"A collab ganhou cartaz pr\u00f3prio, e o menu principal mudou de cara: o p\u00f4ster agora \u00e9 o de <b>Attack on Titan</b> e o fundo passou a ser a cidade dentro das muralhas, no lugar da Vila da Folha. <b>Eren Yeager</b> e <b>Mikasa Ackerman</b> entraram como \u201cem breve\u201d."},
+  {i:"\ud83c\udfb5",n:"Trilha nova",t:"O <b>Shinzou wo Sasageyo</b> \u00e9 o novo tema do menu, no lugar do Blue Bird, e o <b>The Rumbling</b> toca durante as batalhas. As duas entraram no mesmo volume das que sa\u00edram."},
+  {i:"\ud83c\udfdf\ufe0f",n:"Cen\u00e1rio pr\u00f3prio em cada lobby",t:"A sala personalizada ganhou um dojo ao entardecer e a fila ranqueada ganhou a arena \u00e0 noite. O v\u00e9u que cobria o fundo saiu: agora o cen\u00e1rio aparece de verdade."},
+  {i:"\ud83c\udf9b\ufe0f",n:"Menu do seu tamanho",t:"Em <b>Configura\u00e7\u00f5es \u2192 V\u00eddeo</b> entraram duas barras: <b>tamanho</b> (70% a 130%) e <b>opacidade</b> (40% a 100%) do menu principal, com volta ao padr\u00e3o. Vale nos dois visuais e fica salvo no aparelho."},
+  {i:"\ud83d\udee1\ufe0f",hl:1,n:"Redução de Dano",t:"A terceira defesa do jogo, ao lado da ARMADURA e da BARREIRA. Corta uma porcentagem de cada golpe <b>antes</b> de a armadura absorver, e aparece na barra de defesa ao lado do A. O limite é 50%, somando tudo. Como as outras duas, não segura DANO DIRETO."},
   {i:"\u2694\ufe0f",n:"Barra de defesa unificada",t:"ARMADURA e REDUÇÃO DE DANO agora dividem uma barra só, no formato <b>A 20 | 25%</b>. Com uma defesa só, aparece só ela. Segurando o clique na barra, o jogo mostra de onde vem cada pedaço."},
   {i:"\ud83c\udf11",im:"jw_f",n:"Monarca das Sombras",t:"A passiva do Jin Woo levanta o inimigo derrotado como <b>sombra</b> do seu lado por 2 turnos, com as habilidades dele menos a ultimate. Uma sombra por vez, com recarga de 3 turnos. A sombra não pode ser alvo, não gera Energia e não conta para o fim da partida."},
-  {i:"\u2696\ufe0f",n:"Rebalanceamento geral",t:"Dezoito personagens ajustados. A diferença entre o personagem mais forte e o mais fraco era de quase 40 pontos de vitória; agora o elenco inteiro cabe em cerca de 7."}]},
+  {i:"\u2696\ufe0f",n:"Rebalanceamento geral",t:"Dezoito personagens ajustados. A diferença entre o personagem mais forte e o mais fraco era de quase 40 pontos de vitória; agora o elenco inteiro cabe em cerca de 7."},
+  {i:"\ud83d\udd27",n:"O que mais foi acertado",t:"O HP m\u00e1ximo do <b>Elo de Dor</b> agora aparece na pr\u00e9via dos Equipamentos; a galeria de <b>Personagens</b> rola com a roda do mouse; e o <b>draft no celular deitado</b> parou de empilhar os bot\u00f5es uns sobre os outros."}]},
 {t:"Patch 0.3.9",d:"20/11/2026",nw:[],ch:[],
  sy:[  "<b>Celular deitado</b>: o nome do personagem encostava no HP quando ele tinha barreira e armadura. O rótulo das barras saiu do celular — a cor já diz qual é cada uma — e barreira e armadura viraram fichinhas estreitas, deixando a barra de HP larga.",
   "<b>Relógio de turno</b>: a ranqueada contra bot não tinha tempo nenhum, porque o relógio só ligava em sala online. Agora tem, com a mesma escada de faltas. Treino e draft contra bot seguem sem tempo.",
@@ -7934,8 +8042,8 @@ const FEAT=[{k:"unicas",n:"Cápsulas Únicas",d:"13/11/2026",sb:"Aprimorar habil
  tx:"O slot <b>Especial</b> agora é por classe. Cada uma das 7 classes tem 3 cápsulas próprias e, como todo personagem tem 2 classes, você escolhe 1 entre <b>6</b>.",
  li:[["🧬","<b>21 Especiais</b>, 3 por classe: Assassino, Carregador, Blaster, Lutador, Tanque, Suporte e Debuffer"],["🎯","O <b>crítico</b> saiu do sorteio e virou escolha de build"],["🧱","O slot <b>Único</b> está desativado: as 10 Únicas estão sendo reformuladas"],["🔍","A aba <b>Habilidades</b> mostra os números mudando enquanto você monta"]],
  ft:"Vale em todos os modos: Treino, Draft, contra o Bot e no Online."},{k:"caps",n:"Equipamentos",d:"12/11/2026",sb:"Cápsulas e Inventário",im:"ft_caps",h:"Monte a build do seu personagem",tx:"Cada personagem tem uma <b>build de cápsulas</b> que melhora os números dele. A cápsula não muda <i>o que</i> a habilidade faz — muda <i>o quanto</i>.",li:[["🎒","<b>Equipamentos</b>: 10 slots Ofensivos/Defensivos + 1 Utilidade + 1 Especial, por personagem"],["✅","As <b>36 cápsulas</b> já vêm liberadas: é só equipar"],["🔍","A aba <b>Habilidades</b> mostra o dano, a cura e a defesa mudando enquanto você monta"],["📚","O tutorial tem um tópico só sobre isso: <b>Equipamentos</b>"]],ft:"As cápsulas valem em todos os modos: Treino, Draft, contra o Bot e no Online."},{k:"draftaj",n:"Ajuda no Draft",d:"07/11/2026",sb:"Escolhas e tutorial",im:"dr_pick",h:"Draft mais fácil",tx:"Escolher o time ficou bem mais simples, principalmente para quem está começando.",li:[["💡","<b>Sugestão de escolha</b>: quem é bom contra o time do oponente, e por quê"],["📖","<b>Em poucas palavras</b>: cada personagem explicado em uma frase"],["🏆","Tutorial novo do Draft, com vídeos de cada fase"],[icHTML("ui_tt_jogando","tti","")+"","<b>Aprender jogando</b> guiado passo a passo"]],ft:"A sugestão vem ligada e pode ser desativada no próprio Draft."},{k:"stats",n:"Estatísticas",d:"07/11/2026",sb:"Pós-batalha",im:"ft_stats",h:"Estatísticas pós-batalha",tx:"Agora, no fim de cada partida, o botão <b>%SC% Estatísticas</b> mostra tudo o que aconteceu na luta.",li:[["🏆","<b>MVP</b> do time vencedor e <b>SVP</b> do perdedor"],["🗡️","Quem deu mais dano, curou, tankou e protegeu mais"],["✨","As habilidades fundamentais para a vitória e o golpe final"],["📈","Gráficos de dano, cura e proteção por personagem e por habilidade"],["⏱️","Linha do tempo com a vida dos times a cada turno"]],ft:"Funciona no Treino, no Draft, contra o Bot e no Online, para jogadores e espectadores."}];IMG.tz_bo="media/b64/5b4e8af0874592b2.webp";
-IMG.tz_jw="media/b64/ced514ce23e0f7c4.webp";/* Banners "Em breve": personagem anunciado antes de ter kit. k=id, n=nome, im=chave em IMG */IMG.co_dbxn="media/b64/e0d0f6117b90e217.webp";IMG.co_dbxn_c="media/b64/fac6e68c28aeeed7.webp";
-Object.assign(IMG,{"co_sl": "media/b64/581400da3abffb38.webp", "co_sl_c": "media/b64/f43d0b35f77e4511.webp"});
+IMG.tz_jw="media/b64/ced514ce23e0f7c4.webp";/* Banners "Em breve": personagem anunciado antes de ter kit. k=id, n=nome, im=chave em IMG */IMG.co_dbxn="media/c94badbe1e2260883c7b80c953ab92f1.webp";IMG.co_dbxn_c="media/f809c7a4cc58a91acd166912247bcb26.webp";
+Object.assign(IMG,{"co_sl": "media/e1286a732a926ac6c2d90924bde109a5.webp", "co_sl_c": "media/f3fa62bc5a8e2cd7be1f583ef8e64925.webp"});
 Object.assign(IMG,{"co_aot":"media/f8bf0d9bbf4643d91e2231beb8a677c6.webp",
  "co_aot_c":"media/a7bd1de5799073449cf90b2e310a8d2c.webp",
  "lk_eren_f":"media/10bbb935891902ea048f6ea706ca4880.webp",
@@ -9111,7 +9219,7 @@ function add(u,k,t,v){
 
 function capReward(){
  try{
-  if(G.sim||G.ann)return;
+  if(G.sim)return;   /* lider espelhado nao e motivo para a partida deixar de valer */
   const me=G.online?(G.me>=0?G.me:null):G.bot?0:null;
   if(G.tutp){if(me!=null)zS("za_tutdone",1);mtQuit=0;return}
   if(me==null){mtQuit=0;return}
@@ -9273,7 +9381,7 @@ RES.nar={t:"Blaster que castiga buff e cura: sela os buffs do inimigo, bloqueia 
 CTR.nar=[["gg","Devolve os debuffs enquanto estiver acima de 50 de HP, inclusive a MARCA DO JITON."],["ar","Atordoa quem a acerta e tira o turno do Naruto antes da BOMBA BIJUU."],["mv","Anula o Corpo a Corpo nos primeiros turnos e segura o JITON: RASENGAN."],["beast","Cresce em dano sem depender de buffs nem de cura, então o kit do Naruto não atrapalha."]];
 DSTAT.w.nar=0.03;DSTAT.lw.nar=0.09;
 
-Object.assign(IMG,{"kir_f": "media/b64/984660457de648d5.webp", "kir_s": "media/b64/54a3cd9d129bfecc.webp", "kir_h": "media/b64/3abf7588fae2f471.webp", "kir_b": "media/b64/61e649b6e7e83106.webp", "kir_p": "data:image/webp;base64,UklGRjIGAABXRUJQVlA4ICYGAADwHACdASpAAEAAPlUgjUSjoiEWDAcwOAVEoAsSAYTND5PAxltt55gPOA9H3nM9SbvO9n6cDfxPg74nPTvtf6qWXO0T6e/nOHHgBetv8/mAXsx7ZcZPcj+NB4WtAT8n/9H2WP7T/w/4jzxfR//d/ynwEfy/+wf8f1wPZ96Q37GIUA00FAY0/hZph9lQfIDvsHaXXIynuBj0V8aIqRgjbdJBiPy0ovMGe8H59Zarju+ykWv9vXIEPkJvkWg6eW8Z/iEW9i36sTrmSe3/DJOfFUvrickXMlL16nscyxZVr/wozyu8WLCzv2WAg5lsKzGlWAAA/v61c6/97K3aOT7h97xfm4rwhBQmzSp9J6hvlNxxnjHq8mlbeRwMdKIsv8LcK6vvOg5hTshflaT1WzXI68CvvkX/xavHrOnDjux0VHVJcoz11XEjtAcEeSn9/RnIPfJ16l10Aaa6UiZkm2v4mXL65wXzweyKFrjJdhW+h7AvATq7yszNDjv8c3i/scsVqGr7szF2N7/DWHXGDW/kgGW7CtERJn0oGzIFizJAjRIAknNDFfbXZoyvv/1eDJiFZxz+LUqsWCPeuoVEZIGZQls4B94Z/48f1L5ETazlNdDOYBXIgz0kHwdSQFspLGKpzQhf/MP/ik9byPvpEZsVdXYI8o1SIvm8nFq/8HozH/Ig+zgVwrIYvnshg5xRfm9drgFbum7OBkls4IDL0C42s9pLBekl8G//omUNOtADV/T04wXpnZ66YtborF1qUYtzajlUafUkLVHwmv9R7j9KbW4F4oveHo3wgl9Y6dnu6XDkJmO2lAKk4dsmak0Qt2zsbaVJvyGSLBPr5+/RrDZved5yeLJD0HekxjEx8Pw2rAiB+qCvCxaZ/3EAWvQzT+cfqqFB34/OQOi13RNbp4bcKyxqBO/eFBZrngMIW9iTOHwx0NI/H/qYXwnJEVKaQmDtOUH61E4XA9pbos7X1l/8PhIEHTLSP+/F53F+Lu31BqzOxQLPlw7gL8wkf+v0BmERZ4futCoJ7GA8fgB+Us4XOgZuws0F7dQ2OZBsidrHcPSjuMC4JcY0ANibj60R7CB2cu3ykO+7K62j+/8in3czMOgqF0/BF6dVxxhcqz/jBtsvUl6DLzX/Djxp9JYH3lsy/Kb/j8toZ46dUGndCgImHw8hPtE/4gGUNVouhfZ/VE5c+oU5TbscyI6PgxcRzPUReFHcgv+F0FDhbdTsU2pleq7jHhVII//H9znPibs7TO5t697QDLPBjtALvLFRWjkMQpHDhTRNUAEe85RB6cpsLQOtq2fnsS2zcVHwWXwzSG7IVgkV927ofNC5sY/4VrXtpJ7UgmkhhT0dUNOqZfSjsXf02fh7Lbi9tO0VZt3xRDxt8JJOXzYObZHQC1ggHzWXfuBPZwLuYsVr7lcz0ZTo2LDwep08y2Pn++AhLRXknOXxRXWLdWiyXcGqY9seqfitEjdEb0+ZhvWB/pbDDepUZjT5guf8I0agCITA/eu6FElHxMWiDD3kW3Z+4FT+3CZ1YGBAaMAbC65iBdfvvrCY8MJ4YXF5chHNRXg1RG7VixX5u6yR2go3M9TWB2cTAqYbk4PYqz5B8vo9Om55b1+hK4FwLsFzdbEeNuQ/5Wf11t5TAOxjcxW+IK/pBpQ/ryPmPze9bV5p/6l3QHdNGorcU/vMxME8puu2rnV1/Rdj0NmDcbPzJsb4mgGv1DtwXaW3hsiqFPB5N9K3kTtxllofJdtWa3mx3M+s0OEXiYi8Gzollotzt1rJwLfFyXHmCGlLjczDsj0IVxHPeYKgV1RzM02gY2z0phs2KJB312G0wrFlYPuJwBXhambu5iDsQa7tiFGF1/otiT/+hdfpWGOiSXnGDgjKOZxWFQHce4xcyFDVI9Zug9yHlAwjY2L6rGblovo2XiXLKxvVzLKnFbdgQCE1fPH12o9NQXsTetp4j4ggyhvV9tpeCjJ7DZWlsU6tFmMX42x6xPl7cnrnDWlxrCvkeJkiFzmXed/1EY/Jh879AzUAVbBl10y3EDVKo5uSJUirUgvaBgeKNWeUQakquWZL/TN5idfYdwI//7LFqdsupQu/AjwAAA==", "kir_0": "data:image/webp;base64,UklGRgAFAABXRUJQVlA4IPQEAABQGQCdASpIAEgAPlUkjkUjoiEVyq48OAVEoAuzN2vm/UeblZG4+G/hobgrnWMgr6YW0bGtnxpq5eD8e9Hv1gLWquGOOo8eL9M1PDpb3u8AO8EzJu7Psl4wpiMiR+FWb4fe407j7QNRdj0rBf0F1an1Y0Edm/T3iZ9ooYzF2LlJdzwMAkZ7QjNfTPatsLJvYsH9q8S48wZHq7XOYZNSty74Bg0CDHh/AZC9dphO86nUf9C6gvK1Oj09rD523iV+dE+3MGcliHJjjz274huYyRirEhiAAP74RRZSCSr/UHvFDHN61mHKxIsz/Av2Rsrm/AMrVZxqG1+/fx5f6SgFpdSRwe0BoJ2Rf/ChtY6xYnRf94S+8ODhqIv6lRmkkEyAuTQhA4lPKPb1QznAZv+Tp3A6IICYXGq1tpFWmVfQxVApFIcJXWEwJ/x1mTfeNxodEEDxI3s6V1i4oRPjfb3BdA513fjjvd/xWWdxTuf/vN+aSGHoM9WKb1jClttkq9FL67YeZcxw2DwdMp/7WAvawt/P5OKPbqu4hObSI7VZbYLWo5N42ICg4mo0BQvBbFK2B2t/ziyVSfPMMOlkAzeBNf7W2xeHz+6VtUJ8Dd05sWQ8tDmpqpDqcvMBHrVJxgnnd8bA4SjtPp8CGJIPG2M4SuqVuDlgNnjxH2FRS1TrBhD552ULDca0wGNOt6b3t+SkrKrlAWtVumFqLY67bFtqVnl0hqldryU3PfqiM91wD0BN+PXpYnvod0V1xNKFCHyC8wyc6lfs7ZTiu0debHZH+L11okLBRnLNb62HA1xg9qugL0RPYqndb1sHJilQebCRsICHTpLV/8/9FiScq+C8bWx1pb1n/LZp+cp7zGt88UCYuwYL+FMCd2rQ12nkFOWy1B57apNki9BxS3YuuoQn427xGQiy9QRAdn9yIivD/X2IH3uV56svaFj439XKJUcT7L8gGXEsvkTbTDA1upCUAK4kwD9j487eI/pZ3d8zukCjjKnqjCfe7aI/iwbcdZVnNby8Otkw1DoDjwlWYRf7x7J++1qw2zESAkrtq+Miq3fQvDM4e+DDIyXo5zK4CRj1c9ZBQE4OUhGMIffT4HQ+JR0w37YFOrSGrWzynboms5/ETzwwiGHMCCBjckxjVGgQ8DIGc+j/w5xuFlqbbgL/NWZwfi8CuLPdI5f3Tw3r+Fza2IxmbARnFepAYoHplhHrWLvHyZ9N8T5hI1EX2kjnsbjRiTV2R28Kokxvb42tlb71ptM/KYqvgv4UJjSwUM3Vq2ps7rTHkoCYkAvT1xnyDgKZYWVbRm9GxGf4ZdOClgPnDPiAA0JPf6k/Ne31wZ/VDNNxLVj7skf8q6Uj9tJs3O5xlE+Twm4gfgBP/F7aopdPwu86+UKsoUzQAtsr0CyDNFrQwBfX7dPr5BVszhhuy33egbhKPbw+02XAzTU2WG88riSbr8kIHT5RV6SER7jDgl7Iyfrzqw5gTMSq3ScYQH7G1gfCeKBXTbumzy15Fe07JJs5nmLBciIWHIVF3BSIvucq/oBg4WIS84B1WuAOq5SB+JepQAegH7oVykd1uoWUFJ14ICJrPpvkEebajN8bS7Up97F300FQhk17HG4vz4eEhsBccY90fUJ3SDVGH3aR4vdif0h7LCriEDxPEjEKmuQZ75hVN822CgAJTH4jQapULQAAAA==", "kir_1": "data:image/webp;base64,UklGRvQEAABXRUJQVlA4IOgEAACwFwCdASpIAEgAPlUmkEUjoiGT2q4YOAVEoAyfh3SHD8vhRkfzLvYufb6NXqQN5zrSPSX++d6PwZyT5ET9l4rtJZNB8gH1Z7Av8s/cjghzP/9uI9975sOFkAkVPU7aG4GQOJp+XlSlQ7mhHTQzEk8j7anlYtr2B+0QrT0YTKvY2bTvtOYh39Xh9T1J9FKPfFhzW5VKio3/P0XzqDmDPjK/vtxTpxyvWG4Pl8tb7W6jJxA9sFnGFHGHMioCzif9/e+xJwcr3wAA/u8YqBecJqfZyvALSoKsCUn0PzY6il/pieJmEqgGgA2s1Tpm+NQQeVnSn4LFqgiTopiHEPGFUq9DeNq7otybG2quBVF7Qs9RpmJPG4Hqu5055yaH8pemXAfzwR/UtoYQyH0sCyXCGDAnGtrUA/6FqQ25uH6SNq5X9xzqLCFsAo/BRUuU/YOmSHfXr+xRrta8U8nYMTyZazUfe9j+v/7pgDuxYeRi9W6nAlJneTG7LQMQCVuoGcMx5WWHo+m9zONCisLBPNopP/JIfxOy2pTCmkZGRV6ppzCuClxnuLgsuHVZMzj6Z+GffK46pzvsoWKqLIq421WycpoOr0vXC54uHoObc2MFG7f2blRgpEXnpRlpiXsxCTFpFzRISlAT/o30F07fG+Szi6RKSsBvQyciZ1/NpnzZIiwQwm3K4zipeFTm5+8i/3YLU0CxDpBSzE8dtwKZUP9Pk85JzT6j9XH4n6bDqUIAqO2BkbXep9Lpk3N7jvkzX8z8Ow+NqTNGuFI2UJOEGbEM18oNXFsXtaFt4JE56u8eoInrsnUFgJdXXOjbzHq6GrGz9v6DUnSswtfzQhJ39pHvng0rhfYMA7/4OUe5FLZX4wh3jbQ7IiDceq7iifQUZg+daGpTw6R579MJa8R7uc6Xb8HjvOXNQz8/+rNXiN0k5ChfX/9VKbFF5zL7vW9H7gfdFJK1+X/95b2giwCsHqNrLTyVy8b0h3e3B6WTs9mZhSWz88goU0dW8P3y41lmd4X+5VtWCAY8UeW3hSrj2jYWYE/LK3uKbmOB38KWtdhTnpj/TjXM2N+1/zhd8GK1AFKpRknXDeUxflfxlw3fSd2H+Iv/Nzvfz7+XqrwAxUseBN8DLB/h6NF+Ki6c6O1AxTj4x5uQUqcNS9nwNYRJtiJ3NOUwpV04nECPvviyxS7HalGNfl9+Cozr5dbKb11VcnCHrMJfqg863qoh59xrm8xeQ+bALNVkoZemkBXUEdkaHRK9ZmMlig+lurjkVi6nHAw5c/7fzSa2tzI0Vj62Ul7roSSrjISF/M/fmXkKQV3X7wEPv6bDVm4TAhV2lA61NhChR66L+luzBevGtTg2PE/+Sja/4R4X/cqK8mRva6PlI2YtV29IfuJaZZwAIOjdOtvWx2EvI/NUUinPgoT75ZtPvFTpAMkyjR9bssDojO5axPkKAGBCx47VqMQDSRFKvqQbC16lpJpPJlS/mGlxQFGb9eTB1QoOUtb3z1sqFTAuBcs8AUzPar4Z5sBMmRcvzM//yHfyqcWjj7hXjJ3fY2PVnmlMoSiIMZrvr6X/X+Xa3nTeE9P6X4a6w0fz0//6Wf95etWFO6hxEC4iB2x2U6CnCk5/htNXhEzjn/9zL3OnTCytnWZ2Bdk77Q3MvaOsFg4gPNQnu6SAOqAAAA==", "kir_2": "data:image/webp;base64,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", "kir_3": "data:image/webp;base64,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", "kir_4": "data:image/webp;base64,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", "co_sao": "media/b64/58a8779ce305cdac.webp", "co_sao_c": "media/b64/50164c635eb1b7b4.webp"});
+Object.assign(IMG,{"kir_f": "media/b64/984660457de648d5.webp", "kir_s": "media/b64/54a3cd9d129bfecc.webp", "kir_h": "media/b64/3abf7588fae2f471.webp", "kir_b": "media/b64/61e649b6e7e83106.webp", "kir_p": "data:image/webp;base64,UklGRjIGAABXRUJQVlA4ICYGAADwHACdASpAAEAAPlUgjUSjoiEWDAcwOAVEoAsSAYTND5PAxltt55gPOA9H3nM9SbvO9n6cDfxPg74nPTvtf6qWXO0T6e/nOHHgBetv8/mAXsx7ZcZPcj+NB4WtAT8n/9H2WP7T/w/4jzxfR//d/ynwEfy/+wf8f1wPZ96Q37GIUA00FAY0/hZph9lQfIDvsHaXXIynuBj0V8aIqRgjbdJBiPy0ovMGe8H59Zarju+ykWv9vXIEPkJvkWg6eW8Z/iEW9i36sTrmSe3/DJOfFUvrickXMlL16nscyxZVr/wozyu8WLCzv2WAg5lsKzGlWAAA/v61c6/97K3aOT7h97xfm4rwhBQmzSp9J6hvlNxxnjHq8mlbeRwMdKIsv8LcK6vvOg5hTshflaT1WzXI68CvvkX/xavHrOnDjux0VHVJcoz11XEjtAcEeSn9/RnIPfJ16l10Aaa6UiZkm2v4mXL65wXzweyKFrjJdhW+h7AvATq7yszNDjv8c3i/scsVqGr7szF2N7/DWHXGDW/kgGW7CtERJn0oGzIFizJAjRIAknNDFfbXZoyvv/1eDJiFZxz+LUqsWCPeuoVEZIGZQls4B94Z/48f1L5ETazlNdDOYBXIgz0kHwdSQFspLGKpzQhf/MP/ik9byPvpEZsVdXYI8o1SIvm8nFq/8HozH/Ig+zgVwrIYvnshg5xRfm9drgFbum7OBkls4IDL0C42s9pLBekl8G//omUNOtADV/T04wXpnZ66YtborF1qUYtzajlUafUkLVHwmv9R7j9KbW4F4oveHo3wgl9Y6dnu6XDkJmO2lAKk4dsmak0Qt2zsbaVJvyGSLBPr5+/RrDZved5yeLJD0HekxjEx8Pw2rAiB+qCvCxaZ/3EAWvQzT+cfqqFB34/OQOi13RNbp4bcKyxqBO/eFBZrngMIW9iTOHwx0NI/H/qYXwnJEVKaQmDtOUH61E4XA9pbos7X1l/8PhIEHTLSP+/F53F+Lu31BqzOxQLPlw7gL8wkf+v0BmERZ4futCoJ7GA8fgB+Us4XOgZuws0F7dQ2OZBsidrHcPSjuMC4JcY0ANibj60R7CB2cu3ykO+7K62j+/8in3czMOgqF0/BF6dVxxhcqz/jBtsvUl6DLzX/Djxp9JYH3lsy/Kb/j8toZ46dUGndCgImHw8hPtE/4gGUNVouhfZ/VE5c+oU5TbscyI6PgxcRzPUReFHcgv+F0FDhbdTsU2pleq7jHhVII//H9znPibs7TO5t697QDLPBjtALvLFRWjkMQpHDhTRNUAEe85RB6cpsLQOtq2fnsS2zcVHwWXwzSG7IVgkV927ofNC5sY/4VrXtpJ7UgmkhhT0dUNOqZfSjsXf02fh7Lbi9tO0VZt3xRDxt8JJOXzYObZHQC1ggHzWXfuBPZwLuYsVr7lcz0ZTo2LDwep08y2Pn++AhLRXknOXxRXWLdWiyXcGqY9seqfitEjdEb0+ZhvWB/pbDDepUZjT5guf8I0agCITA/eu6FElHxMWiDD3kW3Z+4FT+3CZ1YGBAaMAbC65iBdfvvrCY8MJ4YXF5chHNRXg1RG7VixX5u6yR2go3M9TWB2cTAqYbk4PYqz5B8vo9Om55b1+hK4FwLsFzdbEeNuQ/5Wf11t5TAOxjcxW+IK/pBpQ/ryPmPze9bV5p/6l3QHdNGorcU/vMxME8puu2rnV1/Rdj0NmDcbPzJsb4mgGv1DtwXaW3hsiqFPB5N9K3kTtxllofJdtWa3mx3M+s0OEXiYi8Gzollotzt1rJwLfFyXHmCGlLjczDsj0IVxHPeYKgV1RzM02gY2z0phs2KJB312G0wrFlYPuJwBXhambu5iDsQa7tiFGF1/otiT/+hdfpWGOiSXnGDgjKOZxWFQHce4xcyFDVI9Zug9yHlAwjY2L6rGblovo2XiXLKxvVzLKnFbdgQCE1fPH12o9NQXsTetp4j4ggyhvV9tpeCjJ7DZWlsU6tFmMX42x6xPl7cnrnDWlxrCvkeJkiFzmXed/1EY/Jh879AzUAVbBl10y3EDVKo5uSJUirUgvaBgeKNWeUQakquWZL/TN5idfYdwI//7LFqdsupQu/AjwAAA==", "kir_0": "data:image/webp;base64,UklGRgAFAABXRUJQVlA4IPQEAABQGQCdASpIAEgAPlUkjkUjoiEVyq48OAVEoAuzN2vm/UeblZG4+G/hobgrnWMgr6YW0bGtnxpq5eD8e9Hv1gLWquGOOo8eL9M1PDpb3u8AO8EzJu7Psl4wpiMiR+FWb4fe407j7QNRdj0rBf0F1an1Y0Edm/T3iZ9ooYzF2LlJdzwMAkZ7QjNfTPatsLJvYsH9q8S48wZHq7XOYZNSty74Bg0CDHh/AZC9dphO86nUf9C6gvK1Oj09rD523iV+dE+3MGcliHJjjz274huYyRirEhiAAP74RRZSCSr/UHvFDHN61mHKxIsz/Av2Rsrm/AMrVZxqG1+/fx5f6SgFpdSRwe0BoJ2Rf/ChtY6xYnRf94S+8ODhqIv6lRmkkEyAuTQhA4lPKPb1QznAZv+Tp3A6IICYXGq1tpFWmVfQxVApFIcJXWEwJ/x1mTfeNxodEEDxI3s6V1i4oRPjfb3BdA513fjjvd/xWWdxTuf/vN+aSGHoM9WKb1jClttkq9FL67YeZcxw2DwdMp/7WAvawt/P5OKPbqu4hObSI7VZbYLWo5N42ICg4mo0BQvBbFK2B2t/ziyVSfPMMOlkAzeBNf7W2xeHz+6VtUJ8Dd05sWQ8tDmpqpDqcvMBHrVJxgnnd8bA4SjtPp8CGJIPG2M4SuqVuDlgNnjxH2FRS1TrBhD552ULDca0wGNOt6b3t+SkrKrlAWtVumFqLY67bFtqVnl0hqldryU3PfqiM91wD0BN+PXpYnvod0V1xNKFCHyC8wyc6lfs7ZTiu0debHZH+L11okLBRnLNb62HA1xg9qugL0RPYqndb1sHJilQebCRsICHTpLV/8/9FiScq+C8bWx1pb1n/LZp+cp7zGt88UCYuwYL+FMCd2rQ12nkFOWy1B57apNki9BxS3YuuoQn427xGQiy9QRAdn9yIivD/X2IH3uV56svaFj439XKJUcT7L8gGXEsvkTbTDA1upCUAK4kwD9j487eI/pZ3d8zukCjjKnqjCfe7aI/iwbcdZVnNby8Otkw1DoDjwlWYRf7x7J++1qw2zESAkrtq+Miq3fQvDM4e+DDIyXo5zK4CRj1c9ZBQE4OUhGMIffT4HQ+JR0w37YFOrSGrWzynboms5/ETzwwiGHMCCBjckxjVGgQ8DIGc+j/w5xuFlqbbgL/NWZwfi8CuLPdI5f3Tw3r+Fza2IxmbARnFepAYoHplhHrWLvHyZ9N8T5hI1EX2kjnsbjRiTV2R28Kokxvb42tlb71ptM/KYqvgv4UJjSwUM3Vq2ps7rTHkoCYkAvT1xnyDgKZYWVbRm9GxGf4ZdOClgPnDPiAA0JPf6k/Ne31wZ/VDNNxLVj7skf8q6Uj9tJs3O5xlE+Twm4gfgBP/F7aopdPwu86+UKsoUzQAtsr0CyDNFrQwBfX7dPr5BVszhhuy33egbhKPbw+02XAzTU2WG88riSbr8kIHT5RV6SER7jDgl7Iyfrzqw5gTMSq3ScYQH7G1gfCeKBXTbumzy15Fe07JJs5nmLBciIWHIVF3BSIvucq/oBg4WIS84B1WuAOq5SB+JepQAegH7oVykd1uoWUFJ14ICJrPpvkEebajN8bS7Up97F300FQhk17HG4vz4eEhsBccY90fUJ3SDVGH3aR4vdif0h7LCriEDxPEjEKmuQZ75hVN822CgAJTH4jQapULQAAAA==", "kir_1": "data:image/webp;base64,UklGRvQEAABXRUJQVlA4IOgEAACwFwCdASpIAEgAPlUmkEUjoiGT2q4YOAVEoAyfh3SHD8vhRkfzLvYufb6NXqQN5zrSPSX++d6PwZyT5ET9l4rtJZNB8gH1Z7Av8s/cjghzP/9uI9975sOFkAkVPU7aG4GQOJp+XlSlQ7mhHTQzEk8j7anlYtr2B+0QrT0YTKvY2bTvtOYh39Xh9T1J9FKPfFhzW5VKio3/P0XzqDmDPjK/vtxTpxyvWG4Pl8tb7W6jJxA9sFnGFHGHMioCzif9/e+xJwcr3wAA/u8YqBecJqfZyvALSoKsCUn0PzY6il/pieJmEqgGgA2s1Tpm+NQQeVnSn4LFqgiTopiHEPGFUq9DeNq7otybG2quBVF7Qs9RpmJPG4Hqu5055yaH8pemXAfzwR/UtoYQyH0sCyXCGDAnGtrUA/6FqQ25uH6SNq5X9xzqLCFsAo/BRUuU/YOmSHfXr+xRrta8U8nYMTyZazUfe9j+v/7pgDuxYeRi9W6nAlJneTG7LQMQCVuoGcMx5WWHo+m9zONCisLBPNopP/JIfxOy2pTCmkZGRV6ppzCuClxnuLgsuHVZMzj6Z+GffK46pzvsoWKqLIq421WycpoOr0vXC54uHoObc2MFG7f2blRgpEXnpRlpiXsxCTFpFzRISlAT/o30F07fG+Szi6RKSsBvQyciZ1/NpnzZIiwQwm3K4zipeFTm5+8i/3YLU0CxDpBSzE8dtwKZUP9Pk85JzT6j9XH4n6bDqUIAqO2BkbXep9Lpk3N7jvkzX8z8Ow+NqTNGuFI2UJOEGbEM18oNXFsXtaFt4JE56u8eoInrsnUFgJdXXOjbzHq6GrGz9v6DUnSswtfzQhJ39pHvng0rhfYMA7/4OUe5FLZX4wh3jbQ7IiDceq7iifQUZg+daGpTw6R579MJa8R7uc6Xb8HjvOXNQz8/+rNXiN0k5ChfX/9VKbFF5zL7vW9H7gfdFJK1+X/95b2giwCsHqNrLTyVy8b0h3e3B6WTs9mZhSWz88goU0dW8P3y41lmd4X+5VtWCAY8UeW3hSrj2jYWYE/LK3uKbmOB38KWtdhTnpj/TjXM2N+1/zhd8GK1AFKpRknXDeUxflfxlw3fSd2H+Iv/Nzvfz7+XqrwAxUseBN8DLB/h6NF+Ki6c6O1AxTj4x5uQUqcNS9nwNYRJtiJ3NOUwpV04nECPvviyxS7HalGNfl9+Cozr5dbKb11VcnCHrMJfqg863qoh59xrm8xeQ+bALNVkoZemkBXUEdkaHRK9ZmMlig+lurjkVi6nHAw5c/7fzSa2tzI0Vj62Ul7roSSrjISF/M/fmXkKQV3X7wEPv6bDVm4TAhV2lA61NhChR66L+luzBevGtTg2PE/+Sja/4R4X/cqK8mRva6PlI2YtV29IfuJaZZwAIOjdOtvWx2EvI/NUUinPgoT75ZtPvFTpAMkyjR9bssDojO5axPkKAGBCx47VqMQDSRFKvqQbC16lpJpPJlS/mGlxQFGb9eTB1QoOUtb3z1sqFTAuBcs8AUzPar4Z5sBMmRcvzM//yHfyqcWjj7hXjJ3fY2PVnmlMoSiIMZrvr6X/X+Xa3nTeE9P6X4a6w0fz0//6Wf95etWFO6hxEC4iB2x2U6CnCk5/htNXhEzjn/9zL3OnTCytnWZ2Bdk77Q3MvaOsFg4gPNQnu6SAOqAAAA==", "kir_2": "data:image/webp;base64,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", "kir_3": "data:image/webp;base64,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", "kir_4": "data:image/webp;base64,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", "co_sao": "media/3fb0715e3adb3e6dea371abc598acdcd.webp", "co_sao_c": "media/df4b98e32b938cb8254dff02d658a6f0.webp"});
 IMG.kir_f2=IMG.kir_f;
 
 /* Kirito: as duas espadas se substituem; cada troca barateia a habilidade que entra */
@@ -10422,6 +10530,186 @@ async function rkSincroniza(){if(!rkSrv())return null;
   if(G.scr=="lb")try{showLobby()}catch(e){}
   return rkLoad()}catch(e){return null}}
 
+Object.assign(IMG,{"mx_01":"media/7c385a7fd1e3117d900d7eb6dfee4b4b.webp","mx_02":"media/8b28e0b46eeca62220a20f39e71bb753.webp","mx_03":"media/107c7028564b437da321396994167381.webp","mx_04":"media/0c38b22fdfcd23acd9911eaf312ff714.webp","mx_05":"media/8e2abc8e63e96b2fc3794e9b93a3bb4d.webp","mx_06":"media/a187e915a3ad17f4437d0c27996c1b16.webp","mx_07":"media/e278b10b039bfe74d54bf62998d3c3d4.webp","mx_08":"media/097eb32374ebf54f85f1c6eb8e07ec22.webp","mx_09":"media/1824fb4bd8e95351e31ff5f75cc8f5b4.webp","mx_10":"media/d05f8f8dad446a6df93671e0e81626a9.webp","mxev_01":"media/6984208d1c2829962fedab4042bfac2a.webp","mxev_02":"media/543b0f9a63b5d88b32d0b5052d63931e.webp","mxev_03":"media/40ad264d8c10f24f08eda025367a8512.webp","mxev_04":"media/7e35fd38cec6aaf2633a0d4fe034a3fd.webp","mxev_05":"media/ea02767d57491ef86a4b359349003358.webp","mxev_06":"media/fa79c9cef286afc9e1a7ed699795d9d9.webp","mxev_07":"media/16b2bf2f1f3264512749986bb6beaf54.webp","mxev_08":"media/04eabb40bb7671e68121ebcf7faa983f.webp","mxev_09":"media/6005a93bc81fc80b87a7900e8a924194.webp"});
+/* ===== MAESTRIA DE PERSONAGENS =====
+   Progresso permanente por personagem, separado da ranqueada. Dez niveis; o
+   decimo exige pontos E destaques. Pontos nunca caem: derrota tambem soma.
+   Tudo o que e regra de balanceamento mora em MXCFG, para mudar numero sem
+   mexer no sistema. ===== */
+const MXCFG={
+ passos:[200,350,500,650,850,1100,1400,1750,2200], /* 1->2, 2->3, ... 9->10 */
+ vit:90, der:55, mvp:35, svp:25,  /* pontos por partida e bonus de destaque */
+ destaques:3,                      /* destaques exigidos para o nivel 10 */
+ modos:["rk"],                     /* onde vale: so a fila ranqueada */
+ premios:{2:"Borda simples de Maestria",4:"Ícone de perfil do personagem",
+  6:"Borda especial de Maestria",8:"Título exclusivo do personagem",
+  10:"Moldura animada e selo de Maestria máxima"}};
+/* total acumulado para ESTAR em cada nivel: MXAC[0]=nivel 1, MXAC[9]=nivel 10 */
+const MXAC=(()=>{const a=[0];MXCFG.passos.forEach(p=>a.push(a[a.length-1]+p));return a})();
+const MXMAX=MXAC.length;                    /* 10 */
+const mxArte=n=>IMG["mx_"+String(Math.max(1,Math.min(MXMAX,n))).padStart(2,"0")]||"";
+const mxEvo=de=>IMG["mxev_"+String(Math.max(1,Math.min(MXMAX-1,de))).padStart(2,"0")]||"";
+
+/* nivel a partir dos pontos; o 10 fica travado sem os destaques */
+function mxNivel(pt,dest){let n=1;
+ for(let i=1;i<MXAC.length;i++)if((pt||0)>=MXAC[i])n=i+1;
+ if(n>=MXMAX&&(dest||0)<MXCFG.destaques)n=MXMAX-1;
+ return n}
+/* o que mostrar na barra: base, alvo, quanto ja fez e quanto falta */
+function mxProg(pt,dest){pt=pt||0;const n=mxNivel(pt,dest);
+ if(n>=MXMAX)return{n,max:1,pt,base:MXAC[MXMAX-1],alvo:MXAC[MXMAX-1],no:0,falta:0,frac:1};
+ const base=MXAC[n-1],alvo=MXAC[n];
+ /* travado no 9 por falta de destaque: a barra de pontos fica cheia */
+ const trava=(pt>=MXAC[MXMAX-1]&&(dest||0)<MXCFG.destaques);
+ if(trava)return{n,max:0,pt,base,alvo,no:alvo-base,falta:0,frac:1,
+   desafio:{pt:Math.min(pt,MXAC[MXMAX-1]),ptAlvo:MXAC[MXMAX-1],
+            dest:dest||0,destAlvo:MXCFG.destaques}};
+ return{n,max:0,pt,base,alvo,no:pt-base,falta:alvo-pt,frac:(pt-base)/(alvo-base)}}
+
+/* ---- guarda: espelho local imediato, e o banco quando houver ---- */
+const MXVAZIO=()=>({v:1,p:{},g:[]});
+let MX=null;
+function mxLer(){if(MX)return MX;
+ try{MX=JSON.parse(ls("za_mx")||"null")}catch(e){MX=null}
+ if(!MX||!MX.p)MX=MXVAZIO();
+ if(!Array.isArray(MX.g))MX.g=[];
+ return MX}
+function mxGrava(){try{ls("za_mx",JSON.stringify(MX))}catch(e){}
+ try{mxSobe()}catch(e){}}
+/* um registro por personagem, sempre com todos os campos */
+function mxDe(k){const M=mxLer();let r=M.p[k];
+ if(!r)r=M.p[k]={pt:0,j:0,v:0,d:0,mvp:0,svp:0,pr:[],at:0};
+ ["pt","j","v","d","mvp","svp"].forEach(c=>{if(typeof r[c]!="number")r[c]=0});
+ if(!Array.isArray(r.pr))r.pr=[];
+ return r}
+const mxDest=r=>(r.mvp||0)+(r.svp||0);          /* MVP e SVP valem 1 destaque cada */
+const mxNivelDe=k=>{const r=mxDe(k);return mxNivel(r.pt,mxDest(r))};
+const mxTotalNiveis=()=>ROS.filter(k=>C[k]).reduce((a,k)=>a+mxNivelDe(k),0);
+const mxTotalDest=()=>Object.keys(mxLer().p).reduce((a,k)=>a+mxDest(mxLer().p[k]),0);
+
+/* premios do nivel: cosmeticos, nunca mexem em combate */
+function mxPremios(r){const n=mxNivel(r.pt,mxDest(r)),L=[];
+ Object.keys(MXCFG.premios).map(Number).sort((a,b)=>a-b).forEach(nv=>{
+  if(n>=nv)L.push({nv,t:MXCFG.premios[nv]})});
+ return L}
+
+/* ---- credito de uma partida ---- */
+/* gid: id unico da partida. time: as chaves dos personagens usados.
+   dest: {mvp:<chave>, svp:<chave>} de quem levou o destaque, ou nada.
+   Devolve a lista de quem subiu de nivel, para a tela comemorar. */
+function mxCredita(gid,time,venceu,dest,modo){
+ const M=mxLer();
+ if(modo&&MXCFG.modos.indexOf(modo)<0)return [];      /* modo que nao da maestria */
+ if(!gid||!Array.isArray(time)||!time.length)return [];
+ if(M.g.indexOf(gid)>=0)return [];                    /* a mesma partida nunca paga duas vezes */
+ M.g.push(gid);if(M.g.length>400)M.g=M.g.slice(-400);
+ const base=venceu?MXCFG.vit:MXCFG.der,subiu=[],agora=Date.now();
+ const vistos={};
+ time.filter(k=>k&&C[k]).forEach(k=>{
+  if(vistos[k])return;vistos[k]=1;                    /* o mesmo personagem so conta uma vez */
+  const r=mxDe(k),antesPt=r.pt,antesNv=mxNivel(r.pt,mxDest(r));
+  let ganho=base,eMvp=0,eSvp=0;
+  if(dest&&dest.mvp===k){ganho+=MXCFG.mvp;eMvp=1}
+  else if(dest&&dest.svp===k){ganho+=MXCFG.svp;eSvp=1} /* nunca os dois na mesma partida */
+  r.pt+=ganho;r.j++;venceu?r.v++:r.d++;
+  r.mvp+=eMvp;r.svp+=eSvp;r.at=agora;
+  const depoisNv=mxNivel(r.pt,mxDest(r));
+  mxPremios(r).forEach(p=>{if(r.pr.indexOf(p.nv)<0)r.pr.push(p.nv)});
+  M.h=(M.h||[]);M.h.unshift({gid,k,res:venceu?"v":"d",base,bon:ganho-base,
+    total:ganho,ptAnt:antesPt,ptDep:r.pt,nvAnt:antesNv,nvDep:depoisNv,t:agora});
+  if(M.h.length>200)M.h.length=200;
+  if(depoisNv>antesNv)subiu.push({k,de:antesNv,para:depoisNv})});
+ mxGrava();
+ return subiu}
+/* quem levou MVP e SVP na partida que acabou, pela mesma nota da tela de estatisticas */
+function mxDestaques(){try{
+ const U=G.u,W=G.win;if(!U||W==null||W===2)return null;
+ const topo=L=>L.slice().sort((a,b)=>stScore(b)-stScore(a))[0];
+ const a=topo(U.filter(u=>u.s===W&&!u.sb)),b=topo(U.filter(u=>u.s!==W&&!u.sb));
+ return{mvp:a?a.c:null,mvpS:a?a.s:null,svp:b?b.c:null,svpS:b?b.s:null}}catch(e){return null}}
+
+/* ---- Maestria na tela: selo no card, painel na ficha ---- */
+const mxN=v=>Math.round(v||0).toLocaleString("pt-BR");
+/* selo pequeno, no canto da arte do card (nivel 1 sem partida nao mostra nada) */
+function mxSelo(k){const r=mxDe(k);
+ const n=mxNivel(r.pt,mxDest(r)),d=mxDest(r);
+ return "<i class='mxsl"+(n>=MXMAX?" max":"")+"' title='Maestria "+n+" · "+mxN(r.pt)+" pontos"+(d?" · "+d+" destaque"+(d>1?"s":""):"")+"'>"
+  +"<span class='mxsli'><img src='"+mxArte(n)+"' alt=''><b>"+n+"</b></span>"
+  +(d?"<u><i class='mxsld'></i>"+d+"</u>":"")+"</i>"}
+/* resumo do elenco, no alto da galeria */
+function mxResumo(){const ks=ROS.filter(k=>C[k]);
+ if(!ks.length)return "";
+ const niv=ks.reduce((a,k)=>a+mxNivelDe(k),0),des=ks.reduce((a,k)=>a+mxDest(mxDe(k)),0);
+ return "<div class='mxres'><div><b>"+mxN(niv)+"</b><small>Nível de maestria total</small></div>"
+  +"<div><b>"+mxN(des)+"</b><small>Destaques</small></div></div>"}
+/* painel da ficha: progresso, numeros e recompensas */
+function mxPainel(k){const r=mxDe(k),d=mxDest(r),P=mxProg(r.pt,d),n=P.n;
+ const premios=mxPremios(r);
+ const cab="<div class='mxpc'><span class='mxsli mxslg'><img src='"+mxArte(n)+"' alt=''><b>"+n+"</b></span>"
+  +"<div><small>Maestria</small><b>"+(n>=MXMAX?"Nível máximo · 10":"Nível "+n)+"</b>"
+  +"<em>"+mxN(r.pt)+" pontos acumulados</em></div></div>";
+ let meio;
+ if(n>=MXMAX){
+  meio="<p class='mxmax'>MAESTRIA MÁXIMA — NÍVEL 10</p>"
+   +"<p class='mxsub'>Desafio final concluído. Os pontos continuam sendo somados como registro de dedicação.</p>"}
+ else if(P.desafio){const D=P.desafio;
+  meio="<p class='mxdt'>Maestria 10 — Desafio final</p>"
+   +"<div class='mxbr'><span>Pontos</span><i><u style='width:"+(100*D.pt/D.ptAlvo).toFixed(1)+"%'></u></i>"
+    +"<b>"+mxN(D.pt)+"/"+mxN(D.ptAlvo)+(D.pt>=D.ptAlvo?" ✓":"")+"</b></div>"
+   +"<div class='mxbr'><span>Destaques</span><i><u style='width:"+(100*Math.min(1,D.dest/D.destAlvo)).toFixed(1)+"%'></u></i>"
+    +"<b>"+D.dest+"/"+D.destAlvo+(D.dest>=D.destAlvo?" ✓":"")+"</b></div>"
+   +"<p class='mxsub'>"+(D.dest>=D.destAlvo?"Só faltam os pontos."
+     :"Falta"+(D.destAlvo-D.dest>1?"m ":" ")+(D.destAlvo-D.dest)+" destaque"+(D.destAlvo-D.dest>1?"s":"")
+      +" como MVP ou SVP com este personagem.")+"</p>"}
+ else{
+  meio="<div class='mxbr'><span>Nível "+(n+1)+"</span><i><u style='width:"+(100*P.frac).toFixed(1)+"%'></u></i>"
+   +"<b>"+mxN(P.no)+"/"+mxN(P.alvo-P.base)+"</b></div>"
+   +"<p class='mxsub'>Faltam <b>"+mxN(P.falta)+"</b> pontos para o nível "+(n+1)+"."+
+    (n===MXMAX-1?" O nível 10 ainda pede "+MXCFG.destaques+" destaques.":"")+"</p>"}
+ const num=[["Partidas",r.j],["Vitórias",r.v],["Derrotas",r.d],["MVP",r.mvp],["SVP",r.svp],["Destaques",d]]
+  .map(([t,v])=>"<div><b>"+mxN(v)+"</b><small>"+t+"</small></div>").join("");
+ const pr=premios.length
+  ?"<div class='mxpr'><small>Recompensas desbloqueadas</small><ul>"
+    +premios.map(p=>"<li><i>"+p.nv+"</i>"+p.t+"</li>").join("")+"</ul></div>"
+  :"<div class='mxpr'><small>Recompensas</small><p class='mxsub'>A primeira chega no nível 2.</p></div>";
+ const z=mk("div","mxp");
+ z.innerHTML=cab+meio+"<div class='mxnum'>"+num+"</div>"+pr;
+ return z}
+/* comemoracao: toca a animacao da transicao de quem subiu de nivel */
+function mxFesta(L){if(!L||!L.length)return;const it=L.shift();
+ const ov=mk("div","mxfes");ov.id="mxfes";
+ ov.innerHTML="<div class='mxfbx'><img class='mxfev' src='"+mxEvo(it.de)+"' alt=''>"
+  +"<b>Maestria "+it.para+"</b><span>"+escH(shn(it.k))+"</span>"
+  +"<small>"+(it.para>=MXMAX?"Desafio final concluído":"Nível "+it.de+" → "+it.para)+"</small></div>";
+ const fecha=()=>{ov.remove();mxFesta(L)};
+ ov.onclick=fecha;document.body.append(ov);
+ try{sfx("ok")}catch(e){}
+ setTimeout(fecha,4200)}
+
+/* ===== fim da Maestria ===== */
+
+/* ---- o banco do artifact guarda o progresso da conta; o local e so espelho ----
+   Pontos nunca caem, entao a fusao fica com o maior de cada campo: se dois
+   aparelhos jogarem, nada se perde. */
+let MXSUB=null;   /* quem subiu de nivel na ultima partida, para a tela comemorar */
+let MXUP=0,MXUPQ=0;
+function mxSobe(){if(typeof O=="undefined"||!O.db||!O.pid)return;
+ if(MXUP){MXUPQ=1;return}MXUP=1;
+ const corpo={v:1,p:JSON.parse(JSON.stringify(MX.p)),at:Date.now()};
+ Promise.resolve().then(()=>O.db.doc("maestria/"+okey(O.pid)).set(corpo))
+  .catch(()=>{}).then(()=>{MXUP=0;if(MXUPQ){MXUPQ=0;mxSobe()}})}
+function mxFunde(p){if(!p)return 0;const M=mxLer();let mudou=0;
+ Object.keys(p).forEach(k=>{const v=p[k]||{},r=mxDe(k);
+  ["pt","j","v","d","mvp","svp"].forEach(c=>{
+   if(typeof v[c]=="number"&&v[c]>(r[c]||0)){r[c]=v[c];mudou=1}});
+  (v.pr||[]).forEach(n=>{if(r.pr.indexOf(n)<0){r.pr.push(n);mudou=1}});
+  if((v.at||0)>(r.at||0))r.at=v.at});
+ if(mudou)try{ls("za_mx",JSON.stringify(M))}catch(e){}
+ return mudou}
+async function mxDesce(){if(typeof O=="undefined"||!O.db||!O.pid)return;
+ try{const s=await O.db.doc("maestria/"+okey(O.pid)).get();
+  if(s&&s.exists){const d=s.data();if(d&&d.p&&mxFunde(d.p))try{chRefresh&&chRefresh()}catch(e){}}}catch(e){}}
+
 function rkFimPartida(forc){const m=G.rkm;if(!m||G.sim)return;
  const fc=(forc===true||forc===false);        /* resultado forcado: desistencia antes da batalha comecar */
  if(!fc&&G.win==null)return;
@@ -10432,6 +10720,12 @@ function rkFimPartida(forc){const m=G.rkm;if(!m||G.sim)return;
  const win=fc?forc:(G.win===eu);
  const st=rkLoad();if(st.sea!==m.sea)return;    /* a temporada virou no meio: não conta */
  const ficha=fc?rkFichaDraft():rkFicha();       /* a foto é tirada agora, antes de qualquer espera */
+ /* Maestria: os quatro do time ganham pontos, e o destaque vai só para quem foi
+    MVP ou SVP. Desistência no draft não paga, porque partida não houve. */
+ if(!fc)try{const meuTime=((G.tm||[])[eu]||[]).filter(Boolean);
+  const D=mxDestaques(),meu={mvp:(D&&D.mvpS===eu)?D.mvp:null,svp:(D&&D.svpS===eu)?D.svp:null};
+  const subiu=mxCredita(m.id,meuTime,win,meu,"rk");
+  if(subiu&&subiu.length)MXSUB=subiu}catch(e){}
  G.rkm=null;G.rkBlv=null;
  if(rkSrv())return rkFimServidor(m,win,ficha,fc);
  rkFimLocal(m,win,st,ficha,fc)}
@@ -10556,7 +10850,9 @@ function lbPos(){const R=document.querySelector(".lbR"),W=document.querySelector
  /* se precisou subir muito, encolhe os itens e tenta de novo mais perto do lugar certo */
  if(topoNatural-t>8){R.classList.add("compacto");t=poe();
   if(topoNatural-t>8&&!(limite()<w.height))R.classList.remove("compacto")}}
-function showLobby(){
+function showLobby(__mxArgs){try{if(MXSUB&&MXSUB.length){const L=MXSUB.slice();MXSUB=null;setTimeout(()=>mxFesta(L),620)}}catch(e){}
+ return showLobby0.apply(this,arguments)}
+function showLobby0(){
  try{oInit()}catch(e){}   /* a fila precisa do banco, e só a tela de salas abria ele */
  G.scr="lb";const st=rkLoad(),w=pgShell("Lobby","lb");lbArena(w);
  try{rkBuscaTop()}catch(e){}
@@ -10960,7 +11256,8 @@ function pwaAjudaIOS(){
  ov.onclick=e=>{if(e.target===ov)fecha()};
  document.addEventListener("keydown",function k(e){if(e.key=="Escape"){fecha();document.removeEventListener("keydown",k)}});}
 
-function showMenu(){try{oInit()}catch(e){}   /* para reconectar sozinho numa partida que ficou aberta */
+function showMenu(){try{if(MXSUB&&MXSUB.length){const L=MXSUB.slice();MXSUB=null;setTimeout(()=>mxFesta(L),620)}}catch(e){}
+ try{oInit()}catch(e){}   /* para reconectar sozinho numa partida que ficou aberta */
 dClear();pannOff(1);G.rkm=null;G.rkBlv=null;G.rkNome=null;/* saiu da ranqueada: a próxima partida é comum de novo */if(typeof O!="undefined"&&(O.code||G.online))oLeave();G.scr="m";document.body.classList.remove("bt");document.body.classList.add("dm");const r=$("#dr");r.innerHTML="";
  const go=sub=>{MSUB=sub;MSEL=0;showMenu()},leave=f=>()=>{MSUB=null;MSEL=0;f()};
  const IT=MSUB=="play"?[["Jogar Offline","Sozinho ou com alguém no mesmo aparelho: Modo Draft e Modo Treino.",()=>go("off"),4,"off"],
@@ -11007,7 +11304,8 @@ function startDraft(){dClear();G.mode="d";PLAST=null;
 const taken=()=>D.ex.concat(D.bans[0],D.bans[1],D.picks[0],D.picks[1]);
 function dOpts(){const s=D.who;switch(D.ph){case"fvote":return FDS.map(f=>f.k);case"pre":return ROS.slice();case"seq":return ROS.filter(k=>!taken().includes(k));case"lead":return D.pl.slice();
  case"fban":{const o=1-s;return D.picks[o].concat(D.lead[o]?[D.lead[o]]:[])}case"newlead":return D.picks[s].slice();default:return[]}}
-function dTimer(sec){dClear();D.t=sec;DT=setInterval(()=>{if(!D||D.hide)return;D.t--;const e=document.getElementById("dtm");if(e)e.textContent=Math.max(0,D.t);if(D.t<=0){dClear();dTimeout()}},1000)}
+let DTN=0;
+function dTimer(sec){dClear();D.t=sec;DTN=(DTN||0)+1;const kk="dl"+DTN;DT=setInterval(()=>{if(!D||D.hide)return;D.t--;const e=document.getElementById("dtm");if(e)e.textContent=Math.max(0,D.t);cdAviso(kk,D.t);if(D.t<=0){dClear();dTimeout()}},1000)}
 function dTimeout(){if(D.ph=="field")return goPre();if(isBot(D.who))return;const o=dOpts().filter(k=>!D.sel.includes(k)).sort(()=>Math.random()-.5);if(need()==1)D.sel=[];while(D.sel.length<need()&&o.length)D.sel.push(o.pop());dConfirm()}
 function blindStart(ph){D.ph=ph;D.who=0;D.sel=[];D.hide=G.bot?0:1;dTimer(30);dRender()}
 function goPre(){D.ph="pre";D.who=0;D.sel=[];D.hide=0;dTimer(30);dRender()}
@@ -11219,7 +11517,7 @@ async function oInit(){if(O.st!="off")return;O.st="loading";oRender();
  if(!db){O.st="nodb";return oRender()}
  O.db=db;O.user=user;let id=user?await user.id():null;
  if(!id){id=ls("za_pid");if(!id){id="local-"+Math.random().toString(36).slice(2,12);ls("za_pid",id)}}
- O.pid=id;O.st="ready";try{rkModoLer()}catch(e){}try{oVolta()}catch(e){}if(!O.tick)O.tick=setInterval(()=>{try{oTick()}catch(e){}},1000);if(!O.poll)O.poll=setInterval(oPoll,1500);oRender()}
+ O.pid=id;O.st="ready";try{mxDesce()}catch(e){}try{rkModoLer()}catch(e){}try{oVolta()}catch(e){}if(!O.tick)O.tick=setInterval(()=>{try{oTick()}catch(e){}},1000);if(!O.poll)O.poll=setInterval(oPoll,1500);oRender()}
 function showOnline(){dClear();G.scr="o";if(G.mode!="o")G.botPrev=G.bot;G.mode="o";oInit();oRender()}
 function oAfterWrite(){O.busy=0;O.last=0;oPoll()}
 async function oPoll(){const esp=(typeof D!="undefined"&&D&&D.spec)||O.seat==null;/* quem assiste busca o estado com mais frequência */
@@ -11295,7 +11593,8 @@ function tPinta(){const el=document.getElementById("tmrb");if(!el)return;
  if(!TMR.fim||!tAtiva()){el.hidden=true;return}
  const n=Math.max(0,Math.ceil((TMR.fim-Date.now())/1000));
  el.hidden=false;el.className="tmrb"+(n<=10?" tmrx":n<=20?" tmry":"");
- el.innerHTML="<small>"+(G.cur===tEu()?"Seu tempo":"Tempo de "+pn(G.cur))+"</small><b>"+n+"s</b>"}
+ el.innerHTML="<small>"+(G.cur===tEu()?"Seu tempo":"Tempo de "+pn(G.cur))+"</small><b>"+n+"s</b>";
+ if(G.cur===tEu())cdAviso("t"+TMR.ch,n)}
 function tCheca(){
  if(!tAtiva()){if(TMR.ch){TMR.ch="";TMR.fim=0;tPinta()}return}
  const ch=G.gid+"|"+G.t+"|"+G.cur;
@@ -11731,6 +12030,23 @@ function frBuild(){const b=mk("div","ofr"+(FR.min?" min":""));b.id="ofr";
  }
  bd.append(ad);
  b.append(bd);
+ /* arrastar pelo cabecalho: a lista tinha as bordas de tamanho, mas nenhum
+     jeito de mudar de lugar, e frCfg.pos nunca era escrito */
+ {let drg=null,moved=0;
+  const mv=e=>{if(!drg||e.pointerId!==drg.id)return;
+   if(!moved&&Math.hypot(e.clientX-drg.x0,e.clientY-drg.y0)<6)return;
+   if(!moved){moved=1;try{hd.setPointerCapture(e.pointerId)}catch(x){}b.classList.add("drg")}
+   e.preventDefault();frCfg.pos={x:e.clientX-drg.dx,y:e.clientY-drg.dy};frPos(b)};
+  const end=()=>{removeEventListener("pointermove",mv);removeEventListener("pointerup",end);
+   removeEventListener("pointercancel",end);if(!drg)return;drg=null;b.classList.remove("drg");
+   if(moved){frSave();setTimeout(()=>{moved=0},0)}};
+  hd.addEventListener("pointerdown",e=>{
+   if(frCfg.lock||e.target.closest("button")||e.button>0||!frCan())return;
+   const r=b.getBoundingClientRect();
+   drg={dx:e.clientX-r.left,dy:e.clientY-r.top,x0:e.clientX,y0:e.clientY,id:e.pointerId};moved=0;
+   addEventListener("pointermove",mv,{passive:false});addEventListener("pointerup",end);
+   addEventListener("pointercancel",end)});
+  hd.addEventListener("click",e=>{if(moved){e.stopPropagation();e.preventDefault()}},true);}
  frZonas(b);
  return b}
 
@@ -11924,6 +12240,7 @@ function oDview(d){const R=JSON.parse(d.dr),spec=O.seat==null,me=spec?0:O.seat,k
 function oTick(){oLobbyTick();oRemTick();if(G.scr!="d"||!D||!D.on||!O.d||O.d.ph!="draft")return;const d=O.d,now=Date.now(),DL=oDL(d);
  /* o relógio anda também para quem está assistindo */
  D.t=Math.max(0,Math.ceil((DL-now)/1000));const e=document.getElementById("dtm");if(e)e.textContent=D.t;
+ if(!D.spec)cdAviso("do"+DL,D.t);
  if(D.spec||O.seat==null)return;
  const R=JSON.parse(d.dr),me=O.seat,o=1-me,late=now>DL,vlate=now>DL+8000;if(O.busy)return;
  if(R.ph=="banrev"||R.ph=="fbanrev"){if(late){O.busy=1;oWriteR(R,oAdvance(R))}return}
