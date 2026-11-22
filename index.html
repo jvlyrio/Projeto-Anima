@@ -3920,6 +3920,212 @@ body.ph #och.min .ochic,body.php #och.min .ochic{width:22px!important;height:22p
 body.ph.bt .row>.hd,body.php.bt .row>.hd{font-size:11px}
 body.ph.bt .row>.hd b,body.php.bt .row>.hd b{font-size:12.5px}
 
+/* ===== painel de amigos ===== */
+#ofr{position:fixed;right:14px;bottom:72px;z-index:17;width:320px;max-width:calc(100vw - 28px);
+ background:#1f1a26;border:1px solid var(--a2lin);box-shadow:0 12px 34px #000b;
+ display:flex;flex-direction:column;overflow:hidden;font:600 13px system-ui;color:var(--a2cre)}
+#ofr .ofrh{display:flex;align-items:center;gap:8px;padding:9px 10px;cursor:pointer;
+ background:#241f2b;border-bottom:1px solid var(--a2lin);position:relative;overflow:hidden}
+#ofr .ofrh::after{content:"";position:absolute;right:46px;top:-10px;width:72px;height:160%;
+ background:repeating-linear-gradient(115deg,transparent 0 7px,#ffffff0d 7px 9px);pointer-events:none}
+#ofr .ofrh b{flex:1;display:flex;align-items:center;gap:8px;font:900 italic 15px system-ui;color:var(--a2cre)}
+#ofr .ofric{width:22px;height:22px;object-fit:contain;flex:none}
+#ofr .ofrb{flex:none;background:#2f2733;border:1px solid var(--a2lin);color:var(--a2cre2);
+ border-radius:0;width:26px;height:26px;line-height:1;cursor:pointer;font:700 13px system-ui}
+#ofr .ofrb:hover{border-color:var(--a2ros);color:var(--a2cre)}
+#ofr .ofru{flex:none;min-width:19px;height:19px;border-radius:999px;background:var(--a2ros);
+ color:#fff;font:800 11px/19px system-ui;text-align:center;padding:0 5px}
+#ofr.min .ofrbd{display:none}
+#ofr.min{width:auto}
+#ofr.min .ofrh{border-bottom:0}
+#ofr .ofrbd{display:flex;flex-direction:column;min-height:0}
+#ofr .ofrq{margin:9px 10px 6px;background:#2b2430;border:1px solid var(--a2lin);border-radius:0;
+ color:var(--a2cre);font:600 12.5px system-ui;padding:7px 9px}
+#ofr .ofrq::placeholder{color:#8e8289}
+#ofr .ofrls{overflow-y:auto;max-height:min(46vh,330px);padding:0 10px 6px;
+ display:flex;flex-direction:column;gap:5px;overscroll-behavior:contain}
+#ofr .ofrsec{display:block;margin:8px 0 1px;color:var(--a2cre2);font:800 9.5px/1 system-ui;
+ letter-spacing:.18em;text-transform:uppercase;border-bottom:1px solid var(--a2lin);padding-bottom:6px}
+#ofr .ofrsec.on{color:#8fd9a8}
+#ofr .ofrsec.req{color:var(--a2ros2)}
+#ofr .ofrit{display:flex;align-items:center;gap:9px;padding:6px 2px}
+#ofr .ofrit.off{opacity:.55}
+#ofr .ofrav{flex:none;width:34px;height:34px;display:grid;place-items:center;font:900 12.5px system-ui;
+ font-style:normal;color:var(--ac,#b3a8a2);background:#2b2430;border:1.5px solid var(--ac,#3a3340)}
+#ofr .ofrnm{flex:1;min-width:0}
+#ofr .ofrnm b{display:block;font:800 13px system-ui;color:var(--a2cre);
+ overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ofr .ofrnm small{display:block;font:600 11px system-ui;color:var(--a2cre2)}
+#ofr .ofrst::before{content:"";display:inline-block;width:7px;height:7px;border-radius:999px;
+ margin-right:5px;vertical-align:1px;background:#6f6a72}
+#ofr .ofrst.d::before{background:#5fd48a}
+#ofr .ofrst.p::before{background:#e0a24a}
+#ofr .ofrbt{flex:none;display:flex;gap:5px}
+#ofr .ofrac,#ofr .ofrrc,#ofr .ofrx{background:#2f2733;border:1px solid var(--a2lin);border-radius:0;
+ color:var(--a2cre);font:700 11.5px system-ui;padding:6px 9px;cursor:pointer}
+#ofr .ofrac{background:var(--a2ros3);border-color:var(--a2ros)}
+#ofr .ofrac:hover{background:var(--a2ros)}
+#ofr .ofrx{padding:5px 8px;color:#8e8289}
+#ofr .ofrx:hover,#ofr .ofrrc:hover{border-color:var(--a2ros);color:var(--a2cre)}
+#ofr .ofrnada{margin:10px 2px;color:var(--a2cre2);font:500 12px/1.45 system-ui}
+#ofr .ofrad{border-top:1px solid var(--a2lin);background:#241f2b;padding:8px 10px}
+#ofr .ofradb{width:100%;background:#2f2733;border:1px solid var(--a2lin);border-radius:0;
+ color:var(--a2cre);font:800 12.5px system-ui;padding:8px;cursor:pointer}
+#ofr .ofradb:hover{border-color:var(--a2ros)}
+#ofr .ofrf{display:flex;gap:5px;margin-top:7px}
+#ofr .ofrci{flex:1;min-width:0;background:#1f1a26;border:1px solid var(--a2lin);border-radius:0;
+ color:var(--a2cre);font:700 12.5px system-ui;padding:7px 8px;text-transform:uppercase}
+#ofr .ofrok{flex:none;background:var(--a2ros3);border:1px solid var(--a2ros);border-radius:0;
+ color:var(--a2cre);font:800 12px system-ui;padding:7px 10px;cursor:pointer}
+#ofr .ofrok:hover{background:var(--a2ros)}
+#ofr .ofrcod{display:block;margin-top:7px;color:var(--a2cre2);font:600 11.5px system-ui;
+ user-select:all;-webkit-user-select:all}
+#ofr .ofrcod b{color:var(--a2ros2);letter-spacing:.06em}
+#ofr .ofrerr{display:block;margin-top:5px;color:var(--a2ros2);font:600 11.5px/1.35 system-ui}
+/* celular: o painel ocupa a largura toda e fica acima do chat */
+body.ph #ofr,body.php #ofr{right:8px;bottom:56px;width:min(300px,calc(100vw - 16px))}
+body.ph #ofr.min,body.php #ofr.min{width:40px;height:40px;padding:0}
+body.ph #ofr.min .ofrh,body.php #ofr.min .ofrh{padding:0;height:100%;justify-content:center;border:0;background:transparent}
+body.ph #ofr.min .ofrh b,body.php #ofr.min .ofrh b{font-size:0;flex:none;gap:0}
+body.ph #ofr.min .ofrb,body.php #ofr.min .ofrb{display:none}
+body.ph #ofr.min .ofru,body.php #ofr.min .ofru{position:absolute;top:-5px;right:-5px}
+body.ph #ofr .ofrls,body.php #ofr .ofrls{max-height:38vh}
+/* na batalha some do caminho */
+body:has(#qord) #ofr,body:has(#g2v) #ofr{display:none!important}
+
+/* --- amigos: botoes da linha, convite e conversa --- */
+#ofr .ofrcv{background:var(--a2ros3);border:1px solid var(--a2ros);border-radius:0;color:var(--a2cre);
+ font:800 11.5px system-ui;padding:6px 10px;cursor:pointer;white-space:nowrap}
+#ofr .ofrcv:hover{background:var(--a2ros)}
+#ofr .ofrcv[disabled]{opacity:.6;cursor:default}
+#ofr .ofrms{background:#2f2733;border:1px solid var(--a2lin);border-radius:0;color:var(--a2cre);
+ font:700 11.5px system-ui;padding:6px 9px;cursor:pointer;white-space:nowrap;position:relative}
+#ofr .ofrms:hover{border-color:var(--a2ros)}
+#ofr .ofrms.ic{padding:5px 6px;display:grid;place-items:center}
+#ofr .ofrms.ic img{width:17px;height:17px;object-fit:contain;display:block}
+#ofr .ofrms.nv::after{content:"";position:absolute;top:-3px;right:-3px;width:9px;height:9px;
+ border-radius:999px;background:var(--a2ros);border:1.5px solid #1f1a26}
+/* convite na tela */
+.frinv{position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:150;
+ display:flex;align-items:center;gap:11px;max-width:min(460px,calc(100vw - 20px));
+ background:#241f2b;border:1px solid var(--a2ros);border-left:4px solid var(--a2ros);
+ box-shadow:0 14px 34px #000c;padding:10px 12px;color:var(--a2cre);font:600 13px system-ui}
+.frinv .frinvav{flex:none;width:36px;height:36px;display:grid;place-items:center;font:900 13px system-ui;
+ font-style:normal;color:var(--ac,#b3a8a2);background:#2b2430;border:1.5px solid var(--ac,#3a3340)}
+.frinv .frinvt{flex:1;min-width:0}
+.frinv .frinvt b{display:block;font:900 italic 14px system-ui;color:var(--a2cre)}
+.frinv .frinvt small{display:block;font:600 11.5px system-ui;color:var(--a2cre2)}
+.frinv .frinvb{flex:none;display:flex;gap:6px}
+.frinv .frinvok{background:var(--a2ros3);border:1px solid var(--a2ros);border-radius:0;color:var(--a2cre);
+ font:800 12px system-ui;padding:8px 12px;cursor:pointer}
+.frinv .frinvok:hover{background:var(--a2ros)}
+.frinv .frinvno{background:#2f2733;border:1px solid var(--a2lin);border-radius:0;color:var(--a2cre2);
+ font:700 12px system-ui;padding:8px 10px;cursor:pointer}
+.frinv .frinvno:hover{border-color:var(--a2ros);color:var(--a2cre)}
+body.ph .frinv,body.php .frinv{top:8px;padding:8px 9px;gap:8px;font-size:12px}
+body.ph .frinv .frinvt b,body.php .frinv .frinvt b{font-size:12.5px}
+body.ph .frinv .frinvok,body.php .frinv .frinvok{padding:7px 9px;font-size:11.5px}
+body.ph .frinv .frinvno,body.php .frinv .frinvno{padding:7px 8px;font-size:11.5px}
+/* conversa dentro do painel */
+#ofr .ofrdm{display:flex;flex-direction:column;min-height:0}
+#ofr .ofrdmh{display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--a2lin);background:#241f2b}
+#ofr .ofrdmh b{flex:1;min-width:0;font:900 italic 13.5px system-ui;color:var(--a2cre);
+ overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ofr .ofrdmbk{flex:none;background:#2f2733;border:1px solid var(--a2lin);border-radius:0;color:var(--a2cre2);
+ font:700 12px system-ui;padding:5px 9px;cursor:pointer}
+#ofr .ofrdmbk:hover{border-color:var(--a2ros);color:var(--a2cre)}
+#ofr .ofrdml{display:flex;flex-direction:column;gap:5px;padding:9px 10px;
+ overflow-y:auto;max-height:min(42vh,300px);overscroll-behavior:contain}
+#ofr .ofrdmm{display:flex}
+#ofr .ofrdmm span{max-width:84%;background:#2b2430;border:1px solid var(--a2lin);padding:6px 9px;
+ font:500 12.5px/1.4 system-ui;color:var(--a2cre);word-break:break-word}
+#ofr .ofrdmm.meu{justify-content:flex-end}
+#ofr .ofrdmm.meu span{background:var(--a2ros3);border-color:var(--a2ros)}
+#ofr .ofrdmf{display:flex;gap:5px;padding:8px 10px;border-top:1px solid var(--a2lin);background:#241f2b}
+#ofr .ofrdmi{flex:1;min-width:0;background:#1f1a26;border:1px solid var(--a2lin);border-radius:0;
+ color:var(--a2cre);font:500 12.5px system-ui;padding:7px 8px}
+#ofr .ofrdmi::placeholder{color:#8e8289}
+#ofr .ofrdms{flex:none;background:var(--a2ros3);border:1px solid var(--a2ros);border-radius:0;
+ color:var(--a2cre);font:800 12px system-ui;padding:7px 11px;cursor:pointer}
+#ofr .ofrdms:hover{background:var(--a2ros)}
+/* celular: o nome e o status precisam caber numa linha ao lado dos botoes */
+body.ph #ofr .ofrcv,body.php #ofr .ofrcv{padding:6px 8px;font-size:11px}
+body.ph #ofr .ofrms,body.php #ofr .ofrms{padding:6px 7px;font-size:11px}
+body.ph #ofr .ofrbt,body.php #ofr .ofrbt{gap:4px}
+body.ph #ofr .ofrnm small,body.php #ofr .ofrnm small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.ph #ofr .ofrav,body.php #ofr .ofrav{width:31px;height:31px;font-size:11.5px}
+body.ph #ofr .ofrit,body.php #ofr .ofrit{gap:7px}
+/* o codigo do jogador, sempre a vista no painel */
+#ofr .ofrmeu{display:flex;align-items:center;gap:8px;width:100%;margin-bottom:7px;cursor:pointer;
+ background:#1f1a26;border:1px solid var(--a2lin);border-left:3px solid var(--a2ros);border-radius:0;
+ padding:7px 9px;text-align:left}
+#ofr .ofrmeu:hover{border-color:var(--a2ros)}
+#ofr .ofrmeu small{flex:0 1 auto;min-width:0;color:var(--a2cre2);font:800 8.5px/1 system-ui;
+ letter-spacing:.1em;text-transform:uppercase;overflow:hidden;white-space:nowrap}
+#ofr .ofrmeu b{flex:1 0 auto;min-width:0;color:var(--a2ros2);font:900 13px system-ui;letter-spacing:.05em;
+ white-space:nowrap;user-select:all;-webkit-user-select:all}
+#ofr .ofrmeu .ofrcp{flex:none;font-style:normal;color:var(--a2cre2);font:700 10.5px system-ui;
+ border:1px solid var(--a2lin);padding:3px 7px}
+#ofr .ofrmeu.ok .ofrcp{color:#8fd9a8;border-color:#8fd9a8}
+body.ph #ofr .ofrmeu small,body.php #ofr .ofrmeu small{font-size:8.5px;letter-spacing:.1em}
+body.ph #ofr .ofrmeu b,body.php #ofr .ofrmeu b{font-size:12.5px}
+/* o painel nunca passa da tela: a lista encolhe junto */
+#ofr{max-height:calc(100vh - 90px)}
+#ofr .ofrbd{flex:1 1 auto;min-height:0}
+#ofr .ofrls{flex:1 1 auto;min-height:0}
+#ofr .ofrdm{flex:1 1 auto;min-height:0}
+#ofr .ofrdml{flex:1 1 auto;min-height:0}
+body.ph #ofr,body.php #ofr{max-height:calc(100vh - 68px)}
+@media (max-height:470px){
+ #ofr{bottom:48px}
+ #ofr .ofrls{max-height:none}
+ #ofr .ofrdml{max-height:none}
+ #ofr .ofrq{margin:6px 10px 4px;padding:5px 8px}
+ #ofr .ofrad{padding:6px 10px}
+ #ofr .ofradb{padding:6px}
+}
+
+/* === as duas barras do canto: nome escrito ao lado do icone, sem colidir === */
+/* chat minimizado: o titulo cabe numa linha e a caixa encolhe para o conteudo */
+#och.min{width:auto!important;height:auto!important}
+#och.min .ochh{white-space:nowrap;padding:7px 9px;gap:7px}
+#och.min .ochh b{flex:none;display:flex;align-items:center;gap:7px;white-space:nowrap}
+#och.min .ochh b span{white-space:nowrap}
+/* no celular as duas barras deixam de ser quadradinhos e mostram o nome */
+body.ph #och.min,body.php #och.min,
+body.ph #ofr.min,body.php #ofr.min{width:auto!important;height:auto!important;border-radius:0!important;
+ padding:0!important;right:8px}
+body.ph #och.min .ochh,body.php #och.min .ochh,
+body.ph #ofr.min .ofrh,body.php #ofr.min .ofrh{padding:6px 9px!important;height:auto!important;
+ justify-content:flex-start!important;gap:7px!important;background:#241f2b!important;border:0}
+body.ph #och.min .ochh b,body.php #och.min .ochh b,
+body.ph #ofr.min .ofrh b,body.php #ofr.min .ofrh b{font-size:11.5px!important;line-height:1!important;
+ flex:none!important;display:flex!important;align-items:center;gap:7px;white-space:nowrap}
+body.ph #och.min .ochh b::first-letter,body.php #och.min .ochh b::first-letter{font-size:inherit}
+body.ph #och.min .ochic,body.php #och.min .ochic,
+body.ph #ofr.min .ofric,body.php #ofr.min .ofric{width:18px!important;height:18px!important;flex:none}
+body.ph #och.min .ochb,body.php #och.min .ochb{display:none}
+body.ph #ofr.min .ofrb,body.php #ofr.min .ofrb{display:none}
+body.ph #och.min .ochu,body.php #och.min .ochu,
+body.ph #ofr.min .ofru,body.php #ofr.min .ofru{position:static!important;margin-left:2px}
+/* empilhamento: a lista de amigos fica acima do chat, com folga de verdade */
+#ofr{bottom:64px}
+body.ph #ofr,body.php #ofr{bottom:50px}
+body.ph #och.min,body.php #och.min{bottom:8px}
+@media (max-height:470px){#ofr{bottom:56px}}
+/* chat: campo e botao de enviar na paleta nova */
+#och .ochf{background:#241f2b;border-top:1px solid var(--a2lin)}
+#och .ochf input{background:#1f1a26;border:1px solid var(--a2lin);border-radius:0;color:var(--a2cre)}
+#och .ochf input::placeholder{color:#8e8289}
+#och .ochsd{background:var(--a2ros3);border:1px solid var(--a2ros);border-radius:0;
+ color:var(--a2cre);font:800 12px system-ui;padding:0 12px}
+#och .ochsd:hover{background:var(--a2ros)}
+/* selo de nao lidas: o vermelho vivo destoava */
+#och .ochu,#ofr .ofru{background:var(--a2ros)!important;color:#fff!important;
+ font:800 11px/19px system-ui!important;min-width:19px;height:19px;border-radius:999px;text-align:center;padding:0 5px}
+body.ph #och.min .ochu,body.php #och.min .ochu,
+body.ph #ofr.min .ofru,body.php #ofr.min .ofru{font-size:10px!important;min-width:17px;height:17px;line-height:17px!important}
+
 /* ===== ANIMA2 FIM ===== */
 </style></head><body><main><h1>Projeto Ânima</h1><div id="bar"></div><div id="b"></div><div id="lg"></div></main><div id="dr"></div><div id="tip"></div>
 <script>
@@ -9635,6 +9841,290 @@ function chClr(code){try{return +localStorage.getItem("za_chclr_"+code)||0}catch
 function chKey(ik){const m=/^(.+)_(\d+|p|b)$/.exec(ik||"");if(!m||!C[m[1]])return null;const c=C[m[1]];return{ik,n:m[2]=="p"?c.ps.n:m[2]=="b"?"Líder: "+shn(m[1]):(c.sk[+m[2]]||{}).n}}
 function chCol(id){let x=0;for(const c of String(id||""))x=(x*31+c.charCodeAt(0))>>>0;return"hsl("+(x%360)+",80%,70%)"}
 function chHtml(t){return escH(t).replace(/⟦([a-z0-9]+_(?:\d+|p|b))⟧/g,(a,ik)=>{const k=chKey(ik),src=IMG[ik]||IMG[ik.replace(/_b$/,"_f")];return k?"<span class='skr' data-ik='"+ik+"'>"+(src?"<img src='"+src+"' alt=''>":"")+escH(String(k.n).replace(/[.!]+$/,""))+"</span>":a})}
+/* ===== Lista de amigos =====================================================
+   Mesma base do chat (chDb): o db do artifact no link de testes, o Supabase no
+   site. Caminhos: players/<pid> (perfil publico), codes/<CODIGO> (indice do
+   codigo), pres/<pid> (presenca), fr/<pid>/list/<outro> e fr/<pid>/req/<de>. */
+const FR={pid:null,nick:"",code:"",list:[],req:[],pres:{},min:1,q:"",erro:"",
+ pronto:0,tick:null,unl:null,unr:null,uni:null,und:null,lendo:0,addOpen:0,inv:null,dmn:{}};
+const FRCH="ABCDEFGHJKMNPQRSTUVWXYZ23456789";          /* sem I, L, O, 0 e 1 */
+const frDb=()=>chDb();
+const frCod=()=>{let s="";for(let i=0;i<5;i++)s+=FRCH[Math.floor(Math.random()*FRCH.length)];return s};
+const frNorm=c=>String(c||"").toUpperCase().replace(/[^A-Z0-9]/g,"").replace(/^ANIMA/,"");
+const frNick=()=>{try{return ls("za_nick")||"Jogador"}catch(e){return "Jogador"}};
+/* iniciais do avatar, como na arte */
+const frIni=n=>{const p=String(n||"?").trim().split(/\s+/).filter(Boolean);
+ return ((p[0]||"?")[0]+((p[1]||p[0]||"?")[p[1]?0:1]||"")).toUpperCase().slice(0,2)};
+const frCor=id=>{let x=2166136261;for(const c of String(id||"")){x^=c.charCodeAt(0);x=Math.imul(x,16777619)>>>0}return "hsl("+((x>>>7)%360)+",62%,66%)"};
+/* o estado que os outros veem */
+const frEstado=()=>{try{if(G.scr=="p"||G.scr=="d")return "play"}catch(e){}return "on"};
+const FRGAP=45000;   /* depois disso sem dar sinal, o amigo conta como offline */
+
+async function frInit(){if(FR.pronto||FR.lendo)return;FR.lendo=1;
+ try{await chInit();const db=frDb(),pid=chPid();
+  if(!db||!pid){FR.lendo=0;return}
+  FR.pid=pid;FR.nick=frNick();
+  /* perfil publico: guarda o codigo de amigo da conta */
+  let meu=null;try{const sn=await db.doc("players/"+pid).get();meu=sn&&sn.exists?sn.data():null}catch(e){}
+  if(meu&&meu.code)FR.code=meu.code;
+  if(!FR.code){
+   for(let i=0;i<6&&!FR.code;i++){const c=frCod();
+    try{const sn=await db.doc("codes/"+c).get();if(sn&&sn.exists&&sn.data()&&sn.data().pid!==pid)continue;
+     await db.doc("codes/"+c).set({pid:pid,at:Date.now()});FR.code=c}catch(e){}}
+  }
+  /* sem codigo gravado, o banco nao aceita escrever: o painel nao aparece
+     em vez de ficar na tela vazio e sem funcionar */
+  if(!FR.code){FR.lendo=0;frRender();return}
+  try{await db.doc("players/"+pid).set({n:FR.nick,code:FR.code,at:Date.now()})}catch(e){}
+  FR.pronto=1;frPres();frSub();
+  if(!FR.tick)FR.tick=setInterval(()=>{try{frPres();frLePres()}catch(e){}},20000);
+ }catch(e){}
+ FR.lendo=0;frRender()}
+
+/* ---- presenca: escreve a minha, le a dos amigos ---- */
+async function frPres(){const db=frDb();if(!db||!FR.pid)return;
+ try{await db.doc("pres/"+FR.pid).set({n:frNick(),s:frEstado(),at:Date.now()})}catch(e){}}
+async function frLePres(){const db=frDb();if(!db||!FR.list.length)return;
+ const ks=FR.list.map(x=>x.id).slice(0,60);
+ await Promise.all(ks.map(async k=>{try{const sn=await db.doc("pres/"+k).get();
+  if(sn&&sn.exists)FR.pres[k]=sn.data()}catch(e){}}));
+ frRender()}
+/* ---- lista e pedidos, em tempo real ---- */
+function frSub(){const db=frDb();if(!db||!FR.pid)return;
+ if(FR.unl){try{FR.unl()}catch(e){}}
+ if(FR.unr){try{FR.unr()}catch(e){}}
+ if(FR.uni){try{FR.uni()}catch(e){}}
+ if(FR.und){try{FR.und()}catch(e){}}
+ try{FR.uni=db.doc("inv/"+FR.pid).onSnapshot(sn=>{
+  const d=sn&&sn.exists?sn.data():null;
+  FR.inv=(d&&d.code&&d.at&&Date.now()-d.at<FRINV)?d:null;frInvRender();frRender()},()=>{})}catch(e){}
+ try{FR.und=db.collection("dmn/"+FR.pid+"/de").onSnapshot(s=>{const m={};
+  s.docs.forEach(d=>{m[d.id]=d.data()});FR.dmn=m;frRender()},()=>{})}catch(e){}
+ try{FR.unl=db.collection("fr/"+FR.pid+"/list").onSnapshot(s=>{
+  FR.list=s.docs.map(d=>Object.assign({id:d.id},d.data()));frLePres();frRender()},()=>{})}catch(e){}
+ try{FR.unr=db.collection("fr/"+FR.pid+"/req").onSnapshot(s=>{
+  FR.req=s.docs.map(d=>Object.assign({id:d.id},d.data()));frRender()},()=>{})}catch(e){}}
+
+/* ---- adicionar, aceitar, recusar, remover ---- */
+async function frAdd(cod){const db=frDb();if(!db||!FR.pid)return "Entre no jogo para usar os amigos.";
+ const c=frNorm(cod);
+ if(c.length<4)return "Código curto demais.";
+ if(c===FR.code)return "Esse é o seu próprio código.";
+ let alvo=null;
+ try{const sn=await db.doc("codes/"+c).get();if(sn&&sn.exists)alvo=sn.data().pid}catch(e){}
+ if(!alvo)return "Não achei ninguém com esse código.";
+ if(FR.list.some(x=>x.id===alvo))return "Vocês já são amigos.";
+ let n="Jogador";try{const sn=await db.doc("players/"+alvo).get();if(sn&&sn.exists)n=sn.data().n||n}catch(e){}
+ /* se ele ja tinha me mandado pedido, aceita na hora */
+ if(FR.req.some(x=>x.id===alvo)){await frAceita(alvo);return ""}
+ try{await db.doc("fr/"+alvo+"/req/"+FR.pid).set({n:frNick(),at:Date.now()})}catch(e){return "Não consegui enviar o pedido."}
+ return "pedido:"+n}
+async function frAceita(pid){const db=frDb();if(!db||!FR.pid)return;
+ let n="Jogador";try{const sn=await db.doc("players/"+pid).get();if(sn&&sn.exists)n=sn.data().n||n}catch(e){}
+ try{await db.doc("fr/"+FR.pid+"/list/"+pid).set({n:n,at:Date.now()})}catch(e){}
+ try{await db.doc("fr/"+pid+"/list/"+FR.pid).set({n:frNick(),at:Date.now()})}catch(e){}
+ try{await db.doc("fr/"+FR.pid+"/req/"+pid).delete()}catch(e){}
+ try{await db.doc("fr/"+pid+"/req/"+FR.pid).delete()}catch(e){}
+ frRender()}
+async function frRecusa(pid){const db=frDb();if(!db||!FR.pid)return;
+ try{await db.doc("fr/"+FR.pid+"/req/"+pid).delete()}catch(e){}frRender()}
+async function frRemove(pid){const db=frDb();if(!db||!FR.pid)return;
+ try{await db.doc("fr/"+FR.pid+"/list/"+pid).delete()}catch(e){}
+ try{await db.doc("fr/"+pid+"/list/"+FR.pid).delete()}catch(e){}
+ frRender()}
+
+/* ---- convite para sala ---- */
+const frPar=(a,b)=>[String(a),String(b)].sort().join("__").replace(/[^A-Za-z0-9_-]/g,"-");
+const FRINV=90000;     /* convite vale por um minuto e meio */
+async function frEspera(cond,ms){const t0=Date.now();
+ while(!cond()&&Date.now()-t0<ms)await new Promise(r=>setTimeout(r,120));return cond()}
+async function frConvida(pid,btn){const db=frDb();if(!db||!FR.pid)return;
+ const lab=btn?btn.textContent:"";if(btn){btn.disabled=true;btn.textContent="…"}
+ const fim=t=>{if(btn){btn.disabled=false;btn.textContent=t||lab;
+  if(t)setTimeout(()=>{if(btn.isConnected)btn.textContent=lab},2500)}};
+ try{
+  /* liga o online e garante uma sala minha */
+  if(typeof oInit=="function"&&O.st!="ready"){oInit();await frEspera(()=>O.st=="ready",6000)}
+  if(O.st!="ready"){FR.erro="O online não respondeu.";frRender();return fim("Erro")}
+  if(!O.code){await oCreate();await frEspera(()=>!!O.code,6000)}
+  if(!O.code){FR.erro="Não consegui criar a sala.";frRender();return fim("Erro")}
+  await db.doc("inv/"+pid).set({de:FR.pid,n:frNick(),code:O.code,at:Date.now()});
+  if(G.scr!="o"&&typeof showOnline=="function")showOnline();
+  fim("Convidado ✓");
+ }catch(e){fim("Erro")}}
+async function frAceitaInv(){const db=frDb(),iv=FR.inv;if(!db||!iv)return;
+ FR.inv=null;frInvRender();
+ try{await db.doc("inv/"+FR.pid).delete()}catch(e){}
+ try{if(typeof oInit=="function"&&O.st!="ready"){oInit();await frEspera(()=>O.st=="ready",6000)}
+  if(typeof showOnline=="function")showOnline();
+  if(typeof oJoin=="function")await oJoin(iv.code)}catch(e){}}
+async function frRecusaInv(){const db=frDb();FR.inv=null;frInvRender();
+ try{if(db&&FR.pid)await db.doc("inv/"+FR.pid).delete()}catch(e){}}
+/* aviso do convite, no alto da tela */
+function frInvRender(){const v=document.getElementById("frinv");
+ const iv=FR.inv&&FR.inv.at&&Date.now()-FR.inv.at<FRINV?FR.inv:null;
+ if(!iv){if(v)v.remove();return}
+ if(v&&v.dataset.de===iv.de)return;
+ if(v)v.remove();
+ const b=mk("div","frinv");b.id="frinv";b.dataset.de=iv.de;
+ b.append(mk("i","frinvav",frIni(iv.n)));
+ b.querySelector(".frinvav").style.setProperty("--ac",frCor(iv.de));
+ b.append(mk("div","frinvt","<b>"+escH(iv.n||"Um amigo")+" chamou você</b><small>Sala "+escH(iv.code)+" · partida particular</small>"));
+ const s=mk("button","frinvok","Aceitar"),x=mk("button","frinvno","Agora não");
+ s.onclick=frAceitaInv;x.onclick=frRecusaInv;
+ const g=mk("div","frinvb");g.append(s,x);b.append(g);
+ document.body.append(b)}
+
+/* ---- conversa privada ---- */
+const FRDM={aberto:null,msgs:[],un:null,seen:{},txt:""};
+try{FRDM.seen=JSON.parse(ls("za_dmseen")||"{}")}catch(e){FRDM.seen={}}
+const frDmPath=pid=>"dm/"+frPar(FR.pid,pid)+"/msgs";
+function frDmAbre(pid,nome){FRDM.aberto={id:pid,n:nome};FRDM.msgs=[];FR.min=0;
+ if(FRDM.un){try{FRDM.un()}catch(e){}FRDM.un=null}
+ const db=frDb();if(db)try{FRDM.un=db.collection(frDmPath(pid)).orderBy("at","desc").limit(120)
+  .onSnapshot(s=>{FRDM.msgs=s.docs.map(d=>Object.assign({id:d.id},d.data())).reverse();
+   frDmVisto(pid);frRender()},()=>{})}catch(e){}
+ frRender()}
+function frDmFecha(){if(FRDM.un){try{FRDM.un()}catch(e){}FRDM.un=null}FRDM.aberto=null;FRDM.msgs=[];frRender()}
+function frDmVisto(pid){const m=FRDM.msgs[FRDM.msgs.length-1];
+ FRDM.seen[pid]=m&&m.at?m.at:Date.now();
+ try{ls("za_dmseen",JSON.stringify(FRDM.seen))}catch(e){}}
+async function frDmEnvia(txt){const db=frDb(),a=FRDM.aberto;if(!db||!a)return;
+ const t=String(txt||"").trim().slice(0,400);if(!t)return;
+ try{await db.collection(frDmPath(a.id)).add({de:FR.pid,n:frNick(),t:t,at:Date.now()})}catch(e){}
+ /* avisa o outro lado que tem mensagem nova */
+ try{await db.doc("dmn/"+a.id+"/de/"+FR.pid).set({at:Date.now(),n:frNick()})}catch(e){}}
+function frDmNovas(pid){const d=FR.dmn&&FR.dmn[pid];if(!d||!d.at)return 0;
+ return d.at>(FRDM.seen[pid]||0)?1:0}
+
+/* ---- painel da conversa ---- */
+function frDmBox(){const a=FRDM.aberto,w=mk("div","ofrdm");
+ const hd=mk("div","ofrdmh");
+ const bk=mk("button","ofrdmbk","◀");bk.title="Voltar para a lista";bk.onclick=frDmFecha;
+ hd.append(bk,mk("b","",escH(a.n||"Amigo")));w.append(hd);
+ const ls2=mk("div","ofrdml");
+ if(!FRDM.msgs.length)ls2.append(mk("p","ofrnada","Nenhuma mensagem ainda. Diga oi!"));
+ FRDM.msgs.forEach(m=>{const meu=m.de===FR.pid;
+  ls2.append(mk("div","ofrdmm"+(meu?" meu":""),"<span>"+escH(m.t||"")+"</span>"))});
+ w.append(ls2);
+ const f=mk("form","ofrdmf"),i=mk("input","ofrdmi");
+ i.placeholder="Escreva…";i.maxLength=400;i.value=FRDM.txt;
+ i.oninput=()=>{FRDM.txt=i.value};
+ const s=mk("button","ofrdms","Enviar");s.type="submit";
+ f.append(i,s);
+ f.onsubmit=e=>{e.preventDefault();const t=i.value;i.value="";FRDM.txt="";frDmEnvia(t)};
+ w.append(f);
+ setTimeout(()=>{const l=document.querySelector("#ofr .ofrdml");if(l)l.scrollTop=l.scrollHeight},30);
+ return w}
+
+/* ---- painel ---- */
+function frBuild(){const b=mk("div","ofr"+(FR.min?" min":""));b.id="ofr";
+ const hd=mk("div","ofrh");
+ hd.append(mk("b","","<img class='ofric' src='"+(IMG.ui_amigos||"")+"' alt=''><span>Lista de amigos</span>"));
+ const un=mk("span","ofru");un.hidden=true;hd.append(un);
+ const mn=mk("button","ofrb",FR.min?"▢":"–");mn.title=FR.min?"Abrir":"Minimizar";
+ mn.onclick=e=>{e.stopPropagation();FR.min=FR.min?0:1;frRender()};hd.append(mn);
+ hd.onclick=()=>{if(FR.min){FR.min=0;frRender()}};
+ b.append(hd);
+ const bd=mk("div","ofrbd");
+ if(FRDM.aberto){bd.append(frDmBox());b.append(bd);return b}
+ /* buscar na propria lista */
+ const q=mk("input","ofrq");q.type="search";q.placeholder="Buscar amigo…";q.value=FR.q;
+ q.oninput=()=>{FR.q=q.value;frLista(b.querySelector(".ofrls"))};
+ bd.append(q);
+ bd.append(mk("div","ofrls"));
+ /* adicionar */
+ const ad=mk("div","ofrad");
+ /* o meu codigo fica sempre a vista, no proprio painel */
+ const meu=mk("button","ofrmeu","<small>Seu código</small><b>"+escH(FR.code?("ANIMA-"+FR.code):"…")+"</b><i class='ofrcp'>copiar</i>");
+ meu.type="button";meu.title="Toque para copiar";
+ meu.onclick=()=>{const t="ANIMA-"+FR.code,i=meu.querySelector(".ofrcp");
+  const feito=()=>{if(!i)return;i.textContent="copiado ✓";meu.classList.add("ok");
+   setTimeout(()=>{if(i.isConnected){i.textContent="copiar";meu.classList.remove("ok")}},2200)};
+  try{navigator.clipboard.writeText(t).then(feito,()=>{})}catch(e){}
+  try{const s2=getSelection(),r=document.createRange();r.selectNodeContents(meu.querySelector("b"));
+   s2.removeAllRanges();s2.addRange(r);if(document.execCommand("copy"))feito()}catch(e){}};
+ ad.append(meu);
+ const abt=mk("button","ofradb","+ Adicionar amigo");
+ abt.onclick=()=>{FR.addOpen=!FR.addOpen;frRender()};
+ ad.append(abt);
+ if(FR.addOpen){
+  const f=mk("form","ofrf"),ci=mk("input","ofrci");
+  ci.placeholder="Código do amigo";ci.maxLength=12;ci.autocapitalize="characters";
+  const ok=mk("button","ofrok","Adicionar");ok.type="submit";
+  f.append(ci,ok);
+  f.onsubmit=async e=>{e.preventDefault();ok.disabled=true;ok.textContent="…";
+   const r=await frAdd(ci.value);ok.disabled=false;ok.textContent="Adicionar";
+   if(!r){FR.erro="Amigo adicionado!";ci.value=""}
+   else if(r.indexOf("pedido:")===0){FR.erro="Pedido enviado para "+r.slice(7)+".";ci.value=""}
+   else FR.erro=r;
+   frRender()};
+  ad.append(f);
+  if(FR.erro)ad.append(mk("small","ofrerr",escH(FR.erro)));
+ }
+ bd.append(ad);
+ b.append(bd);
+ return b}
+
+function frLista(ls){if(!ls)return;ls.innerHTML="";
+ const qq=FR.q.trim().toLowerCase();
+ const nome=x=>(FR.pres[x.id]&&FR.pres[x.id].n)||x.n||"Jogador";
+ /* pedidos primeiro */
+ if(FR.req.length){ls.append(mk("small","ofrsec req","Pedidos de amizade"));
+  FR.req.forEach(r=>{const it=mk("div","ofrit");
+   it.append(mk("i","ofrav",frIni(r.n)));it.querySelector(".ofrav").style.setProperty("--ac",frCor(r.id));
+   it.append(mk("div","ofrnm","<b>"+escH(r.n||"Jogador")+"</b><small>Quer ser seu amigo</small>"));
+   const s=mk("button","ofrac","Aceitar"),x=mk("button","ofrrc","Recusar");
+   s.onclick=()=>frAceita(r.id);x.onclick=()=>frRecusa(r.id);
+   const g=mk("div","ofrbt");g.append(s,x);it.append(g);ls.append(it)})}
+ const agora=Date.now();
+ const vivo=x=>{const p=FR.pres[x.id];return !!(p&&p.at&&agora-p.at<FRGAP)};
+ const L=FR.list.filter(x=>!qq||nome(x).toLowerCase().includes(qq));
+ const on=L.filter(vivo),off=L.filter(x=>!vivo(x));
+ const linha=(x,ligado)=>{const p=FR.pres[x.id]||{};const it=mk("div","ofrit"+(ligado?"":" off"));
+  const av=mk("i","ofrav",frIni(nome(x)));av.style.setProperty("--ac",frCor(x.id));it.append(av);
+  const st=!ligado?"Offline":p.s=="play"?"Em partida":"Disponível";
+  it.append(mk("div","ofrnm","<b>"+escH(nome(x))+"</b><small class='ofrst "+(!ligado?"z":p.s=="play"?"p":"d")+"'>"+st+"</small>"));
+  const g=mk("div","ofrbt");
+  /* como na arte: quem está livre recebe Convidar; os outros, Mensagem */
+  const livre=ligado&&p.s!="play";
+  if(livre){const cv=mk("button","ofrcv","Convidar");cv.title="Criar uma sala e chamar";
+   cv.onclick=()=>frConvida(x.id,cv);g.append(cv)}
+  const ms=mk("button","ofrms"+(livre?" ic":"")+(frDmNovas(x.id)?" nv":""),
+   livre?"<img src='"+(IMG.ui_chat||"")+"' alt='Mensagem'>":"Mensagem");
+  ms.title="Conversar";ms.onclick=()=>frDmAbre(x.id,nome(x));g.append(ms);
+  const rm=mk("button","ofrx","✕");rm.title="Remover amigo";
+  rm.onclick=()=>{if(confirm("Remover "+nome(x)+" da sua lista?"))frRemove(x.id)};
+  g.append(rm);it.append(g);return it};
+ if(on.length){ls.append(mk("small","ofrsec on","Online"));on.forEach(x=>ls.append(linha(x,1)))}
+ if(off.length){ls.append(mk("small","ofrsec","Offline"));off.forEach(x=>ls.append(linha(x,0)))}
+ if(!L.length&&!FR.req.length)ls.append(mk("p","ofrnada",qq?"Ninguém com esse nome.":"Sua lista está vazia. Mande o seu código para um amigo."))}
+
+function frRender(){
+ if(!FR.pronto){const v=document.getElementById("ofr");if(v)v.remove();return}
+ let b=document.getElementById("ofr");
+ if(!b){b=frBuild();document.body.append(b)}
+ else{b.classList.toggle("min",!!FR.min);
+  const mn=b.querySelector(".ofrb");if(mn){mn.textContent=FR.min?"▢":"–";mn.title=FR.min?"Abrir":"Minimizar"}}
+ const un=b.querySelector(".ofru");
+ if(un){const n=FR.req.length+FR.list.filter(x=>frDmNovas(x.id)).length;un.hidden=!n;un.textContent=n||""}
+ if(!FR.min&&!FRDM.aberto)frLista(b.querySelector(".ofrls"));
+ /* o bloco de adicionar muda de forma: refaz quando preciso */
+ const temDm=!!b.querySelector(".ofrdm");
+ if(temDm!==!!FRDM.aberto){const novo=frBuild();b.replaceWith(novo);if(!FRDM.aberto)frLista(novo.querySelector(".ofrls"));return}
+ if(FRDM.aberto){frDmPinta(b);return}
+ const ad=b.querySelector(".ofrad");
+ if(ad&&!!ad.querySelector(".ofrf")!==!!FR.addOpen){const novo=frBuild();b.replaceWith(novo);frLista(novo.querySelector(".ofrls"))}}
+/* redesenha só as mensagens, para não perder o que está sendo digitado */
+function frDmPinta(b){const l=b.querySelector(".ofrdml");if(!l)return;
+ const perto=l.scrollHeight-l.scrollTop-l.clientHeight<40;
+ const sig=FRDM.msgs.map(m=>m.id).join(",");
+ if(l.dataset.sig===sig)return;l.dataset.sig=sig;l.innerHTML="";
+ if(!FRDM.msgs.length)l.append(mk("p","ofrnada","Nenhuma mensagem ainda. Diga oi!"));
+ FRDM.msgs.forEach(m=>l.append(mk("div","ofrdmm"+(m.de===FR.pid?" meu":""),"<span>"+escH(m.t||"")+"</span>")));
+ if(perto)l.scrollTop=l.scrollHeight}
+
+function frSync(){if(!FR.pronto){frInit();return}frRender()}
 let CHI=0;async function chInit(){if(CHI)return;CHI=1;try{const cl=window.claude&&typeof window.claude.use=="function"?window.claude:null;if(!cl)return;const [db,user]=await Promise.all([cl.use("db").catch(()=>null),cl.use("user").catch(()=>null)]);if(!db)return;CH.db=db;let id=user?await user.id().catch(()=>null):null;if(!id){id=ls("za_pid");if(!id){id="local-"+Math.random().toString(36).slice(2,12);ls("za_pid",id)}}CH.pid=id}catch(e){}}
 const chDb=()=>(typeof O!="undefined"&&O.db)||CH.db,chPid=()=>(typeof O!="undefined"&&O.pid)||CH.pid,chRoom=()=>typeof O!="undefined"&&O.ref&&O.code&&(G.scr=="o"||G.scr=="d"||G.scr=="p")?O.code:"";
 const chPath=c=>c=="geral"?"global/geral/chat":"rooms/"+c+"/chat";
@@ -9666,7 +10156,7 @@ const chCan=()=>typeof matchMedia=="function"&&matchMedia("(hover:hover) and (po
 function chApplySz(b){if(!b)return;const on=!!(chCfg.w&&chCfg.h&&chCan());b.classList.toggle("cz",on);if(on){b.style.setProperty("--chw",Math.min(chCfg.w,innerWidth-8)+"px");b.style.setProperty("--chh",Math.min(chCfg.h,innerHeight-8)+"px")}else{b.style.removeProperty("--chw");b.style.removeProperty("--chh")}ochGap()}
 if(typeof addEventListener=="function")addEventListener("resize",()=>{const b=document.getElementById("och");chApplySz(b);chPos(b);ochGap()});
 function chBuild(){const b=mk("div","");b.id="och";b.className="sz-"+chCfg.sz+(CH.open?"":" min");b.style.setProperty("--chfs",chCfg.fs+"px");b.style.setProperty("--chop",chCfg.op/100);
- const hd=mk("div","ochh"),ti=mk("b","","<img class='ochic' src='"+IMG.ui_chat+"' alt=''>"+(CH.code=="geral"?"Chat geral":"Chat da sala "+CH.code)),un=mk("span","ochu"),st=mk("button","ochb ochgr","<img src='"+IMG.ui_gear+"' alt=''>"),mn=mk("button","ochb",CH.open?"–":"▢"),lk=mk("button","ochb ochlk",chCfg.lock?"🔒":"🔓");st.title="Ajustes do chat";mn.title="Minimizar";lk.title=chCfg.lock?"Chat travado: toque para destravar":"Travar o chat no lugar";
+ const hd=mk("div","ochh"),ti=mk("b","","<img class='ochic' src='"+IMG.ui_chat+"' alt=''><span>"+(CH.code=="geral"?"Chat geral":"Chat da sala "+CH.code)+"</span>"),un=mk("span","ochu"),st=mk("button","ochb ochgr","<img src='"+IMG.ui_gear+"' alt=''>"),mn=mk("button","ochb",CH.open?"–":"▢"),lk=mk("button","ochb ochlk",chCfg.lock?"🔒":"🔓");st.title="Ajustes do chat";mn.title="Minimizar";lk.title=chCfg.lock?"Chat travado: toque para destravar":"Travar o chat no lugar";
  hd.append(ti,un,lk,st,mn);if(chCfg.lock)b.classList.add("lkd");
  lk.onclick=()=>{chCfg.lock=chCfg.lock?0:1;chSave();lk.textContent=chCfg.lock?"🔒":"🔓";lk.title=chCfg.lock?"Chat travado: toque para destravar":"Travar o chat no lugar";b.classList.toggle("lkd",!!chCfg.lock)};
  let drg=null,moved=0;hd.addEventListener("pointerdown",e=>{if(chCfg.lock||e.target.closest("button")||e.button>0)return;const r=b.getBoundingClientRect();drg={dx:e.clientX-r.left,dy:e.clientY-r.top,x0:e.clientX,y0:e.clientY,id:e.pointerId};moved=0;addEventListener("pointermove",mv,{passive:false});addEventListener("pointerup",end);addEventListener("pointercancel",end)});
@@ -9688,8 +10178,8 @@ function chBuild(){const b=mk("div","");b.id="och";b.className="sz-"+chCfg.sz+(C
  const fs=mk("input");fs.type="range";fs.min=10;fs.max=20;fs.value=chCfg.fs;fs.oninput=()=>{chCfg.fs=+fs.value;chSave();b.style.setProperty("--chfs",chCfg.fs+"px")};row("Letras",fs);
  const op=mk("input");op.type="range";op.min=30;op.max=100;op.value=chCfg.op;op.oninput=()=>{chCfg.op=+op.value;chSave();b.style.setProperty("--chop",chCfg.op/100)};row("Opacidade",op);
  const cl=mk("button","ochclr","🗑 Apagar histórico");cl.onclick=()=>{if(!cl.dataset.c){cl.dataset.c=1;cl.textContent="Confirmar: apagar para mim";setTimeout(()=>{if(cl.isConnected){delete cl.dataset.c;cl.textContent="🗑 Apagar histórico"}},4000);return}try{localStorage.setItem("za_chclr_"+CH.code,String(Date.now()))}catch(e){}delete cl.dataset.c;cl.textContent="🗑 Apagar histórico";chRender()};const AL="🛡 Admin: apagar histórico de todos os chats",ad=mk("button","ochclr ochadm",AL);ad.hidden=!CH.own;ad.onclick=()=>{if(!ad.dataset.c){ad.dataset.c=1;ad.textContent="Confirmar: apagar para TODOS";setTimeout(()=>{if(ad.isConnected&&ad.dataset.c){delete ad.dataset.c;ad.textContent=AL}},5000);return}delete ad.dataset.c;chAdminClear(ad,AL)};const adn=mk("small","ochn ochadn","Só o dono do jogo vê este botão. Apaga as mensagens do chat geral e de todas as salas para todo mundo.");adn.hidden=!CH.own;const rp=mk("button","ochclr ochrp","↺ Voltar o chat para o canto");rp.onclick=()=>{delete chCfg.pos;chSave();chPos(b)};
- set.append(cl,mk("small","ochn","Apaga só para você. Os outros continuam vendo as mensagens."),ad,adn,mk("small","ochn","Para mudar o tamanho livremente, arraste as bordas ou os cantos do chat (no computador). Os tamanhos Pequeno, Médio e Grande continuam aqui."),rp);setTimeout(()=>chPos(b),0);
- const ls=mk("div","ochl"),f=mk("form","ochf"),inp=mk("input"),sd=mk("button","ochsd","Enviar");inp.maxLength=300;inp.placeholder="Mensagem… (Shift+clique numa habilidade para linkar)";inp.id="ochin";f.append(inp,sd);
+ set.append(cl,mk("small","ochn","Apaga só para você. Os outros continuam vendo as mensagens."),ad,adn,mk("small","ochn","Para mandar o link de uma habilidade, segure Shift e clique nela."),mk("small","ochn","Para mudar o tamanho livremente, arraste as bordas ou os cantos do chat (no computador). Os tamanhos Pequeno, Médio e Grande continuam aqui."),rp);setTimeout(()=>chPos(b),0);
+ const ls=mk("div","ochl"),f=mk("form","ochf"),inp=mk("input"),sd=mk("button","ochsd","Enviar");inp.maxLength=300;inp.placeholder="Mensagem…";inp.title="Shift+clique numa habilidade para mandar o link dela";inp.id="ochin";f.append(inp,sd);
  f.onsubmit=e=>{e.preventDefault();chSend(inp)};
  st.onclick=()=>{set.hidden=!set.hidden};mn.onclick=()=>{CH.open=CH.open?0:1;b.classList.toggle("min",!CH.open);mn.textContent=CH.open?"–":"▢";if(CH.open){CH.unread=0;chRender()}chPos(b)};
  hd.onclick=e=>{if(!CH.open&&!e.target.closest("button"))mn.onclick()};
@@ -9708,7 +10198,8 @@ function chLink(ik){const k=chKey(ik),inp=document.getElementById("ochin");if(!k
  const nm=String(k.n).replace(/[.!]+$/,"");CH.links.push({ik,n:nm});const p=inp.selectionStart!=null?inp.selectionStart:inp.value.length,ins="["+nm+"] ";inp.value=inp.value.slice(0,p)+ins+inp.value.slice(p);inp.focus();const q=p+ins.length;try{inp.setSelectionRange(q,q)}catch(e){}return true}
 if(typeof document!="undefined"&&document.addEventListener){
  document.addEventListener("click",e=>{if(!e.shiftKey||!document.getElementById("ochin"))return;const el=e.target.closest&&e.target.closest("[data-ik],.w,.chsk,.eis,.bnit,.bnsk img,.ptc");if(!el)return;let ik=el.dataset&&el.dataset.ik;if(!ik){const im=el.tagName=="IMG"?el:el.querySelector("img");ik=im?rimg().get(im.src):null}if(ik&&chLink(ik)){e.preventDefault();e.stopPropagation()}},true);
- setInterval(()=>{try{chSync()}catch(e){}},600)}
+ setInterval(()=>{try{chSync()}catch(e){}},600);
+ setInterval(()=>{try{frSync()}catch(e){}},900)}
 /* ===== Draft online ===== */
 O.R=null;O.busy=0;O.tick=null;
 const BLIND=["fvote","pre","lead","fban","newlead"];
