@@ -102,6 +102,15 @@ def main(src):
     if missing:
         sys.exit("faltam arquivos em media/: " + ", ".join(sorted(missing)))
     s = s.replace("<title>Projeto Ânima · Etapa 1</title>", "<title>Projeto Ânima</title>", 1)
+
+    # A secao "Sistemas" das notas do patch e so para o link de testes. No site
+    # publico ficam Buffs, Nerfs, Ajustes e Novidades. Ligar a chave aqui e mais
+    # seguro do que mexer no array PATCH por regex.
+    if s.count("const SYOFF=0;") != 1:
+        sys.exit("build: esperava uma ocorrencia de 'const SYOFF=0;' e achei %d"
+                 % s.count("const SYOFF=0;"))
+    s = s.replace("const SYOFF=0;", "const SYOFF=1;", 1)
+
     s = tira_embutidas(s)
     import json
     zjs = open(os.path.join(ROOT, "src", "zsb.js"), encoding="utf-8").read()
