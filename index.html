@@ -5142,6 +5142,54 @@ body.php #ofr.min .ofru{font-size:10px!important;min-width:17px;height:17px;line
 .cfgnote{margin:6px 0 10px;font:600 12.5px/1.45 system-ui;opacity:.78;text-transform:none;text-align:left}
 /* emoji no lugar de um icone que so existe no visual novo */
 .icem{font-style:normal;display:inline-block;line-height:1;vertical-align:-.1em}
+/* Varias regras antigas zeram o font-size do botao para deixar so a <img>
+   aparecer (botao de Som, chat e lista minimizados, botoes da batalha no
+   celular em pe). No Legado o icone e um emoji, e ele sumia junto. O emoji
+   passa a ter tamanho proprio onde isso acontece. */
+/* O lobby e o unico lugar onde o cenario e o assunto: o veu do .pgdim do
+   visual novo vem com !important e cobria a arena com 96% de preto. A vinheta
+   do proprio .lbarena ja escurece as laterais onde ficam os paineis. */
+/* tamanho e opacidade do menu, ajustaveis em Configuracoes > Video */
+/* o zoom vai nos filhos, nao no .mml: assim a coluna continua do tamanho da
+   tela e a rolagem funciona quando o menu aumentado nao cabe */
+.mml{opacity:var(--mmop,1);min-height:0;max-height:min(100%,100vh);
+ overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin}
+.mml>*{zoom:var(--mmsc,1)}
+#dr .mm2.pg.lb .pgdim,.mm2.pg.lb .pgdim{background:none!important}
+/* A galeria de Personagens e marcacao nova (.chcard) e so tem CSS no a2v, que
+   o Legado desliga: a figura ficava com 17px de altura e a arte sumia. Aqui
+   vai so a FORMA; a cor continua vindo da folha de cada visual. */
+body.legado .chgr{grid-template-columns:repeat(auto-fill,minmax(clamp(120px,12vw,180px),1fr));
+ gap:clamp(8px,1.2vw,16px);align-content:start}
+body.legado .chcard{display:flex;flex-direction:column;gap:8px;text-align:center;
+ background:none;border:0;padding:0;cursor:pointer}
+body.legado .chcard figure{position:relative;margin:0;aspect-ratio:3/4;overflow:hidden;
+ border:3px solid #ded3c6;background:#0b1626;transition:border-color .15s,transform .15s}
+body.legado .chcard img{width:100%;height:100%;object-fit:cover;display:block}
+body.legado .chcard span{font:800 clamp(12px,1.2vw,15px)/1.25 system-ui}
+body.legado .chcard:hover figure{border-color:#ffd23f;transform:translateY(-3px)}
+body.legado .chcard.lk figure{border-color:#6b6269;filter:grayscale(.7) brightness(.62)}
+body.legado .chcard.lk i{position:absolute;left:0;right:0;bottom:0;background:#0b1626d9;
+ font:700 11px/1 system-ui;padding:6px 4px;font-style:normal}
+/* A galeria de Personagens nao tinha onde parar: o .chmain nao tinha regra
+   nenhuma de CSS, entao ele crescia ate a altura de todos os personagens, e a
+   pagina (.pg, overflow hidden) simplesmente cortava o que passava - sem
+   rolagem nenhuma, nem com a roda do mouse. Agora a galeria rola dentro dela. */
+.chmain{display:flex;flex-direction:column;min-height:0;height:100%}
+.chmain>.chgr{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+.chside{overflow-y:auto;overscroll-behavior:contain}
+/* No Legado o a2v esta desligado, e sem ele os itens da grade da tela de
+   Personagens ficam com largura minima automatica: um nome comprido estica a
+   coluna e empurra a galeria para fora da tela. */
+.chbd>*,.ttbd>*,.ivbd>*{min-width:0}
+.chside,.chsh,.chfg,.bft,.ivft{min-width:0;max-width:100%}
+.sndb .icem{font-size:17px}
+body.ph .sndb .icem,body.php .sndb .icem{font-size:18px}
+#och.min .ochh b .icem,#ofr.min .ofrh b .icem{font-size:15px}
+body.ph.bt #bar button .icem{font-size:16px}
+/* o chat minimizado no Legado e so texto com emoji: sem isso some inteiro */
+body.ph #och.min .ochh b,body.php #och.min .ochh b{font-size:0}
+body.legado.ph #och.min .ochh b,body.legado.php #och.min .ochh b{font-size:15px;line-height:1}
 /* ---- modo Legado: as cores novas viram as antigas ----
    As pecas acima sao as unicas que nao existiam no visual antigo, entao elas
    nao tem como "voltar": em vez disso vestem a paleta antiga. Assim a lista de
@@ -5158,6 +5206,93 @@ body.legado #ofr .ofrcod{border-radius:8px}
 /* a barra do chat no visual antigo e mais alta: a Lista de amigos sobe */
 body.legado #ofr.min,body.legado #ofr{bottom:76px}
 body.legado.ph #ofr,body.legado.php #ofr{bottom:68px}
+/* ----- a Lista de amigos ajustavel, igual ao chat geral ----- */
+#ofr.fz-p{width:272px}
+#ofr.fz-m{width:320px}
+#ofr.fz-g{width:400px}
+#ofr.fz-p .ofrls,#ofr.fz-p .ofrdml{max-height:min(34vh,230px)}
+#ofr.fz-g .ofrls,#ofr.fz-g .ofrdml{max-height:min(60vh,470px)}
+body.ph #ofr.fz-p,body.php #ofr.fz-p{width:min(258px,calc(100vw - 16px))}
+body.ph #ofr.fz-m,body.php #ofr.fz-m{width:min(300px,calc(100vw - 16px))}
+body.ph #ofr.fz-g,body.php #ofr.fz-g{width:min(366px,calc(100vw - 16px))}
+/* tamanho livre, arrastando as bordas (so no computador) */
+#ofr.fzc{width:var(--frw)!important;height:var(--frh)!important;max-height:none!important}
+#ofr.fzc .ofrls,#ofr.fzc .ofrdml{max-height:none}
+#ofr.mvd{right:auto;bottom:auto}
+#ofr .ofrz{position:absolute;z-index:5;touch-action:none}
+#ofr .ofrz.n{top:0;left:8px;right:8px;height:5px;cursor:ns-resize}
+#ofr .ofrz.s{bottom:0;left:8px;right:8px;height:5px;cursor:ns-resize}
+#ofr .ofrz.e{right:0;top:8px;bottom:8px;width:5px;cursor:ew-resize}
+#ofr .ofrz.w{left:0;top:8px;bottom:8px;width:5px;cursor:ew-resize}
+#ofr .ofrz.ne{top:0;right:0;width:8px;height:8px;cursor:nesw-resize}
+#ofr .ofrz.sw{bottom:0;left:0;width:8px;height:8px;cursor:nesw-resize}
+#ofr .ofrz.nw{top:0;left:0;width:8px;height:8px;cursor:nwse-resize}
+#ofr .ofrz.se{bottom:0;right:0;width:8px;height:8px;cursor:nwse-resize}
+#ofr .ofrz.se::after{content:"";position:absolute;right:1px;bottom:1px;width:4px;height:4px;
+ border-right:2px solid #d27285aa;border-bottom:2px solid #d27285aa;pointer-events:none}
+#ofr .ofrz:hover{background:#d2728533}
+#ofr.rzg{opacity:.9;user-select:none}#ofr.rzg .ofrz{background:#d2728533}
+#ofr.drg{opacity:.92}
+#ofr.min .ofrz,#ofr.lkd .ofrz,body.ph #ofr .ofrz,body.php #ofr .ofrz{display:none}
+@media not all and (hover:hover) and (pointer:fine){#ofr .ofrz{display:none}}
+#ofr:not(.lkd):not(.min) .ofrh{cursor:move}
+#ofr .ofrlk.on{border-color:var(--a2ros);background:#d2728522}
+/* ajustes da lista */
+#ofr .ofrset{border-bottom:1px solid var(--a2lin);background:var(--a2pan2);
+ padding:8px 10px;display:flex;flex-direction:column;gap:7px;flex:none}
+#ofr .ofrset label{display:flex;align-items:center;gap:8px;font:800 10.5px system-ui;
+ letter-spacing:.08em;text-transform:uppercase;color:var(--a2cre2)}
+#ofr .ofrset select{flex:1;min-width:0;background:var(--a2pan3);border:1px solid var(--a2lin);
+ color:var(--a2cre);font:600 12.5px system-ui;padding:5px 7px;border-radius:0}
+#ofr .ofrrp{background:var(--a2pan3);border:1px solid var(--a2lin);color:var(--a2cre2);
+ font:700 11.5px system-ui;padding:6px;cursor:pointer;border-radius:0}
+#ofr .ofrrp:hover{border-color:var(--a2ros);color:var(--a2cre)}
+#ofr .ofrset small{color:var(--a2cre3);font:600 10.5px/1.45 system-ui}
+#ofr.min .ofrset{display:none}
+/* ----- capa do patch com dois lancamentos: arte dividida pela barra "/" ----- */
+/* o espaco reservado tem de ser MAIOR que a arte, senao ela entra por baixo da
+   coluna em tela estreita e a legenda cai em cima da splash */
+#dr .pcov.temart2,#bnr .pcov.temart2{padding-right:clamp(262px,43%,545px)}
+#dr .pcov .pcart.du,#bnr .pcov .pcart.du{width:clamp(250px,41%,520px)}
+/* com tres lancamentos cada fatia precisa de mais largura, senao a primeira
+   some atras do recorte diagonal de fora */
+#dr .pcov.temart3,#bnr .pcov.temart3{padding-right:clamp(312px,52%,665px)}
+#dr .pcov .pcart.tri,#bnr .pcov .pcart.tri{width:clamp(300px,50%,640px)}
+/* cada personagem ganha a sua propria caixa, centrada na fatia dele: o
+   enquadramento da arte fica igual ao de quando ha um lancamento so. Os
+   recortes sao calculados em pcArtes(), porque dependem de quantos sao. */
+#dr .pcov .pcart.du .pcah,#bnr .pcov .pcart.du .pcah{position:absolute;top:0;bottom:0;display:block;overflow:hidden}
+#dr .pcov .pcart.du .pcah img,#bnr .pcov .pcart.du .pcah img{width:100%;height:100%;object-fit:cover;object-position:center 14%;display:block}
+/* a barra fica exatamente na folga entre dois recortes */
+#dr .pcov .pcart.du .pcasl,#bnr .pcov .pcart.du .pcasl{position:absolute;inset:0;z-index:1;
+ background:linear-gradient(180deg,var(--a2ros2),var(--a2ros) 55%,var(--a2ros3));
+ box-shadow:0 0 18px #d2728566}
+/* a legenda atravessa a arte inteira, numa faixa: antes o nome do primeiro
+   terminava dentro do quadro do segundo */
+#dr .pcov .pcart.du .pcartt,#bnr .pcov .pcart.du .pcartt{left:0;right:0;bottom:0;z-index:3;
+ padding:16px 14px 12px;
+ background:linear-gradient(0deg,#17121bfa 32%,#17121bc0 72%,#17121b00)}
+#dr .pcov .pcart.du .pcartt b,#bnr .pcov .pcart.du .pcartt b{font-size:clamp(14px,1.5vw,21px)}
+#dr .pcov .pcart.du .pcartt b em,#bnr .pcov .pcart.du .pcartt b em{font-style:normal;color:var(--a2ros2);
+ padding:0 7px;font-weight:900}
+#dr .pcov .pcart.tri .pcartt b,#bnr .pcov .pcart.tri .pcartt b{font-size:clamp(12px,1.2vw,17px)}
+#dr .pcov .pcart.tri .pcartt b em,#bnr .pcov .pcart.tri .pcartt b em{padding:0 5px}
+body.php #dr .pcov.temart2,body.ph #dr .pcov.temart2,
+body.php #bnr .pcov.temart2,body.ph #bnr .pcov.temart2{padding-right:0}
+body.php #dr .pcov .pcart.du,body.ph #dr .pcov .pcart.du,
+body.php #bnr .pcov .pcart.du,body.ph #bnr .pcov .pcart.du{width:72%}
+/* cabecalho com cinco pecas: o titulo encolhe em vez de quebrar */
+#ofr .ofrh b{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ofr .ofrh b span{overflow:hidden;text-overflow:ellipsis}
+#ofr .ofrh{gap:5px}
+#ofr .ofrb{display:inline-grid;place-items:center;width:26px;height:26px;padding:0;
+ font:700 12px/1 system-ui;overflow:hidden}
+#ofr .ofrb.ofrgr{display:inline-grid;place-items:center;padding:0}
+#ofr .ofrb.ofrgr img{width:14px;height:14px;object-fit:contain;display:block}
+#ofr .ofrh::after{right:auto;left:-80px;width:0}
+body.ph #ofr .ofrb,body.php #ofr .ofrb{width:23px;height:23px;font-size:11px}
+/* minimizada nao obedece tamanho nenhum */
+#ofr.min{width:auto!important;height:auto!important}
 /* ===== ANIMA2 NOVO FIM ===== */
 </style>
 </head><body><main><h1>Projeto Ânima</h1><div id="bar"></div><div id="b"></div><div id="lg"></div></main><div id="dr"></div><div id="tip"></div>
@@ -5607,7 +5742,7 @@ function endTurn(){if(G.scr!="p"||G.win!=null||RFZ)return;const s=G.cur;const hp
   log("Limite de "+TLIM+" turnos: decidido pela vida restante ("+a+" x "+b+")");
   G.q=[];G.sel=null;render();return}
  G.cur=1-s;G.q=[];G.sel=null;G.kkc={};begin()}
-function newGame(){pannOff();G.tutp=G._tutn?1:0;G._tutn=0;const T=G.tm;try{lbSalvaTime()}catch(e){}try{[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps]].forEach(([c,v])=>{if(T&&T.some(t=>t.slice(1).includes(c)))vPre(v)});ULTV.forEach(V=>{if(T&&T.some(t=>t.slice(1).includes(V.c)))vPre(V.src)})}catch(e){}RFZ=0;G.g2m=0;G.g2v=0;G.g2seen={};SBV=[0,0];Object.assign(G,{t:0,ki:[0,0],zk:[0,0],zg:[0,0],tc:[0,0],sbcd:[0,0],q:[],sel:null,u:[],rep:[],log:[],win:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,kz:0,zs:[0,0],zd:[0,0],dr:[0,0],lead:G.ann?["none","none"]:[T[0][0],T[1][0]],ldisp:[T[0][0],T[1][0]],scr:"p",cf:G.fd=="x"?"x":G.fd&&G.fd!="r"?G.fd:FDS[Math.floor(Math.random()*FDS.length)].k});
+function newGame(){pannOff();G.tutp=G._tutn?1:0;G._tutn=0;const T=G.tm;try{lbSalvaTime()}catch(e){}try{[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups]].forEach(([c,v])=>{if(T&&T.some(t=>t.slice(1).includes(c)))vPre(v)});ULTV.forEach(V=>{if(T&&T.some(t=>t.slice(1).includes(V.c)))vPre(V.src)})}catch(e){}RFZ=0;G.g2m=0;G.g2v=0;G.g2seen={};SBV=[0,0];Object.assign(G,{t:0,ki:[0,0],zk:[0,0],zg:[0,0],tc:[0,0],sbcd:[0,0],q:[],sel:null,u:[],rep:[],log:[],win:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,kz:0,zs:[0,0],zd:[0,0],dr:[0,0],lead:G.ann?["none","none"]:[T[0][0],T[1][0]],ldisp:[T[0][0],T[1][0]],scr:"p",cf:G.fd=="x"?"x":G.fd&&G.fd!="r"?G.fd:FDS[Math.floor(Math.random()*FDS.length)].k});
  T.forEach((t,s)=>t.slice(1).forEach(c=>G.u.push({s,c,hp:100,mx:100,ar:0,br:0,st:[],cd:C[c].sk.map(()=>0),bn:0,rec:0,alive:true,im:0,rv:0,dbl:0,rvt:0,nx:0,fm:0,gk:0,gz:0,ept:0,al:{hp:100,mx:100}})));
  G.cap=(G.ann||G.tutp)?[null,null]:((G.online&&G.capO)?G.capO:[capLoad(),G.mode=="t"?capLoad():null]);capApply();G.skU=[0,0];G.u.forEach(x=>{if(x.c=="sak"){x.byk=uq(x,"uq_sak_1")?4:3;x.bya=0;x.byu0=0}if(x.c=="sas")x.cd[6]=3;x.sld=0;if(x.c=="tr"&&uq(x,"uq_tr_2")){add0(x,"HER",999);const y=x.st.find(z=>z.k=="HER");if(y)y.nr=1;x.cd[0]=99;x.herP=1}if(x.c=="tr"&&uq(x,"uq_tr_1")){}});
  G.u.filter(x=>x.c=="gu").forEach(g=>G.u.filter(x=>x.s==g.s).forEach(x=>x.st.push({k:"ARM",t:2,v:15,g:1})));[0,1].forEach(s=>{if(G.lead[s]=="gd")G.u.filter(x=>x.s==s).forEach(x=>x.st.push({k:"IMUN",t:2}))});[0,1].forEach(s=>{if(G.lead[s]=="kf")G.u.filter(x=>x.s!=s).forEach(x=>{if(!x.st.some(y=>y.k=="IMUN"))x.st.push({k:"SOBR",t:2*lf()})})});
@@ -5703,7 +5838,7 @@ function endScreen(){if(G.win==null||G.scr!="p")return endClose();let o=document
    st=d.rc?"":mine&&!oth?"Aguardando o oponente aceitar a revanche…":oth&&!mine?"O oponente quer revanche!":""}}
 btns.push([scic("%SC%")+"<i class='stbt'>Estatísticas</i>",showStats,"stb"]);
  const sig=cls+"|"+tt+"|"+st+"|"+btns.map(b=>b[0]+(b[2]||"")).join(",")+"|"+(G.online&&O.d&&O.d.rc||0);if(o.dataset.sig===sig)return;o.dataset.sig=sig;
- o.innerHTML="";const bx=mk("div","endbox"),t=mk("div","pbox "+cls);t.append(mk("div","pk",icHTML("ui_marca","","Projeto Ânima")+""),mk("div","pt",tt));bx.append(t);
+ o.innerHTML="";const bx=mk("div","endbox"),t=mk("div","pbox "+cls);t.append(mk("div","pk",icHTML("ui_marca","","Projeto Ânima","<span>PROJETO ÂNIMA</span>")),mk("div","pt",tt));bx.append(t);
  const row=mk("div","endbt");btns.forEach(([n,f,c])=>{const b=mk("button","endb"+(c?" "+c:""),"<span>"+n+"</span>");b.onclick=f;row.append(b)});bx.append(row);
  if(st)bx.append(mk("p","endst",st));if(G.online&&O.d&&O.d.rc){bx.append(mk("div","endcd","<small>Revanche em</small><b id='endcd'>5</b>"))}o.append(bx)}
 async function oEnd(a){if(!O.ref)return;try{await O.ref.update({ph:"lobby",r0:false,r1:false,lr0:false,lr1:false,cd:0,rm0:false,rm1:false,rc:0,note:"",ea:a+":"+Date.now()})}catch(e){O.err="Não foi possível sair.";endScreen()}}
@@ -5721,7 +5856,7 @@ function zStep(u,k,a,queued){const z=a.z||1,mx=zMax(u,k,a,queued),e=mk("div","zs
 
 /* ===== Legendas dos vídeos ===== */
 const SUBV={pt:"media/dc540e82be667267a467e05879cb259d.mp4",ja:"media/c6abcebdad999880ae544976b8fc8047.mp4"};
-const ZAV={ps:"media/5c883791508c3d9442b032be1d96d709.mp4",ult:"media/d1202f407a9b2843cd1dd1c110662671.mp4",beast:"media/34a3f36af5c7e77db47c6049e282a904.mp4",bult:"media/533eb248272cf7e749aa192bd865c478.mp4",mvps:"media/9d0b535d0713e1a16ef1e68d26f1668a.mp4",mvult:"media/af0246c64979c43a16501a4e9bfb474f.mp4",gdps:"media/e5702d769d4f7fb89fdd5ec549c72794.mp4",mgps:"media/0d3d80ffa4c75411675152fdcab9b3c1.mp4",mgult:"media/88e0980ef176f18cdfae3d412745871c.mp4",trps:"media/a291e6474de812aaca3fec2dd2c147d8.mp4",trult:"media/ed49863e9b78965b0b57010dce0b540f.mp4",sasult:"media/b1fd44c0be98b0ff74772b6807e6aba6.mp4",narult:"media/21c3dcbb90be95fd4a3a9a524ced5a32.mp4",clps:"media/7f4ffad3a8ebd907b5ae3f8ad9cc0340.mp4",clult:"media/11010bc51df86e44e227b28231f46055.mp4",gbkps:"media/fa567be3a2c372c007cdc28642678e74.mp4",gbkult:"media/63d993c04a5a3b4c2dfd527684ec78b0.mp4",gdult:"media/8cda131e26807eeeaf9d43a7b1933f8e.mp4",kirult:"media/30da2f55e9ecfe8c229a468b6d6f1267.mp4"};const VPRE={};
+const ZAV={boups:"media/c42252a88032db386274a308f92a7f16.mp4",boult:"media/f4c62a6494314d76ef24bd9f88891b85.mp4",ps:"media/5c883791508c3d9442b032be1d96d709.mp4",ult:"media/d1202f407a9b2843cd1dd1c110662671.mp4",beast:"media/34a3f36af5c7e77db47c6049e282a904.mp4",bult:"media/533eb248272cf7e749aa192bd865c478.mp4",mvps:"media/9d0b535d0713e1a16ef1e68d26f1668a.mp4",mvult:"media/af0246c64979c43a16501a4e9bfb474f.mp4",gdps:"media/e5702d769d4f7fb89fdd5ec549c72794.mp4",mgps:"media/0d3d80ffa4c75411675152fdcab9b3c1.mp4",mgult:"media/88e0980ef176f18cdfae3d412745871c.mp4",trps:"media/a291e6474de812aaca3fec2dd2c147d8.mp4",trult:"media/ed49863e9b78965b0b57010dce0b540f.mp4",sasult:"media/b1fd44c0be98b0ff74772b6807e6aba6.mp4",narult:"media/21c3dcbb90be95fd4a3a9a524ced5a32.mp4",clps:"media/7f4ffad3a8ebd907b5ae3f8ad9cc0340.mp4",clult:"media/11010bc51df86e44e227b28231f46055.mp4",gbkps:"media/fa567be3a2c372c007cdc28642678e74.mp4",gbkult:"media/63d993c04a5a3b4c2dfd527684ec78b0.mp4",gdult:"media/8cda131e26807eeeaf9d43a7b1933f8e.mp4",kirult:"media/30da2f55e9ecfe8c229a468b6d6f1267.mp4"};const VPRE={};
 function vPre(src){if(VPRE[src]||vidSkip(src))return;try{const v=document.createElement("video");v.src=src;v._src=src;v.preload="auto";v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.load();VPRE[src]=v}catch(e){}}
 function vidPlay(src,capHtml,cb){const done0=()=>{if(cb)try{cb()}catch(e){}};if(vidSkip(src)||G.sim){done0();return}const old=document.getElementById("g2v");if(old)old.remove();
  G.g2v=1;G.holdT=Math.max(G.holdT||0,Date.now()+25000);const ov=mk("div","");ov.id="g2v";const v=VPRE[src]||document.createElement("video");delete VPRE[src];if(!v._src){v.src=src;v._src=src}v.muted=false;try{v.currentTime=0}catch(e){}
@@ -5731,7 +5866,7 @@ function vidPlay(src,capHtml,cb){const done0=()=>{if(cb)try{cb()}catch(e){}};if(
  sk.onclick=()=>{G.vskd=1;fin()};v.onended=fin;v.onerror=fin;let started=0;v.onplaying=()=>{started=1;vspdApply(v);vdayMark(src)};setTimeout(()=>{if(!done&&!started&&v.currentTime==0)fin()},5000);setTimeout(fin,30000);const p=v.play();if(p&&p.catch)p.catch(()=>{v.muted=true;v.play().catch(fin)})}
 var RFZ=0;/* desenho da batalha congelado enquanto toca o vídeo de uma ultimate (Zamasu, Gohan Beast): dano, barras, números e log só aparecem quando o vídeo termina */
 function zaCheck(){if(G.sim||G.scr!="p")return;ULTV.forEach(V=>{if(G.u.some(u=>u.c==V.c))vPre(V.src)})}
-/* Vídeos de ultimate: personagem, linha do registro que dispara, vídeo e nome. Ultimate nova com vídeo: adicionar aqui. */const ULTV=[{c:"tr",re:/Trunks do Futuro SSJ.* usa Morra Freezaaaaa/,src:ZAV.trult,n:"Morra Freezaaaaa!!"},{c:"za",re:/Zamasu Fundido.* usa (Luz|Relâmpago) Absolut/,src:ZAV.ult,n:"Relâmpago Absoluto!!"},{c:"beast",re:/Gohan Beast.* usa Makankosappo Beast/,src:ZAV.bult,n:"Makankosappo Beast!!"},{c:"mv",re:/Mini Vegeta SSJ3.* usa Super Galick Gun/,src:ZAV.mvult,n:"Super Galick Gun!"},{c:"mg",re:/Mini Goku SSJ4.* usa Kaaa\.\.\.Meee/,src:ZAV.mgult,n:"Kaaa...Meee...Haaa...Meee..."},{c:"sas",re:/Sasuke Uchiha.* usa Susano Perfeito/,src:ZAV.sasult,n:"Susano Perfeito"},{c:"nar",re:/Naruto Uzumaki.* usa Kuramaaaaa/,src:ZAV.narult,n:"Kuramaaaaa!!!"},{c:"cl",re:/Cooler Forma Final.* usa Final Nova/,src:ZAV.clult,n:"Final Nova"},{c:"gbk",re:/Goku SSJ Blue Kaioken.* usa Eu ainda não terminei/,src:ZAV.gbkult,n:"Eu ainda não terminei!"},{c:"gd",re:/Goku SSJ Deus.* usa Esperança de um Amanhã/,src:ZAV.gdult,n:"Esperança de um Amanhã"},{c:"kir",re:/Kirito.* usa Starburst Stream/,src:ZAV.kirult,n:"Starburst Stream"}];
+/* Vídeos de ultimate: personagem, linha do registro que dispara, vídeo e nome. Ultimate nova com vídeo: adicionar aqui. */const ULTV=[{c:"tr",re:/Trunks do Futuro SSJ.* usa Morra Freezaaaaa/,src:ZAV.trult,n:"Morra Freezaaaaa!!"},{c:"za",re:/Zamasu Fundido.* usa (Luz|Relâmpago) Absolut/,src:ZAV.ult,n:"Relâmpago Absoluto!!"},{c:"beast",re:/Gohan Beast.* usa Makankosappo Beast/,src:ZAV.bult,n:"Makankosappo Beast!!"},{c:"mv",re:/Mini Vegeta SSJ3.* usa Super Galick Gun/,src:ZAV.mvult,n:"Super Galick Gun!"},{c:"mg",re:/Mini Goku SSJ4.* usa Kaaa\.\.\.Meee/,src:ZAV.mgult,n:"Kaaa...Meee...Haaa...Meee..."},{c:"sas",re:/Sasuke Uchiha.* usa Susano Perfeito/,src:ZAV.sasult,n:"Susano Perfeito"},{c:"nar",re:/Naruto Uzumaki.* usa Kuramaaaaa/,src:ZAV.narult,n:"Kuramaaaaa!!!"},{c:"cl",re:/Cooler Forma Final.* usa Final Nova/,src:ZAV.clult,n:"Final Nova"},{c:"gbk",re:/Goku SSJ Blue Kaioken.* usa Eu ainda não terminei/,src:ZAV.gbkult,n:"Eu ainda não terminei!"},{c:"gd",re:/Goku SSJ Deus.* usa Esperança de um Amanhã/,src:ZAV.gdult,n:"Esperança de um Amanhã"},{c:"kir",re:/Kirito.* usa Starburst Stream/,src:ZAV.kirult,n:"Starburst Stream"},{c:"bo",re:/Otsutsuki Boruto.* usa Karma Rasengan/,src:ZAV.boult,n:"Karma Rasengan"}];
 function zaPre(){if(G.sim)return 0;const k=G.gid||"x";G.zaSeen=G.zaSeen||{};
  let V=null,best=-1;const L=G.log||[];for(const W of ULTV){const ix=[];L.forEach((l,j)=>{if(W.re.test(l.m||""))ix.push(j)});const n=ix.length,kk=k+":"+W.c;if(G.zaSeen[kk]==null)G.zaSeen[kk]=G.t>1?n:0;if(n<G.zaSeen[kk])G.zaSeen[kk]=n;if(n>G.zaSeen[kk]){const pos=ix[n-1-G.zaSeen[kk]];/* registro é do mais novo para o mais antigo: toca primeiro a ultimate usada antes */if(pos>best){best=pos;V=W}}}
  if(V){const kk=k+":"+V.c;G.zaSeen[kk]++;if(vidSkip(V.src))return zaPre();
@@ -5753,6 +5888,10 @@ Object.assign(ICOLD,{dr_ban:"media/f3e35f313d37747716b76f7ceb4d69c9.webp",dr_ban
    esta perto do teto. */
 IMG.ui_trbg="media/9e908599bb4ae9b8983c14239a5e99a4.webp";
 IMG.ui_chbg="media/8c31486213276d9d78d7bd41183dfd45.webp";
+/* fundos do lobby: a sala personalizada tem o seu, a fila e a classificacao
+   dividem o da arena ranqueada */
+IMG.ui_salabg="media/8d22f57f6bc0b88765c48bfd8f75a859.webp";
+IMG.ui_rkbg="media/6420524809340d192c18050697651dea.webp";
 /* qual tela usa qual fundo. A chave e a classe passada ao pgShell, ou "b"
    para o montador de times (Modo Treino). */
 const TELABG={chs:"ui_chbg",b:"ui_trbg"};
@@ -5774,14 +5913,20 @@ const ICLEG={ui_tt_campo:"\ud83d\uddfa\ufe0f",ui_tt_lider:"\ud83d\udc51",ui_tt_m
  ui_tt_jogando:"\ud83c\udfae",ui_ki:"\u26a1",ui_zk:"\ud83d\udd25",ui_ord:"\u21c5",ui_sur:"\ud83c\udff3"};
 /* Icones de coisas que SO existem agora (lista de amigos): ficam nos dois modos. */
 const ICSEMPRE={ui_amigos:1,ui_chat:1};
+/* no Legado estes nao aparecem: a marca do app substituiu texto que o desenho
+   antigo ja escrevia, entao mostrar os dois duplicaria */
+const ICNADA={ui_marca:1};
 /* ic(nome,classe,alt,leg) devolve a imagem no Moderna e, no Legado, o que
    aquele ponto mostrava antes. leg manda quando o mesmo icone aparece em
    dois lugares que eram diferentes. */
 function icHTML(n,cl,alt,leg){
  if(typeof temaLer=="function"&&temaLer()==="leg"&&(leg!==undefined||!ICSEMPRE[n])){
   /* leg manda; sem ele, quem tem arte antiga cai no <img> normal (o IMG ja
-     foi trocado pelo icTroca) e o resto usa a tabela ICLEG */
-  const e=(leg!==undefined?leg:(ICOLD[n]?null:(ICLEG[n]||"")));
+     foi trocado pelo icTroca) e o resto usa a tabela ICLEG.
+     Quem nao tem nem arte antiga nem emoji na ICLEG cai no icone NOVO: antes
+     devolvia "" e o icone simplesmente sumia no Legado (classes, equipamentos,
+     configuracoes). So fica de fora o que esta na ICNADA. */
+  const e=(leg!==undefined?leg:(ICOLD[n]?null:(ICLEG[n]!==undefined?ICLEG[n]:(ICNADA[n]?"":null))));
   if(e!==null)return e?(e.charAt(0)=="<"?e:"<i class='icem'>"+e+"</i>"):""}
  const u=IMG[n]||"";if(!u)return "";
  return "<img"+(cl?" class='"+cl+"'":"")+" src='"+u+"' alt='"+(alt||"")+"'>"}
@@ -6362,12 +6507,40 @@ function sndSave(){try{localStorage.setItem("za_vol",JSON.stringify(VOL))}catch(
 function sndRows(p){[["g","Geral"],["v","Voz"],["m","Música"],["e","Efeitos"]].forEach(([k,n])=>{const r=mk("label","sndr"),t=mk("span","",n),s=mk("input"),o=mk("em","",VOL[k]+"%");s.type="range";s.min=0;s.max=100;s.step=1;s.value=VOL[k];s.setAttribute("aria-label","Volume "+n);
   s.oninput=()=>{VOL[k]=+s.value;o.textContent=VOL[k]+"%";s.style.setProperty("--p",s.value+"%");sndSave();document.querySelectorAll(".sndr input[data-k='"+k+"']").forEach(x=>{if(x!==s){x.value=s.value;const e=x.closest(".sndr").querySelector("em");if(e)e.textContent=VOL[k]+"%"}})};s.dataset.k=k;s.style.setProperty("--p",s.value+"%");const sb=(d,lab)=>{const x=mk("button","sndpm",lab);x.type="button";x.setAttribute("aria-label",(d<0?"Diminuir ":"Aumentar ")+n);x.onclick=ev=>{ev.preventDefault();ev.stopPropagation();s.value=Math.max(0,Math.min(100,(+s.value)+d));s.oninput()};return x};r.append(t,sb(-1,"−"),s,sb(1,"+"),o);p.append(r)});
  const tr=mk("div","sndtr"),tst=mk("button","sndt","▶ Testar voz"),te=mk("button","sndt","▶ Testar efeito");tst.onclick=()=>vox(AU.vs);te.onclick=()=>sfx("melee");tr.append(tst,te);p.append(tr);return p}
+/* ===== Tamanho e opacidade do menu principal =====
+   Fica no mesmo lugar do tema (Configuracoes > Video) e vale nos dois visuais:
+   o .mml e a coluna do menu nos dois. */
+const MMCFG=(()=>{let c={sc:100,op:100};
+ try{Object.assign(c,JSON.parse(localStorage.getItem("za_menu")||"{}"))}catch(e){}
+ c.sc=Math.min(130,Math.max(70,+c.sc||100));c.op=Math.min(100,Math.max(40,+c.op||100));return c})();
+function mmSave(){const t=JSON.stringify(MMCFG);
+ try{ls("za_menu",t)}catch(e){try{localStorage.setItem("za_menu",t)}catch(x){}}}
+function mmApply(){try{const r=document.documentElement;
+ r.style.setProperty("--mmsc",String(MMCFG.sc/100));
+ r.style.setProperty("--mmop",String(MMCFG.op/100))}catch(e){}}
+const MMFX=[["sc","Tamanho do menu",70,130],["op","Opacidade do menu",40,100]];
+function mmRows(p){
+ MMFX.forEach(([k,n,mn,mx])=>{const r=mk("label","sndr"),t=mk("span","",n),sl=mk("input"),o=mk("em","",MMCFG[k]+"%");
+  sl.type="range";sl.min=mn;sl.max=mx;sl.step=1;sl.value=MMCFG[k];sl.dataset.mm=k;
+  sl.setAttribute("aria-label",n);
+  const pc=v=>((v-mn)/(mx-mn)*100)+"%";sl.style.setProperty("--p",pc(MMCFG[k]));
+  sl.oninput=()=>{MMCFG[k]=+sl.value;o.textContent=sl.value+"%";
+   sl.style.setProperty("--p",pc(+sl.value));mmApply();mmSave()};
+  r.append(t,sl,o);p.append(r)});
+ const tr=mk("div","sndtr"),rp=mk("button","sndt","\u21ba Voltar ao padr\u00e3o");
+ rp.onclick=()=>{MMCFG.sc=100;MMCFG.op=100;mmApply();mmSave();
+  p.querySelectorAll("input[data-mm]").forEach(x=>{const f=MMFX.find(y=>y[0]==x.dataset.mm);
+   x.value=MMCFG[x.dataset.mm];x.style.setProperty("--p",((x.value-f[2])/(f[3]-f[2])*100)+"%");
+   const e2=x.closest(".sndr").querySelector("em");if(e2)e2.textContent=x.value+"%"})};
+ tr.append(rp);p.append(tr);return p}
 function vidRows(p){
  p.append(mk("div","cfgsub","Visual do jogo"),temaPick(),
   mk("p","cfgnote","O Legado traz de volta o menu e o desenho anteriores. A escolha fica salva neste aparelho."));
  const sv=mk("label","sndsk"),cb=mk("input");cb.type="checkbox";cb.checked=skipVid();cb.dataset.vf="skip";cb.onchange=()=>vflSet("skip",cb.checked);sv.append(cb,mk("span","","Sempre pular vídeos"));p.append(sv,vscRow("skip"));
  const vd=mk("label","sndsk"),dc=mk("input");dc.type="checkbox";dc.checked=vdayOn();dc.dataset.vf="day";dc.onchange=()=>vflSet("day",dc.checked);vd.title="Cada vídeo toca uma vez e só volta a tocar depois de 24 horas";vd.append(dc,mk("span","","Reproduzir somente uma vez ao dia"));p.append(vd,vscRow("day"));
  const vs=mk("div","vspdrow");vs.append(mk("span","","Velocidade dos vídeos"),vspdBtn("vspdb"));p.append(vs);
+ p.append(mk("div","cfgsub","Menu principal"));mmRows(p);
+ p.append(mk("p","cfgnote","Deixa o menu maior ou menor e mais ou menos transparente sobre o cenário. Vale nos dois visuais e fica salvo neste aparelho."));
  p.append(mk("div","cfgsub","Legendas dos vídeos"),subPick());
  return p}
 function grfRows(p){
@@ -6704,7 +6877,7 @@ function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=ZOFF
    else{const nb=mk("button","",G.mode=="d"?"Novo draft":"Montar times");nb.onclick=()=>{if(G.mode=="d")startDraft();else build()};const mn=mk("button","g opt","Menu");mn.onclick=showMenu;const bb=botBox();bb.classList.add("opt");bar.append(nb,mn,bb)}}
   else if(!rkEmJogo()){const bb=botBox();bb.classList.add("opt");bar.append(bb)}}
  {const tb=mk("button","tgl",BCOL?"▾ Mais opções":"▴ Menos opções");tb.setAttribute("aria-expanded",String(!BCOL));tb.onclick=()=>{BCOL=!BCOL;try{localStorage.setItem("za_bcol",BCOL?"1":"0")}catch(e){}render()};bar.append(tb);bar.classList.toggle("col",BCOL)}
- hovRe();resTrack();fxShow();g2Check();rvCheck();zaCheck();coach();winAnn();if(G.win!=null&&G._endAt&&Date.now()>=G._endAt)endScreen();if(G.annB&&!G.sim){G.annB=0;const VS=G.t<=1?[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps]].filter(([c])=>G.u.some(u=>u.c==c)):[],ann=()=>phaseAnn("battle",1),aft=()=>{let pl=0;const nx=i=>{if(i>=VS.length){if(!pl)return ann();G.holdT=Math.max(G.holdT||0,Date.now()+3600);return setTimeout(()=>{if(G.t<=1&&G.scr=="p"&&G.win==null)ann()},3000)}const [c,src]=VS[i];let sy=1;G.vskd=0;vidPlay(src,"<b>"+C[c].ps.n+"</b><span>"+shn(c)+" entra na batalha</span>",()=>{if(!sy&&!G.vskd)pl=1;nx(i+1)});sy=0};nx(0)};if(G.intro){G.intro=0;playIntro(aft)}else aft()}turnAnn();lgFill()}
+ hovRe();resTrack();fxShow();g2Check();rvCheck();zaCheck();coach();winAnn();if(G.win!=null&&G._endAt&&Date.now()>=G._endAt)endScreen();if(G.annB&&!G.sim){G.annB=0;const VS=G.t<=1?[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups]].filter(([c])=>G.u.some(u=>u.c==c)):[],ann=()=>phaseAnn("battle",1),aft=()=>{let pl=0;const nx=i=>{if(i>=VS.length){if(!pl)return ann();G.holdT=Math.max(G.holdT||0,Date.now()+3600);return setTimeout(()=>{if(G.t<=1&&G.scr=="p"&&G.win==null)ann()},3000)}const [c,src]=VS[i];let sy=1;G.vskd=0;vidPlay(src,"<b>"+C[c].ps.n+"</b><span>"+shn(c)+" entra na batalha</span>",()=>{if(!sy&&!G.vskd)pl=1;nx(i+1)});sy=0};nx(0)};if(G.intro){G.intro=0;playIntro(aft)}else aft()}turnAnn();lgFill()}
 const DRV={cl:7,gbk:7,gi:9,gd:8,a17:8,gu:8,ab:8,black:7,beast:7,tr:7,kf:7,za:7,gg:7,mg:7,ar:6,rd:6,tu:6,mv:6},
 LRV={cl:5,gbk:6,beast:8,gi:8,a17:8,gd:7,gg:7,mg:7,tu:7,gu:6,mv:6,rd:6,kf:6,za:6,ar:6,tr:5,black:3,ab:3};
 const CLS=["Blaster","Lutador","Suporte","Assassino","Carregador","Debuffer","Tanque"],cls=k=>C[k].cl.split("/").map(x=>x.trim());
@@ -7803,9 +7976,11 @@ function bnShow(b){const ids=b.ty=="pt"?["pt_"+b.p.t]:b.ty=="nw"?["nw_"+b.k]:b.t
  ft.append(cb,mk("span","bnsp"),fc);if(b.ty!="sn"&&b.ty!="co")ft.append(vm);bx.append(ft);document.body.append(ov);document.addEventListener("keydown",esc,true);(b.ty=="sn"||b.ty=="co"?fc:vm).focus()}
 /* ===== Notícias (estilo painel de notícias de jogo de celular) ===== */
 const NWT=[["pers","Novos personagens e Em breve"],["bal","Balanceamentos"],["ev","Eventos"]];
-/* SYOFF=1 tira a secao "Sistemas" das notas do patch. O site publico leva so
-   Buffs, Nerfs, Ajustes e Novidades; mudanca de sistema fica so aqui no link de
-   testes. O build.py troca este 0 por 1 ao gerar o site. */
+/* SYOFF=1 tira a secao "Sistemas" das notas do patch. Desde 22/11 ela nao vai
+   a lugar nenhum - nem ao site, nem ao link de testes: o patch leva so Buffs,
+   Nerfs, Ajustes e Novidades. Sem a coluna da direita a capa vira coluna unica
+   e a arte dos personagens cabe inteira. O conteudo de Sistemas continua sendo
+   escrito no campo sy; so nao e exibido. O build.py confere a chave. */
 const SYOFF=1;
 const syOf=p=>SYOFF?[]:((p&&p.sy)||[]);
 const nwD=s=>{const m=/(\d+)\/(\d+)\/(\d+)/.exec(s||"");return m?new Date(+m[3],+m[2]-1,+m[1]).getTime():0};
@@ -7881,6 +8056,30 @@ function pcTem(p){if(!p)return false;
  if((p.nvc||[]).some(o=>o.img||C[o.k]))return true;
  if((p.nv||[]).length)return true;/* nv e nvc sao listas diferentes de novidades */
  return syOf(p).length>0}
+/* Capa do patch com mais de um lancamento: a arte e dividida por barras "/".
+   LEAN e a inclinacao (a mesma do recorte de fora) e GAP a folga da barra,
+   os dois em porcentagem da largura da arte. */
+const PCLEAN=38,PCGAP=2.6;
+function pcArtes(A){const n=A.length,L=PCLEAN,G=PCGAP;
+ const bnd=i=>({t:i*100/n+L/2,b:i*100/n-L/2});/* divisa entre a fatia i-1 e a i */
+ const r1=v=>Math.round(v*10)/10;
+ let h="";
+ for(let i=0;i<n;i++){
+  /* A caixa de cada fatia tem a largura da arte inteira e fica centrada no meio
+     da fatia VISIVEL (a primeira ja comeca cortada pela diagonal de fora, por
+     isso o 10). Assim o enquadramento e o mesmo de quando ha um lancamento so,
+     e o personagem fica no meio do pedaco dele em vez de encostar na barra. */
+  const ini=i==0?10:i*100/n,fim=(i+1)*100/n,c=(ini+fim)/2,left=c-50;
+  const px=v=>v-left,gb=G/2;
+  const l=i==0?{t:-60,b:-60}:bnd(i),d=i==n-1?{t:160,b:160}:bnd(i+1);
+  const g1=i==0?0:gb,g2=i==n-1?0:gb;
+  h+="<i class='pcah' style='left:"+r1(left)+"%;width:100%;clip-path:polygon("
+   +r1(px(l.t)+g1)+"% 0,"+r1(px(d.t)-g2)+"% 0,"+r1(px(d.b)-g2)+"% 100%,"+r1(px(l.b)+g1)+"% 100%)'>"
+   +"<img src='"+A[i]+"' alt=''></i>"}
+ for(let i=1;i<n;i++){const b=bnd(i);
+  h+="<i class='pcasl' style='clip-path:polygon("+r1(b.t-G/2)+"% 0,"+r1(b.t+G/2)+"% 0,"
+   +r1(b.b+G/2)+"% 100%,"+r1(b.b-G/2)+"% 100%)'></i>"}
+ return h}
 function pcCover(p,pi){const cov=mk("section","pcov");
  /* esquerda: tudo que mudou de balanceamento, agrupado como nas notas de atualizacao */
  const L=["nw","b","n","r"].map(ty=>{/* mesma ordem das secoes: novidades, buffs, nerfs, ajustes */
@@ -7901,13 +8100,33 @@ function pcCover(p,pi){const cov=mk("section","pcov");
     a capa vira coluna unica, senao fica meia tela em branco (acontece no site,
     com SYOFF). */
  if(!R)cov.classList.add("so1");
- /* personagem novo do patch: a arte grande entra na capa, cortada em diagonal */
- const NOVO=(p.ch||[]).filter(x=>C[x[0]]&&(x[2]||"r")=="nw").map(x=>x[0])[0]
-   ||((p.nw||[]).filter(k=>C[k])[0])
-   ||((p.nvc||[]).filter(o=>o.k&&C[o.k]).map(o=>o.k)[0]);
- const AR=NOVO&&(IMG[NOVO+"_h"]||IMG[NOVO+"_s"]);
- const ART=AR?"<div class='pcart'><img src='"+AR+"' alt=''><div class='pcartt'><small>Neste patch</small><b>"+shn(NOVO)+"</b></div></div>":"";
- if(ART)cov.classList.add("temart");
+ /* personagem novo do patch: a arte grande entra na capa, cortada em diagonal.
+    Com mais de um lancamento no mesmo patch a arte e dividida ao meio por uma
+    barra "/", com um personagem de cada lado. Regra do usuario: sempre que
+    houver dois ou mais lancamentos, dividir. */
+ const arteDe=k=>IMG[k+"_h"]||IMG[k+"_s"];
+ /* lancamento e so o que esta marcado como novo: o "nvc" entra apenas quando
+    nao ha nenhum, porque ele tambem guarda novidade de personagem antigo */
+ let NOVOS=[].concat((p.ch||[]).filter(x=>C[x[0]]&&(x[2]||"r")=="nw").map(x=>x[0]),
+   (p.nw||[]).filter(k=>C[k]))
+   .filter((k,i,a)=>a.indexOf(k)===i&&arteDe(k));
+ if(!NOVOS.length)NOVOS=(p.nvc||[]).filter(o=>o.k&&C[o.k]&&arteDe(o.k)).map(o=>o.k)
+   .filter((k,i,a)=>a.indexOf(k)===i).slice(0,1);
+ let ART="";
+ /* o desenho antigo nao tinha splash na capa, e o CSS que posiciona o .pcart
+    mora no a2v (desligado no Legado): sem isso a arte vira um bloco solto e
+    toma a tela toda no banner de entrada */
+ const semArte=(typeof temaLer=="function"&&temaLer()==="leg");
+ if(semArte)NOVOS.length=0;
+ if(NOVOS.length>1){const A=NOVOS.slice(0,3);
+  ART="<div class='pcart du"+(A.length>2?" tri":"")+"'>"
+   +pcArtes(A.map(arteDe))
+   +"<div class='pcartt'><small>Neste patch</small><b>"
+   +A.map(shn).join("<em>/</em>")+"</b></div></div>";
+  cov.classList.add("temart","temart"+(A.length>2?"3":"2"))}
+ else if(NOVOS.length){const k=NOVOS[0];
+  ART="<div class='pcart'><img src='"+arteDe(k)+"' alt=''><div class='pcartt'><small>Neste patch</small><b>"+shn(k)+"</b></div></div>";
+  cov.classList.add("temart")}
  cov.innerHTML=ART+"<div class='pccol'>"+TT+(L||"<p class='pcvz'>Sem mudanças de kit neste patch.</p>")+"</div><div class='pccol'>"+R+LG+"</div>";
  cov.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{const el=document.getElementById(b.dataset.go);if(!el)return;
   el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("pkfx");setTimeout(()=>el.classList.remove("pkfx"),1300)});
@@ -8094,7 +8313,10 @@ const cpn=(u,i)=>(u&&u.cp&&u.cp[i])||0;
 let IVT=1;
 function ivPv(ck,t){const m=capMap(eqGet(ck)),T=Math.min(Math.max(1,t||1),CAPT);
  if(!G.lead)G.lead=["none","none"];if(!G.q)G.q=[];
- const mx=Math.max(1,100+2*(m.of3||0)-15*(m.as2||0)+1*(m.of4||0)*T);
+ /* A mesma conta da batalha (hit/newGame): Placa +2, Tudo ou Nada -10 e Elo de
+    Dor +70. Estava sem o Elo de Dor e com -15 no Tudo ou Nada, entao a barra de
+    HP da previa nao batia com o que acontecia em partida. */
+ const mx=Math.max(1,100+2*(m.of3||0)-10*(m.as2||0)+70*(m.ta1||0)+1*(m.of4||0)*T);
  let uqI="",uqS=null;for(const q in m){const X=CAPM[q];if(X&&X.c=="un"){uqI=X.i;uqS=X.sk;break}}
  return{s:0,c:ck,hp:mx,mx:mx,ar:1*(m.df1||0)+Math.floor(.5*(m.df2||0)*T),br:2*(m.df3||0)+Math.floor(1.0*(m.df4||0)*T),st:[],cd:C[ck].sk.map(()=>0),bn:0,rec:0,alive:true,fm:0,nx:0,cp:m,cpt:T,uq:uqI,uqs:uqS,al:{hp:100,mx:100}}}
 const capUlt=k=>!!(k&&(k.zk||k.kz||k.vz));
@@ -10105,7 +10327,11 @@ function lbTime(){try{const t=JSON.parse(ls("za_time")||"null");
 function lbSeq(){try{let n=0;for(const x of rkHist()){if(x.win)n++;else break}return n}catch(e){return 0}}
 function lbArena(w){try{const sk=w.querySelector(".mmsky"),cm=w.querySelector(".mmcam");
  if(sk)sk.remove();if(cm)cm.remove();
- const bg=mk("div","lbarena");if(IMG.ui_lobby)bg.style.backgroundImage="url("+IMG.ui_lobby+")";
+ /* cada aba tem o seu cenario: a sala personalizada e um dojo, a fila e a
+    classificacao dividem a arena ranqueada */
+ const key=(LBM=="sala")?"ui_salabg":"ui_rkbg";
+ const u=IMG[key]||IMG.ui_lobby;
+ const bg=mk("div","lbarena");if(u)bg.style.backgroundImage="url("+u+")";
  w.insertBefore(bg,w.firstChild)}catch(e){}}
 /* o botão grande é também a busca: relógio andando e Cancelar */
 function lbTickBotao(){const g=document.querySelector(".lbgo");if(!g)return;
@@ -10759,7 +10985,7 @@ const pkey=()=>!D?null:D.ph=="seq"?(D.seq[D.si]&&D.seq[D.si].t):D.ph;
 let PLAST=null,PT=0;
 const PBT=["yt","win","battle","g2rv","turv"];function pannOff(all){if(all){const c=document.getElementById("coach");if(c)c.remove();const sp=document.getElementById("cspot");if(sp)sp.remove()}const o=document.getElementById("pann");if(o&&(all||PBT.includes(o.dataset.k))){clearTimeout(PT);o.className="";o.dataset.k=""}}
 function phaseAnn(k,force){if(!k||!PANN[k]||(k===PLAST&&!force))return;if(PBT.includes(k)&&G.scr!="p")return;PLAST=k;let o=document.getElementById("pann");if(!o){o=document.createElement("div");o.id="pann";document.body.append(o)}o.dataset.k=k;
- o.innerHTML="";const t=PANN[k],box=mk("div","pbox"+(t[2]?" "+t[2]:""));box.append(mk("div","pk",icHTML("ui_marca","","Projeto Ânima")+""),mk("div","pt",t[0]));if(t[1])box.append(mk("div","ps",t[1]));o.append(box);
+ o.innerHTML="";const t=PANN[k],box=mk("div","pbox"+(t[2]?" "+t[2]:""));box.append(mk("div","pk",icHTML("ui_marca","","Projeto Ânima","<span>PROJETO ÂNIMA</span>")),mk("div","pt",t[0]));if(t[1])box.append(mk("div","ps",t[1]));o.append(box);
  o.className="";void o.offsetWidth;o.className="show";if(k=="battle"&&typeof AU!="undefined"&&AU.start){vox(AU.start);G.holdT=Date.now()+7200}clearTimeout(PT);PT=setTimeout(()=>{o.className="out";PT=setTimeout(()=>{o.className=""},700)},k=="battle"?3000:k=="win"?4200:2300)}
 function dRender(){if(!D)return showMenu();pannOff();if(typeof banSfx=="function")banSfx();{const fk=pkey();if(D._fk!==fk){D._fk=fk;D.flt="all";D.q=""}}G.scr="d";document.body.classList.remove("bt");document.body.classList.add("dm");const r=$("#dr");r.innerHTML="";
  const ph=D.ph,cur=ph=="seq"?D.seq[D.si]:null,phk=ph=="seq"?cur.t:ph=="prerev"?"pre":ph=="newlead"||ph=="fbanrev"?"fban":ph=="banrev"?"ban":ph,still=(ph=="field"&&!D.rolled)||ph=="prerev"||ph=="done"||ph=="sur"||((ph=="banrev"||ph=="fbanrev")&&!D.on);
@@ -11193,17 +11419,77 @@ function frDmBox(){const a=FRDM.aberto,w=mk("div","ofrdm");
  setTimeout(()=>{const l=document.querySelector("#ofr .ofrdml");if(l)l.scrollTop=l.scrollHeight},30);
  return w}
 
+/* ---- a lista de amigos se move e muda de tamanho, como o chat ---- */
+const frCfg=(()=>{let c={sz:"m"};try{Object.assign(c,JSON.parse(localStorage.getItem("za_amigos")||"{}"))}catch(e){}return c})();
+function frSave(){try{ls("za_amigos",JSON.stringify(frCfg))}catch(e){try{localStorage.setItem("za_amigos",JSON.stringify(frCfg))}catch(x){}}}
+const frCan=()=>typeof matchMedia=="function"&&matchMedia("(hover:hover) and (pointer:fine)").matches&&!(document.body&&(document.body.classList.contains("ph")||document.body.classList.contains("php")));
+function frApplySz(b){if(!b)return;const on=!!(frCfg.w&&frCfg.h&&frCan());
+ ["p","m","g"].forEach(x=>b.classList.remove("fz-"+x));b.classList.add("fz-"+(frCfg.sz||"m"));
+ b.classList.toggle("fzc",on);
+ if(on){b.style.setProperty("--frw",Math.min(frCfg.w,innerWidth-8)+"px");b.style.setProperty("--frh",Math.min(frCfg.h,innerHeight-8)+"px")}
+ else{b.style.removeProperty("--frw");b.style.removeProperty("--frh")}}
+function frPos(b){if(!b)return;const S=(k,v)=>v==null?b.style.removeProperty(k):b.style.setProperty(k,v,"important");
+ if(!frCfg.pos||!frCan()){b.classList.remove("mvd");["left","top","right","bottom","transform"].forEach(k=>S(k,null));return}
+ b.classList.add("mvd");
+ const w=b.offsetWidth||300,hh=b.offsetHeight||40,
+  x=Math.max(4,Math.min(innerWidth-w-4,frCfg.pos.x)),y=Math.max(4,Math.min(innerHeight-hh-4,frCfg.pos.y));
+ S("left",x+"px");S("top",y+"px");S("right","auto");S("bottom","auto");S("transform","none")}
+/* as oito bordas: as mesmas do chat, com os mesmos minimos */
+function frZonas(b){["n","s","e","w","ne","nw","se","sw"].forEach(d=>{const z=mk("div","ofrz "+d);
+ z.addEventListener("pointerdown",e=>{if(frCfg.lock||e.button>0||!frCan()||FR.min)return;e.preventDefault();e.stopPropagation();
+  const r=b.getBoundingClientRect(),st={l:r.left,t:r.top,w:r.width,h:r.height,x0:e.clientX,y0:e.clientY,id:e.pointerId},MW=250,MH=180;
+  try{z.setPointerCapture(e.pointerId)}catch(x){}b.classList.add("rzg");
+  const mvz=ev=>{if(ev.pointerId!==st.id)return;ev.preventDefault();const dx=ev.clientX-st.x0,dy=ev.clientY-st.y0;let W=st.w,H=st.h;
+   if(d.includes("e"))W=Math.max(MW,Math.min(innerWidth-4-st.l,st.w+dx));if(d.includes("w"))W=Math.max(MW,Math.min(st.l+st.w-4,st.w-dx));
+   if(d.includes("s"))H=Math.max(MH,Math.min(innerHeight-4-st.t,st.h+dy));if(d.includes("n"))H=Math.max(MH,Math.min(st.t+st.h-4,st.h-dy));
+   frCfg.w=Math.round(W);frCfg.h=Math.round(H);frCfg.pos={x:d.includes("w")?st.l+st.w-W:st.l,y:d.includes("n")?st.t+st.h-H:st.t};
+   frApplySz(b);frPos(b)};
+  const enz=()=>{z.removeEventListener("pointermove",mvz);z.removeEventListener("pointerup",enz);z.removeEventListener("pointercancel",enz);
+   b.classList.remove("rzg");frSave();if(b._frsync)b._frsync()};
+  z.addEventListener("pointermove",mvz);z.addEventListener("pointerup",enz);z.addEventListener("pointercancel",enz)});b.append(z)});
+ frApplySz(b);setTimeout(()=>frPos(b),0)}
+if(typeof addEventListener=="function")addEventListener("resize",()=>{const b=document.getElementById("ofr");if(b){frApplySz(b);frPos(b)}});
 /* ---- painel ---- */
 function frBuild(){const b=mk("div","ofr"+(FR.min?" min":""));b.id="ofr";
  const hd=mk("div","ofrh");
  hd.append(mk("b","",icHTML("ui_amigos","ofric","")+"<span>Lista de amigos</span>"));
  const un=mk("span","ofru");un.hidden=true;hd.append(un);
- const mn=mk("button","ofrb",FR.min?"▢":"–");mn.title=FR.min?"Abrir":"Minimizar";
+ const LKT=t=>t?"Lista travada: toque para destravar":"Travar a lista no lugar";
+ const lk=mk("button","ofrb ofrlk"+(frCfg.lock?" on":""),frCfg.lock?"\ud83d\udd12":"\ud83d\udd13");lk.title=LKT(frCfg.lock);
+ lk.onclick=e=>{e.stopPropagation();frCfg.lock=frCfg.lock?0:1;frSave();
+  lk.textContent=frCfg.lock?"\ud83d\udd12":"\ud83d\udd13";lk.title=LKT(frCfg.lock);
+  lk.classList.toggle("on",!!frCfg.lock);b.classList.toggle("lkd",!!frCfg.lock)};hd.append(lk);
+ const gr=mk("button","ofrb ofrgr",icHTML("ui_gear","","","\u2699"));gr.title="Ajustes da lista";hd.append(gr);
+ const mn=mk("button","ofrb ofrmn",FR.min?"▢":"–");mn.title=FR.min?"Abrir":"Minimizar";
  mn.onclick=e=>{e.stopPropagation();FR.min=FR.min?0:1;frRender()};hd.append(mn);
- hd.onclick=()=>{if(FR.min){FR.min=0;frRender()}};
+ if(frCfg.lock)b.classList.add("lkd");
  b.append(hd);
+ /* ajustes: tamanho pronto, voltar para o canto e a dica de arrastar */
+ const set=mk("div","ofrset");set.hidden=!FR.aj;
+ gr.onclick=e=>{e.stopPropagation();FR.aj=!FR.aj;set.hidden=!FR.aj};
+ {const sl=mk("select","");[["p","Pequena"],["m","M\u00e9dia"],["g","Grande"],["c","Personalizada"]].forEach(([v,n])=>{const o=mk("option","",n);o.value=v;if(v=="c")o.hidden=true;sl.append(o)});
+  const sync=()=>{const c=!!(frCfg.w&&frCfg.h&&frCan());sl.querySelector('option[value="c"]').hidden=!c;sl.value=c?"c":(frCfg.sz||"m")};
+  sl.onchange=()=>{if(sl.value=="c")return;frCfg.sz=sl.value;delete frCfg.w;delete frCfg.h;frSave();frApplySz(b);frPos(b);sync()};
+  const r=mk("label","");r.append(mk("span","","Tamanho"),sl);set.append(r);sync();b._frsync=sync}
+ {const rp=mk("button","ofrrp","\u21ba Voltar a lista para o canto");rp.type="button";
+  rp.onclick=e=>{e.stopPropagation();delete frCfg.pos;frSave();frPos(b)};set.append(rp)}
+ set.append(mk("small","","No computador d\u00e1 para arrastar a barra de cima para mover a lista, e as bordas ou os cantos para mudar o tamanho."));
+ b.append(set);
+ /* arrastar pela barra de cima, com a mesma folga de 6px do chat */
+ let drg=null,moved=0;
+ const mv=e=>{if(!drg||e.pointerId!==drg.id)return;
+  if(!moved&&Math.hypot(e.clientX-drg.x0,e.clientY-drg.y0)<6)return;
+  if(!moved){moved=1;try{hd.setPointerCapture(e.pointerId)}catch(x){}b.classList.add("drg")}
+  e.preventDefault();frCfg.pos={x:e.clientX-drg.dx,y:e.clientY-drg.dy};frPos(b)};
+ const end=()=>{removeEventListener("pointermove",mv);removeEventListener("pointerup",end);removeEventListener("pointercancel",end);
+  if(!drg)return;drg=null;b.classList.remove("drg");if(moved){frSave();setTimeout(()=>{moved=0},0)}};
+ hd.addEventListener("pointerdown",e=>{if(frCfg.lock||FR.min||!frCan()||e.button>0||e.target.closest("button"))return;
+  const r=b.getBoundingClientRect();drg={dx:e.clientX-r.left,dy:e.clientY-r.top,x0:e.clientX,y0:e.clientY,id:e.pointerId};moved=0;
+  addEventListener("pointermove",mv,{passive:false});addEventListener("pointerup",end);addEventListener("pointercancel",end)});
+ hd.addEventListener("click",e=>{if(moved){e.stopPropagation();e.preventDefault()}},true);
+ hd.onclick=()=>{if(moved)return;if(FR.min){FR.min=0;frRender()}};
  const bd=mk("div","ofrbd");
- if(FRDM.aberto){bd.append(frDmBox());b.append(bd);return b}
+ if(FRDM.aberto){bd.append(frDmBox());b.append(bd);frZonas(b);return b}
  /* buscar na propria lista */
  const q=mk("input","ofrq");q.type="search";q.placeholder="Buscar amigo…";q.value=FR.q;
  q.oninput=()=>{FR.q=q.value;frLista(b.querySelector(".ofrls"))};
@@ -11240,6 +11526,7 @@ function frBuild(){const b=mk("div","ofr"+(FR.min?" min":""));b.id="ofr";
  }
  bd.append(ad);
  b.append(bd);
+ frZonas(b);
  return b}
 
 function frLista(ls){if(!ls)return;ls.innerHTML="";
@@ -11281,7 +11568,8 @@ function frRender(){
  let b=document.getElementById("ofr");
  if(!b){b=frBuild();document.body.append(b)}
  else{b.classList.toggle("min",!!FR.min);
-  const mn=b.querySelector(".ofrb");if(mn){mn.textContent=FR.min?"▢":"–";mn.title=FR.min?"Abrir":"Minimizar"}}
+  const mn=b.querySelector(".ofrmn");if(mn){mn.textContent=FR.min?"▢":"–";mn.title=FR.min?"Abrir":"Minimizar"}}
+ frApplySz(b);frPos(b);
  const un=b.querySelector(".ofru");
  if(un){const n=FR.req.length+FR.list.filter(x=>frDmNovas(x.id)).length;un.hidden=!n;un.textContent=n||""}
  if(!FR.min&&!FRDM.aberto)frLista(b.querySelector(".ofrls"));
@@ -11458,7 +11746,8 @@ window.LITE=!!(window.matchMedia&&(matchMedia("(pointer:coarse)").matches||match
  if(!LITE&&_pf==null&&typeof requestAnimationFrame=="function")setTimeout(()=>{let n=0,slow=0;const t0=performance.now();let l=t0;const f=t=>{n++;if(t-l>45)slow++;l=t;if(t-t0<2500)requestAnimationFrame(f);else{const fps=n/((t-t0)/1000);if(fps<40||slow>12){window.LITE=true;window.LITESLOW=1;document.body.classList.add("lite");try{localStorage.setItem("za_perf","1")}catch(e){}}}};if(!document.hidden)requestAnimationFrame(f)},1800);
 (function(){if(typeof Blob=="undefined"||typeof URL=="undefined"||!URL.createObjectURL)return;try{for(const k in IMG){const v=IMG[k];if(typeof v!="string"||v.slice(0,5)!="data:")continue;const c=v.indexOf(","),mt=v.slice(5,v.indexOf(";")),bin=atob(v.slice(c+1)),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);IMG[k]=URL.createObjectURL(new Blob([u],{type:mt}))}}catch(e){}})();
 G.tm=[0,1].map(()=>Object.keys(C).sort(()=>Math.random()-.5).slice(0,4));
-try{temaAplica(temaLer())}catch(e){}/* antes de desenhar: o menu ja nasce no visual certo */
+try{temaAplica(temaLer())}catch(e){}
+try{mmApply()}catch(e){}/* tamanho e opacidade do menu, antes do primeiro desenho *//* antes de desenhar: o menu ja nasce no visual certo */
 showMenu();
 
 try{fsAplica(fsLer())}catch(e){}try{curAplica(curLer())}catch(e){}/* tamanho da letra salvo pelo jogador */

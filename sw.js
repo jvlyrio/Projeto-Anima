@@ -5,7 +5,7 @@
    e por isso nunca fica desatualizada: se o desenho muda, o nome muda junto.
 
    Gerado pelo build.py — não editar o sw.js da raiz, editar este. */
-const VERSAO = "6a897f0a1bc5";
+const VERSAO = "4b96c8373fab";
 const CACHE = "anima-" + VERSAO;
 
 /* o esqueleto, baixado na instalação para a segunda visita abrir na hora */

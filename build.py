@@ -103,13 +103,12 @@ def main(src):
         sys.exit("faltam arquivos em media/: " + ", ".join(sorted(missing)))
     s = s.replace("<title>Projeto Ânima · Etapa 1</title>", "<title>Projeto Ânima</title>", 1)
 
-    # A secao "Sistemas" das notas do patch e so para o link de testes. No site
-    # publico ficam Buffs, Nerfs, Ajustes e Novidades. Ligar a chave aqui e mais
-    # seguro do que mexer no array PATCH por regex.
-    if s.count("const SYOFF=0;") != 1:
-        sys.exit("build: esperava uma ocorrencia de 'const SYOFF=0;' e achei %d"
-                 % s.count("const SYOFF=0;"))
-    s = s.replace("const SYOFF=0;", "const SYOFF=1;", 1)
+    # A secao "Sistemas" das notas do patch nao vai a lugar nenhum desde 22/11:
+    # nem no site nem no link de testes. O arquivo de trabalho ja vem com
+    # SYOFF=1; aqui so conferimos, para o site nunca sair com ela ligada.
+    if s.count("const SYOFF=1;") != 1:
+        sys.exit("build: esperava uma ocorrencia de 'const SYOFF=1;' e achei %d"
+                 % s.count("const SYOFF=1;"))
 
     s = tira_embutidas(s)
     import json
