@@ -5027,6 +5027,16 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
  text-shadow:0 2px 6px #000b}#bnr .pcov.temart>.pccol{position:relative;z-index:1}body.php #bnr .pcov.temart,body.ph #bnr .pcov.temart{padding-right:0}body.php #bnr .pcov .pcart,body.ph #bnr .pcov .pcart{width:58%;opacity:.28}body.php #bnr .pcov .pcartt,body.ph #bnr .pcov .pcartt{display:none}/* ===== ANIMA2 VISUAL FIM ===== */
 </style>
 <style id="a2n">
+/* rodape da janela de Configuracoes sempre a vista */
+.mmobox .mmoft{position:sticky;bottom:0;z-index:3;display:block;
+ margin:14px -24px -20px;padding:12px 24px 16px;
+ background:linear-gradient(180deg,#3d294400,#3d2944e6 28%,#3d2944 60%)}
+#dr .mmobox .mmoft,.mmobox.cfg .mmoft{background:linear-gradient(180deg,#1a141f00,#1a141fe8 28%,#1a141f 60%)}
+.mmobox .mmoft .mmocl{margin-top:0}
+.mmobox .mmoft .mmoout{margin-top:8px}
+body.ph .mmobox .mmoft,body.php .mmobox .mmoft{margin:10px -16px -12px;padding:9px 16px 12px}
+body.ph .mmobox .mmoft .mmocl,body.php .mmobox .mmoft .mmocl{padding:8px;font-size:14px}
+body.ph .mmobox .mmoft .mmoout,body.php .mmobox .mmoft .mmoout{margin-top:6px}
 /* ===== lista de amigos no celular =====
    Mover e redimensionar passaram a valer no toque: as bordas finas de 5px nao
    servem para o dedo, e o cabecalho precisa de touch-action para o arrasto
@@ -7421,10 +7431,15 @@ function mmOpts(tema){
   CFGT.forEach(([k,n,d])=>{const ico=icHTML("ui_cfg_"+k,"","");const b=mk("button","cfgit",(ico?"<em class='cfgic'>"+ico+"</em>":"")+"<span><b>"+n+"</b><small>"+d+"</small></span><i>›</i>");
    b.onclick=()=>mmOpts(k);L.append(b)});
   bx.append(L);
-  const cl=mk("button","mmocl lam","Voltar");cl.onclick=close;bx.append(cl);
+  /* o rodape fica grudado no fim da caixa: no celular deitado a lista de
+     assuntos e mais alta que a tela e o "Sair da conta" ficava escondido
+     la embaixo, so alcancavel rolando */
+  const ft=mk("div","mmoft");
+  const cl=mk("button","mmocl lam","Voltar");cl.onclick=close;ft.append(cl);
   {const sa=mk("button","mmocl lam mmoout","Sair da conta");
    sa.title="Entrar em outra conta ou jogar como convidado";
-   sa.onclick=()=>{close();contaAbre()};bx.append(sa)}
+   sa.onclick=()=>{close();contaAbre()};ft.append(sa)}
+  bx.append(ft);
  }else{
   bx.append(mk("p","cfgint",item[2]));
   const d=mk("section","cfgs");
