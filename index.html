@@ -4568,12 +4568,54 @@ body.php #dr .pcov .pcartt,body.ph #dr .pcov .pcartt{display:none}
  -webkit-text-stroke:0;text-shadow:none}
 #dr .cfcusto{margin:0 0 10px;color:var(--a2ros2);font:700 13px/1.3 system-ui}
 #dr .cftx{color:#ddd2cb;font:500 clamp(14px,1.5vw,17px)/1.5 system-ui}
+/* ===== a ficha precisa rolar: no PC e no celular deitado a coluna da esquerda
+   passava da tela e o resto do texto ficava inalcancavel. A arte fica parada e
+   so o texto rola. Em pe (body.php) quem rola e a pagina, entao fica de fora. */
+/* ===== e mais sutil: estava tudo grande demais para uma tela de leitura ===== */
+#dr .cfL{padding:22px 14px 24px 28px}
+#dr .cfhd h2{margin:0 0 7px;font-size:clamp(24px,2.9vw,40px)}
+#dr .cftags{gap:6px;margin-bottom:13px}
+#dr .cftags span{font-size:11px;padding:4px 8px}
+#dr .cfab{gap:9px;padding-bottom:12px;margin-bottom:13px}
+#dr .cfabi{width:clamp(40px,3.7vw,50px);gap:4px}
+#dr .cfabi img,#dr .cfabi .cfnoic{border-width:1.5px}
+#dr .cfabi em{font-size:9.5px;width:100%;overflow-wrap:anywhere}
+#dr .cfbox h3{margin:0 0 6px;font-size:clamp(17px,1.85vw,25px)}
+#dr .cfcusto{margin:0 0 7px;font-size:12px}
+#dr .cftx{font-size:clamp(12.5px,1.1vw,15px);line-height:1.52}
+/* o painel de maestria so na ficha: na tela de Personagens ele continua igual */
+#dr .cfc .mxp{padding:10px 12px;margin:0 0 12px;border-radius:11px}
+#dr .cfc .mxpc{gap:10px;margin-bottom:8px}
+#dr .cfc .mxpc .mxslg,#dr .cfc .mxpc .mxslg img{width:54px;height:54px}
+#dr .cfc .mxpc .mxslg b{font-size:14px}
+#dr .cfc .mxpc b{font-size:clamp(14px,1.4vw,18px)}
+#dr .cfc .mxpc em{font-size:11.5px}
+#dr .cfc .mxpc small{font-size:9px}
+#dr .cfc .mxbr{margin:5px 0}
+#dr .cfc .mxbr i{height:7px}
+#dr .cfc .mxbr span,#dr .cfc .mxbr b{font-size:10.5px}
+#dr .cfc .mxsub{font-size:11.5px;margin-top:4px}
+#dr .cfc .mxnum{margin-top:9px;padding-top:8px;gap:5px}
+#dr .cfc .mxnum b{font-size:13px}
+#dr .cfc .mxnum small{font-size:8px}
+#dr .cfc .mxpr{margin-top:9px;padding-top:8px}
+#dr .cfc .mxpr li{font-size:11.5px}
+/* no celular deitado sobra pouca altura: o painel encolhe mais um tanto */
+body.ph #dr .cfL{padding:12px 10px 16px 14px}
+body.ph #dr .cfc .mxp{padding:8px 10px;margin-bottom:9px}
+body.ph #dr .cfc .mxpc{gap:8px;margin-bottom:6px}
+body.ph #dr .cfc .mxpc .mxslg,body.ph #dr .cfc .mxpc .mxslg img{width:42px;height:42px}
+body.ph #dr .cfc .mxpc .mxslg b{font-size:11px}
+body.ph #dr .cfc .mxnum{margin-top:7px;padding-top:6px;gap:4px}
+body.ph #dr .cfc .mxnum b{font-size:11.5px}
+body.ph #dr .cfc .mxpr{margin-top:7px;padding-top:6px}
+body.ph #dr .cfab{gap:7px;padding-bottom:9px;margin-bottom:9px}
 /* resumo e confrontos */
-#dr .cfres{margin-top:24px;padding-top:18px;border-top:1px solid var(--a2lin);color:#ddd2cb;
- font:500 14px/1.5 system-ui}
+#dr .cfres{margin-top:17px;padding-top:13px;border-top:1px solid var(--a2lin);color:#ddd2cb;
+ font:500 13px/1.5 system-ui}
 #dr .cfres p{margin:0 0 7px}
 #dr .cfres b{color:var(--a2cre)}
-#dr .cfctrw{margin-top:22px;display:grid;gap:18px}
+#dr .cfctrw{margin-top:16px;display:grid;gap:13px}
 #dr .cfctr .cfr{margin-bottom:10px}
 #dr .cfcl{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;cursor:pointer;
  background:#221d29;border:1px solid var(--a2lin);border-left:3px solid var(--a2lin);
@@ -4849,7 +4891,6 @@ body.bt #bar .qfila{order:4}
 body.bt #bar .fdb{order:9}
 
 /* icones de classe */
-.clsi{width:1.25em;height:1.25em;object-fit:contain;display:inline-block;vertical-align:-.26em;margin-right:.32em}
 #dr .dflt,.dflt{display:inline-flex;align-items:center;gap:0}
 #dr .cftags span{display:inline-flex;align-items:center}
 
@@ -4985,6 +5026,196 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
  text-shadow:0 2px 6px #000b}#bnr .pcov.temart>.pccol{position:relative;z-index:1}body.php #bnr .pcov.temart,body.ph #bnr .pcov.temart{padding-right:0}body.php #bnr .pcov .pcart,body.ph #bnr .pcov .pcart{width:58%;opacity:.28}body.php #bnr .pcov .pcartt,body.ph #bnr .pcov .pcartt{display:none}/* ===== ANIMA2 VISUAL FIM ===== */
 </style>
 <style id="a2n">
+/* ===== aviso de amigo que ficou online, logo acima da lista ===== */
+.ofrtst{position:fixed;z-index:18;display:none;flex-direction:column;gap:6px;pointer-events:none}
+.ofrtst:not([style*="display: none"]){display:flex}
+.ofrtt{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:11px;
+ background:#16202ef2;border:1px solid #3ddc8455;box-shadow:0 8px 22px #000a;
+ font:600 12.5px/1.3 system-ui;color:#dfe8e3;
+ opacity:0;transform:translateY(8px) scale(.97);transition:opacity .3s,transform .3s}
+.ofrtt.on{opacity:1;transform:none}
+.ofrtt b{color:#8df0b8;font-weight:800}
+.ofrtd{width:9px;height:9px;flex:none;border-radius:50%;background:#3ddc84;
+ box-shadow:0 0 0 3px #3ddc8426,0 0 9px #3ddc84aa}
+@media (max-width:760px){.ofrtt{padding:6px 9px;font-size:11.5px;gap:6px}
+ .ofrtd{width:8px;height:8px}}
+@media (prefers-reduced-motion:reduce){.ofrtt{transition:none}}
+/* ===== tela da retroatividade da Maestria ===== */
+#mxrt{position:fixed;inset:0;z-index:97;background:#07050ac2;backdrop-filter:blur(3px);
+ display:flex;align-items:flex-start;justify-content:center;padding:16px 14px 22px;overflow-y:auto}
+.mxrtbx{width:min(500px,96vw);margin:auto 0;padding:clamp(14px,2.5vw,22px);border-radius:16px;
+ background:#1a141fef;border:1px solid #5c4a2e;box-shadow:0 20px 56px #000b,inset 0 1px 0 #ffffff12;text-align:center}
+.mxrtz{font-size:34px;line-height:1;margin-bottom:4px;filter:drop-shadow(0 4px 10px #000a)}
+.mxrtbx h2{margin:0 0 7px;font:900 clamp(16px,2.1vw,21px)/1.25 system-ui;color:#e9c87a}
+.mxrtbx>p{margin:0;font:600 12.5px/1.5 system-ui;color:#c9c0bb}
+.mxrtbx>p b{color:#f6f4f3}
+.mxrtl{margin:13px 0 0;display:flex;flex-direction:column;gap:6px;text-align:left}
+.mxrti{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:11px;
+ background:#ffffff0c;border:1px solid #ffffff14}
+.mxrti.up{background:linear-gradient(90deg,#d9a74e26,#ffffff0c);border-color:#d9a74e59}
+.mxrtf{width:38px;height:38px;flex:none;border-radius:9px;object-fit:cover;border:1px solid #ffffff1f}
+.mxrtd{flex:1 1 auto;min-width:0}
+.mxrtd b{display:block;font:800 13px/1.2 system-ui;color:#f1ece8;
+ overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mxrtd span{display:block;font:600 11px/1.3 system-ui;color:#b9afa9;margin-top:2px}
+.mxrtp{flex:none;text-align:right}
+.mxrtp em{display:block;font:900 italic 15px/1 system-ui;color:#e9c87a;font-style:normal}
+.mxrtp i{display:block;font:700 10px/1.2 system-ui;color:#b9afa9;font-style:normal;margin-top:3px}
+.mxrti.up .mxrtp i{color:#e9c87a}
+.mxrtt{margin:11px 0 0;font:600 12.5px/1.4 system-ui;color:#c9c0bb}
+.mxrtt b{color:#e9c87a}
+.mxrtft{margin-top:14px;display:flex;justify-content:center}
+.mxrtft .lam{min-width:min(220px,100%)}
+/* ===== selo de Maestria na apresentação dos times ===== */
+.vcd .vim{position:relative}
+.vcd .vmx{position:absolute;left:4px;bottom:4px;z-index:2;display:flex;align-items:center;
+ gap:3px;padding:2px 6px 2px 3px;border-radius:999px;background:#0e0a0fd6;
+ border:1px solid #e9c87a66;box-shadow:0 2px 7px #000a;font-style:normal;line-height:1}
+.vcd .vmx img{width:17px;height:17px;object-fit:contain;display:block;filter:drop-shadow(0 1px 3px #000)}
+.vcd .vmx em{font-style:normal;font:900 11px/1 system-ui;color:#e9c87a;text-shadow:0 1px 0 #000}
+/* o VS novo e quase quadrado: um tiquinho maior que o antigo para ter a mesma presenca */
+.vsb img{height:clamp(52px,10.5vh,92px)}
+@media (max-width:760px){.vcd .vmx{left:3px;bottom:3px;padding:1px 5px 1px 2px}
+ .vcd .vmx img{width:14px;height:14px}.vcd .vmx em{font-size:10px}
+ .vsb img{height:clamp(44px,9vh,70px)}}
+/* o visual Legado ficou trancado: o botão mostra o cadeado e não responde */
+.subpk .sub.tmlk{opacity:.5;cursor:not-allowed;filter:grayscale(.6)}
+.subpk .sub.tmlk:hover{opacity:.5;transform:none}
+.subpk .sub .tmcad{font-style:normal;font-size:.95em;margin-right:5px;line-height:1}
+/* o icone de classe tem de ter tamanho de texto nos dois visuais:
+   no Legado ele vinha do tamanho natural do arquivo e virava um quadro */
+.clsi{width:1.25em;height:1.25em;object-fit:contain;display:inline-block;vertical-align:-.26em;margin-right:.32em}
+/* ===== A ficha do personagem no Legado =====
+   Todo o desenho da ficha morava no <style id="a2v">, que o Legado desliga: a tela
+   ficava sem painel, sem a arte e com o texto quase invisivel sobre o cenario.
+   Aqui vai o mesmo desenho com a paleta azul e dourada do Legado. */
+body.legado #dr .cfc .cfbd{position:relative;display:block;min-height:calc(100vh - 86px);overflow:visible}
+body.legado #dr .cfR{position:absolute;right:0;top:0;bottom:0;width:58%;z-index:0;pointer-events:none}
+body.legado #dr .cfR img{width:100%;height:100%;object-fit:cover;object-position:center 14%;display:block}
+body.legado #dr .cfR::after{content:"";position:absolute;inset:0;
+ background:linear-gradient(90deg,#0b1020 0%,#0b1020f2 18%,#0b10208c 46%,#0b10201a 78%,#0b102000 100%)}
+body.legado #dr .cfL{position:relative;z-index:1;width:min(560px,52%);padding:34px 10px 34px 34px}
+body.legado #dr .cfr{display:block;color:var(--a2ros2);font:800 11px/1 system-ui;letter-spacing:.14em;
+ text-transform:uppercase;margin-bottom:8px}
+body.legado #dr .cfhd h2{margin:0 0 10px;font:900 italic clamp(30px,4.2vw,58px)/1.08 system-ui;color:var(--a2cre);
+ -webkit-text-stroke:0;text-shadow:0 3px 0 #0006}
+body.legado #dr .cftags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+body.legado #dr .cftags span{background:#1a2c44;border:1px solid var(--a2lin);color:var(--a2cre2);
+ font:700 12px/1 system-ui;padding:6px 10px}
+body.legado #dr .cftags .cffr{border-color:var(--a2ros3);color:var(--a2ros2)}
+body.legado #dr .cfab{display:flex;flex-wrap:wrap;gap:12px;padding-bottom:18px;border-bottom:1px solid var(--a2lin);
+ margin-bottom:18px}
+body.legado #dr .cfabi{background:none;border:0;padding:0;box-shadow:none;cursor:pointer;
+ display:flex;flex-direction:column;align-items:center;gap:6px;width:clamp(50px,5vw,62px)}
+body.legado #dr .cfabi img, body.legado #dr .cfabi .cfnoic{width:100%;aspect-ratio:1;object-fit:cover;display:block;
+ border:2px solid #2a5d76;background:#1a2c44;transition:border-color .15s}
+body.legado #dr .cfabi em{font-style:normal;font:700 10.5px/1.15 system-ui;color:var(--a2cre2);text-align:center}
+body.legado #dr .cfabi.on img, body.legado #dr .cfabi.on .cfnoic{border-color:var(--a2ros2)}
+body.legado #dr .cfabi.on em{color:var(--a2cre)}
+body.legado #dr .cfabi:hover img{border-color:var(--a2ros3)}
+body.legado #dr .cfbox h3{margin:0 0 8px;font:800 clamp(21px,2.5vw,33px)/1.15 system-ui;color:var(--a2cre);
+ -webkit-text-stroke:0;text-shadow:none}
+body.legado #dr .cfcusto{margin:0 0 10px;color:var(--a2ros2);font:700 13px/1.3 system-ui}
+body.legado #dr .cftx{color:#cfe0ea;font:500 clamp(14px,1.5vw,17px)/1.5 system-ui}
+body.legado #dr .cfL{padding:22px 14px 24px 28px}
+body.legado #dr .cfhd h2{margin:0 0 7px;font-size:clamp(24px,2.9vw,40px)}
+body.legado #dr .cftags{gap:6px;margin-bottom:13px}
+body.legado #dr .cftags span{font-size:11px;padding:4px 8px}
+body.legado #dr .cfab{gap:9px;padding-bottom:12px;margin-bottom:13px}
+body.legado #dr .cfabi{width:clamp(40px,3.7vw,50px);gap:4px}
+body.legado #dr .cfabi img, body.legado #dr .cfabi .cfnoic{border-width:1.5px}
+body.legado #dr .cfabi em{font-size:9.5px;width:100%;overflow-wrap:anywhere}
+body.legado #dr .cfbox h3{margin:0 0 6px;font-size:clamp(17px,1.85vw,25px)}
+body.legado #dr .cfcusto{margin:0 0 7px;font-size:12px}
+body.legado #dr .cftx{font-size:clamp(12.5px,1.1vw,15px);line-height:1.52}
+body.legado #dr .cfc .mxp{padding:10px 12px;margin:0 0 12px;border-radius:11px}
+body.legado #dr .cfc .mxpc{gap:10px;margin-bottom:8px}
+body.legado #dr .cfc .mxpc .mxslg, body.legado #dr .cfc .mxpc .mxslg img{width:54px;height:54px}
+body.legado #dr .cfc .mxpc .mxslg b{font-size:14px}
+body.legado #dr .cfc .mxpc b{font-size:clamp(14px,1.4vw,18px)}
+body.legado #dr .cfc .mxpc em{font-size:11.5px}
+body.legado #dr .cfc .mxpc small{font-size:9px}
+body.legado #dr .cfc .mxbr{margin:5px 0}
+body.legado #dr .cfc .mxbr i{height:7px}
+body.legado #dr .cfc .mxbr span, body.legado #dr .cfc .mxbr b{font-size:10.5px}
+body.legado #dr .cfc .mxsub{font-size:11.5px;margin-top:4px}
+body.legado #dr .cfc .mxnum{margin-top:9px;padding-top:8px;gap:5px}
+body.legado #dr .cfc .mxnum b{font-size:13px}
+body.legado #dr .cfc .mxnum small{font-size:8px}
+body.legado #dr .cfc .mxpr{margin-top:9px;padding-top:8px}
+body.legado #dr .cfc .mxpr li{font-size:11.5px}
+body.legado.ph #dr .cfL{padding:12px 10px 16px 14px}
+body.legado.ph #dr .cfc .mxp{padding:8px 10px;margin-bottom:9px}
+body.legado.ph #dr .cfc .mxpc{gap:8px;margin-bottom:6px}
+body.legado.ph #dr .cfc .mxpc .mxslg, body.legado.ph #dr .cfc .mxpc .mxslg img{width:42px;height:42px}
+body.legado.ph #dr .cfc .mxpc .mxslg b{font-size:11px}
+body.legado.ph #dr .cfc .mxnum{margin-top:7px;padding-top:6px;gap:4px}
+body.legado.ph #dr .cfc .mxnum b{font-size:11.5px}
+body.legado.ph #dr .cfc .mxpr{margin-top:7px;padding-top:6px}
+body.legado.ph #dr .cfab{gap:7px;padding-bottom:9px;margin-bottom:9px}
+body.legado #dr .cfres{margin-top:17px;padding-top:13px;border-top:1px solid var(--a2lin);color:#cfe0ea;
+ font:500 13px/1.5 system-ui}
+body.legado #dr .cfres p{margin:0 0 7px}
+body.legado #dr .cfres b{color:var(--a2cre)}
+body.legado #dr .cfctrw{margin-top:16px;display:grid;gap:13px}
+body.legado #dr .cfctr .cfr{margin-bottom:10px}
+body.legado #dr .cfcl{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;cursor:pointer;
+ background:#132135;border:1px solid var(--a2lin);border-left:3px solid var(--a2lin);
+ border-radius:0;box-shadow:none;padding:9px 11px;margin-bottom:7px}
+body.legado #dr .cfctr.bom .cfcl{border-left-color:#5fe08a}
+body.legado #dr .cfctr.ruim .cfcl{border-left-color:#e0685f}
+body.legado #dr .cfcl:hover{background:#1a2c44}
+body.legado #dr .cfcl img{width:40px;height:40px;object-fit:cover;flex:none;border:1px solid var(--a2lin)}
+body.legado #dr .cfcl b{display:block;color:var(--a2cre);font:800 13.5px/1.2 system-ui;margin-bottom:3px}
+body.legado #dr .cfcl span{display:block;color:var(--a2cre2);font:500 12.5px/1.4 system-ui}
+body.legado #dr .cfcl span .dtx, body.legado #dr .cfcl span .dfx, body.legado #dr .cfcl span .skr, body.legado #dr .cfres .dtx, body.legado #dr .cfres .dfx, body.legado #dr .cfres .skr, body.legado #dr .cftx .skr{font-size:.92em!important;padding:1px 5px!important;line-height:1.35!important;
+ vertical-align:baseline;display:inline;white-space:nowrap}
+body.legado #dr .cfcl span .skr img, body.legado #dr .cfres .skr img, body.legado #dr .cftx .skr img{width:1.05em!important;height:1.05em!important;vertical-align:-.16em;margin-right:.25em;
+ border-radius:0;display:inline-block}
+body.legado #dr .cfcl span .dtx::before, body.legado #dr .cfcl span .dfx::before{transform:scale(.88)}
+body.legado #dr .cfc .pgdim{background:#0b1020fa!important}
+body.legado #dr .cfres [data-g], body.legado #dr .cfcl [data-g], body.legado #dr .cftx [data-g], body.legado #dr .cfres [data-ik], body.legado #dr .cfcl [data-ik], body.legado #dr .cftx [data-ik]{font-size:.92em!important;padding:1px 5px!important;line-height:1.35!important;
+ display:inline!important;vertical-align:baseline;white-space:nowrap}
+body.legado #dr .cfres [data-g] img, body.legado #dr .cfcl [data-g] img, body.legado #dr .cftx [data-g] img, body.legado #dr .cfres [data-ik] img, body.legado #dr .cfcl [data-ik] img, body.legado #dr .cftx [data-ik] img{width:1.05em!important;height:1.05em!important;vertical-align:-.16em;margin-right:.25em;
+ display:inline-block!important;border-radius:0}
+body.legado.php #dr .cfc .cfbd{min-height:0;display:flex;flex-direction:column}
+body.legado.php #dr .cfR{position:relative;width:100%;height:46vh;right:auto;order:-1;flex:none}
+body.legado.php #dr .cfR::after{background:linear-gradient(180deg,#0b102000 32%,#0b1020b3 68%,#0b1020 100%)}
+body.legado.php #dr .cfL{width:100%;padding:0 16px 26px;margin-top:-56px}
+body.legado.php #dr .cfhd h2{font-size:clamp(26px,8vw,40px)}
+body.legado.php #dr .cfab{gap:9px}
+body.legado.php #dr .cfabi{width:clamp(44px,13vw,58px)}
+body.legado.ph #dr .cfR{width:46%}
+body.legado.ph #dr .cfL{width:min(100%,56%);padding:16px 8px 16px 16px}
+body.legado.ph #dr .cfhd h2{font-size:clamp(20px,5.4vh,32px)}
+body.legado.ph #dr .cfabi{width:clamp(38px,6vh,50px)}
+body.legado.ph #dr .cfabi em{font-size:9px}
+body.legado.ph #dr .cfbox h3{font-size:clamp(16px,4vh,23px)}
+body.legado.ph #dr .cftx{font-size:clamp(12px,2.9vh,15px)}
+body.legado.php #dr .cfR::after{background:linear-gradient(180deg,#0b102000 40%,#0b102099 74%,#0b1020 100%)!important}
+body.legado.ph #dr .cfR::after{background:linear-gradient(90deg,#0b1020 0%,#0b1020d9 14%,#0b10204d 42%,#0b102000 72%)!important}
+body.legado.ph #dr .cfR{width:52%}
+body.legado.ph #dr .cfR img{object-position:center 10%}
+body.legado.php #dr .cfR{height:52vh}
+body.legado.php #dr .cfR img{object-position:center 8%;filter:brightness(1.06)}
+body.legado.ph #dr .cfR{width:48%}
+body.legado.ph #dr .cfL{width:min(100%,54%)}
+body.legado.ph #dr .cfR img{object-position:center 8%;filter:brightness(1.06)}
+body.legado #dr .mm2.pg .cfbd, body.legado #dr .mm2.pg .chbd, body.legado #dr .mm2.pg .ptbd, body.legado #dr .mm2.pg .ttbd, body.legado #dr .mm2.pg .lbbd, body.legado #dr .mm2.pg .ivbd, body.legado #dr .mm2.pg .rkbd{position:relative;z-index:2}
+body.legado #dr .cftags span{display:inline-flex;align-items:center}
+body.legado .cfab{display:flex;gap:8px;flex-wrap:wrap}
+body.legado .cfabi em{display:block;white-space:nowrap;font-style:normal}
+body.legado.ph .cfab, body.legado.php .cfab{gap:6px}
+body.legado.ph .cfabi em, body.legado.php .cfabi em{font-size:10.5px;letter-spacing:-.1px}
+/* ===== a ficha do personagem precisa rolar nos dois visuais: no PC e no celular
+   deitado a coluna da esquerda passava da tela e o resto do texto ficava
+   inalcancavel. A arte fica parada e so o texto rola; em pe quem rola e a pagina. */
+body:not(.php) #dr .cfc .cfbd{height:100%;min-height:0;overflow:hidden}
+body:not(.php) #dr .cfL{max-height:100%;overflow-y:auto;overscroll-behavior:contain;
+ scrollbar-width:thin;scrollbar-color:#6a5b6f33 transparent}
+body:not(.php) #dr .cfL::-webkit-scrollbar{width:7px}
+body:not(.php) #dr .cfL::-webkit-scrollbar-thumb{background:#6a5b6f66;border-radius:999px}
+body:not(.php) #dr .cfL::-webkit-scrollbar-track{background:transparent}
 /* ===== tela "Configure seu jogo antes de começar" (vale nos dois visuais) ===== */
 #cfg1{position:fixed;inset:0;z-index:96;background:#07050aa6;
  display:flex;align-items:flex-start;justify-content:center;padding:16px 14px 22px;
@@ -6223,7 +6454,7 @@ function zaPre(){if(G.sim)return 0;const k=G.gid||"x";G.zaSeen=G.zaSeen||{};
    Nao ficam embutidas no arquivo (ele ja esta perto do teto de 16 MB):
    moram no deposito do artifact e em media/ no site, e so sao buscadas
    quando o jogador liga o Legado. */
-const ICOLD={ui_arc:"media/de98ef2aeb008551aad24f9c07e542ef.webp",ui_back:"media/45e9cc2b5bb97dca210e5fc24f982e55.webp",ui_draft:"media/3dcef9ed9d72b6b8dea4970d279eaa03.webp",ui_gear:"media/d6ed03b3b1a300efeccd76aebe7c1a93.webp",ui_globe:"media/93eff58b32f3888615aa8fff993dea6c.webp",ui_hist:"media/ad0fd61ef40846fff5e6285fb62651db.webp",ui_inv:"media/493f9aea42682361b718215c1b6f96c5.webp",ui_kame:"media/158dc43830027043e23899b11a20350d.webp",ui_news:"media/152ee0aa9dcd2db813368c48dfbe8178.webp",ui_off:"media/40e76c96884041513f5951352ab7a575.webp",ui_patch:"media/f3691a10f10bf31356cd0c056c244257.webp",ui_pers:"media/fca1ece6b18b2f44f49fb0fa3df6260c.webp",ui_rank:"media/db526e087d59d4832c3b075b717060ba.webp",ui_treino:"media/c62182e4cb8b8e70790429c417f648ad.webp",ui_vs:"media/44e670409e87a8c2ef1bd3fce07ac150.webp",ui_fila:"media/44e670409e87a8c2ef1bd3fce07ac150.webp"};
+const ICOLD={ui_arc:"media/de98ef2aeb008551aad24f9c07e542ef.webp",ui_back:"media/45e9cc2b5bb97dca210e5fc24f982e55.webp",ui_draft:"media/3dcef9ed9d72b6b8dea4970d279eaa03.webp",ui_gear:"media/d6ed03b3b1a300efeccd76aebe7c1a93.webp",ui_globe:"media/93eff58b32f3888615aa8fff993dea6c.webp",ui_hist:"media/ad0fd61ef40846fff5e6285fb62651db.webp",ui_inv:"media/493f9aea42682361b718215c1b6f96c5.webp",ui_kame:"media/158dc43830027043e23899b11a20350d.webp",ui_news:"media/152ee0aa9dcd2db813368c48dfbe8178.webp",ui_off:"media/40e76c96884041513f5951352ab7a575.webp",ui_patch:"media/f3691a10f10bf31356cd0c056c244257.webp",ui_pers:"media/fca1ece6b18b2f44f49fb0fa3df6260c.webp",ui_rank:"media/db526e087d59d4832c3b075b717060ba.webp",ui_treino:"media/c62182e4cb8b8e70790429c417f648ad.webp",ui_vs:"media/171ffb3140f818734e24ea840b6fbb80.webp",ui_fila:"media/44e670409e87a8c2ef1bd3fce07ac150.webp"};
 /* As capturas do passo a passo do draft foram refeitas com o visual novo.
    Estas sao as de antes, pelo mesmo caminho dos icones. */
 Object.assign(ICOLD,{dr_ban:"media/f3e35f313d37747716b76f7ceb4d69c9.webp",dr_banrev:"media/8bd14943dbdbb64cd70fc35a0e66e0bf.webp",dr_done:"media/626789fadf50acc133b1dd62f94e7f5f.webp",dr_fban:"media/7367ff1d3a6cfa8e26b88aed0c6368cb.webp",dr_fbanrev:"media/b45aa36645dcd71febec1965fb59b7b0.webp",dr_field:"media/c33a7a1f4413d693a73b0f2db795ba3b.webp",dr_fvote:"media/6ebc78058f7c56977e6f2d0cf3abbabb.webp",dr_lead:"media/5611807f7a2bbf099371363a1947f7fc.webp",dr_pick:"media/4e2014d4393642d6e27a3310726054da.webp",dr_pre:"media/25971a46129ac5febe5fe4e7505f5b63.webp",dr_prerev:"media/0d04f4653955b209a49764b3be4d8830.webp",dr_tela:"media/ee44b297c280b75bf4eca858b1f3dcb0.webp",tv_dr1:"media/d552a9c74a6c066b4c399c446fc1da4d.webp",tv_dr2:"media/bfc55d2baa6a2886b6e2f5eb51b99122.webp"});
@@ -6280,10 +6511,14 @@ function icHTML(n,cl,alt,leg){
    As pecas que so existem na versao nova (lista de amigos, filtro de classe)
    moram no <style id="a2n">, que nunca desliga: elas trocam de paleta pelo
    body.legado, senao apareceriam sem estilo nenhum. */
-const TEMAS=[["mod","Moderna","O visual atual"],["leg","Legado","O menu e o desenho anteriores"]];
+const TEMAS=[["mod","Moderna","O visual atual"],["leg","Legado","Encerrado: o jogo segue só com o visual Moderno"]];
+/* O Legado está trancado. Manter dois visuais dobrava o trabalho de cada
+   atualização, então o jogo segue só com o Moderno. Quem estava no Legado
+   volta para o Moderno ao entrar; o CSS antigo fica no arquivo, desligado. */
+const TEMALOCK=1;
 /* Nao passa pelo ls(): o botao do Som e montado antes do ls existir, e a
    protecao devolvia "Moderna" para quem tinha o Legado salvo. */
-function temaLer(){try{if(typeof ls=="function")return ls("za_tema")==="leg"?"leg":"mod"}catch(e){}
+function temaLer(){if(TEMALOCK)return"mod";try{if(typeof ls=="function")return ls("za_tema")==="leg"?"leg":"mod"}catch(e){}
  try{return localStorage.getItem("za_tema")==="leg"?"leg":"mod"}catch(e){}
  return "mod"}
 function temaAplica(t){const a=document.getElementById("a2v"),c=document.getElementById("a2c");
@@ -6304,12 +6539,15 @@ function temaRedesenha(){
  try{const b=document.getElementById("sndb");if(b){b.remove();sndUI()}}catch(e){}
  try{const f=document.getElementById("fsb");if(f){f.remove();fsUI()}}catch(e){}
  try{if(G.scr=="m")showMenu();else render()}catch(e){}}
-function temaSet(t){try{ls("za_tema",t)}catch(e){}temaAplica(t);temaRedesenha();
+function temaSet(t){if(TEMALOCK){try{ls("za_tema","mod")}catch(e){}return}try{ls("za_tema",t)}catch(e){}temaAplica(t);temaRedesenha();
  document.querySelectorAll(".tmpk .sub").forEach(b=>b.classList.toggle("on",b.dataset.v===t))}
 function temaPick(){const w=mk("div","subpk tmpk");
- TEMAS.forEach(([v,n,d])=>{const b=mk("button","sub"+(temaLer()==v?" on":""),"<span>"+n+"</span>");
+ TEMAS.forEach(([v,n,d])=>{const trava=TEMALOCK&&v!=="mod";
+  const b=mk("button","sub"+(temaLer()==v?" on":"")+(trava?" tmlk":""),
+   (trava?"<i class='tmcad' aria-hidden='true'>\ud83d\udd12</i>":"")+"<span>"+n+"</span>");
   b.type="button";b.dataset.v=v;b.title=d;
-  b.onclick=e=>{e.preventDefault();temaSet(v)};w.append(b)});
+  if(trava){b.disabled=true;b.setAttribute("aria-disabled","true")}
+  else b.onclick=e=>{e.preventDefault();temaSet(v)};w.append(b)});
  return w}
 /* ===== Dica flutuante ao passar o mouse nas habilidades (PC) ===== */
 const HOVPC=typeof matchMedia=="function"&&matchMedia("(hover:hover) and (pointer:fine)").matches;let HVX=-1,HVY=-1,HVON=null,HVLK=0;
@@ -6797,7 +7035,7 @@ function skTip(x,u){const s=SKI[x.k],ow=s[1],nm=s[2]=="p"?C[ow].ps.n:C[ow].sk[s[
 function fxShow(){const L=G.fx;G.fx=[];if(!L||!L.length||!document.body.classList.contains("bt"))return;const dmg=L.filter(f=>!f.h&&f.d>0),TOP=dmg.length?dmg.slice().sort((a,b)=>(b.cr?1e4:0)+b.d-((a.cr?1e4:0)+a.d))[0]:L.filter(f=>f.h).sort((a,b)=>b.h-a.h)[0];const cards=[...document.querySelectorAll("#b .u")];
  L.forEach((f,n)=>{const u=G.u[f.i];if(!u)return;const ix=G.u.filter(x=>true).indexOf(u),el=cards[ix];if(!el)return;const fw=el.querySelector(".fw");if(!fw)return;
   const sm=L.slice(0,n).filter(o=>o.i===f.i).length,p=mk("div","dpop"+(f.h?" hl":f.cr?" cr":""),f.h?"+"+f.h:(f.cr?"<small>CRÍTICO!</small>":"")+(f.d>0?"-"+f.d:"0"));p.style.animationDelay=(sm*.45)+"s";if(f===TOP)sfx(f.h?"heal":f.m?(f.cr?"mcrit":"melee"):f.cr?"crit":"hit",n*90+sm*450);p.style.marginTop=(sm%3*14)+"px";fw.append(p);setTimeout(()=>p.remove(),3200+sm*450)})}
-const AU={"kf": "media/b64/c6c53b066540b982.mp3", "tu": "media/b64/5f20467cc74921ac.mp3", "rd": "media/b64/05a90940bc624666.mp3", "black": "media/b64/8522a0ec2a4fabd5.mp3", "gg": "media/b64/af7ae04f08118ed8.mp3", "mg": "media/b64/8b5a7c07bac01bbb.mp3", "vs": "media/b64/961ffab5f9949ad3.mp3", "a17": "media/b64/7d489c898ed71c27.mp3", "tr": "media/b64/416df988ff2b1646.mp3", "za": "media/b64/003b452cb95d1795.mp3", "a18": "media/b64/1ab79ea8fc9e6c86.mp3", "gi": "media/b64/1c9109498be5085f.mp3", "gu": "media/b64/5a3cc6f15bb80ce7.mp3", "mv": "media/b64/50780230695672d0.mp3", "gd": "media/b64/e98e79625578b78e.mp3", "beast": "media/b64/896feced1e9d6480.mp3", "ar": "media/b64/618bb7fb6cbd2467.mp3"};IMG.ui_vs="media/b64/0bc7ca25489d03cf.webp";
+const AU={"kf": "media/b64/c6c53b066540b982.mp3", "tu": "media/b64/5f20467cc74921ac.mp3", "rd": "media/b64/05a90940bc624666.mp3", "black": "media/b64/8522a0ec2a4fabd5.mp3", "gg": "media/b64/af7ae04f08118ed8.mp3", "mg": "media/b64/8b5a7c07bac01bbb.mp3", "vs": "media/b64/961ffab5f9949ad3.mp3", "a17": "media/b64/7d489c898ed71c27.mp3", "tr": "media/b64/416df988ff2b1646.mp3", "za": "media/b64/003b452cb95d1795.mp3", "a18": "media/b64/1ab79ea8fc9e6c86.mp3", "gi": "media/b64/1c9109498be5085f.mp3", "gu": "media/b64/5a3cc6f15bb80ce7.mp3", "mv": "media/b64/50780230695672d0.mp3", "gd": "media/b64/e98e79625578b78e.mp3", "beast": "media/b64/896feced1e9d6480.mp3", "ar": "media/b64/618bb7fb6cbd2467.mp3"};IMG.ui_vs="media/171ffb3140f818734e24ea840b6fbb80.webp";
 
 AU.cl="media/b64/9d4a2edd728ff6a6.mp3";
 AU.sas="media/b64/aeb2a79dd58b4f73.mp3";
@@ -6895,7 +7133,7 @@ function mmRows(p){
  tr.append(rp);p.append(tr);return p}
 function vidRows(p){
  p.append(mk("div","cfgsub","Visual do jogo"),temaPick(),
-  mk("p","cfgnote","O Legado traz de volta o menu e o desenho anteriores. A escolha fica salva neste aparelho."));
+  mk("p","cfgnote","O <b>Legado</b> foi encerrado. Manter os dois visuais dobrava o trabalho de cada atualização, então o jogo segue só com o <b>Moderno</b> e tudo o que vem pela frente chega mais rápido."));
  const sv=mk("label","sndsk"),cb=mk("input");cb.type="checkbox";cb.checked=skipVid();cb.dataset.vf="skip";cb.onchange=()=>vflSet("skip",cb.checked);sv.append(cb,mk("span","","Sempre pular vídeos"));p.append(sv,vscRow("skip"));
  const vd=mk("label","sndsk"),dc=mk("input");dc.type="checkbox";dc.checked=vdayOn();dc.dataset.vf="day";dc.onchange=()=>vflSet("day",dc.checked);vd.title="Cada vídeo toca uma vez e só volta a tocar depois de 24 horas";vd.append(dc,mk("span","","Reproduzir somente uma vez ao dia"));p.append(vd,vscRow("day"));
  const vs=mk("div","vspdrow");vs.append(mk("span","","Velocidade dos vídeos"),vspdBtn("vspdb"));p.append(vs);
@@ -7165,9 +7403,15 @@ function inSay(keys,cb){keys=keys.filter(k=>AU[k]);let i=0,done=0;const fin=()=>
 function inEnd(){if(!IN)return;const o=IN.o,cb=IN.cb;try{IN.au&&IN.au.pause()}catch(e){}IN.tm.forEach(clearTimeout);IN=null;G.inOn=0;o.classList.add("out");setTimeout(()=>o.remove(),600);cb&&cb();if(typeof botPlay=="function")botPlay()}
 function playIntro(cb){const old=document.getElementById("vsi");if(old)old.remove();G.inOn=1;
  const o=mk("div","");o.id="vsi";const ff=FDS.find(x=>x.k==G.cf);if(ff)o.style.setProperty("--vbg",'url("'+IMG["fd_"+ff.k]+'")');
- const st=mk("div","vst"),sk=mk("button","vskip","Pular ▸▸");sk.onclick=inEnd;o.append(st,sk);document.body.append(o);IN={o,cb,tm:[]};
+ /* a apresentação dos times não tem mais botão de pular: ela mostra a maestria
+    de cada escolha e vale a pena ser vista inteira */
+ const st=mk("div","vst");o.append(st);document.body.append(o);IN={o,cb,tm:[]};
  const T=s=>G.u.filter(x=>x.s==s).filter((x,i,a)=>a.findIndex(y=>y.c==x.c)===i),nm=s=>pnv(s);
- const half=s=>{const w=mk("div","vhalf t"+s),hd=mk("div","vhd",nm(s)),row=mk("div","vrow");w.append(hd,row);T(s).forEach(u=>{const c=mk("div","vcd");c.innerHTML="<div class='vim'><img src='"+(IMG[u.c+"_s"]||IMG[u.c+"_f"])+"' alt=''></div><b>"+C[u.c].n+"</b>";row.append(c)});return w};
+ /* o lado de quem esta jogando: so dele da para saber a maestria */
+ const EUV=(()=>{try{if(!G.online)return 0;return (G.me===0||G.me===1)?G.me:-1}catch(e){return 0}})();
+ const selo=k=>{try{const nv=mxNivelDe(k),ar=mxArte(nv);
+   return "<i class='vmx'>"+(ar?"<img src='"+ar+"' alt=''>":"")+"<em>"+nv+"</em></i>"}catch(e){return ""}};
+ const half=s=>{const w=mk("div","vhalf t"+s),hd=mk("div","vhd",nm(s)),row=mk("div","vrow");w.append(hd,row);T(s).forEach(u=>{const c=mk("div","vcd");c.innerHTML="<div class='vim'><img src='"+(IMG[u.c+"_s"]||IMG[u.c+"_f"])+"' alt=''>"+(s===EUV?selo(u.c):"")+"</div><b>"+C[u.c].n+"</b>";row.append(c)});return w};
  const H=[half(0),null,half(1)],V=mk("div","vsb","<img src='"+IMG.ui_vs+"' alt='VS'>");H[1]=V;st.append(H[0],V,H[2]);
  const side=(s,k)=>{if(!IN)return;const w=H[s?2:0],L=T(s),row=w.querySelector(".vrow");w.classList.add("on");
   const step=i=>{if(!IN)return;[...st.querySelectorAll(".vcd")].forEach(x=>x.classList.remove("cur"));if(i>=L.length)return k();const c=row.children[i];c.classList.add("in","cur");inSay(AUK[L[i].c]||[L[i].c],()=>step(i+1))};step(0)};
@@ -7487,7 +7731,7 @@ function showFicha(k){if(!C[k])return;G.scr="cf";CHSEL=k;
  const SK=C[k].sk||[];
  const ITENS=[{r:"Líder",n:"Habilidade de líder",t:C[k].ld||"Este personagem não tem habilidade de líder.",ic:IMG[k+"_f"]},
    {r:"Passiva",n:(C[k].ps||{}).n||"Passiva",t:(C[k].ps||{}).t||"Sem passiva.",ic:IMG[k+"_p"]||IMG[k+"_f"]}]
-  .concat(SK.map((s,i)=>({r:i===SK.length-1?"Ultimate":"Habilidade "+(i+1),ab:i===SK.length-1?"Ultimate":(ISPH?"Hab. ":"Habilidade ")+(i+1),n:s.n,t:s.t,ic:IMG[k+"_"+i],c:skCost(s),cl:s.cl})));
+  .concat(SK.map((s,i)=>({r:i===SK.length-1?"Ultimate":"Habilidade "+(i+1),ab:i===SK.length-1?"Ultimate":"Hab. "+(i+1),n:s.n,t:s.t,ic:IMG[k+"_"+i],c:skCost(s),cl:s.cl})));
  if(CFAB>=ITENS.length)CFAB=0;
  const w=pgShell(C[k].n,"cfc");
  const bk=w.querySelector(".pgbk");if(bk){bk.innerHTML="◀ Personagens";bk.onclick=showChars}
@@ -7978,7 +8222,12 @@ const PATCH=[
   "<b>Notícias</b>: a collab do Solo Leveling continuava anunciando “Jinwoo chega em breve” com ele já jogável.",
   "<b>Tutorial</b>: a seção “Líder e passiva” passou a explicar a SOMBRA — uma passiva pode colocar mais um lutador em campo.",
   "<b>Personagens “Em breve”</b> não ocupam mais espaço nas telas de Personagens, Montar times e Draft."],
- nv:[{i:"\ud83c\udfb5",n:"Trilha nova no draft e nos Equipamentos",t:"O draft agora roda com <b>Vogel im Käfig 2.0</b>, e a tela de <b>Equipamentos</b>, que era muda, ganhou <b>Call of Silence</b>. O aviso sonoro dos <b>10 segundos</b> também foi trocado, e o narrador tem gravação nova para o <b>Goku Black SSJ Rose</b>."},
+ nv:[{i:"\ud83c\udf96\ufe0f",hl:1,n:"Retroatividade da Maestria",t:"Muita gente já jogava ranqueada antes de a Maestria existir e ficou com todo mundo no nível 1. Agora as suas partidas ranqueadas anteriores que o histórico guarda são contadas de uma vez, com a tabela de sempre — <b>90</b> por vitória e <b>55</b> por derrota, valendo também contra bot. Na primeira vez que você entrar depois da atualização aparece quanto cada personagem recebeu."},
+  {i:"\ud83e\udd4a",hl:1,n:"A apresentação dos times mostra a Maestria",t:"Na tela do narrador, cada personagem do seu time aparece com o <b>nível de Maestria</b> que você tem com ele. O <b>VS</b> do meio ganhou arte nova, e a apresentação <b>não tem mais botão de pular</b>."},
+  {i:"\ud83d\udfe2",n:"Aviso quando um amigo entra",t:"Quando alguém da sua lista fica online, aparece um aviso curto logo acima da <b>Lista de amigos</b>."},
+  {i:"\ud83d\udd12",n:"O visual Legado foi encerrado",t:"Manter dois visuais dobrava o trabalho de cada atualização. O jogo segue só com o <b>Moderno</b>, e quem estava no Legado volta para ele automaticamente — na prática, tudo o que vem pela frente chega mais rápido."},
+  {i:"\ud83d\udcc4",n:"A ficha do personagem foi refeita",t:"No PC e no celular deitado a ficha <b>cortava o texto e não rolava</b>: metade do conteúdo ficava inalcançável. Agora a arte fica parada e o texto rola ao lado, com tudo mais compacto — cabe quase o dobro na tela. No visual <b>Legado</b> a ficha estava sem painel e quase ilegível sobre o cenário; ganhou o mesmo desenho, na paleta azul e dourada."},
+  {i:"\ud83c\udfb5",n:"Trilha nova no draft e nos Equipamentos",t:"O draft agora roda com <b>Vogel im Käfig 2.0</b>, e a tela de <b>Equipamentos</b>, que era muda, ganhou <b>Call of Silence</b>. O aviso sonoro dos <b>10 segundos</b> também foi trocado, e o narrador tem gravação nova para o <b>Goku Black SSJ Rose</b>."},
   {i:"\ud83c\udf99\ufe0f",hl:1,n:"Dublagem brasileira nos vídeos",t:"Em <b>Configurações › Som</b> você escolhe entre <b>dublagem brasileira</b> e <b>japonesa</b>. A brasileira está sendo gravada aos poucos: <b>Levi</b> e <b>Boruto</b> já têm entrada e ultimate dubladas, e enquanto um vídeo não tiver versão pronta ele toca em japonês com legenda, avisando na tela."},
   {i:"\u2699\ufe0f",n:"Configure seu jogo antes de começar",t:"Quem sai do tutorial pela primeira vez passa por uma tela única com <b>volume, dublagem, tamanho e transparência do menu, escurecimento do fundo, tamanho da letra e cursor</b> — tudo numa página só, com o menu aparecendo atrás para você ver as mudanças na hora."},
   {i:"\ud83c\udf13",n:"Dá para clarear o fundo",t:"Os ajustes do menu saíram de <b>Vídeo</b> e foram para <b>Imagem</b>, com uma barra nova: <b>Escurecer o fundo</b>. Quem quiser ver a arte do cenário inteira agora pode levantar o véu até onde quiser."},
@@ -8362,6 +8611,8 @@ function cfgInicial(cb){
  const segue=()=>{if(cb)try{cb()}catch(e){}};
  if(document.getElementById("cfg1"))return;
  try{if(ls("za_cfg1")==="1"){segue();return}}catch(e){}
+ /* quem chegou aqui ja tendo partidas nas costas nao e jogador novo */
+ try{const h=(mxLer().h||[]).length;if(h>0){ls("za_cfg1","1");segue();return}}catch(e){}
  const ov=mk("div","");ov.id="cfg1";
  const bx=mk("div","cfg1bx");bx.setAttribute("role","dialog");
  bx.setAttribute("aria-label","Configure seu jogo antes de come\u00e7ar");
@@ -8404,6 +8655,7 @@ function nickAsk(){if(document.getElementById("nkm"))return;if(window.ZLOGIN&&wi
   if(!tutSeen()){TUTNEW=1;TUTI=0;try{return showTut()}catch(x){}}
   if(G.scr=="m")try{bnNext()}catch(x){}},400)}}
 function bnNext(){if(!nickOk()||document.getElementById("nkm")||document.getElementById("rotm"))return;
+ if(RETROP&&(!BQ||!BQ.length)&&!document.getElementById("bnr")&&!document.getElementById("nws")&&G.scr=="m"){RETROP=0;return mxRetroShow(()=>{try{bnNext()}catch(e){}})}
  if(BQEND&&(!BQ||!BQ.length)&&!document.getElementById("bnr")&&!document.getElementById("nws")&&G.scr=="m"){const f=BQEND;BQEND=null;return f()}
  if(!BQ||!BQ.length||document.getElementById("bnr")||G.scr!="m")return;const b=BQ.shift();try{if(b.ty=="news")return nwOpen(true);bnShow(b)}catch(e){const x=document.getElementById("bnr");if(x)x.remove();const y=document.getElementById("nws");if(y&&!y.querySelector(".nwc"))y.remove()}}
 function bnShow(b){const ids=b.ty=="pt"?["pt_"+b.p.t]:b.ty=="nw"?["nw_"+b.k]:b.ty=="co"?["co_"+b.k]:b.ty=="sn"?["sn_"+b.k]:b.ty=="ft"?["ft_"+b.k]:b.ps.map(p=>"bal_"+p.t),ov=mk("div","");ov.id="bnr";const bx=mk("div","bnbox "+(b.ty=="sn"?"nw sn":b.ty=="ft"?"nw ft":b.ty));ov.append(bx);
@@ -10881,6 +11133,77 @@ function mxCredita(gid,time,venceu,dest,modo){
   if(depoisNv>antesNv)subiu.push({k,de:antesNv,para:depoisNv})});
  mxGrava();
  return subiu}
+/* ===== Retroatividade: a Maestria chegou depois de muita gente j\u00e1 ter jogado =====
+   Quem subiu de ranque antes do sistema existir ficou com os personagens no n\u00edvel 1.
+   Aqui as partidas ranqueadas que o hist\u00f3rico guarda (contra gente e contra bot) s\u00e3o
+   pagas uma \u00fanica vez, com a mesma tabela de sempre: vit\u00f3ria vale MXCFG.vit e derrota
+   MXCFG.der. Nada de b\u00f4nus de destaque: MVP e SVP n\u00e3o eram registrados na \u00e9poca. */
+let RETROP=0;
+function mxLado(reg,f){try{
+ if(f&&(f.win===0||f.win===1))return reg.win?f.win:1-f.win;
+ return 0}catch(e){return 0}}
+function mxTimeDaFicha(f,lado){
+ let t=(f.u||[]).filter(x=>x&&x.s===lado).map(x=>x.c);
+ if(!t.length)t=((f.tm||[])[lado]||[]).slice();
+ return t.filter((k,i,a)=>k&&k!=="none"&&C[k]&&a.indexOf(k)===i)}
+function mxRetro(){try{
+ const M=mxLer();
+ if(M.retro)return M.retro;                       /* ja foi pago */
+ let H=[];try{H=rkHist()}catch(e){H=[]}
+ const ganhos={},agora=Date.now();let partidas=0;
+ H.slice().reverse().forEach(reg=>{                /* da mais antiga para a mais nova */
+  const f=reg&&reg.sn;if(!f)return;
+  const gid="retro:"+(reg.id||reg.at||Math.random());
+  if(M.g.indexOf(gid)>=0)return;
+  const lado=mxLado(reg,f),time=mxTimeDaFicha(f,lado);
+  if(!time.length)return;
+  const venceu=!!reg.win,base=venceu?MXCFG.vit:MXCFG.der;
+  M.g.push(gid);partidas++;
+  time.forEach(k=>{const r=mxDe(k);
+   if(!ganhos[k])ganhos[k]={pt:0,j:0,v:0,d:0,nvAnt:mxNivel(r.pt,mxDest(r))};
+   r.pt+=base;r.j++;venceu?r.v++:r.d++;r.at=agora;
+   ganhos[k].pt+=base;ganhos[k].j++;venceu?ganhos[k].v++:ganhos[k].d++})});
+ if(M.g.length>400)M.g=M.g.slice(-400);
+ const lista=Object.keys(ganhos).map(k=>{const r=mxDe(k);
+   mxPremios(r).forEach(pz=>{if(r.pr.indexOf(pz.nv)<0)r.pr.push(pz.nv)});
+   return{k,pt:ganhos[k].pt,j:ganhos[k].j,v:ganhos[k].v,d:ganhos[k].d,
+    nvAnt:ganhos[k].nvAnt,nvDep:mxNivel(r.pt,mxDest(r)),ptDep:r.pt}})
+  .sort((a,b)=>b.pt-a.pt);
+ M.retro={at:agora,partidas,visto:lista.length?0:1,lista};
+ mxGrava();
+ if(lista.length)RETROP=1;
+ return M.retro}catch(e){return null}}
+/* a tela que mostra o que cada personagem ganhou */
+function mxRetroShow(dps){
+ const fim=()=>{if(dps)try{dps()}catch(e){}};
+ let R=null;try{R=mxLer().retro}catch(e){}
+ if(!R||!R.lista||!R.lista.length||R.visto){fim();return}
+ if(document.getElementById("mxrt")){fim();return}
+ const ov=mk("div","");ov.id="mxrt";
+ const bx=mk("div","mxrtbx");bx.setAttribute("role","dialog");
+ const n=R.lista.length;
+ bx.innerHTML="<div class='mxrtz'>\ud83c\udfc5</div><h2>Retroatividade dos pontos de Maestria</h2>"+
+  "<p>A Maestria chegou depois de voc\u00ea j\u00e1 estar jogando, ent\u00e3o as suas <b>"+R.partidas+
+  (R.partidas==1?" partida ranqueada</b> anterior foi contada":" partidas ranqueadas</b> anteriores foram contadas")+
+  " com a tabela de sempre: <b>"+MXCFG.vit+"</b> pontos por vit\u00f3ria e <b>"+MXCFG.der+"</b> por derrota.</p>";
+ const L=mk("div","mxrtl");
+ R.lista.forEach(it=>{const r=mk("div","mxrti"+(it.nvDep>it.nvAnt?" up":""));
+  r.innerHTML="<img class='mxrtf' src='"+(IMG[it.k+"_f"]||"")+"' alt=''>"+
+   "<div class='mxrtd'><b>"+escH((C[it.k]||{}).n||it.k)+"</b>"+
+   "<span>"+it.j+(it.j==1?" partida":" partidas")+" \u00b7 "+it.v+"V "+it.d+"D</span></div>"+
+   "<div class='mxrtp'><em>+"+it.pt+"</em>"+
+   (it.nvDep>it.nvAnt?"<i>n\u00edvel "+it.nvAnt+" \u2192 "+it.nvDep+"</i>":"<i>n\u00edvel "+it.nvDep+"</i>")+"</div>";
+  L.append(r)});
+ bx.append(L);
+ const tot=R.lista.reduce((a,x)=>a+x.pt,0);
+ bx.append(mk("p","mxrtt","<b>"+tot+"</b> pontos no total, em <b>"+n+(n==1?"</b> personagem.":"</b> personagens.")));
+ const ft=mk("div","mxrtft"),ok=mk("button","lam lam-g","<b>Valeu!</b>");
+ const fecha=()=>{ov.remove();document.removeEventListener("keydown",tec,true);
+  try{const M=mxLer();if(M.retro){M.retro.visto=1;mxGrava()}}catch(e){}fim()};
+ const tec=e=>{if(e.key=="Escape"){e.stopPropagation();fecha()}};
+ ok.onclick=fecha;ft.append(ok);bx.append(ft);ov.append(bx);
+ document.body.append(ov);document.addEventListener("keydown",tec,true);
+ try{sfx("ok")}catch(e){}}
 /* ===== Os pontos de Maestria da partida, logo depois dos pontos da ranqueada =====
    Antes s\u00f3 aparecia alguma coisa quando algu\u00e9m subia de n\u00edvel; o ganho de cada
    partida ficava invis\u00edvel. Agora o time inteiro aparece com a barra andando. */
@@ -12105,6 +12428,7 @@ async function frLePres(){const db=frDb();if(!db||!FR.list.length)return;
  const ks=FR.list.map(x=>x.id).slice(0,60);
  await Promise.all(ks.map(async k=>{try{const sn=await db.doc("pres/"+k).get();
   if(sn&&sn.exists)FR.pres[k]=sn.data()}catch(e){}}));
+ try{frAvisaOnline()}catch(e){}
  frRender()}
 /* ---- lista e pedidos, em tempo real ---- */
 function frSub(){const db=frDb();if(!db||!FR.pid)return;
@@ -12432,13 +12756,56 @@ function frLista(ls){if(!ls)return;ls.innerHTML="";
  if(off.length){ls.append(mk("small","ofrsec","Offline"));off.forEach(x=>ls.append(linha(x,0)))}
  if(!L.length&&!FR.req.length)ls.append(mk("p","ofrnada",qq?"Ninguém com esse nome.":"Sua lista está vazia. Mande o seu código para um amigo."))}
 
+/* ===== "fulano ficou online" =====
+   Um aviso curto por cima da lista de amigos quando algu\u00e9m da lista entra no jogo.
+   A primeira leitura depois de abrir s\u00f3 anota quem j\u00e1 estava online, sen\u00e3o o jogador
+   levaria uma enxurrada de avisos toda vez que abrisse o jogo. */
+const FRON={};let FRON1=0;
+try{addEventListener("resize",()=>{try{frToastPos()}catch(e){}},{passive:true})}catch(e){}
+/* o painel tem overflow:hidden, entao o aviso mora no body e se encosta nele */
+function frToastPos(){try{
+ const w=document.getElementById("frtst"),b=document.getElementById("ofr");
+ if(!w)return;
+ const r=b?b.getBoundingClientRect():null;
+ if(!r||!r.width||!w.children.length){w.style.display="none";return}
+ w.style.display="";
+ w.style.width=Math.round(Math.max(200,Math.min(320,r.width)))+"px";
+ w.style.left=Math.round(Math.min(r.left,innerWidth-Math.max(200,Math.min(320,r.width))-8))+"px";
+ w.style.bottom=Math.round(Math.max(8,innerHeight-r.top+8))+"px";
+}catch(e){}}
+function frToast(txt){try{
+ if(!document.getElementById("ofr"))return;
+ let w=document.getElementById("frtst");
+ if(!w){w=mk("div","ofrtst");w.id="frtst";document.body.append(w)}
+ const t=mk("div","ofrtt","<i class='ofrtd'></i><span>"+txt+"</span>");
+ w.append(t);
+ while(w.children.length>3)w.firstChild.remove();
+ frToastPos();
+ requestAnimationFrame(()=>t.classList.add("on"));
+ setTimeout(()=>{t.classList.remove("on");
+  setTimeout(()=>{try{t.remove()}catch(e){}frToastPos()},420)},5200);
+}catch(e){}}
+function frAvisaOnline(){try{
+ if(!FR||!FR.pronto||!Array.isArray(FR.list))return;
+ const agora=Date.now();
+ const vivo=x=>{const p=FR.pres[x.id];return !!(p&&p.at&&agora-p.at<FRGAP)};
+ const nome=x=>(FR.pres[x.id]&&FR.pres[x.id].n)||x.n||"Jogador";
+ const novos=[];
+ FR.list.forEach(x=>{const v=vivo(x)?1:0;
+  if(v&&FRON[x.id]===0)novos.push(nome(x));
+  FRON[x.id]=v});
+ if(!FRON1){FRON1=1;return}
+ if(!novos.length)return;
+ novos.slice(0,3).forEach(n=>frToast("<b>"+escH(n)+"</b> ficou online"));
+ try{sfx("ok")}catch(e){}
+}catch(e){}}
 function frRender(){
  if(!FR.pronto){const v=document.getElementById("ofr");if(v)v.remove();return}
  let b=document.getElementById("ofr");
  if(!b){b=frBuild();document.body.append(b)}
  else{b.classList.toggle("min",!!FR.min);
   const mn=b.querySelector(".ofrmn");if(mn){mn.textContent=FR.min?"▢":"–";mn.title=FR.min?"Abrir":"Minimizar"}}
- frApplySz(b);frPos(b);
+ frApplySz(b);frPos(b);try{frToastPos()}catch(e){}
  const un=b.querySelector(".ofru");
  if(un){const n=FR.req.length+FR.list.filter(x=>frDmNovas(x.id)).length;un.hidden=!n;un.textContent=n||""}
  if(!FR.min&&!FRDM.aberto)frLista(b.querySelector(".ofrls"));
@@ -12671,6 +13038,24 @@ try{temaAplica(temaLer())}catch(e){}
 try{mmApply()}catch(e){}/* tamanho e opacidade do menu, antes do primeiro desenho *//* antes de desenhar: o menu ja nasce no visual certo */
 showMenu();
 
+/* A tela "Configure seu jogo" e so para quem esta chegando agora. Quem ja jogava
+   antes desta atualizacao ja tem rastro salvo (tutorial feito, nick, partidas,
+   maestria, equipamentos): marca como vista na carga, antes de qualquer clique,
+   quando um jogador novo ainda nao tem nada disso. */
+function cfg1Antigo(){try{
+ const v=k=>{try{const r=ls(k);return r==null?"":String(r)}catch(e){return ""}};
+ if(v("za_cfg1")==="1")return;
+ const temJson=k=>{const r=v(k);if(!r||r==="null")return false;
+  try{const o=JSON.parse(r);if(!o)return false;if(Array.isArray(o))return o.length>0;
+   if(typeof o==="object")return Object.keys(o).length>0;return true}catch(e){return r.length>2}};
+ const antigo=v("za_tut_ok")==="1"
+  ||temJson("za_mx")||temJson("za_rk")||temJson("za_rk_hist")||temJson("za_st")
+  ||temJson("za_inv")||temJson("za_eq")||v("za_zeni")!=="";
+ if(antigo)ls("za_cfg1","1")}catch(e){}}
+try{cfg1Antigo()}catch(e){}
+/* a retroatividade da Maestria: conta uma vez so, na primeira carga depois da atualizacao */
+try{mxRetro()}catch(e){}
+try{const R=mxLer().retro;if(R&&R.lista&&R.lista.length&&!R.visto)RETROP=1}catch(e){}
 try{fsAplica(fsLer())}catch(e){}try{curAplica(curLer())}catch(e){}/* tamanho da letra salvo pelo jogador */
 try{if(document.body)fsUI();else document.addEventListener("DOMContentLoaded",fsUI)}catch(e){}
 </script><script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script></body></html>
