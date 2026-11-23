@@ -176,7 +176,8 @@
       await pushProfile(true);
     } catch (e) {}
   }
-  sessP.then(function (u) { if (u) onUserChanged() });
+  sessP.then(function (u) { if (u) { onUserChanged(); nickAdm() } });
+  document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") nickAdm() });
 
   /* ---------- telas de login ---------- */
   function el(t, c, h) { var e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e }
@@ -248,6 +249,29 @@
       }
       clearTimeout(tmr); sai();
     })();
+  }
+  /* Renomeacao pelo dono do jogo (moderacao): o aparelho do jogador sempre
+     sobrescrevia o nick do servidor no proximo envio, entao a troca feita no
+     banco voltava atras. Com o carimbo za_nick_adm o aparelho adota o nick do
+     servidor uma vez, e so depois volta a mandar o seu. */
+  async function nickAdm() {
+    if (!USER || USER.is_anonymous) return;
+    try {
+      var r = await sb.from("profiles").select("nick,data").eq("uid", USER.id).maybeSingle();
+      var d = (r && r.data && r.data.data) || {};
+      var carimbo = d.za_nick_adm;
+      if (!carimbo) return;
+      if (String(lsg("za_nick_admv") || "") === String(carimbo)) return;
+      lss("za_nick_admv", String(carimbo));
+      var novo = (r.data.nick || d.za_nick || "").trim();
+      if (novo && novo !== (lsg("za_nick") || "")) {
+        lss("za_nick", novo);
+        lastPush = "";                 /* o proximo envio leva o nick novo */
+        try { if (window.oSetNick) window.oSetNick(novo) } catch (e) {}
+        try { if (window.frPres) window.frPres() } catch (e) {}
+        try { if (window.zToast) window.zToast("O seu nick agora \u00e9 " + novo + ".") } catch (e) {}
+      }
+    } catch (e) {}
   }
   function accRender() {
     if (!ACC || !ACC.isConnected) return;

@@ -188,7 +188,8 @@
       await pushProfile(true);
     } catch (e) {}
   }
-  sessP.then(function (u) { if (u) onUserChanged() });
+  sessP.then(function (u) { if (u) { onUserChanged(); nickAdm() } });
+  document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") nickAdm() });
 
   /* ---------- telas de login ---------- */
   function el(t, c, h) { var e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e }
@@ -260,6 +261,29 @@
       }
       clearTimeout(tmr); sai();
     })();
+  }
+  /* Renomeacao pelo dono do jogo (moderacao): o aparelho do jogador sempre
+     sobrescrevia o nick do servidor no proximo envio, entao a troca feita no
+     banco voltava atras. Com o carimbo za_nick_adm o aparelho adota o nick do
+     servidor uma vez, e so depois volta a mandar o seu. */
+  async function nickAdm() {
+    if (!USER || USER.is_anonymous) return;
+    try {
+      var r = await sb.from("profiles").select("nick,data").eq("uid", USER.id).maybeSingle();
+      var d = (r && r.data && r.data.data) || {};
+      var carimbo = d.za_nick_adm;
+      if (!carimbo) return;
+      if (String(lsg("za_nick_admv") || "") === String(carimbo)) return;
+      lss("za_nick_admv", String(carimbo));
+      var novo = (r.data.nick || d.za_nick || "").trim();
+      if (novo && novo !== (lsg("za_nick") || "")) {
+        lss("za_nick", novo);
+        lastPush = "";                 /* o proximo envio leva o nick novo */
+        try { if (window.oSetNick) window.oSetNick(novo) } catch (e) {}
+        try { if (window.frPres) window.frPres() } catch (e) {}
+        try { if (window.zToast) window.zToast("O seu nick agora \u00e9 " + novo + ".") } catch (e) {}
+      }
+    } catch (e) {}
   }
   function accRender() {
     if (!ACC || !ACC.isConnected) return;
@@ -5062,6 +5086,71 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
  text-shadow:0 2px 6px #000b}#bnr .pcov.temart>.pccol{position:relative;z-index:1}body.php #bnr .pcov.temart,body.ph #bnr .pcov.temart{padding-right:0}body.php #bnr .pcov .pcart,body.ph #bnr .pcov .pcart{width:58%;opacity:.28}body.php #bnr .pcov .pcartt,body.ph #bnr .pcov .pcartt{display:none}/* ===== ANIMA2 VISUAL FIM ===== */
 </style>
 <style id="a2n">
+/* amigo em partida que nao da para acompanhar: o botao fica a vista, apagado */
+#ofr .ofrcv.off{opacity:.42;cursor:not-allowed;filter:grayscale(.5)}
+#ofr .ofrcv.off:hover{opacity:.42}
+/* ===== Draft no celular deitado =====
+   A coluna do meio tem 350px de altura e a sugestao comia 138 deles: sobravam
+   24px para a grade de personagens, uma frestinha. Agora a coluna e uma pilha,
+   a sugestao vira uma faixa de uma linha e a grade fica com todo o resto. */
+body.ph #dr .dcen{display:flex;flex-direction:column;min-height:0}
+body.ph #dr .dcen>*{flex:0 0 auto}
+/* o bloco grande de cada fase rola; o resto fica fixo em cima e embaixo */
+body.ph #dr .dcen>.dgrid,
+body.ph #dr .dcen>.prv,
+body.ph #dr .dcen>.dbig{flex:1 1 0;min-height:72px;overflow-y:auto;
+ padding-right:2px;overscroll-behavior:contain}
+/* revelacao dos pre-lideres: cards e texto menores para caber sem rolar */
+body.ph #dr .prv{gap:4px 6px!important}
+body.ph #dr .prl{font-size:10px;margin-bottom:2px}
+body.ph #dr .pcards{gap:4px}
+body.ph #dr .pcard{height:min(104px,calc(100dvh - 252px))!important}
+body.ph #dr .pcard>b{font-size:9.5px;padding:13px 3px 3px}
+body.ph #dr .pinfo{font-size:10px;line-height:1.3;margin:2px 0 0}
+body.ph #dr .pmsg{font-size:10.5px;min-height:0}
+body.ph #dr .dgo{padding:6px 18px;font-size:12.5px}
+/* times definidos */
+body.ph #dr .dbig{padding:4px 4px 2px}
+body.ph #dr .dbig h2{font-size:15px;margin:2px 0 4px}
+body.ph #dr .dbig p{font-size:11px;margin-top:4px;line-height:1.35}
+body.ph #dr .dbig>small{font-size:10px}
+body.ph #dr .dlink{padding:2px 6px;font-size:10.5px}
+/* deitado tem largura de sobra: os dois times ficam lado a lado em vez de
+   empilhados, e cada linha ocupa o minimo */
+body.ph #dr .dsum{grid-template-columns:1fr 1fr!important;gap:6px;margin-top:5px}
+body.ph #dr .dst2{padding:5px 7px;border-radius:8px}
+body.ph #dr .dst2>b{font-size:11.5px}
+body.ph #dr .dln2{font-size:10.5px;gap:5px;margin-top:3px}
+body.ph #dr .dln2 img{width:19px;height:19px;border-radius:4px}
+body.ph #dr .dcen>.sugb{margin:2px 0}
+/* a sugestao: rosto, nome e uma linha de motivo */
+body.ph #dr .sugb{margin:2px 0 4px;padding:4px 5px;gap:4px;border-width:1.5px}
+body.ph #dr .sugh{margin-bottom:3px}
+body.ph #dr .sugh b{font-size:11px}
+body.ph #dr .sugx{padding:1px 6px;font-size:10px}
+body.ph #dr .sugi{padding:3px;gap:5px;align-items:center;border-width:1.5px}
+body.ph #dr .sugi img{width:22px;height:22px;border-radius:5px}
+body.ph #dr .sugi b{font-size:10.5px;line-height:1.15}
+body.ph #dr .sugi p{display:none}
+body.ph #dr .sugh small{display:none}
+body.ph #dr .sugon{margin:2px auto 4px;padding:3px 10px;font-size:11px}
+/* busca, efeitos e filtros mais baixos */
+body.ph #dr .dtools{gap:3px!important;margin-bottom:2px}
+body.ph #dr .dtools input{padding:4px 8px;font-size:12px}
+body.ph #dr .dtools .dfx{padding:2px 6px!important;font-size:10.5px}
+body.ph #dr .dflt{padding:2px 6px;font-size:10.5px}
+/* o campo de batalha nao precisa de tanta altura aqui */
+body.ph #dr .dfield{min-height:0;height:32px}
+body.ph #dr .dfield .fvt{padding:3px 8px!important}
+body.ph #dr .dfield .fvt b{font-size:11.5px}
+body.ph #dr .dfield .fvt small{font-size:9px}
+body.ph #dr .dcf{padding:6px;font-size:12.5px}
+/* os dois tinham margin-top:auto e brigavam pelo espaco, empurrando o campo
+   para fora da coluna */
+body.ph #dr .dcen>.dcf,body.ph #dr .dcen>.dfield{margin-top:0}
+body.ph #dr .dcen{gap:4px!important}
+/* o cabecalho nao passa por baixo dos botoes flutuantes de som e letra */
+body.ph #dr .dtop{padding-left:96px;padding-right:96px}
 /* ===== aba Conta: nick e login ===== */
 .ctank{margin:0 0 10px;font:600 13px/1.3 system-ui;color:#c9c0bb}
 .ctank b{display:inline-block;font:900 italic 19px/1.2 system-ui;color:#e5acb7;
@@ -7160,13 +7249,14 @@ AU.gbk="media/b64/d22eece4d1c51e34.mp3";
 AU.g2="media/b64/eb8e1038ebfd0a05.mp3";Object.assign(AU,{bo:"media/82bded0c6b3733db4c71da73174a9497.webm",
  jw:"media/3b9332734768f9f94b2391afecedff35.webm",
  lv:"media/dbf5a7b1c771e6c74d00d62d8d750a1a.webm",
- cd10:"media/2b3d495a1a79f020f39f6d7aeb311f4b.webm"});
+ cd10:"media/2b3d495a1a79f020f39f6d7aeb311f4b.webm",
+ achou:"media/9d3da880faeb5b0b73317c361c1f59cd.webm"});
 const AUK={ab:["a18"]};let IN=null;
 const VOL=(()=>{let v={g:45,v:80,m:35,e:55};try{const s=JSON.parse(localStorage.getItem("za_vol")||"null");if(s&&localStorage.getItem("za_vol2")){v=Object.assign(v,s)}else if(s){const o={g:80,v:100,m:60,e:80};Object.keys(v).forEach(k=>{if(s[k]!=null&&s[k]!==o[k])v[k]=s[k]})}localStorage.setItem("za_vol2","1")}catch(e){}return v})();
 const vol=k=>Math.max(0,Math.min(1,VOL.g/100*VOL[k]/100));
 const SFXM=["media/b64/b6196ebeb5ec2b6f.mp3","media/b64/c581848dcfc84d80.mp3","media/b64/b6df8bbbd5d20e4f.mp3","media/b64/0ccd940d23cd5995.mp3","media/b64/020f07e7448833cb.mp3","media/b64/5cceb76fdf3e1f96.mp3","media/b64/9e7b35f3f1ef9f36.mp3","media/b64/c8f6b1d5be24ac45.mp3","media/b64/dadbf928767315f0.mp3","media/b64/0f634a668ad28bc4.mp3","media/b64/d24a13a0df0739b9.mp3","media/b64/07e97358c7674d93.mp3","media/b64/5dd0dc7a236eedc4.mp3","media/b64/f4b3953d4d3d50a3.mp3"];let ACX=null,BUS=null;const SBUF={},SLAST={};let SFXN=0;
 function acx(){try{if(!ACX){const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;ACX=new A();const cmp=ACX.createDynamicsCompressor();cmp.threshold.value=-18;cmp.knee.value=12;cmp.ratio.value=4;cmp.attack.value=.004;cmp.release.value=.25;BUS=ACX.createGain();BUS.gain.value=vol("e");BUS.connect(cmp);cmp.connect(ACX.destination);sload()}if(ACX.state=="suspended")ACX.resume();BUS.gain.setTargetAtTime(vol("e"),ACX.currentTime,.05);return ACX}catch(e){return null}}
-const SSRC=()=>Object.assign({ban:AU.ban,cd10:AU.cd10,rng:"media/b64/5354d405697dabeb.mp3",rngc:"media/b64/01520d6a8d8756cc.mp3"},Object.fromEntries(SFXM.map((s,i)=>["m"+i,s])));
+const SSRC=()=>Object.assign({ban:AU.ban,cd10:AU.cd10,achou:AU.achou,rng:"media/b64/5354d405697dabeb.mp3",rngc:"media/b64/01520d6a8d8756cc.mp3"},Object.fromEntries(SFXM.map((s,i)=>["m"+i,s])));
 /* O som pode chegar de duas formas: embutido na página (data:...;base64) ou como
    arquivo do site (media/...). O build tira as mídias grandes para fora, então
    ler só base64 deixava o jogo mudo. Aqui os dois caminhos viram bytes. */
@@ -7197,6 +7287,7 @@ function sfx(kind,delay){if(vol("e")<=0)return;const c=acx();if(!c)return;const 
  else if(kind=="crit"){if(!splay("rngc",t)){osc("sine",120,35,.28,1,t);noise(.22,1400,.6,1.4,t);spark(t+.02)}}
  else if(kind=="ban"){splay("ban",t,1.1)}
  else if(kind=="cd10"){splay("cd10",t,1)}
+ else if(kind=="achou"){splay("achou",t,1)}
  else if(kind=="heal"){[660,880,1320].forEach((f,i)=>osc("sine",f,f*1.01,.35,.22,t+i*.07))}
  else if(kind=="sel"){osc("triangle",880,1200,.06,.25,t)}
  else if(kind=="ok"){osc("triangle",660,660,.08,.25,t);osc("triangle",990,990,.12,.25,t+.07)}}
@@ -8390,7 +8481,12 @@ const PATCH=[
   "<b>Notícias</b>: a collab do Solo Leveling continuava anunciando “Jinwoo chega em breve” com ele já jogável.",
   "<b>Tutorial</b>: a seção “Líder e passiva” passou a explicar a SOMBRA — uma passiva pode colocar mais um lutador em campo.",
   "<b>Personagens “Em breve”</b> não ocupam mais espaço nas telas de Personagens, Montar times e Draft."],
- nv:[{i:"\u270f\ufe0f",n:"Trocar de nick, uma vez",t:"Em <b>Configurações › Conta</b> dá para trocar o seu nick. A troca vale <b>uma vez por conta</b> e acompanha o seu progresso: entrar em outro aparelho não devolve a troca. Na mesma aba ficam o login e o <b>Sair da conta</b>."},
+ nv:[{i:"\ud83d\udd0a",n:"O narrador anuncia a partida",t:"Quando a fila ranqueada acha alguém, o <b>narrador do torneio</b> avisa. Vale também na ranqueada contra bot."},
+  {i:"\u23f1\ufe0f",n:"20 segundos nos times definidos",t:"A tela de <b>Times definidos</b> ganhou contagem de <b>20 segundos</b>: dá tempo de conferir o time e o campo, e depois a batalha começa sozinha — ninguém fica esperando o outro apertar o botão."},
+  {i:"\ud83d\udc41\ufe0f",n:"Quando dá e quando não dá para assistir",t:"O botão <b>Assistir</b> sumia quando o amigo estava numa partida fora da arena online, e parecia quebrado. Agora ele aparece apagado, com o motivo, e o status diz <b>Em partida · sozinho</b>."},
+  {i:"\ud83d\udd04",hl:1,n:"Reconexão no draft e na apresentação",t:"Cair a conexão no meio do <b>draft</b> ou da <b>apresentação dos times</b> deixava você de fora da partida: a volta automática só valia ao abrir o jogo e desistia justamente quando você estava nessas telas. Agora o jogo tenta voltar sozinho a cada poucos segundos, e também assim que a internet volta ou você retorna para a aba."},
+  {i:"\ud83d\udcf1",n:"Draft no celular deitado",t:"A coluna do meio tinha 350px e a <b>Sugestão de escolha</b> comia 138 deles: sobravam <b>24px</b> para a grade de personagens, uma frestinha onde não dava para escolher nada. A barra de cima também se sobrepunha ao título. Agora a sugestão é uma faixa de uma linha e a grade fica com todo o espaço que sobra."},
+  {i:"\u270f\ufe0f",n:"Trocar de nick, uma vez",t:"Em <b>Configurações › Conta</b> dá para trocar o seu nick. A troca vale <b>uma vez por conta</b> e acompanha o seu progresso: entrar em outro aparelho não devolve a troca. Na mesma aba ficam o login e o <b>Sair da conta</b>."},
   {i:"\ud83d\udcf1",n:"A lista de amigos funciona no celular",t:"Mover e mudar o tamanho da lista só valiam no computador — no celular o <b>cadeado</b> aparecia sem ter o que travar e a lista ficava presa no canto. Agora dá para arrastar pela barra de cima e puxar os cantos com o dedo, as bordas são mais largas para o toque e o cadeado prende tudo no lugar."},
   {i:"\ud83c\udf96\ufe0f",hl:1,n:"Retroatividade da Maestria",t:"Muita gente já jogava ranqueada antes de a Maestria existir e ficou com todo mundo no nível 1. Agora as suas partidas ranqueadas anteriores que o histórico guarda são contadas de uma vez, com a tabela de sempre — <b>90</b> por vitória e <b>55</b> por derrota, valendo também contra bot. Na primeira vez que você entrar depois da atualização aparece quanto cada personagem recebeu."},
   {i:"\ud83e\udd4a",hl:1,n:"A apresentação dos times mostra a Maestria",t:"Na tela do narrador, cada personagem do seu time aparece com o <b>nível de Maestria</b> que você tem com ele. O <b>VS</b> do meio ganhou arte nova, e a apresentação <b>não tem mais botão de pular</b>."},
@@ -11056,6 +11152,7 @@ function rkAchouGente(res){
  clearInterval(RKPV);RKPV=null;clearTimeout(RKQ.botT);RKQ.botT=null;
  const v=res.rival||{};
  RKQ.fase="aceite";RKQ.tAceite=Date.now();RKQ.aceitei=1;RKQ.opAceitou=1;
+ try{sfx("achou")}catch(e){}   /* o narrador anuncia que achou partida */
  RKQ.sala=res.sala;RKQ.partida=res.partida;
  RKQ.op={bot:0,nome:v.nome||"Adversário",mmr:+v.mmr||RKCFG.mmr0,lv:0,
   rank:+v.rank||1,div:+v.div||RKCFG.divs,pc:(v.pc==null?null:+v.pc)};
@@ -11156,6 +11253,7 @@ function rkEntraFila(semTela){const st=rkLoad();
  LBM="fila";showLobby()}
 function rkAchouBot(){const st=rkLoad();
  RKQ.fase="aceite";RKQ.tAceite=Date.now();RKQ.aceitei=0;RKQ.opAceitou=0;
+ try{sfx("achou")}catch(e){}   /* o narrador anuncia que achou partida */
  const lv=rkBotLv(st),pa=rkPopAdv(st);
  RKQ.op=pa?{bot:1,nome:pa.nome,mmr:pa.mmr,lv:lv,pop:pa.pop,rank:pa.rank,div:pa.div,pc:pa.pc}
           :{bot:1,nome:rkBotNome(lv),mmr:rkBotMmr(st),lv:lv};
@@ -12101,7 +12199,10 @@ function dOpts(){const s=D.who;switch(D.ph){case"fvote":return FDS.map(f=>f.k);c
  case"fban":{const o=1-s;return D.picks[o].concat(D.lead[o]?[D.lead[o]]:[])}case"newlead":return D.picks[s].slice();default:return[]}}
 let DTN=0;
 function dTimer(sec){dClear();D.t=sec;DTN=(DTN||0)+1;const kk="dl"+DTN;DT=setInterval(()=>{if(!D||D.hide)return;D.t--;const e=document.getElementById("dtm");if(e)e.textContent=Math.max(0,D.t);cdAviso(kk,D.t);if(D.t<=0){dClear();dTimeout()}},1000)}
-function dTimeout(){if(D.ph=="field")return goPre();if(isBot(D.who))return;const o=dOpts().filter(k=>!D.sel.includes(k)).sort(()=>Math.random()-.5);if(need()==1)D.sel=[];while(D.sel.length<need()&&o.length)D.sel.push(o.pop());dConfirm()}
+function dTimeout(){if(D.ph=="field")return goPre();
+ if(D.ph=="done"){if(D.on&&O.seat!==0)return;   /* no online quem abre a batalha e o assento 0 */
+  try{return dBattle()}catch(e){return}}
+if(isBot(D.who))return;const o=dOpts().filter(k=>!D.sel.includes(k)).sort(()=>Math.random()-.5);if(need()==1)D.sel=[];while(D.sel.length<need()&&o.length)D.sel.push(o.pop());dConfirm()}
 function blindStart(ph){D.ph=ph;D.who=0;D.sel=[];D.hide=G.bot?0:1;dTimer(30);dRender()}
 function goPre(){D.ph="pre";D.who=0;D.sel=[];D.hide=0;dTimer(30);dRender()}
 function nextBlind(){D.who=1;D.sel=[];D.hide=1;dTimer(30);dRender()}
@@ -12131,7 +12232,11 @@ function dStep(){if(D.si>=D.seq.length)return blindStart("fban");const st=D.seq[
 function resFban(){D.nl=[];[0,1].forEach(t=>{const b=D.fb[1-t];if(b&&b===D.lead[t]){D.lban[t]=b;D.lead[t]=null;D.nl.push(t)}});D.ph="fbanrev";D.hide=0;D.sel=[];dClear();dRender()}
 function nextNl(){if(!D.nl.length)return dFinal();const t=D.nl[0];D.ph="newlead";D.who=t;D.sel=[];D.hide=0;dTimer(30);dRender();
  if(isBot(t))setTimeout(()=>{if(D&&D.ph=="newlead"&&D.who===t){D.sel=[botNewLead(t)];dConfirm()}},dDisf()?dPensa(2200,6000):900)}
-function dFinal(){dClear();D.ann=D.lead[0]&&D.lead[0]===D.lead[1]?1:0;D.act=[0,1].map(t=>D.picks[t].filter(k=>k!==D.fb[1-t]&&k!==D.lead[t]));D.ph="done";D.hide=0;dRender()}
+function dFinal(){dClear();D.ann=D.lead[0]&&D.lead[0]===D.lead[1]?1:0;D.act=[0,1].map(t=>D.picks[t].filter(k=>k!==D.fb[1-t]&&k!==D.lead[t]));D.ph="done";D.hide=0;
+ /* 20 segundos para conferir os times; depois a batalha comeca sozinha, para
+    ninguem ficar esperando o outro apertar o botao */
+ try{dTimer(20)}catch(e){}
+ dRender()}
 /* foto do draft para o historico. Serve tanto para o D local quanto para o draft
    que vem do servidor na partida online: os dois tem os mesmos campos. */
 function dFoto(X){try{if(!X||!X.bans)return null;
@@ -12317,7 +12422,7 @@ async function oInit(){if(O.st!="off")return;O.st="loading";oRender();
  if(!db){O.st="nodb";return oRender()}
  O.db=db;O.user=user;let id=user?await user.id():null;
  if(!id){id=ls("za_pid");if(!id){id="local-"+Math.random().toString(36).slice(2,12);ls("za_pid",id)}}
- O.pid=id;O.st="ready";try{mxDesce()}catch(e){}try{rkModoLer()}catch(e){}try{oVolta()}catch(e){}if(!O.tick)O.tick=setInterval(()=>{try{oTick()}catch(e){}},1000);if(!O.poll)O.poll=setInterval(oPoll,1500);oRender()}
+ O.pid=id;O.st="ready";try{mxDesce()}catch(e){}try{rkModoLer()}catch(e){}try{oVolta()}catch(e){}try{oVoltaVigia()}catch(e){}if(!O.tick)O.tick=setInterval(()=>{try{oTick()}catch(e){}},1000);if(!O.poll)O.poll=setInterval(oPoll,1500);oRender()}
 function showOnline(){dClear();G.scr="o";if(G.mode!="o")G.botPrev=G.bot;G.mode="o";oInit();oRender()}
 function oAfterWrite(){O.busy=0;O.last=0;oPoll()}
 async function oPoll(){const esp=(typeof D!="undefined"&&D&&D.spec)||O.seat==null;/* quem assiste busca o estado com mais frequência */
@@ -12326,14 +12431,31 @@ function oLeave(){if(O.ref&&O.d&&O.d.ph=="lobby"){const up={};OSL.forEach(k=>{if
 /* o jogo abriu e havia uma partida em andamento: volta para ela sozinho */
 async function oVolta(){try{
  const cod=ls("za_room");
- if(!cod||O.code||!O.db||!O.pid||G.scr=="p"||G.scr=="d"||G.win!=null)return;
+ /* Antes isto desistia quando o jogador estava na tela do draft ou da partida
+    - que e exatamente onde a conexao costuma cair. Agora o que importa e nao
+    haver sala ligada: sem O.code, nao ha o que atrapalhar. */
+ if(!cod||O.code||!O.db||!O.pid||O.voltando)return;
+ if(G.win!=null&&G.scr!="d"&&G.scr!="p")return;
  const sn=await O.db.doc("rooms/"+cod).get();
  if(!sn||!sn.exists){ls("za_room",null);return}
  const d=sn.data()||{},meu=(d.p0===O.pid)?0:(d.p1===O.pid)?1:null;
  if(meu==null||(d.ph!="draft"&&d.ph!="battle")){if(d.ph=="lobby"&&!d.rk)ls("za_room",null);return}
  try{zToast("Reconectando à sua partida…")}catch(e){}
- dClear();G.mode="o";O.rkSala=0;oSub(cod)
-}catch(e){}}
+ O.voltando=1;try{dClear();G.mode="o";O.rkSala=0;oSub(cod)}finally{setTimeout(()=>{O.voltando=0},4000)}
+}catch(e){O.voltando=0}}
+/* Fica de olho: enquanto houver uma partida guardada e nenhuma sala ligada,
+   tenta voltar sozinho. Cobre o draft, a apresentacao dos times e a batalha. */
+function oVoltaVigia(){
+ if(O.vigia)return;
+ O.vigia=setInterval(()=>{try{
+  if(!O.db||!O.pid||O.code||O.voltando)return;
+  if(!ls("za_room"))return;
+  oVolta();
+ }catch(e){}},6000);
+ ["online","focus"].forEach(ev=>{try{addEventListener(ev,()=>{
+  try{if(!O.code&&ls("za_room"))oVolta()}catch(e){}},{passive:true})}catch(e){}});
+ try{document.addEventListener("visibilitychange",()=>{
+  if(document.visibilityState==="visible"){try{if(!O.code&&ls("za_room"))oVolta()}catch(e){}}},{passive:true})}catch(e){}}
 function oSub(code){O.eaSeen=undefined;if(O.unsub){try{O.unsub()}catch(e){}}O.code=code;O.ref=O.db.doc("rooms/"+code);O.d=null;O.slow=0;clearTimeout(O.slowT);O.slowT=setTimeout(()=>{if(!O.d){O.slow=1;oRender()}},10000);
  O.unsub=O.ref.onSnapshot(sn=>{O.last=Date.now();O.slow=0;O.busy=0;clearTimeout(O.slowT);if(!sn.exists){O.d=null;O.err="Essa sala não existe mais.";return oRender()}const nd=sn.data();if(O.d&&JSON.stringify(nd)===JSON.stringify(O.d))return;O.d=nd;oApply()},e=>{O.err="A conexão com a sala caiu ("+(e&&e.code||"erro")+"). Saia e entre de novo.";oRender()})}
 function oApply(){const d=O.d;if(!d)return;if(O.eaSeen===undefined)O.eaSeen=d.ea||"";if(d.ea&&d.ea!==O.eaSeen){O.eaSeen=d.ea;endClose();if(d.ea.startsWith("menu")){oLeave();return showMenu()}}
@@ -12349,7 +12471,9 @@ function oApply(){const d=O.d;if(!d)return;if(O.eaSeen===undefined)O.eaSeen=d.ea
   try{ls("za_room",O.code)}catch(e){}}
  if(!O.inRoom&&d.ph=="lobby"&&!O.claiming&&!O.left){O.claiming=1;oClaimSlot().finally(()=>{O.claiming=0})}
  if(oIsHost()&&d.ph=="lobby"&&!O.busy){const all=d.p0&&d.p1&&d.lr0&&d.lr1;if(all&&!d.cd){O.busy=1;O.ref.update({cd:Date.now()+3600}).then(oAfterWrite,()=>{O.busy=0})}else if(!all&&d.cd){O.busy=1;O.ref.update({cd:0}).then(oAfterWrite,()=>{O.busy=0})}}
- if(d.ph=="battle"&&d.st&&(O.seat!=null||O.inRoom)&&!(O.seat==null&&O.specOut&&O.specOut===d.gid)){if(d.gid!==G.gid||(d.seq||0)>(G.seq||0)){const nw=d.gid!==G.gid;des(d.st);G.seq=d.seq||0;if(nw&&G.t<=1&&!G.log.some(l=>/ usa | → /.test(l.m||""))){G.intro=1;G.annB=1}}G.me=O.seat==null?-1:O.seat;G.online=1;G.scr="p";const lvL=(G.me<0&&!(frAssistindo()&&frAmgSeat()>=0&&G.cur!==frAmgSeat()))?lvPre(d.lv):null;render();try{frFaixa()}catch(e){}if(lvL)lvUI(lvL);else if(G.me<0){const q=document.getElementById("qord");if(q)q.remove();const pv=document.querySelector(".pvov");if(pv)pv.remove();LVK=""}return}
+ if(d.ph=="battle"&&d.st&&(O.seat!=null||O.inRoom)&&!(O.seat==null&&O.specOut&&O.specOut===d.gid)){if(d.gid!==G.gid||(d.seq||0)>(G.seq||0)){const nw=d.gid!==G.gid;
+   /* reconectou com a partida ja andada: a apresentacao dos times sai da frente */
+   if(!nw&&G.inOn)try{inEnd()}catch(e){}des(d.st);G.seq=d.seq||0;if(nw&&G.t<=1&&!G.log.some(l=>/ usa | → /.test(l.m||""))){G.intro=1;G.annB=1}}G.me=O.seat==null?-1:O.seat;G.online=1;G.scr="p";const lvL=(G.me<0&&!(frAssistindo()&&frAmgSeat()>=0&&G.cur!==frAmgSeat()))?lvPre(d.lv):null;render();try{frFaixa()}catch(e){}if(lvL)lvUI(lvL);else if(G.me<0){const q=document.getElementById("qord");if(q)q.remove();const pv=document.querySelector(".pvov");if(pv)pv.remove();LVK=""}return}
  if(d.ph=="draft"&&d.dr&&(O.seat!=null||O.inRoom)){G.online=1;G.bot=0;const skip=oDview(d);O.R=D;
   if(!skip){G.scr="d";dRender()}
   const R=JSON.parse(d.dr);if(O.seat===0&&BLIND.includes(R.ph)&&oNeed(R).every(t=>d["b"+t])){const ds=d.dseq;setTimeout(()=>{if(O.d&&O.d.dseq===ds&&!O.busy){const R2=JSON.parse(O.d.dr);const ms=oResolve(R2,[O.d.b0,O.d.b1]);oWriteR(R2,ms)}},600)}
@@ -12905,7 +13029,7 @@ function frLista(ls){if(!ls)return;ls.innerHTML="";
  const on=L.filter(vivo),off=L.filter(x=>!vivo(x));
  const linha=(x,ligado)=>{const p=FR.pres[x.id]||{};const it=mk("div","ofrit"+(ligado?"":" off"));
   const av=mk("i","ofrav",frIni(nome(x)));av.style.setProperty("--ac",frCor(x.id));it.append(av);
-  const st=!ligado?"Offline":p.s=="play"?"Em partida":"Disponível";
+  const st=!ligado?"Offline":p.s=="play"?(p.sl?"Em partida":"Em partida · sozinho"):"Disponível";
   it.append(mk("div","ofrnm","<b>"+escH(nome(x))+"</b><small class='ofrst "+(!ligado?"z":p.s=="play"?"p":"d")+"'>"+st+"</small>"));
   const g=mk("div","ofrbt");
   /* como na arte: quem está livre recebe Convidar; os outros, Mensagem */
@@ -12916,6 +13040,12 @@ function frLista(ls){if(!ls)return;ls.innerHTML="";
   else if(ligado&&p.s=="play"&&p.sl&&p.sl!==(FRW&&FRW.sl)){const as=mk("button","ofrcv as","Assistir");
    as.title="Acompanhar a partida de "+nome(x)+" ao vivo";
    as.onclick=()=>frAssiste(x.id,p.sl,nome(x),as);g.append(as)}
+  /* em partida, mas fora da arena online (contra o bot, por exemplo): o botao
+     aparece desligado em vez de sumir, senao parece que o Assistir quebrou */
+  else if(ligado&&p.s=="play"&&!p.sl){const as=mk("button","ofrcv as off","Assistir");
+   as.disabled=true;as.setAttribute("aria-disabled","true");
+   as.title=nome(x)+" está numa partida que não dá para acompanhar: só as partidas da arena online podem ser assistidas.";
+   g.append(as)}
   const ms=mk("button","ofrms"+(livre?" ic":"")+(frDmNovas(x.id)?" nv":""),
    livre?icHTML("ui_chat","","Mensagem")+"":"Mensagem");
   ms.title="Conversar";ms.onclick=()=>frDmAbre(x.id,nome(x));g.append(ms);
