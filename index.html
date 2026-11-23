@@ -6797,7 +6797,7 @@ function skTip(x,u){const s=SKI[x.k],ow=s[1],nm=s[2]=="p"?C[ow].ps.n:C[ow].sk[s[
 function fxShow(){const L=G.fx;G.fx=[];if(!L||!L.length||!document.body.classList.contains("bt"))return;const dmg=L.filter(f=>!f.h&&f.d>0),TOP=dmg.length?dmg.slice().sort((a,b)=>(b.cr?1e4:0)+b.d-((a.cr?1e4:0)+a.d))[0]:L.filter(f=>f.h).sort((a,b)=>b.h-a.h)[0];const cards=[...document.querySelectorAll("#b .u")];
  L.forEach((f,n)=>{const u=G.u[f.i];if(!u)return;const ix=G.u.filter(x=>true).indexOf(u),el=cards[ix];if(!el)return;const fw=el.querySelector(".fw");if(!fw)return;
   const sm=L.slice(0,n).filter(o=>o.i===f.i).length,p=mk("div","dpop"+(f.h?" hl":f.cr?" cr":""),f.h?"+"+f.h:(f.cr?"<small>CRÍTICO!</small>":"")+(f.d>0?"-"+f.d:"0"));p.style.animationDelay=(sm*.45)+"s";if(f===TOP)sfx(f.h?"heal":f.m?(f.cr?"mcrit":"melee"):f.cr?"crit":"hit",n*90+sm*450);p.style.marginTop=(sm%3*14)+"px";fw.append(p);setTimeout(()=>p.remove(),3200+sm*450)})}
-const AU={"kf": "media/b64/c6c53b066540b982.mp3", "tu": "media/b64/5f20467cc74921ac.mp3", "rd": "media/b64/05a90940bc624666.mp3", "black": "media/b64/4a138f69caa11ce8.mp3", "gg": "media/b64/af7ae04f08118ed8.mp3", "mg": "media/b64/8b5a7c07bac01bbb.mp3", "vs": "media/b64/961ffab5f9949ad3.mp3", "a17": "media/b64/7d489c898ed71c27.mp3", "tr": "media/b64/416df988ff2b1646.mp3", "za": "media/b64/003b452cb95d1795.mp3", "a18": "media/b64/1ab79ea8fc9e6c86.mp3", "gi": "media/b64/1c9109498be5085f.mp3", "gu": "media/b64/5a3cc6f15bb80ce7.mp3", "mv": "media/b64/50780230695672d0.mp3", "gd": "media/b64/e98e79625578b78e.mp3", "beast": "media/b64/896feced1e9d6480.mp3", "ar": "media/b64/618bb7fb6cbd2467.mp3"};IMG.ui_vs="media/b64/0bc7ca25489d03cf.webp";
+const AU={"kf": "media/b64/c6c53b066540b982.mp3", "tu": "media/b64/5f20467cc74921ac.mp3", "rd": "media/b64/05a90940bc624666.mp3", "black": "media/b64/8522a0ec2a4fabd5.mp3", "gg": "media/b64/af7ae04f08118ed8.mp3", "mg": "media/b64/8b5a7c07bac01bbb.mp3", "vs": "media/b64/961ffab5f9949ad3.mp3", "a17": "media/b64/7d489c898ed71c27.mp3", "tr": "media/b64/416df988ff2b1646.mp3", "za": "media/b64/003b452cb95d1795.mp3", "a18": "media/b64/1ab79ea8fc9e6c86.mp3", "gi": "media/b64/1c9109498be5085f.mp3", "gu": "media/b64/5a3cc6f15bb80ce7.mp3", "mv": "media/b64/50780230695672d0.mp3", "gd": "media/b64/e98e79625578b78e.mp3", "beast": "media/b64/896feced1e9d6480.mp3", "ar": "media/b64/618bb7fb6cbd2467.mp3"};IMG.ui_vs="media/b64/0bc7ca25489d03cf.webp";
 
 AU.cl="media/b64/9d4a2edd728ff6a6.mp3";
 AU.sas="media/b64/aeb2a79dd58b4f73.mp3";
@@ -6810,7 +6810,7 @@ AU.gbk="media/b64/d22eece4d1c51e34.mp3";
 AU.g2="media/b64/eb8e1038ebfd0a05.mp3";Object.assign(AU,{bo:"media/82bded0c6b3733db4c71da73174a9497.webm",
  jw:"media/3b9332734768f9f94b2391afecedff35.webm",
  lv:"media/dbf5a7b1c771e6c74d00d62d8d750a1a.webm",
- cd10:"media/b01757655cd22b0498c010d956e8c640.webm"});
+ cd10:"media/2b3d495a1a79f020f39f6d7aeb311f4b.webm"});
 const AUK={ab:["a18"]};let IN=null;
 const VOL=(()=>{let v={g:45,v:80,m:35,e:55};try{const s=JSON.parse(localStorage.getItem("za_vol")||"null");if(s&&localStorage.getItem("za_vol2")){v=Object.assign(v,s)}else if(s){const o={g:80,v:100,m:60,e:80};Object.keys(v).forEach(k=>{if(s[k]!=null&&s[k]!==o[k])v[k]=s[k]})}localStorage.setItem("za_vol2","1")}catch(e){}return v})();
 const vol=k=>Math.max(0,Math.min(1,VOL.g/100*VOL[k]/100));
@@ -7142,8 +7142,10 @@ const MUSWGP="media/c64c8dbc47be982fe01aff8c59b533b6.webm";/* We Gotta Power - t
 const MUSBB="media/14642c9ea196098365c4fb6c6360fa03.webm";/* Blue Bird instrumental - collab com Naruto */
 const MUSAOT="media/c8911c14759668fafbf1dfa32d9be312.webm";/* Shinzou wo Sasageyo - collab com Attack on Titan */
 const MUSRUMB="media/9dd3c5b8ca10e29831f7d71654f95656.webm";/* The Rumbling - tema das batalhas */
-const MUSD={g2:"media/8b2488b63e77847431ceb29e84ef92ff.mp4",menu:MUSAOT,draft:"media/9b054f9efcc82b1adf46bc4cfdd6db9a.webm",battle:MUSRUMB};AU.ban="media/b64/495500f7abf7ad86.mp3";const MUSA={};
-function musWant(){if(document.hidden)return null;if(G.scr=="d")return"draft";if(G.scr=="p")return G.g2v?null:G.g2m?"g2":"battle";return["m","c","t","b","o","pt"].includes(G.scr)?"menu":null}
+const MUSVOG="media/dc283b925bbbadca76e3b7e3986fb300.webm";/* Vogel im Käfig 2.0 - tema do draft */
+const MUSCOS="media/9cf6089b554b993456677b1a608fe6c7.webm";/* Call of Silence - tema dos Equipamentos */
+const MUSD={g2:"media/8b2488b63e77847431ceb29e84ef92ff.mp4",menu:MUSAOT,draft:MUSVOG,equip:MUSCOS,battle:MUSRUMB};AU.ban="media/b64/495500f7abf7ad86.mp3";const MUSA={};
+function musWant(){if(document.hidden)return null;if(G.scr=="d")return"draft";if(G.scr=="inv")return"equip";if(G.scr=="p")return G.g2v?null:G.g2m?"g2":"battle";return["m","c","t","b","o","pt"].includes(G.scr)?"menu":null}
 let MDK=1;function thmSync(){const on=G.scr=="b"||G.scr=="o";document.body.classList.toggle("thm",on);{const t=document.querySelector("main>h1");if(t){const w=G.scr=="b"?"Modo Treino":"Projeto Ânima";
   /* o texto mora num span: assim o botao Menu do Modo Treino nao e apagado */
   let sp=t.querySelector(".bht");
@@ -7976,7 +7978,8 @@ const PATCH=[
   "<b>Notícias</b>: a collab do Solo Leveling continuava anunciando “Jinwoo chega em breve” com ele já jogável.",
   "<b>Tutorial</b>: a seção “Líder e passiva” passou a explicar a SOMBRA — uma passiva pode colocar mais um lutador em campo.",
   "<b>Personagens “Em breve”</b> não ocupam mais espaço nas telas de Personagens, Montar times e Draft."],
- nv:[{i:"\ud83c\udf99\ufe0f",hl:1,n:"Dublagem brasileira nos vídeos",t:"Em <b>Configurações › Som</b> você escolhe entre <b>dublagem brasileira</b> e <b>japonesa</b>. A brasileira está sendo gravada aos poucos: <b>Levi</b> e <b>Boruto</b> já têm entrada e ultimate dubladas, e enquanto um vídeo não tiver versão pronta ele toca em japonês com legenda, avisando na tela."},
+ nv:[{i:"\ud83c\udfb5",n:"Trilha nova no draft e nos Equipamentos",t:"O draft agora roda com <b>Vogel im Käfig 2.0</b>, e a tela de <b>Equipamentos</b>, que era muda, ganhou <b>Call of Silence</b>. O aviso sonoro dos <b>10 segundos</b> também foi trocado, e o narrador tem gravação nova para o <b>Goku Black SSJ Rose</b>."},
+  {i:"\ud83c\udf99\ufe0f",hl:1,n:"Dublagem brasileira nos vídeos",t:"Em <b>Configurações › Som</b> você escolhe entre <b>dublagem brasileira</b> e <b>japonesa</b>. A brasileira está sendo gravada aos poucos: <b>Levi</b> e <b>Boruto</b> já têm entrada e ultimate dubladas, e enquanto um vídeo não tiver versão pronta ele toca em japonês com legenda, avisando na tela."},
   {i:"\u2699\ufe0f",n:"Configure seu jogo antes de começar",t:"Quem sai do tutorial pela primeira vez passa por uma tela única com <b>volume, dublagem, tamanho e transparência do menu, escurecimento do fundo, tamanho da letra e cursor</b> — tudo numa página só, com o menu aparecendo atrás para você ver as mudanças na hora."},
   {i:"\ud83c\udf13",n:"Dá para clarear o fundo",t:"Os ajustes do menu saíram de <b>Vídeo</b> e foram para <b>Imagem</b>, com uma barra nova: <b>Escurecer o fundo</b>. Quem quiser ver a arte do cenário inteira agora pode levantar o véu até onde quiser."},
   {i:"\ud83c\udfc5",n:"A Maestria aparece no fim da partida",t:"Depois dos pontos da ranqueada entra uma tela com os <b>quatro do seu time</b>: o rosto, o nível, a barra andando do que era para o que ficou e quantos pontos cada um ganhou. Quem sobe de nível aparece em dourado."},
