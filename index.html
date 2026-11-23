@@ -8611,8 +8611,6 @@ function cfgInicial(cb){
  const segue=()=>{if(cb)try{cb()}catch(e){}};
  if(document.getElementById("cfg1"))return;
  try{if(ls("za_cfg1")==="1"){segue();return}}catch(e){}
- /* quem chegou aqui ja tendo partidas nas costas nao e jogador novo */
- try{const h=(mxLer().h||[]).length;if(h>0){ls("za_cfg1","1");segue();return}}catch(e){}
  const ov=mk("div","");ov.id="cfg1";
  const bx=mk("div","cfg1bx");bx.setAttribute("role","dialog");
  bx.setAttribute("aria-label","Configure seu jogo antes de come\u00e7ar");
@@ -8655,7 +8653,9 @@ function nickAsk(){if(document.getElementById("nkm"))return;if(window.ZLOGIN&&wi
   if(!tutSeen()){TUTNEW=1;TUTI=0;try{return showTut()}catch(x){}}
   if(G.scr=="m")try{bnNext()}catch(x){}},400)}}
 function bnNext(){if(!nickOk()||document.getElementById("nkm")||document.getElementById("rotm"))return;
- if(RETROP&&(!BQ||!BQ.length)&&!document.getElementById("bnr")&&!document.getElementById("nws")&&G.scr=="m"){RETROP=0;return mxRetroShow(()=>{try{bnNext()}catch(e){}})}
+ const bqLivre=()=>(!BQ||!BQ.length)&&!document.getElementById("bnr")&&!document.getElementById("nws")&&G.scr=="m";
+ if(CFG1P&&bqLivre()){CFG1P=0;return cfgInicial(()=>{try{bnNext()}catch(e){}})}
+ if(RETROP&&bqLivre()){RETROP=0;return mxRetroShow(()=>{try{bnNext()}catch(e){}})}
  if(BQEND&&(!BQ||!BQ.length)&&!document.getElementById("bnr")&&!document.getElementById("nws")&&G.scr=="m"){const f=BQEND;BQEND=null;return f()}
  if(!BQ||!BQ.length||document.getElementById("bnr")||G.scr!="m")return;const b=BQ.shift();try{if(b.ty=="news")return nwOpen(true);bnShow(b)}catch(e){const x=document.getElementById("bnr");if(x)x.remove();const y=document.getElementById("nws");if(y&&!y.querySelector(".nwc"))y.remove()}}
 function bnShow(b){const ids=b.ty=="pt"?["pt_"+b.p.t]:b.ty=="nw"?["nw_"+b.k]:b.ty=="co"?["co_"+b.k]:b.ty=="sn"?["sn_"+b.k]:b.ty=="ft"?["ft_"+b.k]:b.ps.map(p=>"bal_"+p.t),ov=mk("div","");ov.id="bnr";const bx=mk("div","bnbox "+(b.ty=="sn"?"nw sn":b.ty=="ft"?"nw ft":b.ty));ov.append(bx);
@@ -8761,7 +8761,7 @@ function nwOpen(auto){if(document.getElementById("nws"))return;const L=nwItems()
     const br=document.getElementById("bnr");if(br){br.classList.add("fromnw");const vm=br.querySelector(".bnvm");if(vm)vm.addEventListener("click",()=>close(),true)}};
    lst.append(c)})};
  const ft=mk("div","nwfoot"),off=mk("label","bnck","<input type=checkbox> Não abrir sozinho hoje"),cl=mk("button","nwcl","Fechar");cl.type="button";
- const close=()=>{if(off.querySelector("input").checked)try{localStorage.setItem("za_nwoff",new Date().toDateString())}catch(e){}ov.remove();document.removeEventListener("keydown",esc,true);nwBadge()},
+ const close=()=>{if(off.querySelector("input").checked)try{localStorage.setItem("za_nwoff",new Date().toDateString())}catch(e){}ov.remove();document.removeEventListener("keydown",esc,true);nwBadge();setTimeout(()=>{try{bnNext()}catch(e){}},250)},
   esc=e=>{if(e.key=="Escape"&&!document.getElementById("bnr")&&!document.getElementById("chpop")){e.stopPropagation();close()}};
  cl.onclick=close;ov.onclick=e=>{if(e.target===ov)close()};ft.append(auto?off:mk("span",""),cl);bx.append(ft);draw();document.body.append(ov);document.addEventListener("keydown",esc,true);cl.focus()}
 /* ---- patch detalhado: antes ⇒ depois, com o motivo de cada mudança ---- */
@@ -11138,7 +11138,7 @@ function mxCredita(gid,time,venceu,dest,modo){
    Aqui as partidas ranqueadas que o hist\u00f3rico guarda (contra gente e contra bot) s\u00e3o
    pagas uma \u00fanica vez, com a mesma tabela de sempre: vit\u00f3ria vale MXCFG.vit e derrota
    MXCFG.der. Nada de b\u00f4nus de destaque: MVP e SVP n\u00e3o eram registrados na \u00e9poca. */
-let RETROP=0;
+let RETROP=0,CFG1P=0;
 function mxLado(reg,f){try{
  if(f&&(f.win===0||f.win===1))return reg.win?f.win:1-f.win;
  return 0}catch(e){return 0}}
@@ -13038,21 +13038,12 @@ try{temaAplica(temaLer())}catch(e){}
 try{mmApply()}catch(e){}/* tamanho e opacidade do menu, antes do primeiro desenho *//* antes de desenhar: o menu ja nasce no visual certo */
 showMenu();
 
-/* A tela "Configure seu jogo" e so para quem esta chegando agora. Quem ja jogava
-   antes desta atualizacao ja tem rastro salvo (tutorial feito, nick, partidas,
-   maestria, equipamentos): marca como vista na carga, antes de qualquer clique,
-   quando um jogador novo ainda nao tem nada disso. */
-function cfg1Antigo(){try{
- const v=k=>{try{const r=ls(k);return r==null?"":String(r)}catch(e){return ""}};
- if(v("za_cfg1")==="1")return;
- const temJson=k=>{const r=v(k);if(!r||r==="null")return false;
-  try{const o=JSON.parse(r);if(!o)return false;if(Array.isArray(o))return o.length>0;
-   if(typeof o==="object")return Object.keys(o).length>0;return true}catch(e){return r.length>2}};
- const antigo=v("za_tut_ok")==="1"
-  ||temJson("za_mx")||temJson("za_rk")||temJson("za_rk_hist")||temJson("za_st")
-  ||temJson("za_inv")||temJson("za_eq")||v("za_zeni")!=="";
- if(antigo)ls("za_cfg1","1")}catch(e){}}
-try{cfg1Antigo()}catch(e){}
+/* A tela "Configure seu jogo" aparece uma vez para TODO mundo, inclusive para
+   quem ja jogava antes dela existir: eles tambem nunca tiveram a chance de
+   acertar volume, dublagem, tamanho do menu e cursor numa tela so. Para quem
+   esta chegando agora ela entra no fim do tutorial; para os demais, no menu,
+   depois dos banners. A chave za_cfg1 garante que seja uma vez so. */
+try{if(ls("za_cfg1")!=="1")CFG1P=1}catch(e){}
 /* a retroatividade da Maestria: conta uma vez so, na primeira carga depois da atualizacao */
 try{mxRetro()}catch(e){}
 try{const R=mxLer().retro;if(R&&R.lista&&R.lista.length&&!R.visto)RETROP=1}catch(e){}
