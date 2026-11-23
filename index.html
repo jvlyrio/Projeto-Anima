@@ -1620,6 +1620,10 @@ body.ph #coach{bottom:auto;top:6px;font-size:12.5px;padding:6px 8px}body.ph #coa
 .stsvg{background:#261b2a;border:1px solid #ffffff22;border-radius:12px;padding:8px}.stsvg svg{display:block;width:100%;height:auto}.stsvg path{fill:none;stroke-width:3;stroke-linejoin:round}.stsvg .g{stroke:#ffffff1c}.stsvg text{fill:#c7bdb6;font:600 11px system-ui}.stleg{display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:4px 6px}.stleg span{font:800 13px system-ui}.stleg span:before{content:"";display:inline-block;width:14px;height:4px;border-radius:2px;background:var(--tc);margin-right:6px;vertical-align:middle}.stleg small{color:#c7bdb6;font:500 12px system-ui}
 .sttl{display:flex;gap:3px;align-items:flex-end;height:130px;padding:8px;background:#261b2a;border:1px solid #ffffff22;border-radius:12px;overflow-x:auto}.sttl>div{flex:1 0 18px;display:flex;flex-direction:column;align-items:center;height:100%}.sttl i{flex:1;width:100%;display:flex;gap:2px;align-items:flex-end}.sttl u{flex:1;border-radius:3px 3px 0 0;min-height:1px}.sttl small{font:600 10px system-ui;color:#c7bdb6;margin-top:3px}
 .endb.stb{border-color:#5fe08a}
+/* voltar direto para a fila: e o caminho esperado depois de uma ranqueada */
+.endb.go{background:linear-gradient(180deg,#e0809a,#b84664);border-color:#ffd3de;color:#1b1016}
+.endb.go span{color:#1b1016;font-weight:900}
+.endb.go:hover{background:linear-gradient(180deg,#eb94ab,#c8506f)}
 body.ph #stv{padding:4px}body.ph .sthd{padding:8px 12px 4px}body.ph .sthd h2{font-size:20px}body.ph .sttb{padding:0 12px 6px}body.ph .sttb button{padding:5px 10px;font-size:12px}body.ph .stbd{padding:8px 12px 14px}body.ph .stmv img{width:60px;height:60px}body.ph .stmv b{font-size:16px}body.ph .stlb{font-size:18px}
 @media (max-width:700px){.stmvs,.stduo{grid-template-columns:1fr}.staws{grid-template-columns:repeat(2,1fr)}.stmv img{width:64px;height:64px}}
 .scic{display:inline-block;width:1.5em;height:1.5em;vertical-align:-.45em;object-fit:contain;filter:drop-shadow(0 0 3px #5fe08a88)}.endb.stb span{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:none!important;-webkit-text-fill-color:initial;color:inherit;white-space:nowrap}.endb.stb .stbt{font-style:inherit;background:linear-gradient(180deg,#e4dacb,#d27285 40%,#cb5970);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding-right:.12em}.endb.stb .scic{width:1.7em;height:1.7em;vertical-align:middle}.ptc.pnv>i .scic{width:44px;height:44px;vertical-align:top}.bnbox.ft{border-color:#5fe08a;box-shadow:0 24px 70px #000d,0 0 46px #5fe08a55}.bnbox.ft .bntag{background:linear-gradient(90deg,#1fb86a,#5fe08a);color:#062a14}.bnbox.ft .bnart{background-position:50% 0;background-size:cover}.bnbox.ft .bnart:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,#000c);pointer-events:none}.bnbox.ft .bnnm{z-index:1}.bnbox.ft .bninf h3{color:#7ff0a8}
@@ -2341,8 +2345,14 @@ body.php .ivpn.ivlf{max-height:none;overflow-y:visible}
  .ivstage>.ivcol,.ivstage>.ivmid{min-height:0}
  .ivstage>.ivcol{overflow-y:auto;scrollbar-width:none}
  .ivstage>.ivcol::-webkit-scrollbar{display:none}
- .ivstage .ivact{width:100%;max-width:100%;justify-self:stretch;flex-wrap:nowrap;gap:5px;
+ .ivstage .ivact{position:relative;width:100%;max-width:100%;justify-self:stretch;flex-wrap:nowrap;gap:5px;
   justify-content:flex-start;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+ /* a barra rola de lado, mas o botao cortado na borda parecia tela quebrada:
+    os botoes ficam mais estreitos e uma sombra avisa que ainda tem coisa ali */
+ .ivstage .ivact .ivab{padding:7px 10px!important;font-size:11.5px!important}
+ .ivstage .ivact .ivab .icem,.ivstage .ivact .ivab img{width:15px!important;height:15px!important}
+ .ivstage .ivact{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),#0000 100%);
+  mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),#0000 100%)}
  .ivstage .ivact::-webkit-scrollbar{display:none}
  .ivstage .ivact>*{flex:0 0 auto}
  .ivstage .ivact{align-items:center}
@@ -6068,16 +6078,22 @@ function winAnn(){if(G.win==null||G.sim||G.scr!="p"){return}const key=(G.gid||""
 
 function endClose(){const o=document.getElementById("endov");if(o)o.remove()}
 function endRematch(){const R=G._rem;if(!R)return;endClose();G.dsnapN=G.dsnap||null;G.tm=R.tm;G.ann=R.ann;G.mode=R.mode;const k=G.fd;G.fd=R.fd;G.intro=1;newGame();G.fd=k}
+/* Fim de ranqueada: voltar para a fila sem passar pelo lobby */
+function endBuscar(){endClose();
+ try{ls("za_room",null)}catch(e){}
+ try{if(G.online)oLeave()}catch(e){}
+ try{LBM="fila";showLobby()}catch(e){}
+ try{RKQ.de="lb";rkEntraFila(1)}catch(e){}}
 function endScreen(){if(G.win==null||G.scr!="p")return endClose();let o=document.getElementById("endov");if(!o){o=mk("div","");o.id="endov";document.body.append(o);try{rkPromoSolta()}catch(e){}if(window.ZGUESTNAG)setTimeout(window.ZGUESTNAG,2500)}
  const me=G.online?(G.me>=0?G.me:null):G.bot?0:null,cls=empate()?"pw":me==null?"pw":G.win===me?"pwin":"plose",tt=empate()?"Empate!":me==null?pn(G.win)+" Venceu!":G.win===me?"Você Venceu!":"Você Perdeu!";
  let st="",btns=[];
  if(!G.online){
-  if(rkEmJogo())btns=[["Menu",()=>{endClose();showMenu()}],["Voltar ao lobby",()=>{endClose();LBM="fila";showLobby()}]];
+  if(rkEmJogo())btns=[["Buscar novamente",endBuscar,"go"],["Voltar ao lobby",()=>{endClose();LBM="fila";showLobby()}],["Menu",()=>{endClose();showMenu()}]];
   else btns=[["Menu",()=>{endClose();showMenu()}],[G.mode=="d"?"Novo draft":"Seleção de personagens",()=>{endClose();if(G.mode=="d")startDraft();else{G.mode="t";G.scr="b";build()}}],["Revanche",endRematch]]}
  else{const d=O.d||{};if(G.me<0){btns=[["Menu",()=>{endClose();oLeave();showMenu()}],["Voltar à sala",()=>{endClose();O.specOut=d.gid||G.gid;G.online=0;G.scr="o";document.body.classList.remove("bt");oRender()}]];st="Você estava assistindo."}
   else if(d.rk){/* ranqueada: não tem revanche nem voltar à sala */
    const sai=f=>()=>{endClose();try{ls("za_room",null)}catch(e){}try{oLeave()}catch(e){}f()};
-   btns=[["Menu",sai(showMenu)],["Voltar ao lobby",sai(()=>{LBM="fila";showLobby()})]]}
+   btns=[["Buscar novamente",endBuscar,"go"],["Voltar ao lobby",sai(()=>{LBM="fila";showLobby()})],["Menu",sai(showMenu)]]}
   else{const mine=!!d["rm"+G.me],oth=!!d["rm"+(1-G.me)];btns=[["Menu",()=>oEnd("menu")],["Voltar à sala",()=>oEnd("room")],[mine?"✓ Revanche":"Revanche",()=>oRematch(!mine),mine?"on":""]];
    st=d.rc?"":mine&&!oth?"Aguardando o oponente aceitar a revanche…":oth&&!mine?"O oponente quer revanche!":""}}
 btns.push([scic("%SC%")+"<i class='stbt'>Estatísticas</i>",showStats,"stb"]);
@@ -7066,7 +7082,13 @@ function playIntro(cb){const old=document.getElementById("vsi");if(old)old.remov
  side(0,()=>vs(()=>side(1,()=>{if(IN)IN.tm.push(setTimeout(inEnd,900))})))}
 function lgFill(){const el=$("#lg");if(!el)return;const sig=G.log.length+"|"+fogView()+"|"+G.log.map(l=>(l.t||0)+l.m).join("¦");if(el._sg===sig)return;const h0=el.scrollHeight,st=el.scrollTop;let pt=null,h="";G.log.forEach(l=>{if(l.hv!=null&&fogHid(l.hv))return;if(l.t&&l.t!==pt){pt=l.t;h+="<div class='lgt'>Turno "+l.t+"</div>"}h+="<div>"+(l.ic?"<img src='"+l.ic+"' alt=''>":"")+"<span>"+l.m+"</span></div>"});el.innerHTML=h+"<div>Dica: "+(HOVPC?"passe o mouse":"segure o clique")+" em um ícone para ver o que ele faz. Clique de novo numa habilidade da fila para cancelá-la.</div>";el._sg=sig;if(st>0)el.scrollTop=st+(el.scrollHeight-h0)}
 function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=ZOFF||!["m","inv","gac","ms"].includes(G.scr)}if(G.scr!="p")pannOff();if(RFZ){if(G.scr=="p")return;RFZ=0}if(G.scr=="p"&&zaPre())return;if(G.scr=="pt")return;if(G.scr=="o")return oRender();if(G.scr=="m")return showMenu();if(G.scr=="d")return dRender();document.body.classList.remove("dm");if(G.scr!="p"||G.win!=null||(G.bot&&G.cur==1))closeOrder();if(G.scr!="p"||G.win!=null)closeSur();if(G.scr!="p")return G.scr=="b"?build():undefined;/* so o montador de times se redesenha aqui; inventario, tutorial e companhia nao */document.body.classList.add("bt");{const ff=FDS.find(x=>x.k==G.cf);document.body.style.setProperty("--fbg",ff?'url("'+IMG["fd_"+ff.k]+'")':"none")}const b=$("#b");b.innerHTML="";{const f=FDS.find(x=>x.k==G.cf);if(f){const fb=mk("div","fdb","<span><small class='fdlb'>Campo</small><b>"+f.n+"</b>"+(G.cf=="tp"?"<i class='fdt'>turno "+G.t+(tp()?" · cura, armadura e barreira anuladas":"")+"</i>":"")+"<em class='fdd'>"+f.d+"</em></span>");fb.style.backgroundImage='url("'+IMG["fd_"+f.k]+'")';b.append(fb)}if(0)b.append(mk("div","fdb","<b>Campo: "+f.n+"</b>"+(G.cf=="tp"?" · turno "+G.t+(tp()?" (cura, armadura e barreira anuladas)":""):"")+" · "+f.d))}
- [0,1].forEach(s=>{const row=mk("div","row t"+s+(s==G.cur&&G.win==null?" cur":"")),hd=mk("div","hd"),L0=(G.ldisp||G.lead)[s],L=C[L0]?L0:null,an=!!L&&G.lead[s]=="none",lf=mk("img");if(L){lf.src=IMG[L+"_f"];if(an)lf.style.filter="grayscale(1)";att(lf,()=>pTip(C[L].n,C[L].ld,an?"Líder anulado: os dois times escolheram o mesmo":"Habilidade de Líder"))}else lf.style.visibility="hidden";
+ /* ===== Voce sempre joga do lado esquerdo =====
+    A classe t0/t1 diz o LADO na tela, nao o numero do time: quem esta no
+    assento 1 via o proprio time a direita e reclamava. Agora o time de quem
+    esta jogando recebe sempre o lado esquerdo. Espectador ve na ordem normal. */
+ const EU=(()=>{try{return G.online?G.me:0}catch(e){return 0}})();
+ const ORD=(EU===1)?[1,0]:[0,1];
+ ORD.forEach((s,lado)=>{const row=mk("div","row t"+lado+(s==G.cur&&G.win==null?" cur":"")),hd=mk("div","hd"),L0=(G.ldisp||G.lead)[s],L=C[L0]?L0:null,an=!!L&&G.lead[s]=="none",lf=mk("img");if(L){lf.src=IMG[L+"_f"];if(an)lf.style.filter="grayscale(1)";att(lf,()=>pTip(C[L].n,C[L].ld,an?"Líder anulado: os dois times escolheram o mesmo":"Habilidade de Líder"))}else lf.style.visibility="hidden";
   hd.append(lf,mk("div","","<b>"+pnv(s)+"</b> · "+(L?"líder "+C[L].n+(an?" (anulado)":""):"sem líder")+"<br>"+resChips(s)));row.append(hd);
   const us=mk("div","us");
   G.u.filter(x=>x.s==s&&!x.sb).forEach(u0=>{
@@ -7818,7 +7840,10 @@ const PATCH=[
     {i:3,ln:[["Cura para a equipe","30","25"]]}]},"n"],
   ["g2",{q:"O Gohan SSJ2 venceu <b>52,0%</b> e foi subindo junto com os ajustes até 52,6%. O Ataque do dragão cresce +5 para cada 10 de HP que o alvo já perdeu, ou seja, bate mais quanto mais perto o inimigo está de morrer — e ainda soma +10 ao Golpe Explosivo. O que baixou foi só a base dele.",
    it:[{i:1,ln:[["Dano de base","20","15"]]}]},"n"]],
- sy:["<b>Escolha visível no draft</b>: jogadores reclamaram que não davam conta de identificar quem tinham escolhido nos pré-líderes — havia só uma borda fina, que se perdia no meio das artes coloridas. Agora a arte escolhida fica pintada por dentro, com borda grossa e o nome na cor da escolha. Vale em todas as fases do draft e nos dois visuais.",
+ sy:["<b>Equipamentos no celular deitado</b>: a barra de ações rolava de lado, mas o botão na borda ficava cortado no meio e parecia tela quebrada. Os botões ficaram mais estreitos, cabe mais coisa de uma vez, e a borda direita agora esmaece para mostrar que a barra continua.",
+  "<b>Buscar novamente</b>: ao fim de uma ranqueada, o botão em destaque devolve direto para a fila — sai da sala, volta ao lobby e começa a busca numa tecla só. Vale na ranqueada online e na ranqueada contra bot. Sala particular segue com Revanche.",
+  "<b>Você sempre joga pela esquerda</b>: quem caía no assento 2 via o próprio time do lado direito e reclamava. A marca que decide o lado na tela passou a significar <i>lado</i>, não número do time: o time de quem está jogando fica sempre à esquerda, na batalha e no draft. Quem assiste continua vendo na ordem da sala.",
+  "<b>Escolha visível no draft</b>: jogadores reclamaram que não davam conta de identificar quem tinham escolhido nos pré-líderes — havia só uma borda fina, que se perdia no meio das artes coloridas. Agora a arte escolhida fica pintada por dentro, com borda grossa e o nome na cor da escolha. Vale em todas as fases do draft e nos dois visuais.",
   "<b>Habilidade escolhida</b>: o mesmo problema dentro da partida. O ícone da habilidade que entrou na fila agora fica pintado de verde por dentro, em vez de só mudar a cor da borda.",
   "<b>Sala personalizada</b>: o dojo ao entardecer aparecia só no cartão do lobby. Dentro da sala a tela continuava com o cenário do menu, porque o fundo era posto só na tela do lobby. Agora a arena cobre a tela da sala inteira, com o painel por cima.",
   "<b>Rolagem</b>: a roda do mouse só funcionava com o ponteiro em cima da lista. Nos filtros, no cabeçalho ou na margem, nada acontecia — oito telas ficavam assim (Personagens, Tutorial, Configurações, Estatísticas, Cápsulas, Missões, Equipamentos e Inventário). Agora a roda vale na tela inteira, e no celular arrastar numa parte parada também rola. Chat, lista de amigos e campo de batalha ficam de fora.",
@@ -7855,7 +7880,9 @@ const PATCH=[
   "<b>Notícias</b>: a collab do Solo Leveling continuava anunciando “Jinwoo chega em breve” com ele já jogável.",
   "<b>Tutorial</b>: a seção “Líder e passiva” passou a explicar a SOMBRA — uma passiva pode colocar mais um lutador em campo.",
   "<b>Personagens “Em breve”</b> não ocupam mais espaço nas telas de Personagens, Montar times e Draft."],
- nv:[{i:"\u2705",hl:1,n:"Dá para ver o que você escolheu",t:"No draft, a seleção era só uma borda fina que sumia no meio das artes — e as pessoas erravam o próprio pré-líder. Agora o personagem escolhido fica <b>pintado por dentro</b>, com borda grossa e o nome na cor da escolha. Dentro da partida, a habilidade que entra na fila ganhou o mesmo tratamento, em verde."},
+ nv:[{i:"\ud83d\udd01",n:"Buscar novamente",t:"Acabou a ranqueada? O botão <b>Buscar novamente</b> na tela de fim de partida devolve você à fila na hora, sem passar pelo menu nem pelo lobby. Vale também na ranqueada contra bot."},
+  {i:"\u2b05\ufe0f",hl:1,n:"Você sempre joga pela esquerda",t:"Antes, quem entrava como <b>Jogador 2</b> lutava com o próprio time do lado direito, e muita gente errava clique por causa disso. Agora o seu time fica <b>sempre à esquerda</b>, na batalha e no draft, seja qual for o assento. Quem entra como espectador continua vendo na ordem da sala."},
+  {i:"\u2705",hl:1,n:"Dá para ver o que você escolheu",t:"No draft, a seleção era só uma borda fina que sumia no meio das artes — e as pessoas erravam o próprio pré-líder. Agora o personagem escolhido fica <b>pintado por dentro</b>, com borda grossa e o nome na cor da escolha. Dentro da partida, a habilidade que entra na fila ganhou o mesmo tratamento, em verde."},
   {i:"\ud83d\udc41\ufe0f",hl:1,n:"Assista a partida de um amigo",t:"Quando um amigo da sua lista está em partida, aparece o botão <b>Assistir</b> ao lado do nome dele. Você entra na sala como espectador e acompanha a batalha ao vivo, com uma faixa no alto mostrando de quem é a partida. Não é o mesmo que entrar pelo código da sala: por aqui <b>você vê só as jogadas do seu amigo</b> — o que o adversário está montando no turno dele fica escondido até ele confirmar."},
   {i:"\ud83c\udccf",n:"Espaços do draft maiores",t:"Os quadros onde as escolhas aparecem estavam espremendo a arte e ficava difícil ver quem cada um pegou. No computador o quadro cresceu e agora mostra o banner inteiro, sem corte. No celular entra o <b>rosto do personagem</b>: deitado, numa linha com o nome ao lado; em pé, no quadrado de cima com o nome embaixo."},
   {i:"\u2694\ufe0f",im:"lv_f",hl:1,n:"Levi Ackerman chega de Attack on Titan",t:"A quarta collab do Projeto \u00c2nima. Ele cresce durante a luta: cada abate d\u00e1 +5 de DANO e +10% de REDU\u00c7\u00c3O DE DANO pelo resto da batalha. O <b>Corte Girat\u00f3rio</b> fica dois turnos no alvo, e a ultimate <b>N\u00e3o est\u00e1 se divertindo!?</b> vira DANO DIRETO se o alvo estiver com essa marca."},
@@ -11451,7 +11478,7 @@ function dSlot(k,lab,cl){const e=mk("div","dslot"+(cl?" "+cl:""));if(k){e.style.
  const rr=mk("i","dfc");rr.style.backgroundImage='url("'+(IMG[k+"_f"]||IMG[k+"_b"])+'")';e.append(rr);if(/\bld\b/.test(cl||""))att(e,()=>ldTip(k),()=>tipAt(ldTip(k)));else att(e,()=>card(k))}e.append(mk("small","",lab));if(k)e.append(mk("b","",shn(k)));else if(cl&&cl.includes("cur"))e.append(mk("b","q","Escolhendo…"));return e}
 function dHid(k){const e=mk("div","dslot ld hid");if(k){const f=mk("div","faint");f.style.backgroundImage='url("'+(IMG[k+"_b"]||IMG[k+"_f"])+'")';e.append(f);att(e,()=>ldTip(k),()=>tipAt(ldTip(k)))}
  e.append(mk("small","",k?"Seu líder · secreto":"Líder escolhido"),mk("b","qm","?"));return e}
-function dCol(s){const live=!["fvote","field","prerev","done","banrev","fbanrev","sur"].includes(D.ph),c=mk("div","dcol "+(s?"r":"l")+(live&&D.who==s&&!(D.on&&D.wait)?" act":""));c.append(mk("div","dteam",pnv(s)));if(D.ph!="field"&&D.ph!="fvote"&&D.bf!=null){const t=mk("div","dfirst");if((D.nb>0||D.ph=="pre")&&D.bf===s)t.append(mk("span","fb","🥇 Bane primeiro"));if(1-D.bf===s)t.append(mk("span","fp","🥇 Escolhe primeiro"));if(t.children.length)c.append(t)}
+function dCol(s,lado){if(lado==null)lado=s;const live=!["fvote","field","prerev","done","banrev","fbanrev","sur"].includes(D.ph),c=mk("div","dcol "+(lado?"r":"l")+(live&&D.who==s&&!(D.on&&D.wait)?" act":""));c.append(mk("div","dteam",pnv(s)));if(D.ph!="field"&&D.ph!="fvote"&&D.bf!=null){const t=mk("div","dfirst");if((D.nb>0||D.ph=="pre")&&D.bf===s)t.append(mk("span","fb","🥇 Bane primeiro"));if(1-D.bf===s)t.append(mk("span","fp","🥇 Escolhe primeiro"));if(t.children.length)c.append(t)}
  const rev=["fban","fbanrev","newlead","done"].includes(D.ph),L=D.lead[s],cur=D.ph=="seq"?D.seq[D.si]:null;
  if(D.noLead)c.append(dSlot(null,"Sem líder","ld none"));
  else if(D.ph=="newlead"&&D.who==s&&!L)c.append(dSlot(D.sel[0]||null,"Novo líder","ld cur"));
@@ -11576,7 +11603,10 @@ function dRender(){if(!D)return showMenu();pannOff();if(typeof banSfx=="function
  const top=mk("div","dtop"),banRow=s=>{const e=mk("div","dbans "+(s?"r":"l"));const n=Math.max(D.nb,D.bans[s].length);for(let i=0;i<n;i++){const k=D.bans[s][i],sk=!k&&i<D.bans[s].length,b=mk("div","dban"+(k?" x":sk?" nb":cur&&cur.t=="ban"&&cur.s==s&&i==D.bans[s].length?" cur":""));if(k){const im=mk("img");im.src=IMG[k+"_f"];im.alt="Banido: "+shn(k);b.append(im);att(b,()=>card(k))}else if(sk){b.title="Não baniu ninguém";b.append(mk("span","","—"))}e.append(b)}return e};
  const mid=mk("div","dmid");mid.append(mk("div","dtm"+(still?" off":""),"<span id='dtm'>"+Math.max(0,D.t)+"</span>"),mk("div","dst"+(still||ph=="field"?"":" t"+D.who),dStatus()));
  const pr=mk("div","dprog"),ix=PHS.findIndex(p=>p[0]==phk);PHS.forEach((p,i)=>{if(p[0]=="ban"&&!D.nb&&ph!="field"&&ph!="pre")return;pr.append(mk("span",i<ix?"dn":i==ix?"on":"",p[1]))});mid.append(pr);
- top.append(banRow(0),mid,banRow(1));const body=mk("div","dbody"),cen=dCenter();if(ph!="field"&&D.fd){const f=FDS.find(x=>x.k==D.fd);if(f){const fc=mk("div","dfield");fc.style.backgroundImage='url("'+IMG["fd_"+f.k]+'")';fc.innerHTML="<div><small>Campo de batalha</small><b>"+f.n+"</b><p>"+f.d+"</p></div>";cen.append(fc)}else if(D.fd=="x"){cen.append(mk("div","dfield nf","<div><small>Campo de batalha</small><b>Sem campo</b></div>"))}}body.append(dCol(0),cen,dCol(1));r.append(top,body);if(D.hide)r.append(passScreen());else phaseAnn(pkey())}
+ top.append(banRow(0),mid,banRow(1));const body=mk("div","dbody"),cen=dCenter();if(ph!="field"&&D.fd){const f=FDS.find(x=>x.k==D.fd);if(f){const fc=mk("div","dfield");fc.style.backgroundImage='url("'+IMG["fd_"+f.k]+'")';fc.innerHTML="<div><small>Campo de batalha</small><b>"+f.n+"</b><p>"+f.d+"</p></div>";cen.append(fc)}else if(D.fd=="x"){cen.append(mk("div","dfield nf","<div><small>Campo de batalha</small><b>Sem campo</b></div>"))}}{/* no draft tambem: quem joga fica sempre na coluna da esquerda */
+  const EU=(()=>{try{return (D.on&&typeof O!="undefined"&&O.seat!=null)?O.seat:0}catch(e){return 0}})();
+  const ORD=(EU===1)?[1,0]:[0,1];
+  body.append(dCol(ORD[0],0),cen,dCol(ORD[1],1))}r.append(top,body);if(D.hide)r.append(passScreen());else phaseAnn(pkey())}
 
 /* ===== Modo online (db compartilhado do artifact) ===== */
 const O={st:"off",db:null,user:null,pid:null,code:"",ref:null,unsub:null,d:null,seat:null,err:"",msg:"",team:[null,null,null,null],fd:"r",sending:0,retry:null,ask:null,slow:0,slowT:0,joinIn:""};
