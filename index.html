@@ -1388,7 +1388,12 @@ body.ph .pcard{width:min(22%,110px)}body.ph .bcard{width:min(26%,120px)}body.ph 
 html body.ph.dm.dm:has(#dr>.dtop) .sndb{top:4px!important;left:6px!important;bottom:auto!important;right:auto!important;width:32px!important;height:32px!important;line-height:28px}
 html body.ph.dm.dm:has(#dr>.dtop) .sndp{top:42px!important;left:6px!important;bottom:auto!important;transform:none}
 body.ph:has(#dr>.dtop) #och.min{top:4px!important;right:6px!important;bottom:auto!important;left:auto!important;width:34px!important;height:34px!important}
-body.ph #dr .dtop{padding-left:44px!important;padding-right:44px!important}
+body.ph #dr .dtop{padding-left:94px!important;padding-right:46px!important}
+/* a frase da fase encolhe e as abas ficam numa linha so: a barra em duas
+   linhas empurrava o resto do draft para fora da tela */
+body.ph #dr .dtop .dst{min-width:0;max-width:34%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body.ph #dr .dtop .dprog{flex-wrap:nowrap;min-width:0;overflow:hidden}
+body.ph #dr .dtop .dprog span{white-space:nowrap;font-size:8px;padding:0 4px}
 body.php #och.min{width:42px!important;height:42px!important;border-radius:50%;right:8px;bottom:8px}
 body.php #och.min .ochh{padding:0;height:100%;justify-content:center;border:0;background:transparent;position:relative}
 body.php #och.min .ochb{display:none}body.php #och.min .ochh b{flex:none;font-size:0;line-height:1}body.php #och.min .ochh b::first-letter{font-size:19px}
@@ -2009,7 +2014,7 @@ body.ph .rkmed.art,body.ph .rkmed.art.g,body.php .rkmed.art,body.php .rkmed.art.
 .rktab th{text-align:left;font:800 10.5px system-ui;color:#c4bab1;text-transform:uppercase;letter-spacing:.06em;padding:4px 6px;border-bottom:1px solid #453549}
 .rktab td{padding:5px 6px;border-bottom:1px solid #382a3d}
 .rktab tr.eu{background:#d272851f}.rktab tr.eu td{color:#e5acb7}
-.rkhl{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.rkhl{display:flex;flex-direction:column;gap:6px;margin-top:4px}.rkhl>*{flex:0 0 auto}
 .rkhi{border-radius:10px;border:2px solid #453549;background:#291c2e99;overflow:hidden}
 .rkhi.v{border-color:#2f7d53}.rkhi.d{border-color:#7d3b36}
 .rkhi.ab{border-color:#d27285}
@@ -5116,6 +5121,20 @@ body.ph #dr .dcen>.dgrid,
 body.ph #dr .dcen>.prv,
 body.ph #dr .dcen>.dbig{flex:1 1 0;min-height:72px;overflow-y:auto;
  padding-right:2px;overscroll-behavior:contain}
+/* a escolha e o sorteio do campo sao caixas com cabecalho, miolo e botao:
+   o miolo e que rola, senao o Confirmar fica fora da tela */
+body.ph #dr .dcen>.fvw,
+body.ph #dr .dcen>.froll-w{flex:1 1 0;min-height:72px;min-width:0;display:flex;flex-direction:column}
+body.ph #dr .dcen>.fvw>*,
+body.ph #dr .dcen>.froll-w>*{flex:0 0 auto}
+body.ph #dr .dcen>.fvw>.fvg,
+body.ph #dr .dcen>.froll-w>.fwin{flex:1 1 0;min-height:60px;overflow-y:auto;
+ padding-right:2px;overscroll-behavior:contain}
+body.ph #dr .dcen>.fvw>.dhead{margin-bottom:3px}
+/* as cartas crescem com o texto da regra e quem rola e a grade: com as linhas
+   divididas em partes iguais a descricao dos campos longos ficava cortada */
+body.ph #dr .dcen>.fvw>.fvg{grid-auto-rows:max-content;align-content:start}
+body.ph #dr .dcen>.fvw>.fvg .fvc{min-height:112px!important;height:auto}
 /* revelacao dos pre-lideres: cards e texto menores para caber sem rolar */
 body.ph #dr .prv{gap:4px 6px!important}
 body.ph #dr .prl{font-size:10px;margin-bottom:2px}
@@ -5166,7 +5185,6 @@ body.ph #dr .dcf{padding:6px;font-size:12.5px}
 body.ph #dr .dcen>.dcf,body.ph #dr .dcen>.dfield{margin-top:0}
 body.ph #dr .dcen{gap:4px!important}
 /* o cabecalho nao passa por baixo dos botoes flutuantes de som e letra */
-body.ph #dr .dtop{padding-left:96px;padding-right:96px}
 /* ===== aba Conta: nick e login ===== */
 .ctank{margin:0 0 10px;font:600 13px/1.3 system-ui;color:#c9c0bb}
 .ctank b{display:inline-block;font:900 italic 19px/1.2 system-ui;color:#e5acb7;
@@ -6261,8 +6279,9 @@ function sbLevanta(morto){
  const lado=1-morto.s;
  const jin=G.u.find(x=>x.s==lado&&x.alive&&x.c=="jw"&&!np(x));
  if(!jin)return 0;
- if(((G.sbcd||[0,0])[lado]||0)>0)return 0;            /* passiva em recarga */
- if(G.u.some(x=>x.s==lado&&x.alive&&x.sb))return 0;   /* uma sombra por vez */
+ {const cd=(G.sbcd||[0,0])[lado]||0;
+  if(cd>0){log("Monarca das Sombras em recarga: "+shn(morto.c)+" não se levantou (faltam "+cd+" turno"+(cd>1?"s":"")+")");return 0}}
+ if(G.u.some(x=>x.s==lado&&x.alive&&x.sb)){log("Monarca das Sombras: já há uma sombra em campo, "+shn(morto.c)+" não se levantou");return 0}
  G.u.push({s:lado,c:morto.c,sb:1,sbt:SBT,hp:0,mx:0,ar:0,br:0,st:[],
   cd:C[morto.c].sk.map(()=>0),bn:0,rec:0,alive:true,im:0,rv:0,dbl:0,rvt:0,nx:0,
   fm:0,gk:0,gz:0,ept:0,cp:null,cpt:0,cpu:0,uq:"",uqs:null,al:{hp:0,mx:0}});
@@ -6822,7 +6841,7 @@ function rkPensa(on){try{
 function botWait(){if(G.rkm&&G.rkm.bot&&G.t>0)return Math.max(900,Math.round(RKTHINK[0]+Math.random()*(RKTHINK[1]-RKTHINK[0]))-1100);
  return G.t>1?BOTWAIT:700}
 function botPlay(){const go=()=>G.bot&&G.cur==1&&G.win==null&&G.scr=="p"&&!G.inOn&&!G.g2v;if(!go())return;G.u.filter(x=>x.c=="bj"&&x.s==1&&x.alive).forEach(b=>{const o=G.u.filter(x=>x.s==1&&x.alive&&x!==b).sort((p,q)=>q.hp-p.hp)[0];b.bjp=o&&b.hp<=60&&o.hp>b.hp+20?G.u.indexOf(o):null});const hw=(G.holdT||0)-Date.now();if(hw>0){clearTimeout(G._bpw);G._bpw=setTimeout(botPlay,hw+200);return}if(G._bpp)return;G._bpp=1;const bw=botWait();if(bw>5000)rkPensa(1);setTimeout(()=>{G._bpp=0;rkPensa(0);if(!go())return;if((G.holdT||0)>Date.now())return botPlay();botPlan(1);render();setTimeout(()=>{if(go())endTurn()},1100)},bw)}
-function dm0(u,k){const r=[];if(u.cp){const cv=.5*cpn(u,"of1")+.3*cpn(u,"of2")*(u.cpt||0)+5*cpn(u,"as2")-5*cpn(u,"as1")+(cpn(u,"lu2")&&u.hp*2<=u.mx?5:0);if(cv)r.push({v:Math.round(cv*10)/10,src:"Cápsulas equipadas"})}if(has(u,"EXAU"))r.push({v:-15,src:"Exaustão"});if(u.cln&&u.c=="nar"){const v=uq(u,"uq_nar_1")?0:5;if(v)r.push({v:-v,src:"Clones das Sombras"})}if(u.lb)r.push({v:u.lb,src:"Líder: Gohan SSJ2 (acumulado, máx. "+25+")"});if(G.cf=="konoha"&&!fdI(u)){const n=knhN(u.s);if(n)r.push({v:KNHDANO*n,src:"Campo: Konoha ("+n+" aliado"+(n>1?"s":"")+" derrotado"+(n>1?"s":"")+")"})}if(G.lead[u.s]=="beast")r.push({v:10,src:"Líder: Gohan Beast"});if(G.lead[1-u.s]=="tu")r.push({v:-10,src:"Líder inimigo: Turles"});if(u.bn&&!np(u))r.push({v:u.bn,src:"Passiva: "+C[u.c].ps.n+" (acumulado)"});if(has(u,"RAIVA"))r.push({v:10,src:"Raiva"});
+function dm0(u,k){const r=[];if(u.cp){const cv=.5*cpn(u,"of1")+.3*cpn(u,"of2")*(u.cpt||0)+5*cpn(u,"as2")-5*cpn(u,"as1")+(cpn(u,"lu2")&&u.hp*2<=u.mx?5:0);if(cv)r.push({v:Math.round(cv*10)/10,src:"Cápsulas equipadas"})}if(has(u,"EXAU"))r.push({v:-15,src:"Exaustão"});if(u.cln&&u.c=="nar"){const v=uq(u,"uq_nar_1")?0:5;if(v)r.push({v:-v,src:"Clones das Sombras"})}if(u.lb)r.push({v:u.lb,src:"Líder: Gohan SSJ2 (acumulado, máx. "+25+")"});if(G.cf=="konoha"&&!fdI(u)){const n=knhN(u.s);if(n)r.push({v:KNHDANO*n,src:"Campo: Konoha ("+n+" aliado"+(n>1?"s":"")+" derrotado"+(n>1?"s":"")+")"})}if(G.lead[u.s]=="beast")r.push({v:10,src:"Líder: Gohan Beast"});if(G.lead[1-u.s]=="tu")r.push({v:-10,src:"Líder inimigo: Turles"});if(u.bn&&!np(u))r.push({v:u.bn,src:"Passiva: "+C[u.c].ps.n+" (acumulado)"});if(u.jwB)r.push({v:u.jwB,src:"Invocar - Igris (Jin Woo)"});if(has(u,"RAIVA"))r.push({v:10,src:"Raiva"});
  if(u.c=="black"&&!np(u)){const v=10*Math.floor((u.mx-u.hp)/30);if(v)r.push({v,src:"Passiva: Apogeu da Beleza. ("+(u.mx-u.hp)+" de HP perdido)"})}
  if(u.c=="mv"&&!np(u)){const t=G.tc[u.s];if(t<=5)r.push({v:10,src:"Passiva: O poder do SSJ3! (restam "+(6-t)+" turno(s))"});else r.push({v:-Math.min(10,(uq(u,"uq_mv_1")?5:10)*(t-5)),src:"Passiva: O poder do SSJ3! ("+(t-5)+"º turno perdendo força, limite -10)"})}
  if(u.c=="lv"&&!np(u)&&(u.lvk||0))r.push({v:5*(u.lvk||0),src:"Passiva: Não subestime a humanidade. ("+u.lvk+" abate"+(u.lvk>1?"s":"")+")"});
@@ -6856,7 +6875,15 @@ function pstat(u){const L=[],a=(t)=>L.push(t);switch(u.c){
  case"za":a("HP curado: <b>"+pg(u,"cura")+"</b>"+(pg(u,"forte")?" · curas fortes (+30): <b>"+pg(u,"forte")+"</b>":""));a(u.hp<=30?"Próxima cura: <b>+30</b>":"Próxima cura: <b>+10</b>");break;
  case"ab":{const n=u.gk+u.gz;a("Energia gerada: <b>"+u.gk+"</b> · Essência gerada: <b>"+u.gz+"</b>");a("Bônus da Violência Extrema: <b>+"+Math.min(30,15*n)+"</b> (máx. +30)");if(pg(u,"esf"))a("Cura da Esfera Android: <b>"+pg(u,"esf")+"</b>");break}}
  return L.length?"<div class='pst'><small>Nesta partida</small>"+L.map(x=>"<div>"+x+"</div>").join("")+"</div>":""}
-function pbadge(u){if(u.c=="bo")return (u.km||0)?{c:"up",t:"\u0ca0"+u.km,h:"Karma: "+u.km+" de 3 acúmulos · +"+(10*u.km)+"% de REDUÇÃO DE DANO para o time"}:null;if(u.c=="cl")return u.ar?{c:"up",t:"🛡"+u.ar,h:"Eu sou o imperador do universo!: "+u.ar+" de ARMADURA permanente acumulada. Ao chegar a 30, é dividida entre os aliados no início do turno."}:null;if(u.c=="bj"){const g=u.bjp!=null?G.u[u.bjp]:null;return g&&g.alive?{c:"up",t:"Escudo",h:"Morra por mim!: "+C[g.c].n+" recebe as habilidades inimigas de alvo único no lugar de Boujack."}:null}if(u.c=="g2")return u.gx?{c:"up",t:"▲+"+u.gx,h:"Golpe Explosivo! causa +"+u.gx+" de dano (acumulado por Chega!, Ataque do dragão! e Kamehameha!)."+(u.rv?" Já reviveu: imune a debuffs.":"")}:null;if(u.c=="sas")return{c:u.fm?"up":"",t:u.fm?"Susano":"Rinnegan",h:u.fm?"Susano Perfeito ativo: as habilidades do Susano estão em campo.":"Rinnegan: as habilidades INVISÍVEIS do time inimigo ficam desabilitadas."};if(u.c=="kir"){const esp=u.swc||0;return{c:u.dw?"up":"",t:(u.fm?"Dark Repulser":"Elucidator")+((u.crc||0)?" ·"+u.crc+"%":""),h:"Empunhadura Dupla: cada troca de espada dá +20% de chance de CRÍTICO (agora "+(u.crc||0)+"%)."+(esp?" "+esp+" espada(s) usada(s): Starburst Stream está com +"+(10*esp)+" de DANO.":"")}}if(u.c=="nar"){const z=Math.max(1,6-(u.nz||0));return{c:(u.cln||u.fm)?"up":"",t:(u.fm?"Kurama":"Kurama "+z)+(u.cln?" ⟐":"")+(u.sage?" ✦":""),h:(u.fm?"Modo Kurama ativo: o kit trocou pelas habilidades da raposa.":"Vínculo com Kurama: “KURAMAAAAA!!!” custa "+z+" de Essência agora.")+(u.cln?" Clones das Sombras ligado: −"+(uq(u,"uq_nar_1")?0:5)+" de DANO e todas as habilidades atingem todos os inimigos.":"")+(u.sage?" Modo Sábio: −1 de Energia em todas as habilidades.":"")}}if(u.c=="sak"){const n=sakSt(u);return{c:u.bya?"up":"",t:"Byakugou "+n+(u.bya?" ✦":""),h:"Byakugou: "+n+" de 4 acúmulos."+(u.bya?" Ligado: a próxima habilidade gasta 1 acúmulo e fica mais forte.":" Desligado: toque na passiva para ligar.")}}if(u.c=="gbk")return u.kfree?{c:"up",t:"Grátis",h:"Kaioken x10!: a próxima habilidade não consome HP (um inimigo com Sangramento foi derrotado)."}:null;if(u.c=="beast")return u.bn?{c:"up",t:"▲+"+u.bn,h:"+"+u.bn+" de dano em todas as habilidades, acumulado pela passiva (+10 a cada início de turno sem debuffs)."}:null;if(u.c=="ab"){const n=u.gk+u.gz;return{c:"up",t:"Energia "+u.gk+" · Z "+u.gz,h:"Já gerou "+u.gk+" de Energia e "+u.gz+" de Essência pela Energia Ilimitada. A Violência Extrema ganha +"+Math.min(30,15*n)+" de dano por isso (máx. +30)."}}if(u.c=="mv"){const t=G.tc[u.s];return t<=4?{c:"up",t:"▲"+(5-t),h:"Bônus de +15 de dano ativo. Restam "+(5-t)+" turno(s) antes de começar a perder dano."}:{c:"dn",t:"▼"+Math.min(20,10*(t-4)),h:"Perdendo "+Math.min(20,10*(t-4))+" de dano em todas as habilidades (-10 a mais a cada turno aliado, até o limite de -20)."}}if(u.c=="black"){const v=10*Math.floor((u.mx-u.hp)/30);if(v)return{c:"up",t:"▲+"+v,h:"+"+v+" de dano por "+(u.mx-u.hp)+" de HP perdido."}}if(u.bn)return{c:u.bn>0?"up":"dn",t:(u.bn>0?"▲+":"▼")+u.bn,h:(u.bn>0?"+":"")+u.bn+" de dano em todas as habilidades, acumulado pela passiva."};return null}
+ /* o que cada invocação do Jin Woo deixa em campo */
+const JWINV={Igris:"+5 de DANO em todas as habilidades dos aliados, pelo resto da batalha. Liberou “COMANDO - IGRIS”.",
+ Beru:"+25 de HP máximo em todos os aliados, pelo resto da batalha. Liberou “COMANDO - BERU”.",
+ Bellion:"Tirou os buffs do time inimigo e bloqueou a Energia deles. Liberou “COMANDO - BELLION”."};
+const jwInvTip=n=>"<b>"+n+"</b><small>Invocação ativa · Jin Woo</small><p>"+(JWINV[n]||"")+" Soma +25 de DANO na “MUTILAÇÃO”.</p>";
+function pbadge(u){if(u.c=="jw"&&!u.sb){const cd=(G.sbcd||[0,0])[u.s]||0,I=jwInv(u);
+  return{c:cd?"":"up",t:"Sombra "+(cd?cd:"✓"),
+   h:(cd?"Monarca das Sombras em recarga: faltam "+cd+" turno"+(cd>1?"s":"")+" da sua equipe para o próximo inimigo derrotado se levantar como sombra.":"Monarca das Sombras pronto: o próximo inimigo derrotado se levanta como sombra por "+SBT+" turnos.")+(I.length?" Invocações de pé: "+I.map(x=>x[1]).join(", ")+".":" Nenhuma invocação em campo.")}}
+ if(u.c=="bo")return (u.km||0)?{c:"up",t:"\u0ca0"+u.km,h:"Karma: "+u.km+" de 3 acúmulos · +"+(10*u.km)+"% de REDUÇÃO DE DANO para o time"}:null;if(u.c=="cl")return u.ar?{c:"up",t:"🛡"+u.ar,h:"Eu sou o imperador do universo!: "+u.ar+" de ARMADURA permanente acumulada. Ao chegar a 30, é dividida entre os aliados no início do turno."}:null;if(u.c=="bj"){const g=u.bjp!=null?G.u[u.bjp]:null;return g&&g.alive?{c:"up",t:"Escudo",h:"Morra por mim!: "+C[g.c].n+" recebe as habilidades inimigas de alvo único no lugar de Boujack."}:null}if(u.c=="g2")return u.gx?{c:"up",t:"▲+"+u.gx,h:"Golpe Explosivo! causa +"+u.gx+" de dano (acumulado por Chega!, Ataque do dragão! e Kamehameha!)."+(u.rv?" Já reviveu: imune a debuffs.":"")}:null;if(u.c=="sas")return{c:u.fm?"up":"",t:u.fm?"Susano":"Rinnegan",h:u.fm?"Susano Perfeito ativo: as habilidades do Susano estão em campo.":"Rinnegan: as habilidades INVISÍVEIS do time inimigo ficam desabilitadas."};if(u.c=="kir"){const esp=u.swc||0;return{c:u.dw?"up":"",t:(u.fm?"Dark Repulser":"Elucidator")+((u.crc||0)?" ·"+u.crc+"%":""),h:"Empunhadura Dupla: cada troca de espada dá +20% de chance de CRÍTICO (agora "+(u.crc||0)+"%)."+(esp?" "+esp+" espada(s) usada(s): Starburst Stream está com +"+(10*esp)+" de DANO.":"")}}if(u.c=="nar"){const z=Math.max(1,6-(u.nz||0));return{c:(u.cln||u.fm)?"up":"",t:(u.fm?"Kurama":"Kurama "+z)+(u.cln?" ⟐":"")+(u.sage?" ✦":""),h:(u.fm?"Modo Kurama ativo: o kit trocou pelas habilidades da raposa.":"Vínculo com Kurama: “KURAMAAAAA!!!” custa "+z+" de Essência agora.")+(u.cln?" Clones das Sombras ligado: −"+(uq(u,"uq_nar_1")?0:5)+" de DANO e todas as habilidades atingem todos os inimigos.":"")+(u.sage?" Modo Sábio: −1 de Energia em todas as habilidades.":"")}}if(u.c=="sak"){const n=sakSt(u);return{c:u.bya?"up":"",t:"Byakugou "+n+(u.bya?" ✦":""),h:"Byakugou: "+n+" de 4 acúmulos."+(u.bya?" Ligado: a próxima habilidade gasta 1 acúmulo e fica mais forte.":" Desligado: toque na passiva para ligar.")}}if(u.c=="gbk")return u.kfree?{c:"up",t:"Grátis",h:"Kaioken x10!: a próxima habilidade não consome HP (um inimigo com Sangramento foi derrotado)."}:null;if(u.c=="beast")return u.bn?{c:"up",t:"▲+"+u.bn,h:"+"+u.bn+" de dano em todas as habilidades, acumulado pela passiva (+10 a cada início de turno sem debuffs)."}:null;if(u.c=="ab"){const n=u.gk+u.gz;return{c:"up",t:"Energia "+u.gk+" · Z "+u.gz,h:"Já gerou "+u.gk+" de Energia e "+u.gz+" de Essência pela Energia Ilimitada. A Violência Extrema ganha +"+Math.min(30,15*n)+" de dano por isso (máx. +30)."}}if(u.c=="mv"){const t=G.tc[u.s];return t<=4?{c:"up",t:"▲"+(5-t),h:"Bônus de +15 de dano ativo. Restam "+(5-t)+" turno(s) antes de começar a perder dano."}:{c:"dn",t:"▼"+Math.min(20,10*(t-4)),h:"Perdendo "+Math.min(20,10*(t-4))+" de dano em todas as habilidades (-10 a mais a cada turno aliado, até o limite de -20)."}}if(u.c=="black"){const v=10*Math.floor((u.mx-u.hp)/30);if(v)return{c:"up",t:"▲+"+v,h:"+"+v+" de dano por "+(u.mx-u.hp)+" de HP perdido."}}if(u.bn)return{c:u.bn>0?"up":"dn",t:(u.bn>0?"▲+":"▼")+u.bn,h:(u.bn>0?"+":"")+u.bn+" de dano em todas as habilidades, acumulado pela passiva."};return null}
 const BF=["LIM","INV","REFL","IMUN","INVEST","RAIVA","ANUL","ARM","AURA","IMORT","HER"],np=u=>has(u,"PARAL"),pr=(u,a)=>G.rn?(u.nx||0):a?G.q.slice(0,G.q.indexOf(a)).filter(b=>b.u==u).length:G.q.filter(b=>b.u==u).length,ck=(u,k,a)=>{if((u.free&&pr(u,a)==0)||(u.c=="mg"&&!np(u)&&pr(u,a)>=1))return 0;if(!(k.ki||0))return 0;/* habilidade sem custo de Energia nunca passa a custar por campo, efeito ou debuff */
  const b=(k.ki||0)+(has(u,"SOBR")&&!k.zk?1:0),r=(G.lead[u.s]=="mg"?1:0)+(u.sed&&pr(u,a)==0?1:0)+kiUp(u,k)+(u.sage?1:0)+(u.trk?1:0);return fkC(b?Math.max(1,b-r):0,k.zk?0:fk(u))},cz=(u,k,a)=>{if(u.free&&pr(u,a)==0)return 0;if(k.vz)return (a&&a.z)||1;const pu=u.cp&&capUlt(k)?cpn(u,"ut4"):0;if(k.kz){const v=k.kz(u,a);if(!v)return 0;/* sem custo de Essencia continua sem custo */return fkC(Math.max(1,v-pu),fk(u))}if(!k.zk)return 0;return fkC(Math.max(1,k.zk-(k.zr?k.zr(u):0)-pu),fk(u))};
 DB.push("BCURA","FRAG","ANTIB","SOBR","DESTR","JSELO");
@@ -7736,7 +7763,8 @@ function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=ZOFF
    if(can&&!(G.online&&G.me<0))k.onclick=()=>{const S=G.sel;if(ch2(S).tg=="S"||tgu(ch2(S),S.u)=="E"){qpush({u:S.u,i:S.i,z:S.z,o:S.o});G.sel=null;render();return}if(ch2(S).tg=="2"){S.ts=(S.ts||[]).concat(u);if(S.ts.length<2&&tgts(S.u,ch2(S)).length>S.ts.length){render();return}qpush({u:S.u,i:S.i,ts:S.ts,o:S.o})}else qpush({u:S.u,i:S.i,t:u,z:S.z,o:S.o});G.sel=null;render()};
    const fw=mk("div","fw"),f=mk("img","f");f.src=IMG[u.c+(u.fm?"_f2":"_f")];fw.append(f);if(can)fw.append(mk("b","tint "+(u.s==G.sel.u.s?"ta":"te")));if(!u.alive)fw.append(mk("b","xx","✖"));else if(has(u,"ATORD"))fw.append(mk("b","sp","🌀"));
    {const SI0=jwInv(u);if(SI0.length){const w=mk("div","jwsb");
-    SI0.forEach(([i,n])=>{const im=mk("img","jwsbi");im.src=IMG["jw_"+i];im.alt=n;w.append(im)});
+    SI0.forEach(([i,n])=>{const im=mk("img","jwsbi");im.src=IMG["jw_"+i];im.alt=n;im.title=n;
+     att(im,()=>jwInvTip(n));hovTip(im,()=>jwInvTip(n));w.append(im)});
     fw.append(w)}}
    const HID=fogHid(u.s);if(HID)fw.classList.add("fogf");att(fw,()=>HID?"<b>"+ch.n+"</b><small>"+clsFmt(ch.cl)+"</small><p>Toque para ver as habilidades deste inimigo.</p>":pTip(ch.ps.n,ch.ps.t+(jwInv(u).length?" Sombras invocadas: "+jwInv(u).map(x=>x[1]).join(", ")+".":""),ch.n+" · "+clsFmt(ch.cl)+(ch.fms?" · "+ch.fms[u.fm]+" em campo · "+ch.fms[1-u.fm]+": "+u.al.hp+"/"+u.al.mx+" HP":"")),()=>{if(k.onclick)k.onclick();else if(HID)eInfo(u)});
    const ui=G.u.indexOf(u),br=(c,n,v,hp)=>{const key=ui+":"+c;let a=ANI.get(key);if(!a){a={cur:v};ANI.set(key,a)}a.to=v;a.mx=u.mx;a.n=n;a.hp=hp;const cv=a.cur;/* o rotulo vai sempre no HTML, dentro de <b class=brl>, e o CSS o esconde no
@@ -10213,7 +10241,7 @@ function trocHit(tg){if(!tg.trk){tg.trk=1;log(C[tg.c].n+" trocou de posição: a
    da invocação normal — menos no Bellion, cuja Única troca o BLOQUEIO DE ENERGIA
    em todos por um inimigo sorteado. */
 function jwCapStart(u){if(!u||!u.cp)return;
- if(uq(u,"uq_jw_1")&&!u.jwIg){u.jwIg=1;ally(u).forEach(a=>{a.bn=(a.bn||0)+5});
+ if(uq(u,"uq_jw_1")&&!u.jwIg){u.jwIg=1;ally(u).forEach(a=>{a.jwB=(a.jwB||0)+5});
   log("Cápsula: Invocar - Igris já em campo (+5 de dano na equipe)")}
  if(uq(u,"uq_jw_2")&&!u.jwBe){u.jwBe=1;ally(u).forEach(a=>{a.mx+=25;a.hp+=25});
   log("Cápsula: Invocar - Beru já em campo (+25 de HP máximo na equipe)")}
@@ -10263,7 +10291,7 @@ C.jw={n:"Jin Woo (SL)",cl:"Blaster / Assassino",
  {n:"Invocar - Igris",ki:1,cd:99,cl:"Buff",tg:"S",
   mos:u=>!u.jwIg,rq:u=>!u.jwIg,
   t:"Aumenta permanentemente em +5 o DANO de todas as habilidades dos aliados. Essa habilidade é substituída por \u201cCOMANDO - IGRIS\u201d permanentemente. (Uso único)",
-  fn:u=>{u.jwIg=1;ally(u).forEach(a=>{a.bn=(a.bn||0)+5;pst(a,"tur")});
+  fn:u=>{u.jwIg=1;ally(u).forEach(a=>{a.jwB=(a.jwB||0)+5;pst(a,"tur")});
    log("Invocar - Igris: +5 de dano em todas as habilidades da equipe")}},
  {n:"Comando - Igris",ki:2,cd:2,cl:"A Distância",tg:"E",rp:1,
   mos:u=>!!u.jwIg,rq:u=>!!u.jwIg,
@@ -11239,6 +11267,13 @@ function rkContagem(){
   "<p class='rkcdt'>A partida começa em <b>"+n+"</b></p>"}
 /* a busca roda em segundo plano: tira da tela tudo que pertence a ela */
 function rkUIoff(){["rkac","rkqw"].forEach(id=>{const e=document.getElementById(id);if(e)e.remove()})}
+/* fechou a aba com a fila rodando: a linha nao pode ficar la esperando casar
+   com alguem que nao vai aparecer. Com a aba so escondida nao fazemos nada: o
+   navegador para de bater na fila sozinho e o servidor derruba a linha em 12s,
+   entao quem volta logo nao perde o lugar. */
+function rkFilaFecha(){if(!RKQ.on)return;
+ try{rkFilaSrvDesliga()}catch(e){}try{rkQSai()}catch(e){}}
+try{addEventListener("pagehide",rkFilaFecha)}catch(e){}
 function rkFilaSair(volta){RKQ.on=0;RKQ.fase="";clearInterval(RKQ.timer);clearTimeout(RKQ.botT);clearTimeout(RKQ.pollT);
  RKQ.timer=RKQ.botT=RKQ.pollT=null;RKQ.op=null;RKQ.aceitei=0;RKQ.opAceitou=0;RKQ.sala=null;RKQ.partida=null;
  O.rkSala=0;try{rkCdDesliga()}catch(e){}
@@ -11299,7 +11334,7 @@ function rkAchouBot(){const st=rkLoad();
  rkWidget();rkAceite()}
 function rkFilaTick(){if(!RKQ.on)return;
  /* entrou em outra partida: a busca não pode te arrastar para fora dela */
- if(RKQ.fase=="busca"&&(G.scr=="p"||G.scr=="d")){rkFilaSair(0);
+ if((RKQ.fase=="busca"||RKQ.fase=="aceite")&&(G.scr=="p"||G.scr=="d")&&!O.rkSala&&!rkEmJogo()){rkFilaSair(0);
   try{zToast("Busca ranqueada cancelada: você entrou em outra partida.")}catch(e){}return}
  if(RKQ.fase=="aceite"&&Date.now()-RKQ.tAceite>RKCFG.aceite){
   /* ninguém aceitou a tempo: volta para o menu avisando */
