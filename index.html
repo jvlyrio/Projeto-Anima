@@ -6532,7 +6532,7 @@ function endTurn(){if(G.scr!="p"||G.win!=null||RFZ)return;const s=G.cur;const hp
   log("Limite de "+TLIM+" turnos: decidido pela vida restante ("+a+" x "+b+")");
   G.q=[];G.sel=null;render();return}
  G.cur=1-s;G.q=[];G.sel=null;G.kkc={};begin()}
-function newGame(){pannOff();G.dsnap=G.dsnapN||null;G.dsnapN=null;G.tutp=G._tutn?1:0;G._tutn=0;const T=G.tm;try{lbSalvaTime()}catch(e){}try{[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups],["lv",ZAV.lvps]].forEach(([c,v])=>{if(T&&T.some(t=>t.slice(1).includes(c)))vPre(v)});ULTV.forEach(V=>{if(T&&T.some(t=>t.slice(1).includes(V.c)))vPre(V.src)})}catch(e){}RFZ=0;G.g2m=0;G.g2v=0;G.g2seen={};SBV=[0,0];Object.assign(G,{t:0,ki:[0,0],zk:[0,0],zg:[0,0],tc:[0,0],sbcd:[0,0],q:[],sel:null,u:[],rep:[],log:[],win:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,kz:0,zs:[0,0],zd:[0,0],dr:[0,0],lead:G.ann?["none","none"]:[T[0][0],T[1][0]],ldisp:[T[0][0],T[1][0]],scr:"p",cf:G.fd=="x"?"x":G.fd&&G.fd!="r"?G.fd:FDS[Math.floor(Math.random()*FDS.length)].k});
+function newGame(){pannOff();G.dsnap=G.dsnapN||null;G.dsnapN=null;G.tutp=G._tutn?1:0;G._tutn=0;const T=G.tm;try{lbSalvaTime()}catch(e){}try{[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups],["lv",ZAV.lvps],["jw",ZAV.jwps]].forEach(([c,v])=>{if(T&&T.some(t=>t.slice(1).includes(c)))vPre(v)});ULTV.forEach(V=>{if(T&&T.some(t=>t.slice(1).includes(V.c)))vPre(V.src)})}catch(e){}RFZ=0;G.g2m=0;G.g2v=0;G.g2seen={};SBV=[0,0];Object.assign(G,{t:0,ki:[0,0],zk:[0,0],zg:[0,0],tc:[0,0],sbcd:[0,0],q:[],sel:null,u:[],rep:[],log:[],win:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,kz:0,zs:[0,0],zd:[0,0],dr:[0,0],lead:G.ann?["none","none"]:[T[0][0],T[1][0]],ldisp:[T[0][0],T[1][0]],scr:"p",cf:G.fd=="x"?"x":G.fd&&G.fd!="r"?G.fd:FDS[Math.floor(Math.random()*FDS.length)].k});
  T.forEach((t,s)=>t.slice(1).forEach(c=>G.u.push({s,c,hp:100,mx:100,ar:0,br:0,st:[],cd:C[c].sk.map(()=>0),bn:0,rec:0,alive:true,im:0,rv:0,dbl:0,rvt:0,nx:0,fm:0,gk:0,gz:0,ept:0,al:{hp:100,mx:100}})));
  /* G.ann diz que os dois times tiraram o mesmo lider e as habilidades de lider
     se anulam. Nao tem nada a ver com capsula: a flag estava desligando a build
@@ -6664,7 +6664,12 @@ const DUBBR={
  /* Levi — introdução  */ "media/0a8b604f3a519b9d1456ed94c059629c.mp4":"media/e74a5b325450dede40ec808fe82f0005.mp4",
  /* Levi — ultimate    */ "media/aa421bebf3d9d2b796dd57911c0f0189.mp4":"media/28f5549b02702f1203730136dc3669c1.mp4",
  /* Boruto — introdução*/ "media/c42252a88032db386274a308f92a7f16.mp4":"media/5da2ebb7340fe16bd2d076882751035b.mp4",
- /* Boruto — ultimate  */ "media/f4c62a6494314d76ef24bd9f88891b85.mp4":"media/f65fe9639146255d042188336065293f.mp4"};
+ /* Boruto — ultimate  */ "media/f4c62a6494314d76ef24bd9f88891b85.mp4":"media/f65fe9639146255d042188336065293f.mp4",
+ /* Naruto — ultimate  */ "media/21c3dcbb90be95fd4a3a9a524ced5a32.mp4":"media/ab05d5c9b28651afc4fdc767968a099f.mp4",
+ /* Sasuke — ultimate  */ "media/b1fd44c0be98b0ff74772b6807e6aba6.mp4":"media/a20d3d9d016e563bc20136509cbd1057.mp4",
+ /* Jin Woo — introdução: so existe em português, entao aponta para ele mesmo
+    e o aviso de "ainda sem dublagem" nao aparece por engano */
+ "media/4fc94c37052ff4d0b82ca43520916992.mp4":"media/4fc94c37052ff4d0b82ca43520916992.mp4"};
 function dubGet(){try{return localStorage.getItem("za_dub")==="ja"?"ja":"br"}catch(e){return"br"}}
 function dubSet(v){try{localStorage.setItem("za_dub",v==="ja"?"ja":"br")}catch(e){}
  document.querySelectorAll(".subpk.dbpk button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));
@@ -6680,7 +6685,7 @@ function dubPick(){const w=mk("div","subpk dbpk");
   const b=mk("button","sub"+(dubGet()==v?" on":""),FLAG[v]+"<span>"+n+"</span>");
   b.type="button";b.dataset.v=v;b.onclick=e=>{e.preventDefault();dubSet(v)};w.append(b)});
  return w}
-const ZAV={lvps:"media/0a8b604f3a519b9d1456ed94c059629c.mp4",lvult:"media/aa421bebf3d9d2b796dd57911c0f0189.mp4",boups:"media/c42252a88032db386274a308f92a7f16.mp4",boult:"media/f4c62a6494314d76ef24bd9f88891b85.mp4",ps:"media/5c883791508c3d9442b032be1d96d709.mp4",ult:"media/d1202f407a9b2843cd1dd1c110662671.mp4",beast:"media/34a3f36af5c7e77db47c6049e282a904.mp4",bult:"media/533eb248272cf7e749aa192bd865c478.mp4",mvps:"media/9d0b535d0713e1a16ef1e68d26f1668a.mp4",mvult:"media/af0246c64979c43a16501a4e9bfb474f.mp4",gdps:"media/e5702d769d4f7fb89fdd5ec549c72794.mp4",mgps:"media/0d3d80ffa4c75411675152fdcab9b3c1.mp4",mgult:"media/88e0980ef176f18cdfae3d412745871c.mp4",trps:"media/a291e6474de812aaca3fec2dd2c147d8.mp4",trult:"media/ed49863e9b78965b0b57010dce0b540f.mp4",sasult:"media/b1fd44c0be98b0ff74772b6807e6aba6.mp4",narult:"media/21c3dcbb90be95fd4a3a9a524ced5a32.mp4",clps:"media/7f4ffad3a8ebd907b5ae3f8ad9cc0340.mp4",clult:"media/11010bc51df86e44e227b28231f46055.mp4",gbkps:"media/fa567be3a2c372c007cdc28642678e74.mp4",gbkult:"media/63d993c04a5a3b4c2dfd527684ec78b0.mp4",gdult:"media/8cda131e26807eeeaf9d43a7b1933f8e.mp4",kirult:"media/30da2f55e9ecfe8c229a468b6d6f1267.mp4"};const VPRE={};
+const ZAV={jwps:"media/4fc94c37052ff4d0b82ca43520916992.mp4",lvps:"media/0a8b604f3a519b9d1456ed94c059629c.mp4",lvult:"media/aa421bebf3d9d2b796dd57911c0f0189.mp4",boups:"media/c42252a88032db386274a308f92a7f16.mp4",boult:"media/f4c62a6494314d76ef24bd9f88891b85.mp4",ps:"media/5c883791508c3d9442b032be1d96d709.mp4",ult:"media/d1202f407a9b2843cd1dd1c110662671.mp4",beast:"media/34a3f36af5c7e77db47c6049e282a904.mp4",bult:"media/533eb248272cf7e749aa192bd865c478.mp4",mvps:"media/9d0b535d0713e1a16ef1e68d26f1668a.mp4",mvult:"media/af0246c64979c43a16501a4e9bfb474f.mp4",gdps:"media/e5702d769d4f7fb89fdd5ec549c72794.mp4",mgps:"media/0d3d80ffa4c75411675152fdcab9b3c1.mp4",mgult:"media/88e0980ef176f18cdfae3d412745871c.mp4",trps:"media/a291e6474de812aaca3fec2dd2c147d8.mp4",trult:"media/ed49863e9b78965b0b57010dce0b540f.mp4",sasult:"media/b1fd44c0be98b0ff74772b6807e6aba6.mp4",narult:"media/21c3dcbb90be95fd4a3a9a524ced5a32.mp4",clps:"media/7f4ffad3a8ebd907b5ae3f8ad9cc0340.mp4",clult:"media/11010bc51df86e44e227b28231f46055.mp4",gbkps:"media/fa567be3a2c372c007cdc28642678e74.mp4",gbkult:"media/63d993c04a5a3b4c2dfd527684ec78b0.mp4",gdult:"media/8cda131e26807eeeaf9d43a7b1933f8e.mp4",kirult:"media/30da2f55e9ecfe8c229a468b6d6f1267.mp4"};const VPRE={};
 function vPre(src){src=vdub(src);if(VPRE[src]||vidSkip(src))return;try{const v=document.createElement("video");v.src=src;v._src=src;v.preload="auto";v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.load();VPRE[src]=v}catch(e){}}
 function vidPlay(src,capHtml,cb){const done0=()=>{if(cb)try{cb()}catch(e){}};if(vidSkip(src)||G.sim){done0();return}
  const dbf=dubFalta(src);src=vdub(src);if(dbf)capHtml=(capHtml||"")+"<i class='g2dub'>Ainda sem dublagem brasileira</i>";const old=document.getElementById("g2v");if(old)old.remove();
@@ -7305,7 +7310,7 @@ const AU={"kf": "media/b64/c6c53b066540b982.mp3", "tu": "media/b64/5f20467cc7492
 
 AU.cl="media/b64/9d4a2edd728ff6a6.mp3";
 AU.sas="media/b64/aeb2a79dd58b4f73.mp3";
-AU.sak="media/b64/050acbc254eb4695.mp3";
+AU.sak="media/b64/a4c18606589975e8.mp3";
 AU.kir="media/b64/3dbf96e146df7557.mp3";
 AU.nar="media/b64/c039a512547499dd.mp3";
 AU.start="media/b64/9013f7266824ea10.mp3";
@@ -7819,7 +7824,7 @@ function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=ZOFF
   else if(!rkEmJogo()){const bb=botBox();bb.classList.add("opt");bar.append(bb)}}
  {const tb=mk("button","tgl",BCOL?"▾ Mais opções":"▴ Menos opções");tb.setAttribute("aria-expanded",String(!BCOL));tb.onclick=()=>{BCOL=!BCOL;try{localStorage.setItem("za_bcol",BCOL?"1":"0")}catch(e){}render()};bar.append(tb);bar.classList.toggle("col",BCOL)}
  hovRe();resTrack();fxShow();g2Check();rvCheck();zaCheck();coach();winAnn();if(G.win!=null&&G._endAt&&Date.now()>=G._endAt)endScreen();if(G.annB&&!G.sim){G.annB=0;const _meu=(typeof G.me=="number"&&G.me>=0)?G.me:0,_dele=c=>G.u.some(u=>u.c==c&&u.s==_meu)?0:1,
-  VS=G.t<=1?[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups],["lv",ZAV.lvps]].filter(([c])=>G.u.some(u=>u.c==c)).sort((a,b)=>_dele(a[0])-_dele(b[0])):[],ann=()=>phaseAnn("battle",1),aft=()=>{let pl=0;const nx=i=>{if(i>=VS.length){if(!pl)return ann();G.holdT=Math.max(G.holdT||0,Date.now()+3600);return setTimeout(()=>{if(G.t<=1&&G.scr=="p"&&G.win==null)ann()},3000)}const [c,src]=VS[i];let sy=1;G.vskd=0;vidPlay(src,"<b>"+C[c].ps.n+"</b><span>"+shn(c)+" entra na batalha</span>",()=>{if(!sy&&!G.vskd)pl=1;nx(i+1)});sy=0};nx(0)};if(G.intro){G.intro=0;playIntro(aft)}else aft()}turnAnn();lgFill()}
+  VS=G.t<=1?[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups],["lv",ZAV.lvps],["jw",ZAV.jwps]].filter(([c])=>G.u.some(u=>u.c==c)).sort((a,b)=>_dele(a[0])-_dele(b[0])):[],ann=()=>phaseAnn("battle",1),aft=()=>{let pl=0;const nx=i=>{if(i>=VS.length){if(!pl)return ann();G.holdT=Math.max(G.holdT||0,Date.now()+3600);return setTimeout(()=>{if(G.t<=1&&G.scr=="p"&&G.win==null)ann()},3000)}const [c,src]=VS[i];let sy=1;G.vskd=0;vidPlay(src,"<b>"+C[c].ps.n+"</b><span>"+shn(c)+" entra na batalha</span>",()=>{if(!sy&&!G.vskd)pl=1;nx(i+1)});sy=0};nx(0)};if(G.intro){G.intro=0;playIntro(aft)}else aft()}turnAnn();lgFill()}
 const DRV={cl:7,gbk:7,gi:9,gd:8,a17:8,gu:8,ab:8,black:7,beast:7,tr:7,kf:7,za:7,gg:7,mg:7,ar:6,rd:6,tu:6,mv:6},
 LRV={cl:5,gbk:6,beast:8,gi:8,a17:8,gd:7,gg:7,mg:7,tu:7,gu:6,mv:6,rd:6,kf:6,za:6,ar:6,tr:5,black:3,ab:3};
 const CLS=["Blaster","Lutador","Suporte","Assassino","Carregador","Debuffer","Tanque"],cls=k=>C[k].cl.split("/").map(x=>x.trim());
