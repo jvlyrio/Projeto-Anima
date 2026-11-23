@@ -10725,12 +10725,12 @@ const RKCFG={
  prDiv:100,                           /* PR para passar de divisão */
  prRank:120,                          /* PR para sair da divisão I e subir de rank */
  /* pontuação base por rank: [vitória, derrota] — a derrota é a magnitude */
- base:[[30,20],[25,19],[21,18],[17,16],[13,14],[9,11],[6,8]],
+ base:[[40,13],[36,15],[30,16],[24,17],[19,16],[14,13],[9,10]],
  baseTop:[5,7],                       /* quem está dentro do Top 100 */
  /* influência da diferença de MMR */
  fator:[.5,.75,1,1.25,1.5,1.5,1.5],fatorTop:.5,
  /* limites [ganhoMin,ganhoMax,perdaMin,perdaMax] */
- lim:[[28,32,18,22],[23,27,17,21],[18,24,15,21],[14,20,13,19],[10,16,11,17],[7,12,8,14],[4,9,5,11]],
+ lim:[[37,45,10,17],[32,41,11,19],[25,35,12,20],[19,29,13,21],[14,24,12,20],[10,19,9,17],[6,13,7,14]],
  limTop:[4,5,6,7],
  mmr0:1000,kNovo:32,kVelho:20,kCorte:20,  /* Elo: K=32 nas 20 primeiras partidas */
  prot:3,                              /* derrotas protegidas ao subir de rank */
@@ -10801,7 +10801,8 @@ function rkValor(st,oppMmr,win,noTop){
 /* ---- aplica o resultado. Função pura: devolve o estado novo e o relatório ---- */
 function rkApply(st0,oppMmr,win,opt){
  opt=opt||{};
- const st=JSON.parse(JSON.stringify(st0)),r={win:!!win,promo:null,demo:null,prot:0,pen:0,comp:null};
+ const st=Object.assign({},st0);if(Array.isArray(st0.ult))st.ult=st0.ult.slice();
+ const r={win:!!win,promo:null,demo:null,prot:0,pen:0,comp:null};
  const comp0=rkComp(st);
  /* na classificação, quem está fora do Top 100 usa a pontuação de referência do Rank 7 */
  const val=rkValor(st,oppMmr,win,comp0&&!opt.top100);r.pts=val.v;r.aj=val.aj;r.base=val.base;r.difMmr=val.dif;
@@ -10852,7 +10853,7 @@ function rkReset(st0,sea){const st=rkNovo(sea);
  return st}
 
 /* ---- nível do bot pelo rank: quanto mais alto o rank, mais difícil ---- */
-const RKBOT=[0,1,2,2,3,3,4];
+const RKBOT=[2,2,2,3,3,4,4];
 const rkBotLv=st=>RKBOT[Math.min(RKCFG.ranks,Math.max(1,(st&&st.rank)||1))-1];
 
 /* ===== estado do jogador, guardado por temporada ===== */
@@ -11006,6 +11007,7 @@ function rkBotNome(lv){lv=Math.max(0,Math.min(RKBOTN.length-1,(lv|0)));rkBagLoad
    O estado fica guardado no navegador só para não precisar recalcular tudo de novo. */
 const RKPOP={
  n:420,                           /* quantos adversários vivem a temporada */
+ rv:2,                            /* versão das regras: mexeu na pontuação, soma 1 aqui */
  lanc:Date.UTC(2026,10,19,0,0,0), /* o dia em que a população começou do zero */
  tick:3e5,                        /* o relógio da simulação anda de 5 em 5 minutos: de 15 em 15
                                         a escada ficava parada entre duas partidas seguidas */
@@ -11045,7 +11047,7 @@ function rkPopBase(){const sea=rkSeasonId();
   const e=rkH(sd,i,77);
   /* nem todo mundo cria a conta no primeiro dia: as outras vão chegando ao longo da temporada */
   const ent=e<RKPOP.naLargada?0:Math.floor(Math.pow((e-RKPOP.naLargada)/(1-RKPOP.naLargada),1.7)*RKPOP.entra*rkPopDia());
-  L.push({i:i,hab:RKCFG.mmr0+g*RKPOP.hsd,porDia:r<.12?12:(r<.57?6:3),ent:ent,nome:""})}
+  L.push({i:i,hab:RKCFG.mmr0+g*RKPOP.hsd,porDia:r<.12?30:(r<.57?14:7),ent:ent,nome:""})}
  /* o nick combina com a força: os mais fracos ficam com nome de conta nova, os mais fortes com nome de pro player */
  const ord=L.slice().sort((a,b)=>a.hab-b.hab),por=Math.ceil(L.length/RKBOTN.length);
  for(let t=0;t<RKBOTN.length;t++){
@@ -11059,9 +11061,9 @@ const rkPopNovo=()=>({rank:1,div:RKCFG.divs,pr:0,pc:null,mmr:RKCFG.mmr0,n:0,w:0,
 function rkPopLoad(){const sea=rkSeasonId();
  if(RKPS&&RKPS.sea===sea)return RKPS;
  try{const r=JSON.parse(ls("za_rk_pop")||"null");
-  if(r&&r.sea===sea&&r.tk===RKPOP.tick&&Array.isArray(r.st)&&r.st.length===RKPOP.n&&typeof r.t=="number"){
+  if(r&&r.sea===sea&&r.tk===RKPOP.tick&&r.rv===RKPOP.rv&&Array.isArray(r.st)&&r.st.length===RKPOP.n&&typeof r.t=="number"){
    RKPS=r;if(!RKPS.topM)RKPS.topM={};return RKPS}}catch(e){}
- RKPS={sea:sea,tk:RKPOP.tick,t:0,st:[],topM:{}};
+ RKPS={sea:sea,tk:RKPOP.tick,rv:RKPOP.rv,t:0,st:[],topM:{}};
  for(let i=0;i<RKPOP.n;i++)RKPS.st.push(rkPopNovo());
  return RKPS}
 function rkPopSave(){try{ls("za_rk_pop",JSON.stringify(RKPS))}catch(e){}}
@@ -11105,6 +11107,8 @@ function rkPopSync(cb){const ate=rkPopTickAgora(),P=rkPopLoad();
 
 /* ---- a população como linhas de tabela ---- */
 function rkPopTabela(){const P=rkPopLoad(),B=rkPopBase().L,L=[];
+ /* ficou atrás do relógio: põe em dia para a tabela não mostrar um ponto antigo da temporada */
+ try{if(P.t<rkPopTickAgora())rkPopSync()}catch(e){}
  for(let i=0;i<RKPOP.n;i++){const s=P.st[i];if(B[i].ent>P.t)continue;
   L.push({nome:B[i].nome,rank:s.rank,div:s.div,pc:s.pc,pr:s.pr,mmr:s.mmr,w:s.w,l:s.l,t:i})}
  return L}
@@ -11119,11 +11123,6 @@ function rkPopAdv(st){try{const P=rkPopLoad(),B=rkPopBase().L;const cand=[];
  const i=cand[Math.floor(Math.random()*cand.length)];
  if(i==null)return null;
  return {pop:i,nome:B[i].nome,mmr:Math.round(P.st[i].mmr),rank:P.st[i].rank,div:P.st[i].div,pc:P.st[i].pc}}catch(e){return null}}
-
-/* ---- o resultado da sua partida também conta para ele ---- */
-function rkPopResultado(i,meuMmr,euVenci){try{if(i==null)return;const P=rkPopLoad();
- const s=P.st[i];if(!s)return;
- P.st[i]=rkApply(s,meuMmr,!euVenci,{top100:!!P.topM[i]}).st;rkPopSave()}catch(e){}}
 
 /* o MMR do bot acompanha o do jogador, com uma variação pequena */
 const rkBotMmr=st=>Math.max(0,Math.round(st.mmr+(Math.random()*160-80)));
@@ -11627,7 +11626,7 @@ function rkFimLocal(m,win,st,ficha,fc){
  const o=rkApply(st,m.oppMmr,win,{top100:!noTop});
  rkSave(o.st);
  rkRegistra(m,win,o.r,o.st,ficha,fc);
- try{if(m.pop!=null)rkPopResultado(m.pop,m.mmrAnt,win)}catch(e){}}
+}
 
 async function rkFimServidor(m,win,ficha,fc){
  let res=null;
@@ -11640,7 +11639,7 @@ async function rkFimServidor(m,win,ficha,fc){
  const st=rkDoServidor(Object.assign({},res.st,{sea:res.sea}));
  rkSave(st);
  rkRegistra(m,win,res.r||{},st,ficha,fc);
- try{if(m.pop!=null)rkPopResultado(m.pop,m.mmrAnt,win)}catch(e){}}
+}
 
 /* histórico, promoção e contador de pontos: igual nos dois caminhos */
 function rkRegistra(m,win,r,st,ficha,fc){
@@ -12943,7 +12942,7 @@ function frBuild(){const b=mk("div","ofr"+(FR.min?" min":""));b.id="ofr";
  b.append(set);
  /* arrastar pela barra de cima, com a mesma folga de 6px do chat */
  let drg=null,moved=0;
- const mv=e=>{if(!drg||e.pointerId!==drg.id)return;
+ const mv=e=>{if(!drg||e.pointerId!==drg.id)return;if(e.pointerType!=="touch"&&e.buttons===0){try{end(e)}catch(x){}return}
   if(!moved&&Math.hypot(e.clientX-drg.x0,e.clientY-drg.y0)<6)return;
   if(!moved){moved=1;try{hd.setPointerCapture(e.pointerId)}catch(x){}b.classList.add("drg")}
   e.preventDefault();frCfg.pos={x:e.clientX-drg.dx,y:e.clientY-drg.dy};frPos(b)};
@@ -12995,7 +12994,7 @@ function frBuild(){const b=mk("div","ofr"+(FR.min?" min":""));b.id="ofr";
  /* arrastar pelo cabecalho: a lista tinha as bordas de tamanho, mas nenhum
      jeito de mudar de lugar, e frCfg.pos nunca era escrito */
  {let drg=null,moved=0;
-  const mv=e=>{if(!drg||e.pointerId!==drg.id)return;
+  const mv=e=>{if(!drg||e.pointerId!==drg.id)return;if(e.pointerType!=="touch"&&e.buttons===0){try{end(e)}catch(x){}return}
    if(!moved&&Math.hypot(e.clientX-drg.x0,e.clientY-drg.y0)<6)return;
    if(!moved){moved=1;try{hd.setPointerCapture(e.pointerId)}catch(x){}b.classList.add("drg")}
    e.preventDefault();frCfg.pos={x:e.clientX-drg.dx,y:e.clientY-drg.dy};frPos(b)};
@@ -13205,7 +13204,21 @@ function chPos(b){if(!b)return;const S=(k,v)=>v==null?b.style.removeProperty(k):
  S("left",x+"px");S("top",y+"px");S("right","auto");S("bottom","auto");S("transform","none");ochGap()}
 const chCan=()=>typeof matchMedia=="function"&&matchMedia("(hover:hover) and (pointer:fine)").matches&&!(document.body&&(document.body.classList.contains("ph")||document.body.classList.contains("php")));
 function chApplySz(b){if(!b)return;const on=!!(chCfg.w&&chCfg.h&&chCan());b.classList.toggle("cz",on);if(on){b.style.setProperty("--chw",Math.min(chCfg.w,innerWidth-8)+"px");b.style.setProperty("--chh",Math.min(chCfg.h,innerHeight-8)+"px")}else{b.style.removeProperty("--chw");b.style.removeProperty("--chh")}ochGap()}
-if(typeof addEventListener=="function")addEventListener("resize",()=>{const b=document.getElementById("och");chApplySz(b);chPos(b);ochGap()});
+/* A area realmente visivel pode encolher sem que a janela mude de tamanho: o
+   teclado do celular, a barra do navegador que reaparece, uma barra de tarefas
+   que se esconde. Quando isso acontece, o chat sobe para continuar inteiro. */
+function ochNaTela(){try{
+ const b=document.getElementById("och");if(!b||b.classList.contains("drg"))return;
+ const vv=window.visualViewport;
+ const H=vv?Math.round(vv.height+(vv.offsetTop||0)):innerHeight;
+ const r=b.getBoundingClientRect(),sobra=Math.round(r.bottom-(H-6));
+ if(sobra<=1)return;
+ if(chCfg.pos){chCfg.pos.y=Math.max(4,Math.round(chCfg.pos.y-sobra));chPos(b)}
+ else b.style.setProperty("bottom",(12+sobra)+"px","important");
+}catch(e){}}
+if(typeof addEventListener=="function"){addEventListener("resize",()=>{const b=document.getElementById("och");chApplySz(b);chPos(b);ochGap();ochNaTela()});
+ try{if(window.visualViewport){["resize","scroll"].forEach(ev=>visualViewport.addEventListener(ev,ochNaTela,{passive:true}))}}catch(e){}
+ try{document.addEventListener("focusin",e=>{if(e.target&&e.target.id==="ochin")setTimeout(ochNaTela,120)},{passive:true})}catch(e){}}
 function chBuild(){const b=mk("div","");b.id="och";b.className="sz-"+chCfg.sz+(CH.open?"":" min");b.style.setProperty("--chfs",chCfg.fs+"px");b.style.setProperty("--chop",chCfg.op/100);
  const chTit=CH.code=="geral"?"Chat geral":"Chat da sala "+CH.code;
  const chLeg=(typeof temaLer=="function"&&temaLer()==="leg");
@@ -13215,7 +13228,7 @@ function chBuild(){const b=mk("div","");b.id="och";b.className="sz-"+chCfg.sz+(C
  hd.append(ti,un,lk,st,mn);if(chCfg.lock)b.classList.add("lkd");
  lk.onclick=()=>{chCfg.lock=chCfg.lock?0:1;chSave();lk.textContent=chCfg.lock?"🔒":"🔓";lk.title=chCfg.lock?"Chat travado: toque para destravar":"Travar o chat no lugar";b.classList.toggle("lkd",!!chCfg.lock)};
  let drg=null,moved=0;hd.addEventListener("pointerdown",e=>{if(chCfg.lock||e.target.closest("button")||e.button>0)return;const r=b.getBoundingClientRect();drg={dx:e.clientX-r.left,dy:e.clientY-r.top,x0:e.clientX,y0:e.clientY,id:e.pointerId};moved=0;addEventListener("pointermove",mv,{passive:false});addEventListener("pointerup",end);addEventListener("pointercancel",end)});
- const mv=e=>{if(!drg||e.pointerId!==drg.id)return;if(!moved&&Math.hypot(e.clientX-drg.x0,e.clientY-drg.y0)<6)return;if(!moved){moved=1;try{hd.setPointerCapture(e.pointerId)}catch(x){}b.classList.add("drg")}e.preventDefault();chCfg.pos={x:e.clientX-drg.dx,y:e.clientY-drg.dy};chPos(b)};
+ const mv=e=>{if(!drg||e.pointerId!==drg.id)return;if(e.pointerType!=="touch"&&e.buttons===0){try{end(e)}catch(x){}return}if(!moved&&Math.hypot(e.clientX-drg.x0,e.clientY-drg.y0)<6)return;if(!moved){moved=1;try{hd.setPointerCapture(e.pointerId)}catch(x){}b.classList.add("drg")}e.preventDefault();chCfg.pos={x:e.clientX-drg.dx,y:e.clientY-drg.dy};chPos(b)};
  const end=e=>{removeEventListener("pointermove",mv);removeEventListener("pointerup",end);removeEventListener("pointercancel",end);if(!drg)return;drg=null;b.classList.remove("drg");if(moved){chSave();setTimeout(()=>{moved=0},0)}};
  hd.addEventListener("click",e=>{if(moved){e.stopPropagation();e.preventDefault()}},true);const set=mk("div","ochs");set.hidden=true;
  const row=(lab,el)=>{const r=mk("label","ochr");r.append(mk("span","",lab),el);set.append(r)};
