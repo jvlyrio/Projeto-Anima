@@ -5027,6 +5027,23 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
  text-shadow:0 2px 6px #000b}#bnr .pcov.temart>.pccol{position:relative;z-index:1}body.php #bnr .pcov.temart,body.ph #bnr .pcov.temart{padding-right:0}body.php #bnr .pcov .pcart,body.ph #bnr .pcov .pcart{width:58%;opacity:.28}body.php #bnr .pcov .pcartt,body.ph #bnr .pcov .pcartt{display:none}/* ===== ANIMA2 VISUAL FIM ===== */
 </style>
 <style id="a2n">
+/* ===== aba Conta: nick e login ===== */
+.ctank{margin:0 0 10px;font:600 13px/1.3 system-ui;color:#c9c0bb}
+.ctank b{display:inline-block;font:900 italic 19px/1.2 system-ui;color:#e5acb7;
+ letter-spacing:.01em;text-shadow:0 2px 0 #0006}
+.ctaf{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}
+.ctaf input{flex:1 1 150px;min-width:0;padding:10px 12px;border-radius:9px;
+ background:#120e16;border:1.5px solid #4a3f52;color:#f1ece8;font:700 14px system-ui}
+.ctaf input:focus{outline:none;border-color:#e5acb7}
+.ctaok{flex:0 0 auto;padding:10px 16px;border-radius:9px;cursor:pointer;
+ background:linear-gradient(180deg,#e0809a,#b84664);border:1.5px solid #ffd3de;
+ color:#1b1016;font:800 14px system-ui}
+.ctaok:hover{filter:brightness(1.07)}
+.ctaf+.nker{display:block;margin:7px 0 0;color:#ff9b8f;font:700 12px system-ui}
+.mmobox .zacc{margin-top:4px}
+body.ph .ctank b,body.php .ctank b{font-size:16px}
+body.ph .ctaf input,body.php .ctaf input{padding:8px 10px;font-size:13px}
+body.ph .ctaok,body.php .ctaok{padding:8px 12px;font-size:13px}
 /* rodape da janela de Configuracoes sempre a vista */
 .mmobox .mmoft{position:sticky;bottom:0;z-index:3;display:block;
  margin:14px -24px -20px;padding:12px 24px 16px;
@@ -7299,6 +7316,43 @@ function fsSet(v){try{ls("za_fs",String(v))}catch(e){}fsAplica(v)}
    "Sair da conta" sem porta de entrada. Agora o painel fica guardado e o
    tamanho da letra usa um nome so dele. */
 const ZCONTA=(typeof window!="undefined"&&typeof window.ZACC=="function")?window.ZACC:null;
+/* ===== Trocar o nick: uma vez por conta =====
+   A marca fica em za_nick_tr, que sobe junto com o resto do progresso: quem
+   limpa o navegador e entra na conta de novo continua com a troca gasta. */
+function nickAtual(){try{return (ls("za_nick")||"").trim()}catch(e){return ""}}
+function nickJaTrocou(){try{const v=ls("za_nick_tr");return !!(v&&v!=="0")}catch(e){return false}}
+function ctaRows(p){
+ p.append(mk("div","cfgsub","Seu nick"));
+ const atual=nickAtual();
+ const linha=mk("p","ctank","<b>"+escH(atual||"ainda sem nick")+"</b>");
+ p.append(linha);
+ if(nickJaTrocou()){
+  p.append(mk("p","cfgnote","Voc\u00ea j\u00e1 usou a sua troca de nick. Ela vale <b>uma vez por conta</b>, ent\u00e3o este agora \u00e9 o seu nome definitivo nas salas, no chat e na classifica\u00e7\u00e3o."));
+ }else{
+  const f=mk("form","ctaf"),inp=mk("input"),ok=mk("button","ctaok","Trocar nick");
+  inp.maxLength=18;inp.placeholder="Novo nick";inp.setAttribute("aria-label","Novo nick");
+  ok.type="submit";f.append(inp,ok);
+  const er=mk("small","nker");
+  p.append(f,er);
+  p.append(mk("p","cfgnote","A troca vale <b>uma vez por conta</b>: depois de confirmar n\u00e3o d\u00e1 para mudar de novo. O nick aparece para os outros jogadores nas salas, no chat e na classifica\u00e7\u00e3o."));
+  f.onsubmit=e=>{e.preventDefault();
+   const n=inp.value.trim().replace(/\s+/g," ");
+   if(n.length<2){er.textContent="O nick precisa ter pelo menos 2 letras.";return}
+   if(n.length>18){er.textContent="O nick pode ter no m\u00e1ximo 18 letras.";return}
+   if(n===atual){er.textContent="Esse j\u00e1 \u00e9 o seu nick.";return}
+   er.textContent="";
+   if(!confirm("Trocar o seu nick de \""+(atual||"sem nick")+"\" para \""+n+"\"?\n\nA troca vale uma vez s\u00f3: depois disso n\u00e3o d\u00e1 para mudar de novo.")) return;
+   try{ls("za_nick",n)}catch(x){}
+   try{ls("za_nick_tr",new Date().toISOString())}catch(x){}
+   try{oSetNick(n)}catch(x){}
+   try{if(typeof frPres=="function")frPres()}catch(x){}
+   try{sfx("ok")}catch(x){}
+   mmOpts("cta")};
+ }
+ if(ZCONTA){p.append(mk("div","cfgsub","Login"));
+  try{p.append(ZCONTA())}catch(e){}}
+ else p.append(mk("p","cfgnote","Esta vers\u00e3o n\u00e3o tem login: o progresso fica guardado neste aparelho."));
+ return p}
 /* a janela da conta: o painel vem do site. No link de testes e offline nao ha
    login nenhum, entao a janela explica isso em vez de abrir vazia. */
 function contaAbre(){
@@ -7408,6 +7462,7 @@ function curUI(){const w=mk("div","curw");
 
 /* ===== Configurações: primeiro escolhe o assunto, depois mexe nele ===== */
 const CFGT=[
+ ["cta","Conta","O seu nick e a conta onde o progresso fica guardado"],
  ["som","Som","Volume geral, vozes, música, efeitos e a dublagem dos vídeos"],
  ["vid","Vídeo","O visual do jogo, quando os vídeos tocam e a velocidade deles"],
  ["img","Imagem","Fundo do menu, tamanho e transparência do menu e modo desempenho"],
@@ -7443,6 +7498,7 @@ function mmOpts(tema){
  }else{
   bx.append(mk("p","cfgint",item[2]));
   const d=mk("section","cfgs");
+  if(tema=="cta"){ctaRows(d)}
   if(tema=="som"){const w=mk("div","mmosnd");sndRows(w);d.append(w)}
   else if(tema=="vid"){const w=mk("div","mmosnd");vidRows(w);d.append(w)}
   else if(tema=="img"){const w=mk("div","mmosnd");grfRows(w);d.append(w)}
@@ -8315,7 +8371,8 @@ const PATCH=[
   "<b>Notícias</b>: a collab do Solo Leveling continuava anunciando “Jinwoo chega em breve” com ele já jogável.",
   "<b>Tutorial</b>: a seção “Líder e passiva” passou a explicar a SOMBRA — uma passiva pode colocar mais um lutador em campo.",
   "<b>Personagens “Em breve”</b> não ocupam mais espaço nas telas de Personagens, Montar times e Draft."],
- nv:[{i:"\ud83d\udcf1",n:"A lista de amigos funciona no celular",t:"Mover e mudar o tamanho da lista só valiam no computador — no celular o <b>cadeado</b> aparecia sem ter o que travar e a lista ficava presa no canto. Agora dá para arrastar pela barra de cima e puxar os cantos com o dedo, as bordas são mais largas para o toque e o cadeado prende tudo no lugar."},
+ nv:[{i:"\u270f\ufe0f",n:"Trocar de nick, uma vez",t:"Em <b>Configurações › Conta</b> dá para trocar o seu nick. A troca vale <b>uma vez por conta</b> e acompanha o seu progresso: entrar em outro aparelho não devolve a troca. Na mesma aba ficam o login e o <b>Sair da conta</b>."},
+  {i:"\ud83d\udcf1",n:"A lista de amigos funciona no celular",t:"Mover e mudar o tamanho da lista só valiam no computador — no celular o <b>cadeado</b> aparecia sem ter o que travar e a lista ficava presa no canto. Agora dá para arrastar pela barra de cima e puxar os cantos com o dedo, as bordas são mais largas para o toque e o cadeado prende tudo no lugar."},
   {i:"\ud83c\udf96\ufe0f",hl:1,n:"Retroatividade da Maestria",t:"Muita gente já jogava ranqueada antes de a Maestria existir e ficou com todo mundo no nível 1. Agora as suas partidas ranqueadas anteriores que o histórico guarda são contadas de uma vez, com a tabela de sempre — <b>90</b> por vitória e <b>55</b> por derrota, valendo também contra bot. Na primeira vez que você entrar depois da atualização aparece quanto cada personagem recebeu."},
   {i:"\ud83e\udd4a",hl:1,n:"A apresentação dos times mostra a Maestria",t:"Na tela do narrador, cada personagem do seu time aparece com o <b>nível de Maestria</b> que você tem com ele. O <b>VS</b> do meio ganhou arte nova, e a apresentação <b>não tem mais botão de pular</b>."},
   {i:"\ud83d\udfe2",n:"Aviso quando um amigo entra",t:"Quando alguém da sua lista fica online, aparece um aviso curto logo acima da <b>Lista de amigos</b>."},
