@@ -252,7 +252,33 @@
       var col2 = el("div", "zlcol");
       PROV.forEach(function (p) { if (ids.indexOf(p) < 0) { var b = provBtn(p, "Vincular " + nm[p]); b.onclick = function () { link(p) }; col2.append(b) } });
       var so = el("button", "zlb zl-out", "<span>Sair da conta</span>"); so.type = "button";
-      so.onclick = async function () { await pushProfile(true); await sb.auth.signOut(); Object.keys(snapshotLocal()).forEach(function (k) { lss(k, null) }); lss("za_sync_uid", null); lss("za_login", null); location.replace(HOME) };
+      /* Sair da conta: no celular a rede costuma estar pior, e qualquer falha no
+         meio (o upload do progresso ou o signOut) deixava o botao morto, sem
+         aviso nenhum. Agora cada passo e isolado, o botao mostra que esta
+         trabalhando e a saida acontece de qualquer jeito. */
+      so.onclick = function () {
+        if (so.dataset.saindo) return;
+        so.dataset.saindo = "1";
+        so.disabled = true;
+        so.innerHTML = "<span>Saindo\u2026</span>";
+        var feito = false;
+        var sai = function () {
+          if (feito) return; feito = true;
+          try { Object.keys(snapshotLocal()).forEach(function (k) { lss(k, null) }) } catch (e) {}
+          try { lss("za_sync_uid", null) } catch (e) {}
+          try { lss("za_login", null) } catch (e) {}
+          try { location.replace(HOME) } catch (e) { try { location.href = HOME } catch (x) {} }
+        };
+        /* trava de seguranca: se a rede nao responder, sai mesmo assim */
+        var tmr = setTimeout(sai, 6000);
+        (async function () {
+          try { await pushProfile(true) } catch (e) {}
+          try { await sb.auth.signOut() } catch (e) {
+            try { await sb.auth.signOut({ scope: "local" }) } catch (x) {}
+          }
+          clearTimeout(tmr); sai();
+        })();
+      };
       col2.append(so); ACC.append(col2);
     }
   }
