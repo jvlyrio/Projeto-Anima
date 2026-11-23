@@ -223,6 +223,32 @@
 
   /* ---------- Opções → Conta ---------- */
   var ACC = null;
+  /* Sair da conta. No celular a rede costuma estar pior, e qualquer falha no meio
+     (o upload do progresso ou o signOut) deixava o botao morto, sem aviso nenhum.
+     Cada passo e isolado, o botao mostra que esta trabalhando e a saida acontece
+     de qualquer jeito. Depois de sair, za_login limpo faz a tela de login abrir
+     de novo, e dai da para entrar com outra conta. */
+  function sairDaConta(bt, aviso) {
+    if (bt && bt.dataset.saindo) return;
+    if (aviso && !confirm(aviso)) return;
+    if (bt) { bt.dataset.saindo = "1"; bt.disabled = true; bt.innerHTML = "<span>Saindo\u2026</span>" }
+    var feito = false;
+    var sai = function () {
+      if (feito) return; feito = true;
+      try { Object.keys(snapshotLocal()).forEach(function (k) { lss(k, null) }) } catch (e) {}
+      try { lss("za_sync_uid", null) } catch (e) {}
+      try { lss("za_login", null) } catch (e) {}
+      try { location.replace(HOME) } catch (e) { try { location.href = HOME } catch (x) {} }
+    };
+    var tmr = setTimeout(sai, 6000);   /* se a rede nao responder, sai mesmo assim */
+    (async function () {
+      try { await pushProfile(true) } catch (e) {}
+      try { await sb.auth.signOut() } catch (e) {
+        try { await sb.auth.signOut({ scope: "local" }) } catch (x) {}
+      }
+      clearTimeout(tmr); sai();
+    })();
+  }
   function accRender() {
     if (!ACC || !ACC.isConnected) return;
     ACC.innerHTML = ""; ACC.append(el("h3", "", "Conta"));
@@ -243,6 +269,15 @@
         var other = el("details", "zlother"); other.append(el("summary", "", "Entrar em outra conta"), el("p", "zlsm", "⚠️ O progresso de convidado deste aparelho será trocado pelo da conta em que você entrar."), emailForm(sendMagic));
         col.append(other);
       }
+      {
+        var sg = el("button", "zlb zl-out", "<span>Entrar em outra conta</span>"); sg.type = "button";
+        sg.title = "Sair deste convidado e entrar com outra conta";
+        sg.onclick = function () {
+          sairDaConta(sg, "Voc\u00ea est\u00e1 jogando como convidado: o progresso deste aparelho fica s\u00f3 aqui e some ao sair.\n\nSe quiser guard\u00e1-lo, cancele e use \"Vincular Google\" antes.\n\nSair assim mesmo e entrar em outra conta?");
+        };
+        col.append(el("p", "zlsm", "Quer usar outra conta neste aparelho? Saia do convidado e entre com ela."));
+        col.append(sg);
+      }
       ACC.append(col);
     } else {
       var ids = (u.identities || []).map(function (i) { return i.provider }).filter(function (p) { return p !== "anonymous" });
@@ -252,33 +287,7 @@
       var col2 = el("div", "zlcol");
       PROV.forEach(function (p) { if (ids.indexOf(p) < 0) { var b = provBtn(p, "Vincular " + nm[p]); b.onclick = function () { link(p) }; col2.append(b) } });
       var so = el("button", "zlb zl-out", "<span>Sair da conta</span>"); so.type = "button";
-      /* Sair da conta: no celular a rede costuma estar pior, e qualquer falha no
-         meio (o upload do progresso ou o signOut) deixava o botao morto, sem
-         aviso nenhum. Agora cada passo e isolado, o botao mostra que esta
-         trabalhando e a saida acontece de qualquer jeito. */
-      so.onclick = function () {
-        if (so.dataset.saindo) return;
-        so.dataset.saindo = "1";
-        so.disabled = true;
-        so.innerHTML = "<span>Saindo\u2026</span>";
-        var feito = false;
-        var sai = function () {
-          if (feito) return; feito = true;
-          try { Object.keys(snapshotLocal()).forEach(function (k) { lss(k, null) }) } catch (e) {}
-          try { lss("za_sync_uid", null) } catch (e) {}
-          try { lss("za_login", null) } catch (e) {}
-          try { location.replace(HOME) } catch (e) { try { location.href = HOME } catch (x) {} }
-        };
-        /* trava de seguranca: se a rede nao responder, sai mesmo assim */
-        var tmr = setTimeout(sai, 6000);
-        (async function () {
-          try { await pushProfile(true) } catch (e) {}
-          try { await sb.auth.signOut() } catch (e) {
-            try { await sb.auth.signOut({ scope: "local" }) } catch (x) {}
-          }
-          clearTimeout(tmr); sai();
-        })();
-      };
+      so.onclick = function () { sairDaConta(so) };
       col2.append(so); ACC.append(col2);
     }
   }
