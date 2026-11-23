@@ -4055,7 +4055,8 @@ background:linear-gradient(180deg,#fff6d6,#ffd23f 60%,#e09200);-webkit-backgroun
 /* ---------- MENU PRINCIPAL ---------- */
 /* o cenario continua, mas bem escurecido: a lamina precisa de contraste */
 #dr .mm2:not(.pg)::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
- background:linear-gradient(90deg,#17141be8 0%,#17141be0 52%,#17141bc9 78%,#17141baf 100%)}
+ background:linear-gradient(90deg,#17141be8 0%,#17141be0 52%,#17141bc9 78%,#17141baf 100%);
+ opacity:var(--pgdim,1)}
 #dr .mm2:not(.pg) .mml,#dr .mm2:not(.pg) .mmdesc{z-index:4}
 #dr .mm2:not(.pg) .mmart{z-index:2}
 
@@ -5026,6 +5027,37 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
  text-shadow:0 2px 6px #000b}#bnr .pcov.temart>.pccol{position:relative;z-index:1}body.php #bnr .pcov.temart,body.ph #bnr .pcov.temart{padding-right:0}body.php #bnr .pcov .pcart,body.ph #bnr .pcov .pcart{width:58%;opacity:.28}body.php #bnr .pcov .pcartt,body.ph #bnr .pcov .pcartt{display:none}/* ===== ANIMA2 VISUAL FIM ===== */
 </style>
 <style id="a2n">
+/* mexendo nas barras do menu, a janela de configuracoes sai da frente por um
+   instante: sem isso o jogador mexia no escuro e achava que nada acontecia */
+.mmopt.espia{background:transparent!important;backdrop-filter:none!important}
+.mmopt.espia .mmobox{opacity:.3;transition:opacity .18s}
+.mmopt .mmobox{transition:opacity .25s}
+/* o selo de Maestria da apresentacao dos times: o mesmo da galeria de
+   Personagens, grande e encostado na borda da carta em vez de dentro dela */
+.vcd{position:relative;overflow:visible}
+/* o selo entra no fluxo logo abaixo da arte e sobe metade da propria altura:
+   fica a cavaleiro da borda, como na galeria, sem cobrir o nome */
+.vcd .mxsl{--mxsz:clamp(52px,6.4vw,84px);
+ position:relative;z-index:4;align-self:flex-start;
+ margin:calc(var(--mxsz) * -0.62) 0 0 -10px;
+ display:flex;align-items:center;gap:5px;font-style:normal;background:none;border:0;padding:0}
+.vcd .mxsli{position:relative;display:block;flex:none;width:var(--mxsz);height:var(--mxsz)}
+.vcd .mxsl img{width:100%!important;height:100%!important;object-fit:contain!important;
+ display:block;border:0!important;border-radius:0!important;aspect-ratio:auto!important;
+ filter:drop-shadow(0 3px 7px #000e)}
+.vcd .mxsli b{position:absolute;left:0;right:0;bottom:-2px;text-align:center;
+ font:900 italic clamp(15px,1.75vw,23px)/1 system-ui;color:#fdf6ee;
+ text-shadow:0 1px 0 #000,0 0 6px #000,0 2px 5px #000}
+.vcd .mxsl u{display:inline-flex;align-items:center;gap:3px;text-decoration:none;
+ font:800 clamp(10px,1vw,12px)/1 system-ui;color:#f0e6dc;
+ padding:4px 8px 4px 6px;border-radius:999px;background:#14101ad9;border:1px solid #ffffff24}
+@media (max-width:760px){
+ .vcd .mxsl{--mxsz:clamp(40px,11vw,58px);margin-left:-7px;gap:4px}
+ .vcd .mxsli b{font-size:clamp(13px,3.4vw,17px)}
+ .vcd .mxsl u{font-size:10px;padding:3px 6px 3px 5px}}
+/* o botao de sair da conta, logo abaixo do Voltar */
+.mmobox .mmoout{margin-top:7px;background:transparent;border:1.5px solid #c8a1b455;color:#d8ccc6}
+.mmobox .mmoout:hover{border-color:#e5acb7;color:#f3ece8}
 /* ===== aviso de amigo que ficou online, logo acima da lista ===== */
 .ofrtst{position:fixed;z-index:18;display:none;flex-direction:column;gap:6px;pointer-events:none}
 .ofrtst:not([style*="display: none"]){display:flex}
@@ -5068,16 +5100,12 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
 .mxrtft .lam{min-width:min(220px,100%)}
 /* ===== selo de Maestria na apresentação dos times ===== */
 .vcd .vim{position:relative}
-.vcd .vmx{position:absolute;left:4px;bottom:4px;z-index:2;display:flex;align-items:center;
- gap:3px;padding:2px 6px 2px 3px;border-radius:999px;background:#0e0a0fd6;
- border:1px solid #e9c87a66;box-shadow:0 2px 7px #000a;font-style:normal;line-height:1}
-.vcd .vmx img{width:17px;height:17px;object-fit:contain;display:block;filter:drop-shadow(0 1px 3px #000)}
-.vcd .vmx em{font-style:normal;font:900 11px/1 system-ui;color:#e9c87a;text-shadow:0 1px 0 #000}
+.vcd .vmx{position:absolute;z-index:2;display:flex;align-items:center;
+ border-radius:999px;font-style:normal;line-height:1}
+.vcd .vmx img{object-fit:contain;display:block;filter:drop-shadow(0 2px 4px #000)}
 /* o VS novo e quase quadrado: um tiquinho maior que o antigo para ter a mesma presenca */
 .vsb img{height:clamp(52px,10.5vh,92px)}
-@media (max-width:760px){.vcd .vmx{left:3px;bottom:3px;padding:1px 5px 1px 2px}
- .vcd .vmx img{width:14px;height:14px}.vcd .vmx em{font-size:10px}
- .vsb img{height:clamp(44px,9vh,70px)}}
+@media (max-width:760px){.vsb img{height:clamp(44px,9vh,70px)}}
 /* o visual Legado ficou trancado: o botão mostra o cadeado e não responde */
 .subpk .sub.tmlk{opacity:.5;cursor:not-allowed;filter:grayscale(.6)}
 .subpk .sub.tmlk:hover{opacity:.5;transform:none}
@@ -7108,7 +7136,7 @@ function sndRows(p,quais){(quais||[["g","Geral"],["v","Voz"],["m","Música"],["e
    o .mml e a coluna do menu nos dois. */
 const MMCFG=(()=>{let c={sc:100,op:100,bg:100};
  try{Object.assign(c,JSON.parse(localStorage.getItem("za_menu")||"{}"))}catch(e){}
- c.sc=Math.min(130,Math.max(70,+c.sc||100));c.op=Math.min(100,Math.max(40,+c.op||100));
+ c.sc=Math.min(130,Math.max(70,+c.sc||100));c.op=Math.min(100,Math.max(20,+c.op||100));
  c.bg=Math.min(100,Math.max(20,+c.bg||100));return c})();
 function mmSave(){const t=JSON.stringify(MMCFG);
  try{ls("za_menu",t)}catch(e){try{localStorage.setItem("za_menu",t)}catch(x){}}}
@@ -7116,14 +7144,18 @@ function mmApply(){try{const r=document.documentElement;
  r.style.setProperty("--mmsc",String(MMCFG.sc/100));
  r.style.setProperty("--mmop",String(MMCFG.op/100));
  r.style.setProperty("--pgdim",String((MMCFG.bg==null?100:MMCFG.bg)/100))}catch(e){}}
-const MMFX=[["sc","Tamanho do menu",70,130],["op","Opacidade do menu",40,100],["bg","Escurecer o fundo",20,100]];
+const MMFX=[["sc","Tamanho do menu",70,130],["op","Opacidade do menu",20,100],["bg","Escurecer o fundo",20,100]];
+let MMESP=null;
+function mmEspia(){try{const ov=document.querySelector(".mmopt");if(!ov)return;
+ ov.classList.add("espia");clearTimeout(MMESP);
+ MMESP=setTimeout(()=>{try{ov.classList.remove("espia")}catch(e){}},900)}catch(e){}}
 function mmRows(p){
  MMFX.forEach(([k,n,mn,mx])=>{const r=mk("label","sndr mmr"),t=mk("span","",n),sl=mk("input"),o=mk("em","",MMCFG[k]+"%");
   sl.type="range";sl.min=mn;sl.max=mx;sl.step=1;sl.value=MMCFG[k];sl.dataset.mm=k;
   sl.setAttribute("aria-label",n);
   const pc=v=>((v-mn)/(mx-mn)*100)+"%";sl.style.setProperty("--p",pc(MMCFG[k]));
   sl.oninput=()=>{MMCFG[k]=+sl.value;o.textContent=sl.value+"%";
-   sl.style.setProperty("--p",pc(+sl.value));mmApply();mmSave()};
+   sl.style.setProperty("--p",pc(+sl.value));mmApply();mmSave();mmEspia()};
   r.append(t,sl,o);p.append(r)});
  const tr=mk("div","sndtr"),rp=mk("button","sndt","\u21ba Voltar ao padr\u00e3o");
  rp.onclick=()=>{MMCFG.sc=100;MMCFG.op=100;MMCFG.bg=100;mmApply();mmSave();
@@ -7230,8 +7262,30 @@ function fsAplica(v){
 
 function fsSet(v){try{ls("za_fs",String(v))}catch(e){}fsAplica(v)}
 
-/* a linha que entra em Opções (o gancho window.ZACC é lido pelo mmOpts) */
-window.ZACC=function(){
+/* O site injeta o painel de conta em window.ZACC antes do jogo carregar. O jogo
+   usava o mesmo nome para o tamanho da letra e apagava o painel, deixando o
+   "Sair da conta" sem porta de entrada. Agora o painel fica guardado e o
+   tamanho da letra usa um nome so dele. */
+const ZCONTA=(typeof window!="undefined"&&typeof window.ZACC=="function")?window.ZACC:null;
+/* a janela da conta: o painel vem do site. No link de testes e offline nao ha
+   login nenhum, entao a janela explica isso em vez de abrir vazia. */
+function contaAbre(){
+ if(document.querySelector(".mmopt.ctov"))return;
+ const ov=mk("div","mmopt ctov"),bx=mk("div","mmobox cfg");
+ bx.setAttribute("role","dialog");bx.setAttribute("aria-label","Conta");
+ const close=()=>{ov.remove();document.removeEventListener("keydown",esc,true)},
+  esc=e=>{if(e.key=="Escape"){e.stopPropagation();close()}};
+ let painel=null;
+ if(ZCONTA)try{painel=ZCONTA()}catch(e){painel=null}
+ /* o painel do site ja traz o seu proprio titulo */
+ if(!painel)bx.append(mk("h2","","Conta"));
+ if(painel)bx.append(painel);
+ else bx.append(mk("p","cfgint","Esta vers\u00e3o n\u00e3o tem login: o progresso fica guardado neste aparelho. "+
+  "No site do jogo d\u00e1 para entrar com uma conta e levar tudo para qualquer aparelho."));
+ const cl=mk("button","mmocl lam","Voltar");cl.onclick=close;bx.append(cl);
+ ov.append(bx);ov.onclick=e=>{if(e.target===ov)close()};
+ document.body.append(ov);document.addEventListener("keydown",esc,true)}
+window.ZFS=function(){
  const w=mk("div","");
  const r=mk("div","fsrow");
  const pinta=()=>{const at=fsLer();
@@ -7346,13 +7400,16 @@ function mmOpts(tema){
    b.onclick=()=>mmOpts(k);L.append(b)});
   bx.append(L);
   const cl=mk("button","mmocl lam","Voltar");cl.onclick=close;bx.append(cl);
+  {const sa=mk("button","mmocl lam mmoout","Sair da conta");
+   sa.title="Entrar em outra conta ou jogar como convidado";
+   sa.onclick=()=>{close();contaAbre()};bx.append(sa)}
  }else{
   bx.append(mk("p","cfgint",item[2]));
   const d=mk("section","cfgs");
   if(tema=="som"){const w=mk("div","mmosnd");sndRows(w);d.append(w)}
   else if(tema=="vid"){const w=mk("div","mmosnd");vidRows(w);d.append(w)}
   else if(tema=="img"){const w=mk("div","mmosnd");grfRows(w);d.append(w)}
-  else if(tema=="fon"){if(window.ZACC)try{d.append(window.ZACC())}catch(e){}}
+  else if(tema=="fon"){if(window.ZFS)try{d.append(window.ZFS())}catch(e){}}
   else if(tema=="cur"){d.append(curUI())}
   else if(tema=="par"){const r=mk("div","blvrow");r.append(mk("span","","Nível do bot:"),blvSel());d.append(r)}
   bx.append(d);
@@ -7409,9 +7466,8 @@ function playIntro(cb){const old=document.getElementById("vsi");if(old)old.remov
  const T=s=>G.u.filter(x=>x.s==s).filter((x,i,a)=>a.findIndex(y=>y.c==x.c)===i),nm=s=>pnv(s);
  /* o lado de quem esta jogando: so dele da para saber a maestria */
  const EUV=(()=>{try{if(!G.online)return 0;return (G.me===0||G.me===1)?G.me:-1}catch(e){return 0}})();
- const selo=k=>{try{const nv=mxNivelDe(k),ar=mxArte(nv);
-   return "<i class='vmx'>"+(ar?"<img src='"+ar+"' alt=''>":"")+"<em>"+nv+"</em></i>"}catch(e){return ""}};
- const half=s=>{const w=mk("div","vhalf t"+s),hd=mk("div","vhd",nm(s)),row=mk("div","vrow");w.append(hd,row);T(s).forEach(u=>{const c=mk("div","vcd");c.innerHTML="<div class='vim'><img src='"+(IMG[u.c+"_s"]||IMG[u.c+"_f"])+"' alt=''>"+(s===EUV?selo(u.c):"")+"</div><b>"+C[u.c].n+"</b>";row.append(c)});return w};
+ const selo=k=>{try{return mxSelo(k)}catch(e){return ""}};
+ const half=s=>{const w=mk("div","vhalf t"+s),hd=mk("div","vhd",nm(s)),row=mk("div","vrow");w.append(hd,row);T(s).forEach(u=>{const c=mk("div","vcd");c.innerHTML="<div class='vim'><img src='"+(IMG[u.c+"_s"]||IMG[u.c+"_f"])+"' alt=''></div>"+(s===EUV?selo(u.c):"")+"<b>"+C[u.c].n+"</b>";row.append(c)});return w};
  const H=[half(0),null,half(1)],V=mk("div","vsb","<img src='"+IMG.ui_vs+"' alt='VS'>");H[1]=V;st.append(H[0],V,H[2]);
  const side=(s,k)=>{if(!IN)return;const w=H[s?2:0],L=T(s),row=w.querySelector(".vrow");w.classList.add("on");
   const step=i=>{if(!IN)return;[...st.querySelectorAll(".vcd")].forEach(x=>x.classList.remove("cur"));if(i>=L.length)return k();const c=row.children[i];c.classList.add("in","cur");inSay(AUK[L[i].c]||[L[i].c],()=>step(i+1))};step(0)};
@@ -8627,7 +8683,7 @@ function cfgInicial(cb){
  sec("Dublagem dos v\u00eddeos",cfg1Dub());
  const mw=mk("div","");try{mmRows(mw)}catch(e){}
  sec("Menu e fundo",mw,"Tamanho e transpar\u00eancia do menu, e o quanto o cen\u00e1rio do fundo fica escuro.");
- let fw=null;try{fw=window.ZACC()}catch(e){}
+ let fw=null;try{fw=window.ZFS()}catch(e){}
  sec("Tamanho da letra",fw);
  let cw=null;try{cw=curUI()}catch(e){}
  sec("Cursor",cw);
