@@ -5027,6 +5027,30 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
  text-shadow:0 2px 6px #000b}#bnr .pcov.temart>.pccol{position:relative;z-index:1}body.php #bnr .pcov.temart,body.ph #bnr .pcov.temart{padding-right:0}body.php #bnr .pcov .pcart,body.ph #bnr .pcov .pcart{width:58%;opacity:.28}body.php #bnr .pcov .pcartt,body.ph #bnr .pcov .pcartt{display:none}/* ===== ANIMA2 VISUAL FIM ===== */
 </style>
 <style id="a2n">
+/* ===== lista de amigos no celular =====
+   Mover e redimensionar passaram a valer no toque: as bordas finas de 5px nao
+   servem para o dedo, e o cabecalho precisa de touch-action para o arrasto
+   nao virar rolagem da pagina. */
+body.ph #ofr .ofrh,body.php #ofr .ofrh{touch-action:none}
+body.ph #ofr .ofrz.n,body.php #ofr .ofrz.n,
+body.ph #ofr .ofrz.s,body.php #ofr .ofrz.s{height:13px;left:14px;right:14px}
+body.ph #ofr .ofrz.e,body.php #ofr .ofrz.e,
+body.ph #ofr .ofrz.w,body.php #ofr .ofrz.w{width:13px;top:14px;bottom:14px}
+body.ph #ofr .ofrz.ne,body.php #ofr .ofrz.ne,
+body.ph #ofr .ofrz.nw,body.php #ofr .ofrz.nw,
+body.ph #ofr .ofrz.se,body.php #ofr .ofrz.se,
+body.ph #ofr .ofrz.sw,body.php #ofr .ofrz.sw{width:17px;height:17px}
+/* a marca de onde pegar para redimensionar, para o canto nao parecer morto */
+body.ph #ofr:not(.min):not(.lkd) .ofrz.se::after,
+body.php #ofr:not(.min):not(.lkd) .ofrz.se::after{content:"";position:absolute;right:3px;bottom:3px;
+ width:9px;height:9px;border-right:2px solid #ffffff4d;border-bottom:2px solid #ffffff4d;border-radius:0 0 3px 0}
+/* os botoes do cabecalho sao alvos de dedo */
+body.ph #ofr .ofrb,body.php #ofr .ofrb{min-width:30px;min-height:30px;font-size:15px}
+body.ph #ofr.lkd .ofrh,body.php #ofr.lkd .ofrh{touch-action:auto}
+/* deitado sobra pouca altura: a lista encolhe e o painel nao passa da tela */
+body.ph #ofr{max-height:calc(100vh - 66px)}
+body.ph #ofr:not(.fzc) .ofrls{max-height:min(38vh,160px)}
+body.ph #ofr.fzc .ofrls,body.php #ofr.fzc .ofrls{max-height:none;flex:1 1 auto;min-height:0}
 /* mexendo nas barras do menu, a janela de configuracoes sai da frente por um
    instante: sem isso o jogador mexia no escuro e achava que nada acontecia */
 .mmopt.espia{background:transparent!important;backdrop-filter:none!important}
@@ -5035,11 +5059,9 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
 /* o selo de Maestria da apresentacao dos times: o mesmo da galeria de
    Personagens, grande e encostado na borda da carta em vez de dentro dela */
 .vcd{position:relative;overflow:visible}
-/* o selo entra no fluxo logo abaixo da arte e sobe metade da propria altura:
-   fica a cavaleiro da borda, como na galeria, sem cobrir o nome */
+/* o selo fica no alto da carta: embaixo ele espremia os nomes de duas linhas */
 .vcd .mxsl{--mxsz:clamp(52px,6.4vw,84px);
- position:relative;z-index:4;align-self:flex-start;
- margin:calc(var(--mxsz) * -0.62) 0 0 -10px;
+ position:absolute;z-index:4;top:calc(var(--mxsz) * -0.16);left:-10px;
  display:flex;align-items:center;gap:5px;font-style:normal;background:none;border:0;padding:0}
 .vcd .mxsli{position:relative;display:block;flex:none;width:var(--mxsz);height:var(--mxsz)}
 .vcd .mxsl img{width:100%!important;height:100%!important;object-fit:contain!important;
@@ -5052,7 +5074,7 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
  font:800 clamp(10px,1vw,12px)/1 system-ui;color:#f0e6dc;
  padding:4px 8px 4px 6px;border-radius:999px;background:#14101ad9;border:1px solid #ffffff24}
 @media (max-width:760px){
- .vcd .mxsl{--mxsz:clamp(40px,11vw,58px);margin-left:-7px;gap:4px}
+ .vcd .mxsl{--mxsz:clamp(40px,11vw,58px);left:-7px;gap:4px}
  .vcd .mxsli b{font-size:clamp(13px,3.4vw,17px)}
  .vcd .mxsl u{font-size:10px;padding:3px 6px 3px 5px}}
 /* o botao de sair da conta, logo abaixo do Voltar */
@@ -8278,7 +8300,8 @@ const PATCH=[
   "<b>Notícias</b>: a collab do Solo Leveling continuava anunciando “Jinwoo chega em breve” com ele já jogável.",
   "<b>Tutorial</b>: a seção “Líder e passiva” passou a explicar a SOMBRA — uma passiva pode colocar mais um lutador em campo.",
   "<b>Personagens “Em breve”</b> não ocupam mais espaço nas telas de Personagens, Montar times e Draft."],
- nv:[{i:"\ud83c\udf96\ufe0f",hl:1,n:"Retroatividade da Maestria",t:"Muita gente já jogava ranqueada antes de a Maestria existir e ficou com todo mundo no nível 1. Agora as suas partidas ranqueadas anteriores que o histórico guarda são contadas de uma vez, com a tabela de sempre — <b>90</b> por vitória e <b>55</b> por derrota, valendo também contra bot. Na primeira vez que você entrar depois da atualização aparece quanto cada personagem recebeu."},
+ nv:[{i:"\ud83d\udcf1",n:"A lista de amigos funciona no celular",t:"Mover e mudar o tamanho da lista só valiam no computador — no celular o <b>cadeado</b> aparecia sem ter o que travar e a lista ficava presa no canto. Agora dá para arrastar pela barra de cima e puxar os cantos com o dedo, as bordas são mais largas para o toque e o cadeado prende tudo no lugar."},
+  {i:"\ud83c\udf96\ufe0f",hl:1,n:"Retroatividade da Maestria",t:"Muita gente já jogava ranqueada antes de a Maestria existir e ficou com todo mundo no nível 1. Agora as suas partidas ranqueadas anteriores que o histórico guarda são contadas de uma vez, com a tabela de sempre — <b>90</b> por vitória e <b>55</b> por derrota, valendo também contra bot. Na primeira vez que você entrar depois da atualização aparece quanto cada personagem recebeu."},
   {i:"\ud83e\udd4a",hl:1,n:"A apresentação dos times mostra a Maestria",t:"Na tela do narrador, cada personagem do seu time aparece com o <b>nível de Maestria</b> que você tem com ele. O <b>VS</b> do meio ganhou arte nova, e a apresentação <b>não tem mais botão de pular</b>."},
   {i:"\ud83d\udfe2",n:"Aviso quando um amigo entra",t:"Quando alguém da sua lista fica online, aparece um aviso curto logo acima da <b>Lista de amigos</b>."},
   {i:"\ud83d\udd12",n:"O visual Legado foi encerrado",t:"Manter dois visuais dobrava o trabalho de cada atualização. O jogo segue só com o <b>Moderno</b>, e quem estava no Legado volta para ele automaticamente — na prática, tudo o que vem pela frente chega mais rápido."},
@@ -12650,7 +12673,7 @@ function frDmBox(){const a=FRDM.aberto,w=mk("div","ofrdm");
 /* ---- a lista de amigos se move e muda de tamanho, como o chat ---- */
 const frCfg=(()=>{let c={sz:"m"};try{Object.assign(c,JSON.parse(localStorage.getItem("za_amigos")||"{}"))}catch(e){}return c})();
 function frSave(){try{ls("za_amigos",JSON.stringify(frCfg))}catch(e){try{localStorage.setItem("za_amigos",JSON.stringify(frCfg))}catch(x){}}}
-const frCan=()=>typeof matchMedia=="function"&&matchMedia("(hover:hover) and (pointer:fine)").matches&&!(document.body&&(document.body.classList.contains("ph")||document.body.classList.contains("php")));
+const frCan=()=>true;
 function frApplySz(b){if(!b)return;const on=!!(frCfg.w&&frCfg.h&&frCan());
  ["p","m","g"].forEach(x=>b.classList.remove("fz-"+x));b.classList.add("fz-"+(frCfg.sz||"m"));
  b.classList.toggle("fzc",on);
@@ -12701,7 +12724,7 @@ function frBuild(){const b=mk("div","ofr"+(FR.min?" min":""));b.id="ofr";
   const r=mk("label","");r.append(mk("span","","Tamanho"),sl);set.append(r);sync();b._frsync=sync}
  {const rp=mk("button","ofrrp","\u21ba Voltar a lista para o canto");rp.type="button";
   rp.onclick=e=>{e.stopPropagation();delete frCfg.pos;frSave();frPos(b)};set.append(rp)}
- set.append(mk("small","","No computador d\u00e1 para arrastar a barra de cima para mover a lista, e as bordas ou os cantos para mudar o tamanho."));
+ set.append(mk("small","","Arraste a barra de cima para mover a lista, e as bordas ou os cantos para mudar o tamanho. No celular vale com o dedo, e o cadeado trava tudo no lugar."));
  b.append(set);
  /* arrastar pela barra de cima, com a mesma folga de 6px do chat */
  let drg=null,moved=0;
