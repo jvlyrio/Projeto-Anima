@@ -853,11 +853,11 @@ body:has(.mm2:not(.bgx)) .sndb{left:auto;right:16px;top:16px;bottom:auto}body:ha
 .mmart{perspective:1000px}.mmart img{transform-style:preserve-3d}
 .mmart>img{rotate:y calc(var(--mx)*8deg)}
 .mmshaft{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(112deg,transparent 30%,#efe9e014 38%,transparent 44%,#efe9e01c 52%,transparent 60%,#efe9e010 66%,transparent 72%);mix-blend-mode:screen;animation:mmsft 9s ease-in-out infinite alternate}@keyframes mmsft{from{opacity:.5;transform:translateX(-2%)}to{opacity:1;transform:translateX(2%)}}
-.mmvig{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 55% 40%,transparent 55%,#1a0f1e66 100%)}
+.mmvig{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 55% 40%,transparent 55%,#1a0f1e66 100%);opacity:var(--pgdim,1)}
 @media(prefers-reduced-motion:reduce){.mmcam,.mmshaft{animation:none}.mmly{transform:none}}
 .mmvsb{display:grid;grid-template-columns:44px 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;width:100%;margin:8px 0;padding:12px 14px;text-align:left;background:#322237;color:#fff;border:2px solid #e6e2de66;border-radius:10px;cursor:pointer;font:inherit}
 .mmvsb span{grid-row:1/3;font-size:30px;text-align:center}.mmvsb b{font:900 19px system-ui}.mmvsb small{color:#d5cec9;font-size:13px}.mmvsb:hover,.mmvsb:focus-visible{border-color:#d27285;background:#442f4b;outline:none}.mmvsb.on{border-color:#d27285}
-.mm2.pg{display:flex;flex-direction:column;height:100vh;min-height:0}.pgdim{position:absolute;inset:0;background:#1c121fb3;z-index:1}
+.mm2.pg{display:flex;flex-direction:column;height:100vh;min-height:0}.pgdim{position:absolute;inset:0;background:#1c121fb3;z-index:1;opacity:var(--pgdim,1)}
 .pghd{position:relative;z-index:3;display:flex;align-items:center;gap:16px;padding:16px 20px 10px}
 .pghd h1{margin:0;font:900 clamp(30px,4vw,52px)/1 system-ui;background:linear-gradient(180deg,#dd94a3,#c9556c 45%,#e8461b);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:2px #5a1300;paint-order:stroke fill;filter:drop-shadow(0 3px 0 #fff)}
 #dr .pgbk{background:linear-gradient(180deg,#dc909f,#ce657a);color:#3a1500;border:2px solid #602234;border-radius:10px;padding:10px 16px;font:900 15px system-ui}
@@ -4985,6 +4985,38 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
  text-shadow:0 2px 6px #000b}#bnr .pcov.temart>.pccol{position:relative;z-index:1}body.php #bnr .pcov.temart,body.ph #bnr .pcov.temart{padding-right:0}body.php #bnr .pcov .pcart,body.ph #bnr .pcov .pcart{width:58%;opacity:.28}body.php #bnr .pcov .pcartt,body.ph #bnr .pcov .pcartt{display:none}/* ===== ANIMA2 VISUAL FIM ===== */
 </style>
 <style id="a2n">
+/* ===== tela "Configure seu jogo antes de começar" (vale nos dois visuais) ===== */
+#cfg1{position:fixed;inset:0;z-index:96;background:#07050aa6;
+ display:flex;align-items:flex-start;justify-content:center;padding:16px 14px 22px;
+ overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.cfg1bx{width:min(560px,96vw);margin:0 auto;padding:clamp(13px,2.4vw,22px) clamp(13px,2.6vw,24px) clamp(14px,2.4vw,20px);
+ border-radius:16px;background:#1a141fe8;border:1px solid #3a2f42;
+ box-shadow:0 20px 56px #000b,inset 0 1px 0 #ffffff12;backdrop-filter:blur(9px);text-align:left}
+.cfg1hd{text-align:center;margin-bottom:2px}
+.cfg1hd .cfg1z{font:900 27px/1 system-ui;color:#e5acb7;text-shadow:0 2px 10px #0009}
+.cfg1hd h2{margin:5px 0 5px;font:900 clamp(16px,2.1vw,20px)/1.25 system-ui;color:#e5acb7}
+.cfg1hd p{margin:0;font:600 12.5px/1.5 system-ui;color:#c9c0bb}
+.cfg1hd p b{color:#f6f4f3}
+.cfg1sec{margin-top:11px;padding-top:9px;border-top:1px solid #ffffff12}
+.cfg1sec:first-of-type{border-top:0}
+.cfg1sec .cfgsub{margin:0 0 7px}
+.cfg1sec .cfgnote,.cfg1sec .fsnota{margin:7px 0 0;color:#c6bdb7;opacity:.92}
+.cfg1bx{color:#efe9e4}
+.cfg1sec .sndr span{color:#efe9e4;font-weight:700}
+.cfg1sec .sndr em{color:#e5acb7;font-weight:800}
+.cfg1sec .cfgsub{color:#e5acb7}
+.cfg1sec .sndtr{margin-top:8px}
+.sndr.mmr{grid-template-columns:minmax(104px,38%) 1fr 46px!important;gap:10px}
+.mmosnd .sndr.mmr{grid-template-columns:minmax(112px,40%) 1fr 50px!important}
+.cfg1sec .fsnota{margin:7px 0 0;font:600 12.5px/1.45 system-ui;opacity:.78}
+.cfg1av{margin:8px 0 0;padding:8px 10px;border-radius:9px;font:600 12.5px/1.45 system-ui;
+ color:#f3dcb4;background:#2a1f12b8;border:1px solid #6b4f22}
+.cfg1av b{color:#ffd98a}
+.cfg1ft{margin-top:15px;display:flex;justify-content:center}
+.cfg1ft .lam{min-width:min(280px,100%)}
+#cfg1 .curw{justify-content:center}
+#cfg1 .fsrow{justify-content:center}
+@media (max-height:520px){.cfg1bx{margin:0 auto}}
 /* ===== MAESTRIA ===== */
 /* selo no canto da arte, com o nivel e os destaques */
 .chcard figure{position:relative}
@@ -5277,6 +5309,8 @@ body.ph .frinv .frinvno,body.php .frinv .frinvno{padding:7px 8px;font-size:11.5p
 #ofr .ofrdms:hover{background:var(--a2ros)}/* celular: o nome e o status precisam caber numa linha ao lado dos botoes */
 /* celular: o nome e o status precisam caber numa linha ao lado dos botoes */
 body.ph #ofr .ofrcv,body.php #ofr .ofrcv{padding:6px 8px;font-size:11px}
+/* aviso de que o video ainda nao tem dublagem brasileira */
+.g2cap .g2dub{display:block;margin-top:5px;font:700 11.5px system-ui;font-style:normal;color:#c9bcb3;opacity:.85}
 /* ===== Pontos de Maestria no fim da partida ===== */
 #mxgn{position:fixed;inset:0;z-index:9100;display:grid;place-items:center;pointer-events:auto;
  background:radial-gradient(circle at 50% 46%,#0a141cb8 0%,#03060c6b 48%,#0000 74%);animation:rkptIn .3s ease both}
@@ -6141,11 +6175,37 @@ function zStep(u,k,a,queued){const z=a.z||1,mx=zMax(u,k,a,queued),e=mk("div","zs
  m.onclick=ev=>{ev.stopPropagation();if(a.z>1){a.z=(a.z||1)-1;render()}};p.onclick=ev=>{ev.stopPropagation();if((a.z||1)<zMax(u,k,a,queued)){a.z=(a.z||1)+1;render()}};
  e.append(m,n,p);e.title="Essência gasta";return e}
 
-/* ===== Legendas dos vídeos ===== */
-const SUBV={pt:"media/dc540e82be667267a467e05879cb259d.mp4",ja:"media/c6abcebdad999880ae544976b8fc8047.mp4"};
+/* ===== Vídeo da transformação: só com legenda em português ===== */
+/* ===== Dublagem dos videos =====
+   Os videos que vieram primeiro sao os originais, em japones com legenda em
+   portugues. A dublagem brasileira vai chegando aos poucos: enquanto o video
+   nao tiver versao dublada, toca o japones, mesmo com a dublagem brasileira
+   escolhida. DUBBR liga um ao outro: a chave e o video japones. */
+const SUBV={pt:"media/dc540e82be667267a467e05879cb259d.mp4"};
+const DUBBR={
+ /* Levi — introdução  */ "media/0a8b604f3a519b9d1456ed94c059629c.mp4":"media/e74a5b325450dede40ec808fe82f0005.mp4",
+ /* Levi — ultimate    */ "media/aa421bebf3d9d2b796dd57911c0f0189.mp4":"media/28f5549b02702f1203730136dc3669c1.mp4",
+ /* Boruto — introdução*/ "media/c42252a88032db386274a308f92a7f16.mp4":"media/5da2ebb7340fe16bd2d076882751035b.mp4",
+ /* Boruto — ultimate  */ "media/f4c62a6494314d76ef24bd9f88891b85.mp4":"media/f65fe9639146255d042188336065293f.mp4"};
+function dubGet(){try{return localStorage.getItem("za_dub")==="ja"?"ja":"br"}catch(e){return"br"}}
+function dubSet(v){try{localStorage.setItem("za_dub",v==="ja"?"ja":"br")}catch(e){}
+ document.querySelectorAll(".subpk.dbpk button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));
+ try{Object.keys(VPRE).forEach(k=>delete VPRE[k])}catch(e){}window._g2pv=null}
+/* o video que vai tocar de verdade, ja com a escolha do jogador aplicada */
+function vdub(src){try{return (dubGet()==="br"&&DUBBR[src])?DUBBR[src]:src}catch(e){return src}}
+/* true quando o jogador pediu dublagem brasileira e este video ainda nao tem */
+function dubFalta(src){try{return dubGet()==="br"&&!DUBBR[src]}catch(e){return false}}
+const FLAG={br:"<svg viewBox='0 0 30 21' aria-hidden='true'><rect width='30' height='21' rx='2' fill='#009c3b'/><path d='M15 2.5 27 10.5 15 18.5 3 10.5z' fill='#ffdf00'/><circle cx='15' cy='10.5' r='4.6' fill='#002776'/><path d='M10.6 9.6q4.4-1.4 8.8 1.6' stroke='#fff' stroke-width='.9' fill='none'/></svg>",
+ ja:"<svg viewBox='0 0 30 21' aria-hidden='true'><rect width='30' height='21' rx='2' fill='#fff' stroke='#ccc' stroke-width='.6'/><circle cx='15' cy='10.5' r='5.6' fill='#bc002d'/></svg>"};
+function dubPick(){const w=mk("div","subpk dbpk");
+ [["br","Dublagem brasileira"],["ja","Dublagem japonesa"]].forEach(([v,n])=>{
+  const b=mk("button","sub"+(dubGet()==v?" on":""),FLAG[v]+"<span>"+n+"</span>");
+  b.type="button";b.dataset.v=v;b.onclick=e=>{e.preventDefault();dubSet(v)};w.append(b)});
+ return w}
 const ZAV={lvps:"media/0a8b604f3a519b9d1456ed94c059629c.mp4",lvult:"media/aa421bebf3d9d2b796dd57911c0f0189.mp4",boups:"media/c42252a88032db386274a308f92a7f16.mp4",boult:"media/f4c62a6494314d76ef24bd9f88891b85.mp4",ps:"media/5c883791508c3d9442b032be1d96d709.mp4",ult:"media/d1202f407a9b2843cd1dd1c110662671.mp4",beast:"media/34a3f36af5c7e77db47c6049e282a904.mp4",bult:"media/533eb248272cf7e749aa192bd865c478.mp4",mvps:"media/9d0b535d0713e1a16ef1e68d26f1668a.mp4",mvult:"media/af0246c64979c43a16501a4e9bfb474f.mp4",gdps:"media/e5702d769d4f7fb89fdd5ec549c72794.mp4",mgps:"media/0d3d80ffa4c75411675152fdcab9b3c1.mp4",mgult:"media/88e0980ef176f18cdfae3d412745871c.mp4",trps:"media/a291e6474de812aaca3fec2dd2c147d8.mp4",trult:"media/ed49863e9b78965b0b57010dce0b540f.mp4",sasult:"media/b1fd44c0be98b0ff74772b6807e6aba6.mp4",narult:"media/21c3dcbb90be95fd4a3a9a524ced5a32.mp4",clps:"media/7f4ffad3a8ebd907b5ae3f8ad9cc0340.mp4",clult:"media/11010bc51df86e44e227b28231f46055.mp4",gbkps:"media/fa567be3a2c372c007cdc28642678e74.mp4",gbkult:"media/63d993c04a5a3b4c2dfd527684ec78b0.mp4",gdult:"media/8cda131e26807eeeaf9d43a7b1933f8e.mp4",kirult:"media/30da2f55e9ecfe8c229a468b6d6f1267.mp4"};const VPRE={};
-function vPre(src){if(VPRE[src]||vidSkip(src))return;try{const v=document.createElement("video");v.src=src;v._src=src;v.preload="auto";v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.load();VPRE[src]=v}catch(e){}}
-function vidPlay(src,capHtml,cb){const done0=()=>{if(cb)try{cb()}catch(e){}};if(vidSkip(src)||G.sim){done0();return}const old=document.getElementById("g2v");if(old)old.remove();
+function vPre(src){src=vdub(src);if(VPRE[src]||vidSkip(src))return;try{const v=document.createElement("video");v.src=src;v._src=src;v.preload="auto";v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.load();VPRE[src]=v}catch(e){}}
+function vidPlay(src,capHtml,cb){const done0=()=>{if(cb)try{cb()}catch(e){}};if(vidSkip(src)||G.sim){done0();return}
+ const dbf=dubFalta(src);src=vdub(src);if(dbf)capHtml=(capHtml||"")+"<i class='g2dub'>Ainda sem dublagem brasileira</i>";const old=document.getElementById("g2v");if(old)old.remove();
  G.g2v=1;G.holdT=Math.max(G.holdT||0,Date.now()+25000);const ov=mk("div","");ov.id="g2v";const v=VPRE[src]||document.createElement("video");delete VPRE[src];if(!v._src){v.src=src;v._src=src}v.muted=false;try{v.currentTime=0}catch(e){}
  v.playsInline=true;v.setAttribute("playsinline","");v.preload="auto";v.volume=vol("v");
  const sk=mk("button","g2sk","Pular ▸▸"),sp=vspdBtn("g2sp"),cap=mk("div","g2cap",capHtml||"");vspdApply(v);const fr=mk("div","g2fr");fr.append(v,sp,sk);ov.append(fr,cap);document.body.append(ov);
@@ -6158,10 +6218,7 @@ function zaPre(){if(G.sim)return 0;const k=G.gid||"x";G.zaSeen=G.zaSeen||{};
  let V=null,best=-1;const L=G.log||[];for(const W of ULTV){const ix=[];L.forEach((l,j)=>{if(W.re.test(l.m||""))ix.push(j)});const n=ix.length,kk=k+":"+W.c;if(G.zaSeen[kk]==null)G.zaSeen[kk]=G.t>1?n:0;if(n<G.zaSeen[kk])G.zaSeen[kk]=n;if(n>G.zaSeen[kk]){const pos=ix[n-1-G.zaSeen[kk]];/* registro é do mais novo para o mais antigo: toca primeiro a ultimate usada antes */if(pos>best){best=pos;V=W}}}
  if(V){const kk=k+":"+V.c;G.zaSeen[kk]++;if(vidSkip(V.src))return zaPre();
   const gid=G.gid;let tries=0;RFZ=1;const go=()=>{if(G.gid!==gid||G.scr!="p"){RFZ=0;return}if((G.g2v||document.getElementById("g2v"))&&++tries<120)return void setTimeout(go,300);vidPlay(V.src,"<b>"+V.n+"</b><span>"+shn(V.c)+" usa a ultimate</span>",()=>{RFZ=0;if(G.gid===gid&&G.scr=="p")render()})};go();return 1}
- return 0} function subGet(){try{return localStorage.getItem("za_sub")==="ja"?"ja":"pt"}catch(e){return"pt"}}
-function subSet(v){try{localStorage.setItem("za_sub",v)}catch(e){}document.querySelectorAll(".subpk button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));if(window._g2pv&&window._g2pv._sv!==v)window._g2pv=null}
-const FLAG={pt:"<svg viewBox='0 0 30 21' aria-hidden='true'><rect width='30' height='21' rx='2' fill='#009c3b'/><path d='M15 2.5 27 10.5 15 18.5 3 10.5z' fill='#ffdf00'/><circle cx='15' cy='10.5' r='4.6' fill='#002776'/><path d='M10.6 9.6q4.4-1.4 8.8 1.6' stroke='#fff' stroke-width='.9' fill='none'/></svg>",
- ja:"<svg viewBox='0 0 30 21' aria-hidden='true'><rect width='30' height='21' rx='2' fill='#fff' stroke='#ccc' stroke-width='.6'/><circle cx='15' cy='10.5' r='5.6' fill='#bc002d'/></svg>"};
+ return 0}
 /* ---- Legado: a arte antiga dos icones que foram refeitos ----
    Nao ficam embutidas no arquivo (ele ja esta perto do teto de 16 MB):
    moram no deposito do artifact e em media/ no site, e so sao buscadas
@@ -6254,7 +6311,6 @@ function temaPick(){const w=mk("div","subpk tmpk");
   b.type="button";b.dataset.v=v;b.title=d;
   b.onclick=e=>{e.preventDefault();temaSet(v)};w.append(b)});
  return w}
-function subPick(){const w=mk("div","subpk");[["pt","Português (BR)"],["ja","日本語 (Japonês)"]].forEach(([v,n])=>{const b=mk("button","sub"+(subGet()==v?" on":""),FLAG[v]+"<span>"+n+"</span>");b.type="button";b.dataset.v=v;b.onclick=e=>{e.preventDefault();subSet(v)};w.append(b)});return w}
 /* ===== Dica flutuante ao passar o mouse nas habilidades (PC) ===== */
 const HOVPC=typeof matchMedia=="function"&&matchMedia("(hover:hover) and (pointer:fine)").matches;let HVX=-1,HVY=-1,HVON=null,HVLK=0;
 document.addEventListener("mousemove",e=>{HVX=e.clientX;HVY=e.clientY},{passive:true});
@@ -6270,10 +6326,10 @@ if(HOVPC){const typing=()=>{const a=document.activeElement;return a&&(a.tagName=
  document.addEventListener("mouseover",e=>{if(!HVLK)return;const c=e.target&&e.target.closest&&e.target.closest("#tip [data-g],#tip .skr[data-ik]");if(!c)return;const o=document.getElementById("gpop");if(o&&o._el===c)return;gPop(c);const g=document.getElementById("gpop"),t=document.getElementById("tip");if(!g||!t)return;const tr=t.getBoundingClientRect(),cr=c.getBoundingClientRect(),w=g.offsetWidth,h=g.offsetHeight;let x=tr.right+8;if(x+w>innerWidth-6)x=tr.left-w-8;if(x<6)x=Math.max(6,Math.min(cr.left,innerWidth-w-6));g.style.left=x+"px";g.style.top=Math.max(6,Math.min(cr.top+cr.height/2-h/2,innerHeight-h-6))+"px"})}
 function hovRe(){if(!HVON||HVLK)return;if(document.body.contains(HVON))return;hovHide();const e=HVX>=0&&document.elementFromPoint(HVX,HVY),a=e&&e.closest&&e.closest("[data-hv]");if(a)hovShow(a)}
 /* ===== Painel da habilidade (PC) — desativado, substituído pela dica flutuante ===== */
-function g2Pre(){if(window._g2pv||vidSkip("g2"))return;try{const v=document.createElement("video");v.src=SUBV[subGet()];v._sv=subGet();v.preload="auto";v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.load();window._g2pv=v}catch(e){}}
+function g2Pre(){if(window._g2pv||vidSkip("g2"))return;try{const v=document.createElement("video");v.src=vdub(SUBV.pt);v._sv=dubGet();v.preload="auto";v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.load();window._g2pv=v}catch(e){}}
 /* Anúncio de revive para personagens sem vídeo. Personagem novo que revive: adicionar aqui [código, chave do PANN] (o Gohan SSJ2 usa o vídeo ou o anúncio g2rv em g2Play). */const RVANN={tu:"turv"};function rvCheck(){if(G.sim||G.scr!="p")return;G.rvseen=G.rvseen||{};G.u.forEach((u,i)=>{const k=u.rvk=="div"?"divrv":RVANN[u.c];if(!k||!u.rv||!u.alive)return;const key=(G.gid||"")+":"+i+":"+u.rvt;if(G.rvseen[key])return;G.rvseen[key]=1;if(G.t-u.rvt>1)return;phaseAnn(k,1)})}function g2Check(){if(G.sim||G.scr!="p")return;if(G.u.some(u=>u.c=="g2"))g2Pre();G.g2seen=G.g2seen||{};G.u.forEach((u,i)=>{if(u.c!="g2"||!u.rv||!u.alive)return;const key=(G.gid||"")+":"+i+":"+u.rvt;if(G.g2seen[key])return;G.g2seen[key]=1;if(G.t-u.rvt>1)return;g2Play(i)})}
 function g2Play(i){const old=document.getElementById("g2v");if(old)old.remove();if(vidSkip("g2")){G.g2m=1;phaseAnn("g2rv",1);const M=MUSA&&MUSA.g2;if(M){try{M.currentTime=0}catch(e){}}return}const a=ANI.get(i+":h");if(a){a.cur=0;a.hold=1;const el=document.querySelector('#b .bar[data-k="'+i+':h"]');if(el){el.querySelector("i").style.width="0%";el.querySelector("span").innerHTML="<b class='brl'>"+a.n+" </b>0/"+a.mx;el.classList.add("z")}}G.g2v=1;G.holdT=Math.max(G.holdT||0,Date.now()+19000);
- const ov=mk("div","");ov.id="g2v";const v=window._g2pv&&window._g2pv._sv===subGet()?window._g2pv:document.createElement("video");window._g2pv=null;if(!v.src)v.src=SUBV[subGet()];v.muted=false;try{v.currentTime=0}catch(e){}v.playsInline=true;v.setAttribute("playsinline","");v.preload="auto";v.volume=vol("v");
+ const ov=mk("div","");ov.id="g2v";const v=window._g2pv&&window._g2pv._sv===dubGet()?window._g2pv:document.createElement("video");window._g2pv=null;if(!v.src)v.src=vdub(SUBV.pt);v.muted=false;try{v.currentTime=0}catch(e){}v.playsInline=true;v.setAttribute("playsinline","");v.preload="auto";v.volume=vol("v");
  const sk=mk("button","g2sk","Pular ▸▸"),sp=vspdBtn("g2sp"),cap=mk("div","g2cap","<b>Eu prometi que salvaria a Terra!</b><span>"+shn("g2")+" revive com o HP completo</span>");vspdApply(v);const fr=mk("div","g2fr");fr.append(v,sp,sk);ov.append(fr,cap);document.body.append(ov);
  let done=0;const fin=()=>{if(done)return;done=1;try{v.pause()}catch(e){}ov.classList.add("out");setTimeout(()=>ov.remove(),450);G.g2v=0;G.g2m=1;const M=MUSA&&MUSA.g2;if(M){try{M.currentTime=0}catch(e){}}const b=ANI.get(i+":h");if(b){b.hold=0}G.holdT=Math.min(G.holdT||0,Date.now()+2200);if(G.bot&&G.cur==1&&typeof botPlay=="function")setTimeout(botPlay,2300)};
  sk.onclick=fin;v.onended=fin;v.onerror=fin;let started=0;v.onplaying=()=>{started=1;vspdApply(v);vdayMark("g2")};setTimeout(()=>{if(!done&&!started&&v.currentTime==0)fin()},5000);setTimeout(fin,21000);const p=v.play();if(p&&p.catch)p.catch(()=>{v.muted=true;v.play().catch(fin)})}
@@ -6802,23 +6858,29 @@ function vox(src){const c=acx();if(!c)return voxEl(src);if(!VG){VG=c.createGain(
  const fail=()=>{if(H.ended)return;H.ended=true;VOX.delete(H);H.onerror&&H.onerror()};
  vbuf(src).then(bf=>{if(H.ended)return;const s=c.createBufferSource();s.buffer=bf;s.connect(VG);H.src=s;let fired=0;const end=()=>{if(fired)return;fired=1;if(H.paused)return;H.ended=true;VOX.delete(H);H.onended&&H.onended()};s.onended=end;setTimeout(end,bf.duration*1000+1500);s.start()},fail);return H}
 function sndSave(){try{localStorage.setItem("za_vol",JSON.stringify(VOL))}catch(e){}if(window.MUS)MUS.volume=vol("m");if(ACX&&BUS)BUS.gain.setTargetAtTime(vol("e"),ACX.currentTime,.05);if(ACX&&VG)VG.gain.setTargetAtTime(vol("v"),ACX.currentTime,.03);document.querySelectorAll("#g2v video").forEach(v=>{v.volume=vol("v")});VOX.forEach(a=>{if(a instanceof HTMLMediaElement)a.volume=vol("v")});const b=document.getElementById("sndb");if(b){b.innerHTML=icHTML("ui_snd","","",VOL.g==0?"\ud83d\udd07":"\ud83d\udd0a")+" <span class='sndbt'>Som</span>";b.classList.toggle("mudo",VOL.g==0)}}
-function sndRows(p){[["g","Geral"],["v","Voz"],["m","Música"],["e","Efeitos"]].forEach(([k,n])=>{const r=mk("label","sndr"),t=mk("span","",n),s=mk("input"),o=mk("em","",VOL[k]+"%");s.type="range";s.min=0;s.max=100;s.step=1;s.value=VOL[k];s.setAttribute("aria-label","Volume "+n);
-  s.oninput=()=>{VOL[k]=+s.value;o.textContent=VOL[k]+"%";s.style.setProperty("--p",s.value+"%");sndSave();document.querySelectorAll(".sndr input[data-k='"+k+"']").forEach(x=>{if(x!==s){x.value=s.value;const e=x.closest(".sndr").querySelector("em");if(e)e.textContent=VOL[k]+"%"}})};s.dataset.k=k;s.style.setProperty("--p",s.value+"%");const sb=(d,lab)=>{const x=mk("button","sndpm",lab);x.type="button";x.setAttribute("aria-label",(d<0?"Diminuir ":"Aumentar ")+n);x.onclick=ev=>{ev.preventDefault();ev.stopPropagation();s.value=Math.max(0,Math.min(100,(+s.value)+d));s.oninput()};return x};r.append(t,sb(-1,"−"),s,sb(1,"+"),o);p.append(r)});
- const tr=mk("div","sndtr"),tst=mk("button","sndt","▶ Testar voz"),te=mk("button","sndt","▶ Testar efeito");tst.onclick=()=>vox(AU.vs);te.onclick=()=>sfx("melee");tr.append(tst,te);p.append(tr);return p}
+function volRow(k,n){const r=mk("label","sndr"),t=mk("span","",n),s=mk("input"),o=mk("em","",VOL[k]+"%");s.type="range";s.min=0;s.max=100;s.step=1;s.value=VOL[k];s.setAttribute("aria-label","Volume "+n);
+  s.oninput=()=>{VOL[k]=+s.value;o.textContent=VOL[k]+"%";s.style.setProperty("--p",s.value+"%");sndSave();document.querySelectorAll(".sndr input[data-k='"+k+"']").forEach(x=>{if(x!==s){x.value=s.value;const e=x.closest(".sndr").querySelector("em");if(e)e.textContent=VOL[k]+"%"}})};s.dataset.k=k;s.style.setProperty("--p",s.value+"%");const sb=(d,lab)=>{const x=mk("button","sndpm",lab);x.type="button";x.setAttribute("aria-label",(d<0?"Diminuir ":"Aumentar ")+n);x.onclick=ev=>{ev.preventDefault();ev.stopPropagation();s.value=Math.max(0,Math.min(100,(+s.value)+d));s.oninput()};return x};r.append(t,sb(-1,"−"),s,sb(1,"+"),o);return r}
+function sndRows(p,quais){(quais||[["g","Geral"],["v","Voz"],["m","Música"],["e","Efeitos"]]).forEach(([k,n])=>p.append(volRow(k,n)));
+ const tr=mk("div","sndtr"),tst=mk("button","sndt","▶ Testar voz"),te=mk("button","sndt","▶ Testar efeito");tst.onclick=()=>vox(AU.vs);te.onclick=()=>sfx("melee");tr.append(tst,te);p.append(tr);
+ p.append(mk("div","cfgsub","Dublagem dos vídeos"),dubPick(),
+  mk("p","cfgnote","A dublagem brasileira está sendo feita aos poucos. Enquanto um vídeo não tiver versão dublada, ele toca em japonês com legenda, mesmo com a dublagem brasileira escolhida."));
+ return p}
 /* ===== Tamanho e opacidade do menu principal =====
    Fica no mesmo lugar do tema (Configuracoes > Video) e vale nos dois visuais:
    o .mml e a coluna do menu nos dois. */
-const MMCFG=(()=>{let c={sc:100,op:100};
+const MMCFG=(()=>{let c={sc:100,op:100,bg:100};
  try{Object.assign(c,JSON.parse(localStorage.getItem("za_menu")||"{}"))}catch(e){}
- c.sc=Math.min(130,Math.max(70,+c.sc||100));c.op=Math.min(100,Math.max(40,+c.op||100));return c})();
+ c.sc=Math.min(130,Math.max(70,+c.sc||100));c.op=Math.min(100,Math.max(40,+c.op||100));
+ c.bg=Math.min(100,Math.max(20,+c.bg||100));return c})();
 function mmSave(){const t=JSON.stringify(MMCFG);
  try{ls("za_menu",t)}catch(e){try{localStorage.setItem("za_menu",t)}catch(x){}}}
 function mmApply(){try{const r=document.documentElement;
  r.style.setProperty("--mmsc",String(MMCFG.sc/100));
- r.style.setProperty("--mmop",String(MMCFG.op/100))}catch(e){}}
-const MMFX=[["sc","Tamanho do menu",70,130],["op","Opacidade do menu",40,100]];
+ r.style.setProperty("--mmop",String(MMCFG.op/100));
+ r.style.setProperty("--pgdim",String((MMCFG.bg==null?100:MMCFG.bg)/100))}catch(e){}}
+const MMFX=[["sc","Tamanho do menu",70,130],["op","Opacidade do menu",40,100],["bg","Escurecer o fundo",20,100]];
 function mmRows(p){
- MMFX.forEach(([k,n,mn,mx])=>{const r=mk("label","sndr"),t=mk("span","",n),sl=mk("input"),o=mk("em","",MMCFG[k]+"%");
+ MMFX.forEach(([k,n,mn,mx])=>{const r=mk("label","sndr mmr"),t=mk("span","",n),sl=mk("input"),o=mk("em","",MMCFG[k]+"%");
   sl.type="range";sl.min=mn;sl.max=mx;sl.step=1;sl.value=MMCFG[k];sl.dataset.mm=k;
   sl.setAttribute("aria-label",n);
   const pc=v=>((v-mn)/(mx-mn)*100)+"%";sl.style.setProperty("--p",pc(MMCFG[k]));
@@ -6826,7 +6888,7 @@ function mmRows(p){
    sl.style.setProperty("--p",pc(+sl.value));mmApply();mmSave()};
   r.append(t,sl,o);p.append(r)});
  const tr=mk("div","sndtr"),rp=mk("button","sndt","\u21ba Voltar ao padr\u00e3o");
- rp.onclick=()=>{MMCFG.sc=100;MMCFG.op=100;mmApply();mmSave();
+ rp.onclick=()=>{MMCFG.sc=100;MMCFG.op=100;MMCFG.bg=100;mmApply();mmSave();
   p.querySelectorAll("input[data-mm]").forEach(x=>{const f=MMFX.find(y=>y[0]==x.dataset.mm);
    x.value=MMCFG[x.dataset.mm];x.style.setProperty("--p",((x.value-f[2])/(f[3]-f[2])*100)+"%");
    const e2=x.closest(".sndr").querySelector("em");if(e2)e2.textContent=x.value+"%"})};
@@ -6837,14 +6899,16 @@ function vidRows(p){
  const sv=mk("label","sndsk"),cb=mk("input");cb.type="checkbox";cb.checked=skipVid();cb.dataset.vf="skip";cb.onchange=()=>vflSet("skip",cb.checked);sv.append(cb,mk("span","","Sempre pular vídeos"));p.append(sv,vscRow("skip"));
  const vd=mk("label","sndsk"),dc=mk("input");dc.type="checkbox";dc.checked=vdayOn();dc.dataset.vf="day";dc.onchange=()=>vflSet("day",dc.checked);vd.title="Cada vídeo toca uma vez e só volta a tocar depois de 24 horas";vd.append(dc,mk("span","","Reproduzir somente uma vez ao dia"));p.append(vd,vscRow("day"));
  const vs=mk("div","vspdrow");vs.append(mk("span","","Velocidade dos vídeos"),vspdBtn("vspdb"));p.append(vs);
- p.append(mk("div","cfgsub","Menu principal"));mmRows(p);
- p.append(mk("p","cfgnote","Deixa o menu maior ou menor e mais ou menos transparente sobre o cenário. Vale nos dois visuais e fica salvo neste aparelho."));
- p.append(mk("div","cfgsub","Legendas dos vídeos"),subPick());
+
+
  return p}
 function grfRows(p){
  const ma=mk("label","sndsk"),mc=mk("input");mc.type="checkbox";mc.checked=!mbOff();mc.dataset.ma=1;mc.onchange=()=>{try{localStorage.setItem("za_mbanim",mc.checked?"1":"0")}catch(e){}document.querySelectorAll("input[data-ma]").forEach(x=>x.checked=mc.checked);if(mc.checked)mbAnim(document.querySelector(".mm2 .mmbgi"));else if(MBA.cv){cancelAnimationFrame(MBA.raf);MBA.raf=0;MBA.cv.classList.remove("on")}};ma.append(mc,mk("span","","Fundo do menu animado (palmeiras e mar)"));p.append(ma);
  const pf=mk("label","sndsk"),pc=mk("input");pc.type="checkbox";pc.checked=!!window.LITE;pc.dataset.pf=1;pc.onchange=()=>{window.LITE=pc.checked;document.body.classList.toggle("lite",pc.checked);try{localStorage.setItem("za_perf",pc.checked?"1":"0")}catch(e){}document.querySelectorAll("input[data-pf]").forEach(x=>x.checked=pc.checked)};
- pf.append(pc,mk("span","","Modo desempenho (menos animações, mais FPS)"));p.append(pf);return p}
+ pf.append(pc,mk("span","","Modo desempenho (menos animações, mais FPS)"));p.append(pf);
+ p.append(mk("div","cfgsub","Menu principal"));mmRows(p);
+ p.append(mk("p","cfgnote","Deixa o menu maior ou menor, mais ou menos transparente, e escolhe o quanto o cenário do fundo fica escuro. Vale nos dois visuais e fica salvo neste aparelho."));
+ return p}
 
 function skipVid(){try{return localStorage.getItem("za_skipvid")==="1"}catch(e){return false}}
 /* ===== Modo dos vídeos (padrão: sempre reproduzir · pular · uma vez ao dia) e velocidade (x1 / x2 / x3) ===== */
@@ -7020,9 +7084,9 @@ function curUI(){const w=mk("div","curw");
 
 /* ===== Configurações: primeiro escolhe o assunto, depois mexe nele ===== */
 const CFGT=[
- ["som","Som","Volume geral, vozes, música e efeitos"],
- ["vid","Vídeo","O visual do jogo, quando os vídeos tocam, velocidade e legendas"],
- ["img","Imagem","Fundo animado do menu e modo desempenho"],
+ ["som","Som","Volume geral, vozes, música, efeitos e a dublagem dos vídeos"],
+ ["vid","Vídeo","O visual do jogo, quando os vídeos tocam e a velocidade deles"],
+ ["img","Imagem","Fundo do menu, tamanho e transparência do menu e modo desempenho"],
  ["fon","Tamanho da letra","Deixe o texto do jogo maior ou menor"],
  ["cur","Cursor","A setinha do mouse dentro do jogo"],
  ["par","Partida","O nível do bot quando você joga contra o computador"]];
@@ -7563,7 +7627,7 @@ function chDetail(k,dt){const c=C[k];dt.innerHTML="";dt.scrollTop=0;
   {let no=0;c.sk.forEach((s,i)=>{const rep=(!c.fms&&s.fm===1)||!!s.rp;if(!rep)no++;
    const ult=!!(s.zk||s.kz||s.vz);/* habilidade com custo de Essência é a ultimate */
    sec(ult?("Ultimate"+(rep?" (substituta)":"")):(rep?"Habilidade "+no+" (substituta)":"Habilidade "+no),IMG[k+"_"+i],s.n,skCost(s)+" · "+s.cl,s.t)})}}
-const HSPL={"a17": "media/80a4fb0255248379e7a4ddc8cf239cc1.webp", "ab": "media/167d12d2d894b42e73ed2c35a40014a4.webp", "ar": "media/e7a3da9bad9001398f1058b36cd0ba52.webp", "beast": "media/53cb605b710b953939eef2bdcd33c3fc.webp", "bj": "media/fd4b71cc4c909c056f2e3393d7e04be5.webp", "black": "media/26aa4c27e20cb58e42edd77e107b98c1.webp", "g2": "media/5464964e2687516cd75d677f844b557c.webp", "gd": "media/d5b2c179c921b734571eae1154874fd6.webp", "gg": "media/ed13417e8940fe94b67dbd61e0333e7c.webp", "gi": "media/28d19cd09a095ded50112237350bf87d.webp", "gu": "media/14b3589835b2ce334a9883910f48faf5.webp", "kf": "media/696ea95faa774539e7cb6afd3a47c391.webp", "lk_brl": "media/4ccca94a20f952284f8b36c4d5669c67.webp", "lk_brs": "media/b89839b6ac05eec01cc83f9fd337d39d.webp", "lk_cl": "media/374186218978fc29d3d1a68cd31dfb8e.webp", "cl": "media/374186218978fc29d3d1a68cd31dfb8e.webp", "lk_jan": "media/eb52d10b35f0ad688ade4ba191e8f81e.webp", "lk_ji": "media/3d794e175181ddf603c3c62e80b02d98.webp", "lk_mcl": "media/cface43805d5816cf492a80e27396e2a.webp", "lk_mvj": "media/4b01cecdc52c404bb22a546435075b7a.webp", "lk_s17": "media/56d6d284631cf36380133d86d8f2923d.webp", "mg": "media/cf88a4c11db56a3d12a2d69572592684.webp", "mv": "media/523edd608e60db8f18dd4d1ff7290f3b.webp", "rd": "media/c980e4e41e2c1eda14ee1ca0f878cd08.webp", "tr": "media/e48d05810d1316bc51dc2994bfd3fb4f.webp", "tu": "media/681ff7a2cf87f02a18fc155c6cac65e2.webp", "za": "media/aa06e8e9497513f7c220592303e2f137.webp"};Object.keys(HSPL).forEach(k=>{if(!IMG[k+"_h"])IMG[k+"_h"]=HSPL[k]});
+const HSPL={"a17": "media/80a4fb0255248379e7a4ddc8cf239cc1.webp", "ab": "media/167d12d2d894b42e73ed2c35a40014a4.webp", "ar": "media/e7a3da9bad9001398f1058b36cd0ba52.webp", "beast": "media/53cb605b710b953939eef2bdcd33c3fc.webp", "bj": "media/fd4b71cc4c909c056f2e3393d7e04be5.webp", "black": "media/59eb0d9a944568059bb0b5f9544613ec.webp", "g2": "media/5464964e2687516cd75d677f844b557c.webp", "gd": "media/d5b2c179c921b734571eae1154874fd6.webp", "gg": "media/9af870a32489969ddd7aae8f5ed90565.webp", "gi": "media/28d19cd09a095ded50112237350bf87d.webp", "gu": "media/14b3589835b2ce334a9883910f48faf5.webp", "kf": "media/696ea95faa774539e7cb6afd3a47c391.webp", "lk_brl": "media/4ccca94a20f952284f8b36c4d5669c67.webp", "lk_brs": "media/b89839b6ac05eec01cc83f9fd337d39d.webp", "lk_cl": "media/374186218978fc29d3d1a68cd31dfb8e.webp", "cl": "media/374186218978fc29d3d1a68cd31dfb8e.webp", "lk_jan": "media/eb52d10b35f0ad688ade4ba191e8f81e.webp", "lk_ji": "media/3d794e175181ddf603c3c62e80b02d98.webp", "lk_mcl": "media/cface43805d5816cf492a80e27396e2a.webp", "lk_mvj": "media/4b01cecdc52c404bb22a546435075b7a.webp", "lk_s17": "media/56d6d284631cf36380133d86d8f2923d.webp", "mg": "media/cf88a4c11db56a3d12a2d69572592684.webp", "mv": "media/523edd608e60db8f18dd4d1ff7290f3b.webp", "rd": "media/c980e4e41e2c1eda14ee1ca0f878cd08.webp", "tr": "media/e48d05810d1316bc51dc2994bfd3fb4f.webp", "tu": "media/681ff7a2cf87f02a18fc155c6cac65e2.webp", "za": "media/aa06e8e9497513f7c220592303e2f137.webp"};Object.keys(HSPL).forEach(k=>{if(!IMG[k+"_h"])IMG[k+"_h"]=HSPL[k]});
 function spZoom(k){const o=document.getElementById("spz");if(o)o.remove();const ov=mk("div","");ov.id="spz";const im=mk("img","");im.src=IMG[k+"_s"]||IMG[k+"_f"];if(IMG[k+"_h"]){const hi=new Image();hi.onload=()=>{im.src=hi.src};hi.src=IMG[k+"_h"]}im.alt=C[k]?C[k].n:"";const nm=mk("b","",C[k]?C[k].n:"");const x=mk("button","chzx","✕");x.setAttribute("aria-label","Fechar");ov.append(im,nm,x);const close=()=>{ov.remove();document.removeEventListener("keydown",esc,true)},esc=e=>{if(e.key=="Escape"){e.stopPropagation();close()}};ov.onclick=close;document.body.append(ov);document.addEventListener("keydown",esc,true)}
 function chPop(k,onc){if(!C[k])return;const old=document.getElementById("chpop");if(old)old.remove();const ov=mk("div","chpop");ov.id="chpop";const bx=mk("div","chpbx chs"),dt=mk("div","chdt");const x=mk("button","chzx","✕");x.setAttribute("aria-label","Fechar");bx.append(x,dt);ov.append(bx);chDetail(k,dt);
  const close=()=>{ov.remove();document.removeEventListener("keydown",esc,true);if(onc)onc()},esc=e=>{if(e.key=="Escape"){e.stopPropagation();close()}};x.onclick=close;ov.onclick=e=>{if(e.target===ov)close()};document.body.append(ov);document.addEventListener("keydown",esc,true)}
@@ -7912,7 +7976,10 @@ const PATCH=[
   "<b>Notícias</b>: a collab do Solo Leveling continuava anunciando “Jinwoo chega em breve” com ele já jogável.",
   "<b>Tutorial</b>: a seção “Líder e passiva” passou a explicar a SOMBRA — uma passiva pode colocar mais um lutador em campo.",
   "<b>Personagens “Em breve”</b> não ocupam mais espaço nas telas de Personagens, Montar times e Draft."],
- nv:[{i:"\ud83c\udfc5",n:"A Maestria aparece no fim da partida",t:"Depois dos pontos da ranqueada entra uma tela com os <b>quatro do seu time</b>: o rosto, o nível, a barra andando do que era para o que ficou e quantos pontos cada um ganhou. Quem sobe de nível aparece em dourado."},
+ nv:[{i:"\ud83c\udf99\ufe0f",hl:1,n:"Dublagem brasileira nos vídeos",t:"Em <b>Configurações › Som</b> você escolhe entre <b>dublagem brasileira</b> e <b>japonesa</b>. A brasileira está sendo gravada aos poucos: <b>Levi</b> e <b>Boruto</b> já têm entrada e ultimate dubladas, e enquanto um vídeo não tiver versão pronta ele toca em japonês com legenda, avisando na tela."},
+  {i:"\u2699\ufe0f",n:"Configure seu jogo antes de começar",t:"Quem sai do tutorial pela primeira vez passa por uma tela única com <b>volume, dublagem, tamanho e transparência do menu, escurecimento do fundo, tamanho da letra e cursor</b> — tudo numa página só, com o menu aparecendo atrás para você ver as mudanças na hora."},
+  {i:"\ud83c\udf13",n:"Dá para clarear o fundo",t:"Os ajustes do menu saíram de <b>Vídeo</b> e foram para <b>Imagem</b>, com uma barra nova: <b>Escurecer o fundo</b>. Quem quiser ver a arte do cenário inteira agora pode levantar o véu até onde quiser."},
+  {i:"\ud83c\udfc5",n:"A Maestria aparece no fim da partida",t:"Depois dos pontos da ranqueada entra uma tela com os <b>quatro do seu time</b>: o rosto, o nível, a barra andando do que era para o que ficou e quantos pontos cada um ganhou. Quem sobe de nível aparece em dourado."},
   {i:"\ud83c\udfa8",n:"Gogeta e Goku Black com arte nova",t:"<b>Gogeta SSJ Blue</b> e <b>Goku Black SSJ Rose</b> ganharam splash nova, e o rosto, o banner e a miniatura dos dois foram refeitos a partir dela."},
   {i:"\ud83d\udd01",n:"Buscar novamente",t:"Acabou a ranqueada? O botão <b>Buscar novamente</b> na tela de fim de partida devolve você à fila na hora, sem passar pelo menu nem pelo lobby. Vale também na ranqueada contra bot."},
   {i:"\u2b05\ufe0f",hl:1,n:"Você sempre joga pela esquerda",t:"Antes, quem entrava como <b>Jogador 2</b> lutava com o próprio time do lado direito, e muita gente errava clique por causa disso. Agora o seu time fica <b>sempre à esquerda</b>, na batalha e no draft, seja qual for o assento. Quem entra como espectador continua vendo na ordem da sala."},
@@ -8277,16 +8344,59 @@ function invAviso(){
  ov.onclick=e=>{if(e.target===ov)fecha()};
  document.body.append(ov);document.addEventListener("keydown",tec,true);
  try{sfx("ok")}catch(e){}}
+/* ===== "Configure seu jogo antes de come\u00e7ar" =====
+   Entra uma vez, entre a sa\u00edda do tutorial e o aviso dos Equipamentos: tudo o que
+   costuma mandar o jogador abrir Configura\u00e7\u00f5es no meio da primeira partida (volume,
+   dublagem, tamanho e transpar\u00eancia do menu, escurecimento do fundo, tamanho da letra
+   e cursor) numa p\u00e1gina s\u00f3. A caixa deixa o menu aparecer atr\u00e1s de prop\u00f3sito:
+   mexendo nas barras o jogador v\u00ea o menu mudar na hora. */
+function cfg1Dub(){const w=mk("div","cfg1dbw"),pk=dubPick(),av=mk("p","cfg1av","");
+ av.innerHTML="<b>Aten\u00e7\u00e3o:</b> ainda n\u00e3o s\u00e3o todos os personagens com dublagem brasileira. Enquanto um v\u00eddeo n\u00e3o tiver vers\u00e3o dublada ele toca em japon\u00eas com legenda, e vai sendo trocado conforme a dublagem fica pronta.";
+ const pinta=()=>{av.style.display=(dubGet()==="br")?"":"none"};
+ pk.addEventListener("click",()=>setTimeout(pinta,0));
+ w.append(pk,av);pinta();return w}
+function cfgInicial(cb){
+ const segue=()=>{if(cb)try{cb()}catch(e){}};
+ if(document.getElementById("cfg1"))return;
+ try{if(ls("za_cfg1")==="1"){segue();return}}catch(e){}
+ const ov=mk("div","");ov.id="cfg1";
+ const bx=mk("div","cfg1bx");bx.setAttribute("role","dialog");
+ bx.setAttribute("aria-label","Configure seu jogo antes de come\u00e7ar");
+ const hd=mk("div","cfg1hd");
+ hd.innerHTML="<div class='cfg1z'>\u00c2</div><h2>Configure seu jogo antes de come\u00e7ar</h2>"+
+  "<p>Est\u00e1 tudo aqui, numa p\u00e1gina s\u00f3. Mexa nas barras e veja o menu mudar atr\u00e1s. D\u00e1 para trocar quando quiser em <b>Configura\u00e7\u00f5es</b>.</p>";
+ bx.append(hd);
+ const sec=(t,el,nota)=>{const q=mk("div","cfg1sec");q.append(mk("div","cfgsub",t));
+  if(el)q.append(el);if(nota)q.append(mk("p","cfgnote",nota));bx.append(q);return q};
+ const vw=mk("div","");try{vw.append(volRow("g","Geral"))}catch(e){}
+ const vt=mk("div","sndtr"),vb=mk("button","sndt","\u25b6 Testar");vb.type="button";
+ vb.onclick=()=>{try{sfx("ok")}catch(e){}};vt.append(vb);vw.append(vt);
+ sec("\u00c1udio geral",vw,"Vale para vozes, m\u00fasica e efeitos juntos. Cada um deles tem sua pr\u00f3pria barra em Configura\u00e7\u00f5es.");
+ sec("Dublagem dos v\u00eddeos",cfg1Dub());
+ const mw=mk("div","");try{mmRows(mw)}catch(e){}
+ sec("Menu e fundo",mw,"Tamanho e transpar\u00eancia do menu, e o quanto o cen\u00e1rio do fundo fica escuro.");
+ let fw=null;try{fw=window.ZACC()}catch(e){}
+ sec("Tamanho da letra",fw);
+ let cw=null;try{cw=curUI()}catch(e){}
+ sec("Cursor",cw);
+ const ft=mk("div","cfg1ft"),go=mk("button","lam lam-g","<b>Tudo pronto, vamos jogar</b>");
+ const fecha=()=>{ov.remove();document.removeEventListener("keydown",tec,true);
+  try{ls("za_cfg1","1")}catch(e){}segue()};
+ const tec=e=>{if(e.key=="Escape"){e.stopPropagation();fecha()}};
+ go.onclick=fecha;ft.append(go);bx.append(ft);
+ ov.append(bx);document.body.append(ov);document.addEventListener("keydown",tec,true);
+ try{bx.scrollTop=0}catch(e){}
+ try{sfx("ok")}catch(e){}}
 function tutSair(){TUTNEW=0;tutSeenSet();
  /* saindo do tutorial pela primeira vez: banner do patch, banner "em breve" do Jinwoo e o aviso do Inventário */
  try{const jw=TEASE.find(x=>x.k=="jw");BQ=[{ty:"pt",p:PATCH[0]}];if(jw)BQ.push({ty:"sn",k:jw.k,t:jw});
-  BQEND=()=>{try{invAviso()}catch(e){try{showInv()}catch(x){}}}}catch(e){}
+  BQEND=()=>{const dps=()=>{try{invAviso()}catch(e){try{showInv()}catch(x){}}};try{cfgInicial(dps)}catch(e){dps()}}}catch(e){}
  showMenu()}
 function nickOk(){try{if((window.LSMEM||{}).za_nick_ok==="1")return true;return localStorage.getItem("za_nick_ok")==="1"}catch(e){return true}}
 function nickAsk(){if(document.getElementById("nkm"))return;if(window.ZLOGIN&&window.ZLOGIN(nickAsk))return;const ov=mk("div","");ov.id="nkm";const bx=mk("form","nkbox");
  bx.innerHTML="<div class='nkz'>Â</div><h2>Bem-vindo ao Projeto Ânima!</h2><p>Escolha o seu nick. Ele aparece para os outros jogadores nas salas online e no chat.</p>";
  const inp=mk("input");inp.maxLength=18;inp.placeholder="Seu nick";let cur="";try{cur=localStorage.getItem("za_nick")||""}catch(e){}if(cur&&!/^Lutador /.test(cur))inp.value=cur;
- const er=mk("small","nker"),ok=mk("button","nkok","Confirmar");ok.type="submit";bx.append(inp,er,mk("p","nksub","Legendas dos vídeos"),subPick(),ok);ov.append(bx);document.body.append(ov);setTimeout(()=>inp.focus(),60);
+ const er=mk("small","nker"),ok=mk("button","nkok","Confirmar");ok.type="submit";bx.append(inp,er,ok);ov.append(bx);document.body.append(ov);setTimeout(()=>inp.focus(),60);
  bx.onsubmit=e=>{e.preventDefault();const n=inp.value.trim().replace(/\s+/g," ");if(n.length<2){er.textContent="O nick precisa ter pelo menos 2 letras.";return}try{inp.blur()}catch(x){}ov.remove();try{oSetNick(n)}catch(x){}try{ls("za_nick_ok","1")}catch(x){}try{rotAsk()}catch(x){}try{lsWarn()}catch(x){}setTimeout(()=>{try{vvApply()}catch(x){}
   if(!tutSeen()){TUTNEW=1;TUTI=0;try{return showTut()}catch(x){}}
   if(G.scr=="m")try{bnNext()}catch(x){}},400)}}
