@@ -373,16 +373,21 @@ body.php .sndb{width:40px!important;height:40px!important;padding:0!important;
 body.php.bt main{padding-bottom:116px}
 .u{position:relative}
 /* a barrinha flutua em cima do cartao: nao entra na grade, entao nao desloca nada */
-.sbt{position:absolute;top:-9px;left:6px;z-index:6;display:flex;align-items:center;gap:5px;
- padding:2px 8px 2px 3px;border-radius:10px;cursor:pointer;user-select:none;
- background:linear-gradient(180deg,#392d3d,#221a24);border:1.5px solid #c8a2b599;
- box-shadow:0 3px 10px #000a,0 0 12px #c8a2b544;transition:border-color .12s,transform .12s}
+.sbt{position:absolute;top:-13px;left:6px;z-index:6;display:flex;align-items:center;gap:7px;
+ padding:3px 11px 3px 4px;border-radius:13px;cursor:pointer;user-select:none;
+ background:linear-gradient(180deg,#4a3752,#2a2030);border:2px solid #d9a9c6;
+ box-shadow:0 3px 12px #000b,0 0 16px #c8a2b566;transition:border-color .12s,transform .12s}
+/* enquanto a sombra esta em campo a abinha chama atencao: o jogador perdia
+   o turno extra sem saber que tinha uma sombra para jogar */
+.sbt.nasombra,.sbt:has(.sbtn.ehsombra){animation:sbpulso 1.5s ease-in-out infinite}
+@keyframes sbpulso{0%,100%{box-shadow:0 3px 12px #000b,0 0 14px #d2728555}
+ 50%{box-shadow:0 3px 12px #000b,0 0 24px #d27285cc}}
 .sbt:hover{border-color:#ebafd7;transform:translateY(-1px)}
 /* o cartao que tem abinha ganha um respiro em cima, senao ela encosta no de cima */
 .u:has(.sbt){margin-top:11px}
 body.ph .u:has(.sbt){margin-top:8px}
 .sbt.nasombra{border-color:#d2728599;box-shadow:0 3px 10px #000a,0 0 12px #d2728544}
-.sbti{width:20px;height:20px;border-radius:5px;display:block;flex:none}
+.sbti{width:28px;height:28px;border-radius:7px;display:block;flex:none}
 /* sombras invocadas do Jin Woo, sobre a foto */
 .fw .jwsb{position:absolute;left:2px;right:2px;bottom:2px;display:flex;justify-content:flex-start;gap:3px;pointer-events:none;z-index:4}.fw .jwsbi{pointer-events:auto;cursor:help}
 .jwsbi{width:16px;height:16px;border-radius:5px;display:block;background:#221a24;
@@ -392,9 +397,9 @@ body.bt:not(.ph):not(.php) .fw .jwsb{right:auto;bottom:auto;justify-content:cent
 body.bt:not(.ph):not(.php) .jwsbi{width:clamp(22px,2.2vw,30px);height:clamp(22px,2.2vw,30px);border-radius:7px;border-width:2px}
 body.ph .jwsbi,body.php .jwsbi{width:13px;height:13px;border-radius:4px;border-width:1px}
 body.ph .fw .jwsb,body.php .fw .jwsb{gap:2px;bottom:1px}
-.sbtn{font:800 10.5px system-ui;color:#f0edeb;white-space:nowrap;max-width:110px;overflow:hidden;text-overflow:ellipsis}
+.sbtn{font:800 12.5px system-ui;color:#f0edeb;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis}
 .sbt.nasombra .sbtn{color:#e1d6c6}
-.sbta{font:900 12px/1 system-ui;color:#ebafd7;flex:none}
+.sbta{font:900 15px/1 system-ui;color:#ebafd7;flex:none}
 .sbt.nasombra .sbta{color:#d27285}
 .row.t1 .sbt{left:auto;right:6px;flex-direction:row-reverse;padding:2px 3px 2px 8px}
 body.ph .sbt{top:-7px;padding:1px 6px 1px 2px;gap:3px;border-radius:8px}
@@ -6264,7 +6269,7 @@ let SBV=[0,0];
 function sbTira(jin,sb,grande){
  const fora=(grande===sb)?jin:sb,t=mk("div","sbt"+(grande===sb?" nasombra":""));
  const im=mk("img","sbti");im.src=IMG[fora.c+"_s"]||IMG[fora.c+"_f"];im.alt="";
- t.append(im,mk("b","sbtn",fora.sb?"Sombra · "+shn(fora.c):shn(fora.c)),mk("span","sbta","⇅"));
+ t.append(im,mk("b","sbtn"+(fora.sb||grande===sb?" ehsombra":""),fora.sb?"Sombra · "+shn(fora.c):shn(fora.c)),mk("span","sbta","⇅"));
  t.title=(grande===sb?"Voltar para "+shn(jin.c):"Jogar com a sombra de "+shn(sb.c));
  t.onclick=ev=>{ev.stopPropagation();SBV=SBV.slice();SBV[jin.s]=SBV[jin.s]?0:1;render()};
  return t}
@@ -6282,10 +6287,11 @@ function sbLevanta(morto){
  {const cd=(G.sbcd||[0,0])[lado]||0;
   if(cd>0){log("Monarca das Sombras em recarga: "+shn(morto.c)+" não se levantou (faltam "+cd+" turno"+(cd>1?"s":"")+")");return 0}}
  if(G.u.some(x=>x.s==lado&&x.alive&&x.sb)){log("Monarca das Sombras: já há uma sombra em campo, "+shn(morto.c)+" não se levantou");return 0}
- G.u.push({s:lado,c:morto.c,sb:1,sbt:SBT,hp:0,mx:0,ar:0,br:0,st:[],
+ G.u.push({s:lado,c:morto.c,sb:1,sbt:SBT+1,hp:0,mx:0,ar:0,br:0,st:[],
   cd:C[morto.c].sk.map(()=>0),bn:0,rec:0,alive:true,im:0,rv:0,dbl:0,rvt:0,nx:0,
   fm:0,gk:0,gz:0,ept:0,cp:null,cpt:0,cpu:0,uq:"",uqs:null,al:{hp:0,mx:0}});
  G.sbcd=((G.sbcd||[0,0]).slice());G.sbcd[lado]=SBCD;
+ try{SBV=SBV.slice();SBV[lado]=1}catch(e){}
  log("Monarca das Sombras: "+shn(morto.c)+" se levantou como sombra por "+SBT+" turnos");
  return 1}
 /* a sombra nao usa a ultimate do morto */
@@ -6487,7 +6493,7 @@ function begin0(){const s=G.cur,me=G.u.filter(x=>x.s==s&&x.alive&&!semCorpo(x));
  /* a sombra nao e gente: um time so com sombra ja perdeu */
  const dd=n=>!vivos(n).length;if(dd(0)||dd(1)){G.win=dd(0)?1:0;G.q=[];G.sel=null;render();return}render();botPlay()}
 function spent(){return G.q.reduce((a,x)=>{const k=C[x.u.c].sk[x.i];return[a[0]+ck(x.u,k,x),a[1]+cz(x.u,k,x)]},[0,0])}
-function ok(u,i){const k=C[u.c].sk[i],s=u.s;if(k.hc&&!u.kfree&&u.hp<=hcOf(u,k))return 0;if(G.win!=null||k.pv||s!=G.cur||(G.bot&&s==1&&!G.bp)||(G.online&&G.me>=0&&s!==G.me)||!u.alive||u.cd[i]>0||has(u,"ATORD")||G.q.some(a=>a.u==u&&a.i==i)||G.q.filter(a=>a.u==u).length>=(has(u,"ACEL")?2:1)||(k.rq&&!k.rq(u))||!sbPode(u,k)||((u.jwFs||(G.cf=="carth"&&!fdI(u)))&&(k.ult||k.zk))/* nem a sombra, nem quem esta em folego final, nem no Templo de Carthenon */||(k.zn&&G.zs[s])||(k.fm!=null&&k.fm!==u.fm)||(k.sw&&u.al.hp<=0)||(k.iv&&G.u.some(z=>z.c=="sas"&&z.s!=s&&z.alive&&!np(z))))return 0;const p=spent();return ck(u,k)<=G.ki[s]-p[0]&&cz(u,k)<=G.zk[s]-p[1]}
+function ok(u,i){const k=C[u.c].sk[i],s=u.s;if(k.hc&&!u.sb&&!u.kfree&&u.hp<=hcOf(u,k))return 0;if(G.win!=null||k.pv||s!=G.cur||(G.bot&&s==1&&!G.bp)||(G.online&&G.me>=0&&s!==G.me)||!u.alive||u.cd[i]>0||has(u,"ATORD")||G.q.some(a=>a.u==u&&a.i==i)||G.q.filter(a=>a.u==u).length>=(has(u,"ACEL")?2:1)||(k.rq&&!k.rq(u))||!sbPode(u,k)||((u.jwFs||(G.cf=="carth"&&!fdI(u)))&&(k.ult||k.zk))/* nem a sombra, nem quem esta em folego final, nem no Templo de Carthenon */||(k.zn&&G.zs[s])||(k.fm!=null&&k.fm!==u.fm)||(k.sw&&u.al.hp<=0)||(k.iv&&G.u.some(z=>z.c=="sas"&&z.s!=s&&z.alive&&!np(z))))return 0;const p=spent();return ck(u,k)<=G.ki[s]-p[0]&&cz(u,k)<=G.zk[s]-p[1]}
 function tgu(k,u){return (u&&u.cln&&u.c=="nar"&&k&&k.tg=="e")?"E":(k&&k.tg)}/* Clones das Sombras: alvo unico vira todos os inimigos */
 function tgts(u,k){if(k.tg=="A")return ally(u);let f=(k.ii||(k.iiq&&uq(u,k.iiq)))?G.u.filter(x=>x.s!=u.s&&x.alive):foes(u);const p=u.st.find(x=>x.k=="PROV");if(p&&p.v.alive&&f.includes(p.v))f=[p.v];return f}
 function qpush(a){if(a.o==null)a.o=++G.qo;G.q.push(a);G.q.sort((x,y)=>(x.o||0)-(y.o||0))}
@@ -6502,7 +6508,7 @@ function run(){const s=G.cur;G.rn=1;G.kkU=0;G.u.forEach(x=>x.nx=0);G.q.forEach(a
   if(t&&t.s!=s&&!t.alive){const f=foes(u);if(!f.length)return;t=f[0]}
   G.su=u;G.nul=[];G.cp=[];G.dst=0;G.nvpd=0;G.ar=tgu(k,u)=="E"||k.tg=="2";if(u.c=="mg"&&!np(u)&&(u.nx||0)>=1&&!k.zk){pst(u,"seg");pst(u,"eco",Math.max(0,(k.ki||0)+(has(u,"SOBR")?1:0)-(G.lead[u.s]=="mg"?1:0)+fk(u)))}{let _k=ck(u,k,a),_z=cz(u,k,a);if(cpn(u,"ut5")&&!G.sim&&Math.random()<.25){if(_k||_z)log(C[u.c].n+" não gastou recursos (Cápsula: Sorte do Guerreiro)");_k=0;_z=0}G.ki[s]-=_k;G.zk[s]-=_z;G.ski=a.i;sx(u,"use",1);sx(u,"kis",_k);sx(u,"zks",_z);if(!G.sim){G.skU=G.skU||[0,0];G.skU[u.s]=(G.skU[u.s]||0)+1}}if(u.free&&(u.nx||0)==0)u.free=0;if(u.sed&&(u.nx||0)==0)u.sed=0;u.nx=(u.nx||0)+1;if(u.c=="sak")u.byu0=1;u.cd[a.i]=k.cd?Math.max(2,k.cd+1-(u.cp?(capUlt(k)?cpn(u,"ut3"):cpn(u,"ut1")):0)-cdUp(u,k)):0;
   if(has(u,"INVEST")){const it=tgu(k,u)=="E"?foes(u):k.tg=="2"?(a.ts||[]).filter(x=>x.alive):t&&t.s!=s?[t]:[];if(it.length){rm(u,"INVEST");G.su=u;G.ar=tgu(k,u)=="E"||k.tg=="2";it.forEach(x=>add(x,"ATORD",1))}}
-  if(k.hc){const hcv=hcOf(u,k);if(u.kfree){u.kfree=0;log("Kaioken x10!: "+C[u.c].n+" não consumiu HP");pst(u,"free")}else if(hcv>0){u.hp=Math.max(1,u.hp-hcv);pst(u,"hpc",hcv)}}
+  if(k.hc&&!u.sb){const hcv=hcOf(u,k);if(u.kfree){u.kfree=0;log("Kaioken x10!: "+C[u.c].n+" não consumiu HP");pst(u,"free")}else if(hcv>0){u.hp=Math.max(1,u.hp-hcv);pst(u,"hpc",hcv)}}
   G.kkb=0;if(G.lead[u.s]=="gbk"&&!G.kkU&&(a.kk||(G.kkc&&G.kkc[kkKey(u,a.i)]))&&kkDmg(k)&&u.hp>20){G.kkU=1;u.hp-=20;G.kkb=20;log("Kaioken do líder: "+C[u.c].n+" consumiu 20 de HP para +"+G.kkb+" de dano")}
   G.ic=IMG[u.c+"_"+a.i];G.cl=k.cl;{const dr=u.st.find(y=>y.k=="DREN"&&y.v=="bj"&&!y.ex);if(dr){dr.t++;dr.ex=1;log("Drenagem de Energia de "+C[u.c].n+" durou +1 turno")}}G.hv=k.iv?u.s:null;log(C[u.c].n+" usa "+k.n);if(u.c=="bo"&&!np(u))boKarma(u,1);if(G.lead[u.s]=="kir"&&u.alive){u.crc=Math.min(100,(u.crc||0)+20);pst(u,"crc")}clAfter(u,k);G.ldd=0;{const T0=(tgu(k,u)=="E"?foes(u):k.tg=="2"?(a.ts||[]):t?[t]:[]).filter(x=>x&&x.alive&&x.s!=u.s);const PR=u.c=="tr"?[]:T0.filter(x=>((has(x,"NVP")&&!G.bp)||has(x,"ANUL"))&&nl(x));const SV0=PR.map(x=>({x,hp:x.hp,mx:x.mx,br:x.br,ar:x.ar,alive:x.alive,rv:x.rv,st:x.st.map(y=>({...y}))})),RL=G.rep.length,SB=G.sim?null:G.u.map(x=>[x.br,arm(x)]),SB2=u.cp?G.u.map(x=>[x.br,arm(x)]):null;G.cpsk={};G.kult=capUlt(k)?1:0;k.fn(u,a.ts||t,a);G.kult=0;if(SB2)capBuff(u,SB2);if(SB)G.u.forEach((x,j)=>{if(x.s!=u.s||!SB[j])return;/* idem: a sombra nasceu no meio da jogada */const db=x.br-SB[j][0],da=arm(x)-SB[j][1];if(db>0)sx(u,"bar",db);if(da>0)sx(u,"arm",da)});SV0.forEach(o=>{Object.assign(o.x,{hp:o.hp,mx:o.mx,br:o.br,ar:o.ar,alive:o.alive,rv:o.rv,st:o.st})});if(PR.length)G.rep=G.rep.filter((r,j)=>j<RL||!PR.includes(r.t))}G.hv=null;if(G.ldd&&G.lead[u.s]=="g2"){const o=u.lb||0;u.lb=Math.min(20,o+10);if(u.lb>o)pst(u,"lb",u.lb-o)}capSkill(u,k);G.ldd=0;G.kkb=0;{const tg=tgu(k,u)=="E"?foes(u):[t,...(a.ts||[])].filter(Boolean),A=tg.find(x=>x.c=="ar"&&x.alive&&!np(x)&&x.s!=u.s);if(A){const o=G.su;G.su=A;const b4=has(u,"ATORD");add(u,"ATORD",1);if(has(u,"ATORD")&&!b4){pst(A,"int");why(u,"Passiva da Arale: atordoado",IMG.ar_p)}G.su=o}tg.filter(x=>x.c=="ab"&&x.alive&&!np(x)&&x.s!=u.s&&x.ept!==G.t).forEach(x=>{x.ept=G.t;G.ki[x.s]=Math.min(KIMAX,G.ki[x.s]+1);G.zk[x.s]+=1;x.gk+=1;x.gz+=1})}G.ic=null;G.su=null;});G.rn=0}
 function fireReps(s){G.rep=G.rep.filter(r=>{if(r.u.s!=s||r.w==null)return true;if(r.fx&&!r.t.alive)return false;/* o dano fixo acaba com o alvo */
@@ -6721,7 +6727,7 @@ IMG.ui_salabg="media/8d22f57f6bc0b88765c48bfd8f75a859.webp";
 IMG.ui_rkbg="media/6420524809340d192c18050697651dea.webp";
 /* qual tela usa qual fundo. A chave e a classe passada ao pgShell, ou "b"
    para o montador de times (Modo Treino). */
-const TELABG={chs:"ui_chbg",b:"ui_trbg"};
+const TELABG={chs:"ui_chbg",cfc:"ui_chbg",b:"ui_trbg"};
 function telaBg(w,k){
  /* no Legado o fundo volta a ser o ceu de sempre: esses fundos sao do visual novo */
  const u=(typeof temaLer=="function"&&temaLer()==="leg")?null:(TELABG[k]&&IMG[TELABG[k]]);
@@ -7344,8 +7350,13 @@ function sload(){const S=SSRC();Object.keys(S).forEach(k=>{if(SBUF[k])return;SBU
  decAud(S[k]).then(bf=>{SBUF[k]=bf},()=>{SBUF[k]=0})})}
 let CD10K=null;
 /* contagem regressiva: avisa uma unica vez por etapa, quando faltam 10s ou menos */
-function cdAviso(ch,n){try{if(!(n>0&&n<=10))return;if(CD10K===ch)return;CD10K=ch;sfx("cd10")}catch(e){}}
-function splay(k,at,g){const c=ACX,bf=SBUF[k];if(!bf||bf===1)return 0;const s=c.createBufferSource(),gg=c.createGain(),n=SFXN;s.buffer=bf;const lv=(g||1)/Math.sqrt(1+n*.6);gg.gain.setValueAtTime(0,at);gg.gain.linearRampToValueAtTime(lv,at+.008);s.connect(gg);gg.connect(BUS);SFXN++;s.onended=()=>{SFXN=Math.max(0,SFXN-1)};s.start(at);return 1}
+function cdPara(){try{sfxPara("cd10");CD10K=null}catch(e){}}
+function cdAviso(ch,n){try{if(!(n>0&&n<=10))return;if(CD10K===ch)return;cdPara();CD10K=ch;sfx("cd10")}catch(e){}}
+const STOCA={};
+function splay(k,at,g){const c=ACX,bf=SBUF[k];if(!bf||bf===1)return 0;const s=c.createBufferSource(),gg=c.createGain(),n=SFXN;s.buffer=bf;const lv=(g||1)/Math.sqrt(1+n*.6);gg.gain.setValueAtTime(0,at);gg.gain.linearRampToValueAtTime(lv,at+.008);s.connect(gg);gg.connect(BUS);SFXN++;STOCA[k]=s;s.onended=()=>{SFXN=Math.max(0,SFXN-1);if(STOCA[k]===s)delete STOCA[k]};s.start(at);return 1}
+/* cala um efeito que ja comecou: a contagem dos 10 segundos e um audio longo
+   e ela nao pode continuar depois que o cronometro parou */
+function sfxPara(k){try{const s=STOCA[k];if(s){try{s.stop()}catch(e){}delete STOCA[k]}}catch(e){}}
 function sfx(kind,delay){if(vol("e")<=0)return;const c=acx();if(!c)return;const t=c.currentTime+(delay||0)/1000;
  if(SLAST[kind]!=null&&Math.abs(t-SLAST[kind])<.2&&kind!="sel")return;SLAST[kind]=t;
  const o=c.createGain();o.gain.value=.9;o.connect(BUS);
@@ -7738,9 +7749,15 @@ function playIntro(cb){const old=document.getElementById("vsi");if(old)old.remov
  const st=mk("div","vst");o.append(st);document.body.append(o);IN={o,cb,tm:[]};
  const T=s=>G.u.filter(x=>x.s==s).filter((x,i,a)=>a.findIndex(y=>y.c==x.c)===i),nm=s=>pnv(s);
  /* o lado de quem esta jogando: so dele da para saber a maestria */
- const EUV=(()=>{try{if(!G.online)return 0;return (G.me===0||G.me===1)?G.me:-1}catch(e){return 0}})();
+ /* de quem e a maestria que aparece. Sem online, o lado 0 e sempre o jogador.
+    Online sem assento (assistindo, ou o assento ainda nao chegou) mostra os
+    dois: antes nao aparecia nada e o jogador achava que a maestria sumiu. */
+ const EUV=(()=>{try{if(!G.online)return 0;
+  if(G.me===0||G.me===1)return G.me;
+  const a=(typeof O!=="undefined"&&O&&O.seat!=null)?O.seat:null;
+  return (a===0||a===1)?a:2}catch(e){return 0}})();
  const selo=k=>{try{return mxSelo(k)}catch(e){return ""}};
- const half=s=>{const w=mk("div","vhalf t"+s),hd=mk("div","vhd",nm(s)),row=mk("div","vrow");w.append(hd,row);T(s).forEach(u=>{const c=mk("div","vcd");c.innerHTML="<div class='vim'><img src='"+(IMG[u.c+"_s"]||IMG[u.c+"_f"])+"' alt=''></div>"+(s===EUV?selo(u.c):"")+"<b>"+C[u.c].n+"</b>";row.append(c)});return w};
+ const half=s=>{const w=mk("div","vhalf t"+s),hd=mk("div","vhd",nm(s)),row=mk("div","vrow");w.append(hd,row);T(s).forEach(u=>{const c=mk("div","vcd");c.innerHTML="<div class='vim'><img src='"+(IMG[u.c+"_s"]||IMG[u.c+"_f"])+"' alt=''></div>"+((s===EUV||EUV===2)?selo(u.c):"")+"<b>"+C[u.c].n+"</b>";row.append(c)});return w};
  const H=[half(0),null,half(1)],V=mk("div","vsb","<img src='"+IMG.ui_vs+"' alt='VS'>");H[1]=V;st.append(H[0],V,H[2]);
  const side=(s,k)=>{if(!IN)return;const w=H[s?2:0],L=T(s),row=w.querySelector(".vrow");w.classList.add("on");
   const step=i=>{if(!IN)return;[...st.querySelectorAll(".vcd")].forEach(x=>x.classList.remove("cur"));if(i>=L.length)return k();const c=row.children[i];c.classList.add("in","cur");inSay(AUK[L[i].c]||[L[i].c],()=>step(i+1))};step(0)};
@@ -7780,7 +7797,7 @@ function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=ZOFF
    return"<div class='bar "+c+(cv>0?"":" z")+(hp&&cv<u.mx*.3?" lo":"")+"' data-k='"+key+"' title='"+n+"'><i style='width:"+Math.min(100,100*cv/u.mx)+"%'></i><span><b class='brl'>"+n+" </b>"+(hp?cv+"/"+u.mx:cv)+"</span></div>"};
    k.append(fw,mk("div","nm",ch.fms?ch.fms[u.fm]+"<small style='display:block;color:var(--mu);font-size:11px'>"+ch.fms[1-u.fm]+": "+u.al.hp+"/"+u.al.mx+" HP</small>":ch.n),u.sb
     /* sombra nao tem corpo: no lugar das tres barras vai o prazo dela */
-    ?mk("div","bars","<div class='bar sbv'><i style='width:100%'></i><span><b class='brl'>Sombra </b>"+u.sbt+(u.sbt>1?" turnos":" turno")+"</span></div>")
+    ?mk("div","bars","<div class='bar sbv'><i style='width:100%'></i><span><b class='brl'>Sombra </b>"+Math.min(u.sbt,SBT)+(Math.min(u.sbt,SBT)>1?" turnos":" turno")+"</span></div>")
     :mk("div","bars",br("h","HP",u.hp,1)/* a chave da barra nunca muda: "lo" vira classe, senao a animacao da cura reaproveita o cur antigo */+br("b","Barreira",u.br)+brDef(u,br)));
    /* segurar o clique na barra de defesa mostra de onde vem cada lado, igual
       aos modificadores de dano */
@@ -7936,7 +7953,9 @@ function resFv(){D.fd=fvPick(D.fv);D.ph="field";D.who=0;D.hide=0;D.sel=[];D.roll
 function fieldVote(){const w=mk("div","fvw"),my=D.on?O.seat:D.who;w.append(mk("div","dhead t"+my,"Escolha 2 campos que você gostaria de jogar. Os campos escolhidos pelos jogadores têm mais chance de cair no sorteio."));
  const g=mk("div","fvg");FDS.forEach(f=>{const on=D.sel.includes(f.k),e=mk("button","fvc"+(on?" s":""));e.disabled=!on&&D.sel.length>=2;e.style.backgroundImage='url("'+IMG["fd_"+f.k]+'")';e.append(mk("div","fvt","<b>"+f.n+"</b><small>"+f.d+"</small>"));if(on)e.append(mk("span","fvk","✓"));e.onclick=()=>dToggle(f.k);g.append(e)});w.append(g);
  const cf=mk("button","dcf","Confirmar ("+D.sel.length+"/2)");cf.disabled=D.sel.length<2;cf.onclick=dConfirm;w.append(cf);return w}
-function dClear(){try{const e=document.getElementById("rkpn");if(e)e.remove();if(RKPT){clearInterval(RKPT);RKPT=null}}catch(x){}clearInterval(DT);DT=null}
+function dClear(){try{const e=document.getElementById("rkpn");if(e)e.remove();if(RKPT){clearInterval(RKPT);RKPT=null}}catch(x){}
+ try{cdPara()}catch(x){}
+ clearInterval(DT);DT=null}
 IMG.st_ANUL="media/b64/d2b0cd2fa303e79d.webp";IMG.ui_baba="media/b64/f66d4540e1ef73e7.webp";IMG.ui_cap_of="media/b64/06133a6c8d851635.webp";IMG.ui_cap_df="media/b64/cf4908d03a1a7973.webp";IMG.ui_cap_ut="media/b64/dd3681d3c0fcf4a9.webp";IMG.ui_cap_sp="media/b64/92d246419845fad6.webp";IMG.ui_cap_un="media/b64/678cbee69bae133a.webp";IMG.ui_ccbg="media/b64/603e89dd5a06b633.webp";IMG.ui_cc="media/b64/33ae510d882d40e8.webp";IMG.ui_inv="media/b64/a244d990ca316668.webp";IMG.ui_zeni="media/b64/0d3c9552ad348044.webp";IMG.ui_poster="media/5f595b834f459301a728c52f5e950ab2.webp";let MSEL=0,MTY=null;
 function dball(n){let s="";const P=[[50,50],[35,50,65,50],[50,32,34,62,66,62],[35,35,65,35,35,65,65,65],[50,50,30,30,70,30,30,70,70,70],[33,30,67,30,33,52,67,52,33,74,67,74],[50,50,50,24,50,76,28,37,72,37,28,63,72,63]][n-1];for(let i=0;i<P.length;i+=2)s+="<i style='left:"+P[i]+"%;top:"+P[i+1]+"%'>★</i>";return"<span class='dbb'>"+s+"</span>"}
 /* fundo do menu animado: folhas das palmeiras balançando e água ondulando (WebGL) */
@@ -10926,7 +10945,7 @@ function rkReset(st0,sea){const st=rkNovo(sea);
  return st}
 
 /* ---- nível do bot pelo rank: quanto mais alto o rank, mais difícil ---- */
-const RKBOT=[2,2,2,3,3,4,4];
+const RKBOT=[3,3,3,4,4,4,4];
 const rkBotLv=st=>RKBOT[Math.min(RKCFG.ranks,Math.max(1,(st&&st.rank)||1))-1];
 
 /* ===== estado do jogador, guardado por temporada ===== */
@@ -11080,7 +11099,7 @@ function rkBotNome(lv){lv=Math.max(0,Math.min(RKBOTN.length-1,(lv|0)));rkBagLoad
    O estado fica guardado no navegador só para não precisar recalcular tudo de novo. */
 const RKPOP={
  n:420,                           /* quantos adversários vivem a temporada */
- rv:2,                            /* versão das regras: mexeu na pontuação, soma 1 aqui */
+ rv:3,                            /* versão das regras: mexeu na pontuação, soma 1 aqui */
  lanc:Date.UTC(2026,10,19,0,0,0), /* o dia em que a população começou do zero */
  tick:3e5,                        /* o relógio da simulação anda de 5 em 5 minutos: de 15 em 15
                                         a escada ficava parada entre duas partidas seguidas */
@@ -11120,7 +11139,7 @@ function rkPopBase(){const sea=rkSeasonId();
   const e=rkH(sd,i,77);
   /* nem todo mundo cria a conta no primeiro dia: as outras vão chegando ao longo da temporada */
   const ent=e<RKPOP.naLargada?0:Math.floor(Math.pow((e-RKPOP.naLargada)/(1-RKPOP.naLargada),1.7)*RKPOP.entra*rkPopDia());
-  L.push({i:i,hab:RKCFG.mmr0+g*RKPOP.hsd,porDia:r<.12?30:(r<.57?14:7),ent:ent,nome:""})}
+  L.push({i:i,hab:RKCFG.mmr0+g*RKPOP.hsd,porDia:r<.12?95:(r<.57?46:22),ent:ent,nome:""})}
  /* o nick combina com a força: os mais fracos ficam com nome de conta nova, os mais fortes com nome de pro player */
  const ord=L.slice().sort((a,b)=>a.hab-b.hab),por=Math.ceil(L.length/RKBOTN.length);
  for(let t=0;t<RKBOTN.length;t++){
@@ -12593,13 +12612,13 @@ function tSeg(s){const f=(G.afk&&G.afk[s])||0;return TCFG[Math.min(TCFG.length-1
 function tZera(s){G.afk=(G.afk||[0,0]).slice();G.afk[s]=0}
 function tFalta(s){G.afk=(G.afk||[0,0]).slice();G.afk[s]=Math.min(9,(G.afk[s]||0)+1)}
 function tPinta(){const el=document.getElementById("tmrb");if(!el)return;
- if(!TMR.fim||!tAtiva()){el.hidden=true;return}
+ if(!TMR.fim||!tAtiva()){el.hidden=true;cdPara();return}
  const n=Math.max(0,Math.ceil((TMR.fim-Date.now())/1000));
  el.hidden=false;el.className="tmrb"+(n<=10?" tmrx":n<=20?" tmry":"");
  el.innerHTML="<small>"+(G.cur===tEu()?"Seu tempo":"Tempo de "+pn(G.cur))+"</small><b>"+n+"s</b>";
- if(G.cur===tEu())cdAviso("t"+TMR.ch,n)}
+ if(G.cur===tEu())cdAviso("t"+TMR.ch,n);else cdPara()}
 function tCheca(){
- if(!tAtiva()){if(TMR.ch){TMR.ch="";TMR.fim=0;tPinta()}return}
+ if(!tAtiva()){if(TMR.ch){TMR.ch="";TMR.fim=0;tPinta()}cdPara();return}
  const ch=G.gid+"|"+G.t+"|"+G.cur;
  if(ch!==TMR.ch){TMR.ch=ch;TMR.av=0;
   /* quem está só esperando dá uma folga, para o próprio jogador passar o turno primeiro */
@@ -13387,7 +13406,7 @@ async function oStartDraft(force){const d=O.d;if(!d||O.busy||!d.p0||!d.p1||!oIsH
  let ms=cfg.fd=="r"?TT(R):26000;if(cfg.fd!="r"&&fdk=="x"){if(!cfg.ld)oNoLead(R);else R.ph="pre";ms=TT(R)}await oWriteR(R,ms,{ph:"draft",did:Date.now().toString(36),lr0:false,lr1:false,cd:0,rm0:false,rm1:false,rc:0,note:""})}
 async function oSurrenderDraft(){const d=O.d;if(!d||O.seat==null)return;O.cdl=0;const L=O.seat;O.busy=1;try{await O.ref.update({ph:"lobby",lr0:false,lr1:false,rd0:false,rd1:false,b0:"",b1:"",note:pn(L)+" se rendeu no draft. Vitória de "+pn(1-L)+"."});oAfterWrite()}catch(e){O.busy=0;O.err="Não foi possível se render ("+(e&&e.code||"erro")+").";dRender()}}
 async function oStartBattle(){const d=O.d;if(!d||O.busy||d.ph!="draft")return;const R=JSON.parse(d.dr);if(R.ph!="done")return;
- G.tm=[0,1].map(t=>[R.lead[t]||"none"].concat(R.act[t]));G.ann=R.ann;const kf=G.fd;G.fd=R.fd;G.bot=0;G.online=1;G.me=O.seat;G.gid=O.code+"-"+Date.now().toString(36);G.intro=1;G.dsnapN=dFoto(R);G.capO=[0,1].map(i=>{try{return JSON.parse(d["cp"+i]||"null")}catch(e){return null}});newGame();G.capO=null;G.fd=kf;
+ G.tm=[0,1].map(t=>[R.lead[t]||"none"].concat(R.act[t]));G.ann=R.ann;const kf=G.fd;G.fd=R.fd;G.bot=0;G.online=1;G.me=(O.seat==null?-1:O.seat);G.gid=O.code+"-"+Date.now().toString(36);G.intro=1;G.dsnapN=dFoto(R);G.capO=[0,1].map(i=>{try{return JSON.parse(d["cp"+i]||"null")}catch(e){return null}});newGame();G.capO=null;G.fd=kf;
  G.seq=(d.seq||0)+1;O.busy=1;try{await O.ref.update({ph:"battle",st:ser(),seq:G.seq,gid:G.gid})}catch(e){O.err="Não foi possível iniciar a batalha.";G.scr="o"}O.busy=0}
 function oDview(d){const R=JSON.parse(d.dr),spec=O.seat==null,me=spec?0:O.seat,k=(d.did||"")+":"+R.ph+":"+(d.dseq||0),same=D&&D.on&&D._d===(d.did||"")&&D.ph===R.ph,keepSel=D&&D.on&&D._k===k;
  const N=Object.assign({},R,{on:1,_d:d.did||"",_k:k,flt:D&&D.on?D.flt:"all",q:D&&D.on?D.q:"",_fk:D&&D.on?D._fk:null,hide:0,sel:keepSel?D.sel:[],rd:[!!d.rd0,!!d.rd1],
