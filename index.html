@@ -6567,7 +6567,7 @@ function endTurn(){if(G.scr!="p"||G.win!=null||RFZ)return;const s=G.cur;const hp
   log("Limite de "+TLIM+" turnos: decidido pela vida restante ("+a+" x "+b+")");
   G.q=[];G.sel=null;render();return}
  G.cur=1-s;G.q=[];G.sel=null;G.kkc={};begin()}
-function newGame(){pannOff();G.dsnap=G.dsnapN||null;G.dsnapN=null;G.tutp=G._tutn?1:0;G._tutn=0;const T=G.tm;try{lbSalvaTime()}catch(e){}try{[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups],["lv",ZAV.lvps],["jw",ZAV.jwps],["tu",ZAV.tuv]].forEach(([c,v])=>{if(T&&T.some(t=>t.slice(1).includes(c)))vPre(v)});ULTV.forEach(V=>{if(T&&T.some(t=>t.slice(1).includes(V.c)))vPre(V.src)})}catch(e){}RFZ=0;G.g2m=0;G.g2v=0;G.g2seen={};SBV=[0,0];Object.assign(G,{t:0,ki:[0,0],zk:[0,0],zg:[0,0],tc:[0,0],sbcd:[0,0],q:[],sel:null,u:[],rep:[],log:[],win:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,kz:0,zs:[0,0],zd:[0,0],dr:[0,0],lead:G.ann?["none","none"]:[T[0][0],T[1][0]],ldisp:[T[0][0],T[1][0]],scr:"p",cf:G.fd=="x"?"x":G.fd&&G.fd!="r"?G.fd:FDS[Math.floor(Math.random()*FDS.length)].k});
+function newGame(){pannOff();G.dsnap=G.dsnapN||null;G.dsnapN=null;G.tutp=G._tutn?1:0;G._tutn=0;const T=G.tm;try{lbSalvaTime()}catch(e){}try{if(!G.sim)voxPre(T)}catch(e){}try{[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups],["lv",ZAV.lvps],["jw",ZAV.jwps],["tu",ZAV.tuv]].forEach(([c,v])=>{if(T&&T.some(t=>t.slice(1).includes(c)))vPre(v)});ULTV.forEach(V=>{if(T&&T.some(t=>t.slice(1).includes(V.c)))vPre(V.src)})}catch(e){}RFZ=0;G.g2m=0;G.g2v=0;G.g2seen={};SBV=[0,0];Object.assign(G,{t:0,ki:[0,0],zk:[0,0],zg:[0,0],tc:[0,0],sbcd:[0,0],q:[],sel:null,u:[],rep:[],log:[],win:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,kz:0,zs:[0,0],zd:[0,0],dr:[0,0],lead:G.ann?["none","none"]:[T[0][0],T[1][0]],ldisp:[T[0][0],T[1][0]],scr:"p",cf:G.fd=="x"?"x":G.fd&&G.fd!="r"?G.fd:FDS[Math.floor(Math.random()*FDS.length)].k});
  T.forEach((t,s)=>t.slice(1).forEach(c=>G.u.push({s,c,hp:100,mx:100,ar:0,br:0,st:[],cd:C[c].sk.map(()=>0),bn:0,rec:0,alive:true,im:0,rv:0,dbl:0,rvt:0,nx:0,fm:0,gk:0,gz:0,ept:0,al:{hp:100,mx:100}})));
  /* G.ann diz que os dois times tiraram o mesmo lider e as habilidades de lider
     se anulam. Nao tem nada a ver com capsula: a flag estava desligando a build
@@ -6723,8 +6723,29 @@ function dubPick(){const w=mk("div","subpk dbpk");
   b.type="button";b.dataset.v=v;b.onclick=e=>{e.preventDefault();dubSet(v)};w.append(b)});
  return w}
 const ZAV={jwps:"media/d7685d6ec4b325eaf961e28e3d5c9526.mp4",jwult:"media/5b625ad6db133912e7f7645dfa5cbdc3.mp4",tuv:"media/372bf85252c50ce970c3e8de12df6465.mp4",lvps:"media/0a8b604f3a519b9d1456ed94c059629c.mp4",lvult:"media/aa421bebf3d9d2b796dd57911c0f0189.mp4",boups:"media/c42252a88032db386274a308f92a7f16.mp4",boult:"media/f4c62a6494314d76ef24bd9f88891b85.mp4",ps:"media/5c883791508c3d9442b032be1d96d709.mp4",ult:"media/d1202f407a9b2843cd1dd1c110662671.mp4",beast:"media/34a3f36af5c7e77db47c6049e282a904.mp4",bult:"media/533eb248272cf7e749aa192bd865c478.mp4",mvps:"media/9d0b535d0713e1a16ef1e68d26f1668a.mp4",mvult:"media/af0246c64979c43a16501a4e9bfb474f.mp4",gdps:"media/e5702d769d4f7fb89fdd5ec549c72794.mp4",mgps:"media/0d3d80ffa4c75411675152fdcab9b3c1.mp4",mgult:"media/88e0980ef176f18cdfae3d412745871c.mp4",trps:"media/a291e6474de812aaca3fec2dd2c147d8.mp4",trult:"media/ed49863e9b78965b0b57010dce0b540f.mp4",sasult:"media/b1fd44c0be98b0ff74772b6807e6aba6.mp4",narult:"media/21c3dcbb90be95fd4a3a9a524ced5a32.mp4",clps:"media/7f4ffad3a8ebd907b5ae3f8ad9cc0340.mp4",clult:"media/11010bc51df86e44e227b28231f46055.mp4",gbkps:"media/fa567be3a2c372c007cdc28642678e74.mp4",gbkult:"media/63d993c04a5a3b4c2dfd527684ec78b0.mp4",gdult:"media/8cda131e26807eeeaf9d43a7b1933f8e.mp4",kirult:"media/30da2f55e9ecfe8c229a468b6d6f1267.mp4"};const VPRE={};
-function vPre(src){src=vdub(src);if(VPRE[src]||vidSkip(src))return;try{const v=document.createElement("video");v.src=src;v._src=src;v.preload="auto";v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.load();VPRE[src]=v}catch(e){}}
+/* Pre-carga dos videos em FILA, um de cada vez. Antes todos os videos da partida
+   (aberturas e ultimates dos 6 personagens) baixavam juntos, disputando a
+   conexao com as falas do narrador e com o video que estava tocando: no
+   celular tudo travava. A fila espera as falas do narrador e baixa um video
+   por vez, na ordem em que eles vao tocar. */
+const VPQ=[];let VPON=0,VPHOLD=0;
+function vPre(src){src=vdub(src);if(VPRE[src]||vidSkip(src)||VPQ.includes(src))return;VPQ.push(src);vPreNx()}
+function vPreNx(){if(VPON||!VPQ.length)return;
+ if(VPHOLD>Date.now()){setTimeout(vPreNx,Math.max(400,VPHOLD-Date.now()+50));return}
+ const src=VPQ.shift();if(VPRE[src])return vPreNx();VPON=1;let fim=0;const ok=()=>{if(fim)return;fim=1;VPON=0;setTimeout(vPreNx,80)};
+ try{const v=document.createElement("video");v.src=src;v._src=src;v.preload="auto";v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");
+  /* segue para o proximo quando este ja pode tocar inteiro ou quando o navegador
+     parou de baixar (suspend); trava de seguranca de 8 s */
+  const pronto=()=>{try{const b=v.buffered;if(v.readyState>=4||(b.length&&v.duration&&b.end(b.length-1)>=v.duration-.25))ok()}catch(e){}};
+  ["canplaythrough","error","stalled"].forEach(ev=>v.addEventListener(ev,ok,{once:true}));
+  ["progress","suspend"].forEach(ev=>v.addEventListener(ev,pronto));setTimeout(ok,8000);v.load();VPRE[src]=v}catch(e){ok()}}
+/* as falas do narrador para os times desta partida chegam antes dos videos */
+function voxPre(T){try{if(!acx())return;const ks=new Set(["vs","start"]);
+ (T||[]).forEach(t=>(t||[]).slice(1).forEach(c=>{if(c&&c!="none")(AUK[c]||[c]).forEach(k=>ks.add(k))}));
+ const ps=[...ks].filter(k=>AU[k]).map(k=>vbuf(AU[k]).catch(()=>null));
+ VPHOLD=Date.now()+6000;Promise.all(ps).then(()=>{VPHOLD=0;vPreNx()})}catch(e){VPHOLD=0}}
 function vidPlay(src,capHtml,cb){const done0=()=>{if(cb)try{cb()}catch(e){}};if(vidSkip(src)||G.sim){done0();return}
+ {const q=VPQ.indexOf(vdub(src));if(q>=0)VPQ.splice(q,1)}
  const dbf=dubFalta(src);src=vdub(src);if(dbf)capHtml=(capHtml||"")+"<i class='g2dub'>Ainda sem dublagem brasileira</i>";const old=document.getElementById("g2v");if(old)old.remove();
  G.g2v=1;G.holdT=Math.max(G.holdT||0,Date.now()+25000);const ov=mk("div","");ov.id="g2v";const v=VPRE[src]||document.createElement("video");delete VPRE[src];if(!v._src){v.src=src;v._src=src}v.muted=false;try{v.currentTime=0}catch(e){}
  v.playsInline=true;v.setAttribute("playsinline","");v.preload="auto";v.volume=vol("v");
@@ -12760,23 +12781,38 @@ function txNomeOp(){try{
  if(G.rkm&&G.rkm.oppNome)return String(G.rkm.oppNome).slice(0,24);
  if(typeof G.rkNome=="string"&&G.rkNome)return String(G.rkNome).slice(0,24);
  return G.bot?"Jogador 2":"Jogador 2"}catch(e){return "Jogador 2"}}
-function txViva(){try{return !G.online&&G.scr=="p"&&G.u&&G.u.length>0}catch(e){return 0}}
-function txDeveLigar(){try{return !!(txViva()&&G.win==null&&O.db&&O.pid&&frAmigoOn())}catch(e){return 0}}
+/* draft local (contra o bot da ranqueada, por exemplo) ou batalha local */
+const txDraft=()=>{try{return !G.online&&G.scr=="d"&&typeof D!="undefined"&&D&&!D.on&&!!D.ph}catch(e){return false}};
+function txViva(){try{return txDraft()||(!G.online&&G.scr=="p"&&G.u&&G.u.length>0)}catch(e){return 0}}
+/* abre com qualquer amigo na lista: quem entra no meio da partida tambem consegue assistir */
+function txDeveLigar(){try{return !!(txViva()&&G.win==null&&O.db&&O.pid&&((FR.list&&FR.list.length)||frAmigoOn()))}catch(e){return 0}}
+/* o que vai para a sala: o draft no mesmo formato do draft online, ou o estado da batalha */
+const TXDR=["ph","fd","fv","pre","pl","dup","ex","bans","picks","lead","lban","fb","nl","seq","si","bf","nb","av","noLead","ann","act"];
+function txCarga(){
+ if(txDraft()){const R={cfg:Object.assign({},CFGD)};TXDR.forEach(k=>{if(D[k]!==undefined)R[k]=D[k]});
+  if(!D._txd)D._txd="tx"+Date.now().toString(36);
+  return {ph:"draft",dr:JSON.stringify(R),did:D._txd,rd0:false,rd1:false,b0:"",b1:"",st:"",gid:"",
+   _t:Math.max(0,+D.t||0)}}
+ return {ph:"battle",st:ser(),gid:G.gid||"",dr:""}}
+const txChave=c=>JSON.stringify(Object.assign({},c,{_t:0}));
 async function txAbre(){if(TX.code||TX.criando)return;TX.criando=1;
  try{let code,ok=0;
   for(let i=0;i<5&&!ok;i++){code=newCode();const sn=await O.db.doc("rooms/"+code).get();ok=!sn.exists}
-  if(ok){const op="tx"+Math.random().toString(36).slice(2,10),st=ser();
+  if(ok){const op="tx"+Math.random().toString(36).slice(2,10),cg=txCarga(),st=cg.st;
    await O.db.doc("rooms/"+code).set({v:2,tx:1,host:O.pid,p0:O.pid,p1:op,
     s0:null,s1:null,s2:null,s3:null,s4:null,s5:null,
     mem:{[okey(O.pid)]:oMeMem(),[okey(op)]:Object.assign({n:txNomeOp()},(()=>{const x=rkBotMxPac();return x?{mx:x}:{}})())},
     ru:JSON.stringify({m:"p"}),lr0:false,lr1:false,cp0:"",cp1:"",cd:0,t0:"",t1:"",r0:false,r1:false,
-    fd:G.cf||"r",ph:"battle",st:st,seq:1,gid:G.gid||"",at:Date.now()});
-   TX.code=code;TX.seq=1;TX.env=st;TX.fim=0;try{frPres()}catch(e){}}
+    fd:G.cf||"r",ph:cg.ph,st:st,dr:cg.dr,did:cg.did||"",rd0:false,rd1:false,b0:"",b1:"",
+    dseq:1,dms:(cg._t||0)*1000,seq:1,gid:cg.gid,at:Date.now()});
+   TX.code=code;TX.seq=1;TX.env=txChave(cg);TX.fim=0;try{frPres()}catch(e){}}
  }catch(e){}
  TX.criando=0}
-async function txManda(){if(!TX.code||TX.mand)return;let st;try{st=ser()}catch(e){return}
- if(st===TX.env)return;TX.mand=1;const n=TX.seq+1;
- try{await O.db.doc("rooms/"+TX.code).update({st:st,seq:n,gid:G.gid||"",at:Date.now()});TX.seq=n;TX.env=st}catch(e){}
+async function txManda(){if(!TX.code||TX.mand)return;let cg;try{cg=txCarga()}catch(e){return}
+ const ch=txChave(cg);if(ch===TX.env)return;TX.mand=1;const n=TX.seq+1;
+ const up={ph:cg.ph,st:cg.st,dr:cg.dr,gid:cg.gid,seq:n,dseq:n,at:Date.now()};
+ if(cg.ph=="draft"){up.did=cg.did;up.dms=(cg._t||0)*1000;up.rd0=false;up.rd1=false;up.b0="";up.b1=""}
+ try{await O.db.doc("rooms/"+TX.code).update(up);TX.seq=n;TX.env=ch}catch(e){}
  TX.mand=0}
 async function txApaga(){const c=TX.code;if(!c)return;TX.code="";TX.env="";TX.seq=0;TX.fim=0;
  try{frPres()}catch(e){}
@@ -13058,7 +13094,7 @@ const frEstado=()=>{try{if(G.scr=="p"||G.scr=="d")return "play"}catch(e){}return
 /* a sala que o amigo pode assistir: so em partida online de verdade, e nunca a de quem ja esta assistindo */
 const frSala=()=>{try{
  /* partida local transmitindo: o codigo e o da sala de leitura */
- if(typeof TX!="undefined"&&TX&&TX.code&&!G.online&&G.scr=="p")return TX.code;
+ if(typeof TX!="undefined"&&TX&&TX.code&&!G.online&&(G.scr=="p"||G.scr=="d"))return TX.code;
  if(typeof O=="undefined"||!O.code||!G.online)return "";
  if(O.seat==null||typeof FRW!="undefined"&&FRW&&FRW.id)return "";
  if(G.scr!="p"&&G.scr!="d")return "";return O.code}catch(e){return ""}};
@@ -13414,7 +13450,7 @@ function frLista(ls){if(!ls)return;ls.innerHTML="";
      o botao aparece desligado em vez de sumir, senao parece que quebrou */
   else if(ligado&&p.s=="play"&&!p.sl){const as=mk("button","ofrcv as off","Assistir");
    as.disabled=true;as.setAttribute("aria-disabled","true");
-   as.title="A partida de "+nome(x)+" ainda está começando. O botão liga sozinho quando a batalha abrir.";
+   as.title="Ainda não dá para assistir a partida de "+nome(x)+". Se continuar assim, peça para "+nome(x)+" recarregar a página do jogo.";
    g.append(as)}
   const ms=mk("button","ofrms"+(livre?" ic":"")+(frDmNovas(x.id)?" nv":""),
    livre?icHTML("ui_chat","","Mensagem")+"":"Mensagem");
