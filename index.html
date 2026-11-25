@@ -607,7 +607,7 @@ body.bt .tmrb{display:block}.tmrb[hidden]{display:none!important}
 body.ph.bt .tmrb{padding:1px 7px}body.ph.bt .tmrb b{font-size:17px}body.ph.bt .tmrb small{font-size:8px}
 @media(min-width:900px){
 body.bt{--bg:#0a080a;--pn:#19141bd9;--in:#231b25cc;--tx:#f5f3f1;--mu:#afa6aa;background:#0a080a var(--fbg,none) center/cover fixed no-repeat;color:var(--tx)}
-body.bt::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 50% 45%,#0a080a2b 0%,#0a080a63 55%,#0a080a9e 100%);pointer-events:none;z-index:0}
+
 body.bt main{position:relative;z-index:1;max-width:none;min-height:100vh;min-height:100dvh;display:grid;grid-template-columns:minmax(0,640px) minmax(250px,300px) minmax(0,640px);justify-content:center;grid-template-rows:auto auto 1fr;column-gap:22px;row-gap:12px;padding:16px 20px;align-items:start}
 body.bt main>h1{display:none}body.bt #b{display:contents}
 body.bt .row{background:transparent;border:0;padding:0;margin:0;grid-row:1/span 3;display:flex;flex-direction:column;gap:6px}
@@ -1310,7 +1310,7 @@ body.ph .chsk{gap:8px!important;padding:7px 0!important}body.ph .chsk>img{width:
 body.ph .chsk small{font-size:9.5px!important}body.ph .chsk b{font-size:13.5px!important}body.ph .chsk p{font-size:12px!important;line-height:1.4!important}body.ph .chsk em{font-size:11px!important}
 /* batalha */
 body.ph.bt{--bg:#0a080a;--pn:#19141bd9;--in:#231b25cc;--tx:#f5f3f1;--mu:#afa6aa;background:#0a080a var(--fbg,none) center/cover fixed no-repeat;color:var(--tx);overflow:hidden}
-body.ph.bt::before{content:"";position:fixed;inset:0;background:#0a080ab8;pointer-events:none;z-index:0}
+
 body.ph.bt main{position:relative;z-index:1;max-width:none;height:100vh;height:100dvh;padding:4px 5px;margin:0;display:grid;grid-template-columns:minmax(0,1fr) clamp(112px,17vw,150px) minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:5px;overflow:hidden}
 body.ph.bt main>h1,body.ph.bt #lg,body.ph.bt .fdb{display:none!important}
 body.ph.bt #b{display:contents}
@@ -1410,7 +1410,7 @@ body.ph #dr .dcf{position:sticky;bottom:0;z-index:2;box-shadow:0 -6px 12px #1612
 /* batalha com o celular em pé */
 body.php{--ic:clamp(30px,10.6vw,46px);--fs:clamp(44px,14vw,62px)}
 body.php.bt{--bg:#0a080a;--pn:#19141bd9;--in:#231b25cc;--tx:#f5f3f1;--mu:#afa6aa;background:#0a080a var(--fbg,none) center/cover fixed no-repeat;color:var(--tx)}
-body.php.bt::before{content:"";position:fixed;inset:0;background:#0a080ab8;pointer-events:none;z-index:0}
+
 body.php.bt main{position:relative;z-index:1;padding:6px 6px 64px;display:flex;flex-direction:column;gap:6px}
 body.php.bt main>h1,body.php.bt #lg{display:none!important}body.php.bt .fdb{font-size:11px;padding:6px 8px!important;order:0}
 body.php.bt #b{display:contents}body.php.bt .tturn{display:none!important}body.php.bt .row.t1{order:1}body.php.bt .row.t0{order:3}body.php.bt .fdb{order:0}
@@ -4387,7 +4387,7 @@ body main>h1{display:flex;align-items:center;gap:12px;margin:0 0 12px;
 body main>h1::before{content:"";display:inline-block;width:.92em;height:.92em;
  flex:none;background:var(--marca) center/contain no-repeat}
 /* paineis dos times */
-#b .row{background:#221d298c;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+#b .row{background:#221d298c;
  border:1px solid var(--a2lin);border-radius:0;box-shadow:none}
 #b .row .hd{background:linear-gradient(100deg,var(--a2ros3) 0%,#7d3a4c00 86%);
  clip-path:polygon(0 0,100% 0,calc(100% - 18px) 100%,0 100%);border:0;border-radius:0}
@@ -5096,6 +5096,25 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
  text-shadow:0 2px 6px #000b}#bnr .pcov.temart>.pccol{position:relative;z-index:1}body.php #bnr .pcov.temart,body.ph #bnr .pcov.temart{padding-right:0}body.php #bnr .pcov .pcart,body.ph #bnr .pcov .pcart{width:58%;opacity:.28}body.php #bnr .pcov .pcartt,body.ph #bnr .pcov .pcartt{display:none}/* ===== ANIMA2 VISUAL FIM ===== */
 </style>
 <style id="a2n">
+/* caixa de confirmacao sem arte (sair do jogo) */
+#surc .surbox.nim .surt{margin-top:18px}
+/* barra de reconexao: "voltar para a partida" */
+#rcbar{position:fixed;left:50%;transform:translateX(-50%);top:max(6px,env(safe-area-inset-top));z-index:720;
+ display:flex;align-items:center;gap:10px;max-width:min(96vw,520px);padding:7px 8px 7px 12px;border-radius:12px;
+ background:#1b1013f2;border:2px solid #f0c46a;box-shadow:0 10px 30px #000a;color:#f6e7c1;font:600 13px/1.25 system-ui}
+#rcbar>span{flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#rcbar button{flex:0 0 auto;border:0;border-radius:9px;padding:8px 12px;font:900 13px system-ui;cursor:pointer;
+ white-space:nowrap;background:#f0c46a;color:#2a1c06}
+#rcbar .rcx{background:#00000000;color:#f6e7c1b0;padding:6px 7px;font:900 15px system-ui}
+body.php #rcbar,body.ph #rcbar{font-size:12px;padding:5px 6px 5px 10px;gap:6px}
+body.php #rcbar button,body.ph #rcbar button{padding:7px 10px;font-size:12px}
+/* celular em pe: so o botao, o texto nao cabe sem espremer tudo */
+body.php #rcbar>span{display:none}
+body.php #rcbar{padding-left:6px}
+@media(max-width:520px){#rcbar>span{display:none}#rcbar{padding-left:6px}}
+/* caixa sem arte: os dois botoes dividem a largura em vez de vazar */
+.surbox.nim .qobt{gap:12px;padding:0 14px}
+.surbox.nim .qobt button{min-width:0;flex:1 1 0;padding-left:8px;padding-right:8px}
 /* habilidade travada pelo campo: o jogador precisa ver por que ela nao acende */
 #dr .sk .w .blqf{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:19px;line-height:1;
  filter:drop-shadow(0 1px 3px #000);pointer-events:none;z-index:3}
@@ -5956,6 +5975,8 @@ body.legado .chcard.lk i{position:absolute;left:0;right:0;bottom:0;background:#0
    rolagem nenhuma, nem com a roda do mouse. Agora a galeria rola dentro dela. */
 .chmain{display:flex;flex-direction:column;min-height:0;height:100%}
 .chmain>.chgr{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+/* celular em pe: a grade nao rola sozinha, entao o toque tem de passar para a pagina */
+body.php .chmain>.chgr{overscroll-behavior:auto}
 .chside{overflow-y:auto;overscroll-behavior:contain}
 /* No Legado o a2v esta desligado, e sem ele os itens da grade da tela de
    Personagens ficam com largura minima automatica: um nome comprido estica a
@@ -6457,7 +6478,14 @@ function skPreview(u,k){if(!u||!u.alive||!/acúmul|acumul/i.test(k.t))return"";c
 /* Golpe Extra: o bônus só vale para números de DANO FIXO, por isso entra à parte do dm0 */
 const dfxB=u=>(u&&u.cp)?.5*cpn(u,"of5"):0;
 const dfxAt=(str,off,len)=>/^\s*FIXO(?![A-Za-zÀ-ÿ])/i.test(String(str).slice(off+len));
-const sTip=(k,u,nopv)=>{const m=u&&/dano/i.test(k.t)?dm0(u,tgu(k,u)=="E"||k.tg=="2"?k:0).concat(k.dm?k.dm(u):[]).filter(x=>x.v):[],s=m.reduce((a,x)=>a+x.v,0),cl=x=>x>0?"#7ff2a8":"#ff8a80",sg=x=>(x>0?"+":"")+String(x).replace(".",","),fb=dfxB(u),t=(s||fb)?k.t.replace(/(^|[^+\d])(\d+) de (DANO|dano)(?! ou (?:mais|menos))/g,(a,p,n,w,off,str)=>{const tt=s+(dfxAt(str,off,a.length)?fb:0);return tt?p+"<b style='color:"+cl(tt)+"' title='"+n+" "+sg(tt)+"'>"+Math.max(0,+n+tt)+"</b> de "+w:a}).replace(/ e (\d+) em todos os outros/g,(a,n)=>s?" e <b style='color:"+cl(s)+"' title='"+n+" "+sg(s)+"'>"+Math.max(0,+n+s)+"</b> em todos os outros":a):k.t;const cdf=costD(u,k);const _i=(u&&C[u.c])?C[u.c].sk.indexOf(k):-1;const _up=(u&&_i>=0&&typeof upSk=="function"&&upSk(u,_i))?uqTag(u,_i,u.c):"";const _red=(u?((u.cp?(capUlt(k)?cpn(u,"ut3"):cpn(u,"ut1")):0)+cdUp(u,k)):0);const _rc=k.cd?Math.max(1,k.cd-_red):0;const _rt=k.cd>=99?"Uso único":(_rc!=k.cd?"Recarga <s style='opacity:.6'>"+k.cd+"</s> <b style='color:#7ff2a8'>"+_rc+"</b>":"Recarga "+k.cd);return"<b>"+k.n+(_up?"<em class='tipapr'>Aprimorada</em>":"")+"</b><small>"+(k.ho?(k.hc?"<b style='color:#ff8a80'>−"+k.hc+" HP</b>"+(u&&u.kfree?" (grátis agora)":""):"Sem custo"):(cdf?"<s style='opacity:.6'>"+cdf.b+"</s> <b style='color:"+(cdf.e<cdf.b?"#7ff2a8":"#ff8a80")+"'>"+cdf.e+"</b> "+(k.zk?"Essência":"Energia"):(k.zk?k.zk+" Essência":(k.ki||0)+" Energia"))+(k.hc?" · <b style='color:#ff8a80'>−"+k.hc+" HP</b>"+(u&&u.kfree?" (grátis agora)":""):""))+" · "+_rt+" · "+k.cl+"</small>"+(cfBloq(u,k)?"<i class='tipblq'>Templo de Carthenon: neste campo as ultimates ficam bloqueadas.</i>":"")+"<p>"+skIcons(t,(u&&u.c)||skOwner(k))+"</p>"+_up+(nopv?"":skPreview(u,k))+(u&&u.alive&&k.dpv&&!nopv?k.dpv(u,s):"")+(m.length?"<i>Modificadores de dano:</i>"+m.map(x=>"<i><b style='color:"+cl(x.v)+"'>"+sg(x.v)+"</b> "+x.src+"</i>").join(""):"")+gl(k.t)};
+/* texto da habilidade com os aprimoramentos equipados aplicados */
+function kTxt(k,u){let t=String((k&&k.t)||"");try{
+ if(u&&u.c=="nar"&&k&&k.n=="Clones das Sombras"&&uq(u,"uq_nar_1"))
+  t=t.replace("causam \u22125 de DANO, mas passam a atingir todos os inimigos em vez de um alvo só.","passam a atingir todos os inimigos em vez de um alvo só, sem perder DANO.");
+}catch(e){}return t}
+/* causa dano de verdade? "−5 de DANO" (penalidade) e REDUCAO DE DANO nao contam */
+const temDano=t=>{t=String(t||"");return /(^|[^\-\u2212\d])\d+ de dano/i.test(t)||/\bem DANO\b/.test(t)};
+const sTip=(k,u,nopv)=>{const kt=kTxt(k,u);const m=u&&temDano(kt)?dm0(u,tgu(k,u)=="E"||k.tg=="2"?k:0).concat(k.dm?k.dm(u):[]).filter(x=>x.v):[],s=m.reduce((a,x)=>a+x.v,0),cl=x=>x>0?"#7ff2a8":"#ff8a80",sg=x=>(x>0?"+":"")+String(x).replace(".",","),fb=dfxB(u),t=(s||fb)?kt.replace(/(^|[^+\-−\d])(\d+) de (DANO|dano)(?! ou (?:mais|menos))/g,(a,p,n,w,off,str)=>{const tt=s+(dfxAt(str,off,a.length)?fb:0);return tt?p+"<b style='color:"+cl(tt)+"' title='"+n+" "+sg(tt)+"'>"+Math.max(0,+n+tt)+"</b> de "+w:a}).replace(/ e (\d+) em todos os outros/g,(a,n)=>s?" e <b style='color:"+cl(s)+"' title='"+n+" "+sg(s)+"'>"+Math.max(0,+n+s)+"</b> em todos os outros":a):kt;const cdf=costD(u,k);const _i=(u&&C[u.c])?C[u.c].sk.indexOf(k):-1;const _up=(u&&_i>=0&&typeof upSk=="function"&&upSk(u,_i))?uqTag(u,_i,u.c):"";const _red=(u?((u.cp?(capUlt(k)?cpn(u,"ut3"):cpn(u,"ut1")):0)+cdUp(u,k)):0);const _rc=k.cd?Math.max(1,k.cd-_red):0;const _rt=k.cd>=99?"Uso único":(_rc!=k.cd?"Recarga <s style='opacity:.6'>"+k.cd+"</s> <b style='color:#7ff2a8'>"+_rc+"</b>":"Recarga "+k.cd);return"<b>"+k.n+(_up?"<em class='tipapr'>Aprimorada</em>":"")+"</b><small>"+(k.ho?(k.hc?"<b style='color:#ff8a80'>−"+k.hc+" HP</b>"+(u&&u.kfree?" (grátis agora)":""):"Sem custo"):(cdf?"<s style='opacity:.6'>"+cdf.b+"</s> <b style='color:"+(cdf.e<cdf.b?"#7ff2a8":"#ff8a80")+"'>"+cdf.e+"</b> "+(k.zk?"Essência":"Energia"):(k.zk?k.zk+" Essência":(k.ki||0)+" Energia"))+(k.hc?" · <b style='color:#ff8a80'>−"+k.hc+" HP</b>"+(u&&u.kfree?" (grátis agora)":""):""))+" · "+_rt+" · "+k.cl+"</small>"+(cfBloq(u,k)?"<i class='tipblq'>Templo de Carthenon: neste campo as ultimates ficam bloqueadas.</i>":"")+"<p>"+skIcons(t,(u&&u.c)||skOwner(k))+"</p>"+_up+(nopv?"":skPreview(u,k))+(u&&u.alive&&k.dpv&&!nopv?k.dpv(u,s):"")+(m.length?"<i>Modificadores de dano:</i>"+m.map(x=>"<i><b style='color:"+cl(x.v)+"'>"+sg(x.v)+"</b> "+x.src+"</i>").join(""):"")+gl(kt)};
 const pTip=(n,t,l)=>"<b>"+n+"</b><small>"+l+"</small><p>"+skIcons(t,txOwner(t))+"</p>"+gl(t);
 const tip=$("#tip");let hold=0,shown=0;
 function att(e,fn,ck){let px=0,py=0;
@@ -6538,7 +6566,7 @@ function endTurn(){if(G.scr!="p"||G.win!=null||RFZ)return;const s=G.cur;const hp
   log("Limite de "+TLIM+" turnos: decidido pela vida restante ("+a+" x "+b+")");
   G.q=[];G.sel=null;render();return}
  G.cur=1-s;G.q=[];G.sel=null;G.kkc={};begin()}
-function newGame(){pannOff();G.dsnap=G.dsnapN||null;G.dsnapN=null;G.tutp=G._tutn?1:0;G._tutn=0;const T=G.tm;try{lbSalvaTime()}catch(e){}try{[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups],["lv",ZAV.lvps],["jw",ZAV.jwps]].forEach(([c,v])=>{if(T&&T.some(t=>t.slice(1).includes(c)))vPre(v)});ULTV.forEach(V=>{if(T&&T.some(t=>t.slice(1).includes(V.c)))vPre(V.src)})}catch(e){}RFZ=0;G.g2m=0;G.g2v=0;G.g2seen={};SBV=[0,0];Object.assign(G,{t:0,ki:[0,0],zk:[0,0],zg:[0,0],tc:[0,0],sbcd:[0,0],q:[],sel:null,u:[],rep:[],log:[],win:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,kz:0,zs:[0,0],zd:[0,0],dr:[0,0],lead:G.ann?["none","none"]:[T[0][0],T[1][0]],ldisp:[T[0][0],T[1][0]],scr:"p",cf:G.fd=="x"?"x":G.fd&&G.fd!="r"?G.fd:FDS[Math.floor(Math.random()*FDS.length)].k});
+function newGame(){pannOff();G.dsnap=G.dsnapN||null;G.dsnapN=null;G.tutp=G._tutn?1:0;G._tutn=0;const T=G.tm;try{lbSalvaTime()}catch(e){}try{[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups],["lv",ZAV.lvps],["jw",ZAV.jwps],["tu",ZAV.tuv]].forEach(([c,v])=>{if(T&&T.some(t=>t.slice(1).includes(c)))vPre(v)});ULTV.forEach(V=>{if(T&&T.some(t=>t.slice(1).includes(V.c)))vPre(V.src)})}catch(e){}RFZ=0;G.g2m=0;G.g2v=0;G.g2seen={};SBV=[0,0];Object.assign(G,{t:0,ki:[0,0],zk:[0,0],zg:[0,0],tc:[0,0],sbcd:[0,0],q:[],sel:null,u:[],rep:[],log:[],win:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,kz:0,zs:[0,0],zd:[0,0],dr:[0,0],lead:G.ann?["none","none"]:[T[0][0],T[1][0]],ldisp:[T[0][0],T[1][0]],scr:"p",cf:G.fd=="x"?"x":G.fd&&G.fd!="r"?G.fd:FDS[Math.floor(Math.random()*FDS.length)].k});
  T.forEach((t,s)=>t.slice(1).forEach(c=>G.u.push({s,c,hp:100,mx:100,ar:0,br:0,st:[],cd:C[c].sk.map(()=>0),bn:0,rec:0,alive:true,im:0,rv:0,dbl:0,rvt:0,nx:0,fm:0,gk:0,gz:0,ept:0,al:{hp:100,mx:100}})));
  /* G.ann diz que os dois times tiraram o mesmo lider e as habilidades de lider
     se anulam. Nao tem nada a ver com capsula: a flag estava desligando a build
@@ -6625,7 +6653,7 @@ function endClose(){const o=document.getElementById("endov");if(o)o.remove()}
 function endRematch(){const R=G._rem;if(!R)return;endClose();G.dsnapN=G.dsnap||null;G.tm=R.tm;G.ann=R.ann;G.mode=R.mode;const k=G.fd;G.fd=R.fd;G.intro=1;newGame();G.fd=k}
 /* Fim de ranqueada: voltar para a fila sem passar pelo lobby */
 function endBuscar(){endClose();
- try{ls("za_room",null)}catch(e){}
+ try{roomEsquece()}catch(e){}
  try{if(G.online)oLeave()}catch(e){}
  try{LBM="fila";showLobby()}catch(e){}
  try{RKQ.de="lb";rkEntraFila(1)}catch(e){}}
@@ -6637,7 +6665,7 @@ function endScreen(){if(G.win==null||G.scr!="p")return endClose();let o=document
   else btns=[["Menu",()=>{endClose();showMenu()}],[G.mode=="d"?"Novo draft":"Seleção de personagens",()=>{endClose();if(G.mode=="d")startDraft();else{G.mode="t";G.scr="b";build()}}],["Revanche",endRematch]]}
  else{const d=O.d||{};if(G.me<0){btns=[["Menu",()=>{endClose();oLeave();showMenu()}],["Voltar à sala",()=>{endClose();O.specOut=d.gid||G.gid;G.online=0;G.scr="o";document.body.classList.remove("bt");oRender()}]];st="Você estava assistindo."}
   else if(d.rk){/* ranqueada: não tem revanche nem voltar à sala */
-   const sai=f=>()=>{endClose();try{ls("za_room",null)}catch(e){}try{oLeave()}catch(e){}f()};
+   const sai=f=>()=>{endClose();try{roomEsquece()}catch(e){}try{oLeave()}catch(e){}f()};
    btns=[["Buscar novamente",endBuscar,"go"],["Voltar ao lobby",sai(()=>{LBM="fila";showLobby()})],["Menu",sai(showMenu)]]}
   else{const mine=!!d["rm"+G.me],oth=!!d["rm"+(1-G.me)];btns=[["Menu",()=>oEnd("menu")],["Voltar à sala",()=>oEnd("room")],[mine?"✓ Revanche":"Revanche",()=>oRematch(!mine),mine?"on":""]];
    st=d.rc?"":mine&&!oth?"Aguardando o oponente aceitar a revanche…":oth&&!mine?"O oponente quer revanche!":""}}
@@ -6673,9 +6701,9 @@ const DUBBR={
  /* Boruto — ultimate  */ "media/f4c62a6494314d76ef24bd9f88891b85.mp4":"media/f65fe9639146255d042188336065293f.mp4",
  /* Naruto — ultimate  */ "media/21c3dcbb90be95fd4a3a9a524ced5a32.mp4":"media/ab05d5c9b28651afc4fdc767968a099f.mp4",
  /* Sasuke — ultimate  */ "media/b1fd44c0be98b0ff74772b6807e6aba6.mp4":"media/a20d3d9d016e563bc20136509cbd1057.mp4",
- /* Jin Woo — introdução: so existe em português, entao aponta para ele mesmo
-    e o aviso de "ainda sem dublagem" nao aparece por engano */
- "media/4fc94c37052ff4d0b82ca43520916992.mp4":"media/4fc94c37052ff4d0b82ca43520916992.mp4"};
+ /* Jin Woo — introdução */ "media/d7685d6ec4b325eaf961e28e3d5c9526.mp4":"media/d59c899e8c310fbe03c52274b6bef90c.mp4",
+ /* Jin Woo — ultimate: nao tem falas, o mesmo video serve para as duas linguas */
+ "media/5b625ad6db133912e7f7645dfa5cbdc3.mp4":"media/5b625ad6db133912e7f7645dfa5cbdc3.mp4"};
 function dubGet(){try{return localStorage.getItem("za_dub")==="ja"?"ja":"br"}catch(e){return"br"}}
 function dubSet(v){try{localStorage.setItem("za_dub",v==="ja"?"ja":"br")}catch(e){}
  document.querySelectorAll(".subpk.dbpk button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));
@@ -6691,7 +6719,7 @@ function dubPick(){const w=mk("div","subpk dbpk");
   const b=mk("button","sub"+(dubGet()==v?" on":""),FLAG[v]+"<span>"+n+"</span>");
   b.type="button";b.dataset.v=v;b.onclick=e=>{e.preventDefault();dubSet(v)};w.append(b)});
  return w}
-const ZAV={jwps:"media/4fc94c37052ff4d0b82ca43520916992.mp4",lvps:"media/0a8b604f3a519b9d1456ed94c059629c.mp4",lvult:"media/aa421bebf3d9d2b796dd57911c0f0189.mp4",boups:"media/c42252a88032db386274a308f92a7f16.mp4",boult:"media/f4c62a6494314d76ef24bd9f88891b85.mp4",ps:"media/5c883791508c3d9442b032be1d96d709.mp4",ult:"media/d1202f407a9b2843cd1dd1c110662671.mp4",beast:"media/34a3f36af5c7e77db47c6049e282a904.mp4",bult:"media/533eb248272cf7e749aa192bd865c478.mp4",mvps:"media/9d0b535d0713e1a16ef1e68d26f1668a.mp4",mvult:"media/af0246c64979c43a16501a4e9bfb474f.mp4",gdps:"media/e5702d769d4f7fb89fdd5ec549c72794.mp4",mgps:"media/0d3d80ffa4c75411675152fdcab9b3c1.mp4",mgult:"media/88e0980ef176f18cdfae3d412745871c.mp4",trps:"media/a291e6474de812aaca3fec2dd2c147d8.mp4",trult:"media/ed49863e9b78965b0b57010dce0b540f.mp4",sasult:"media/b1fd44c0be98b0ff74772b6807e6aba6.mp4",narult:"media/21c3dcbb90be95fd4a3a9a524ced5a32.mp4",clps:"media/7f4ffad3a8ebd907b5ae3f8ad9cc0340.mp4",clult:"media/11010bc51df86e44e227b28231f46055.mp4",gbkps:"media/fa567be3a2c372c007cdc28642678e74.mp4",gbkult:"media/63d993c04a5a3b4c2dfd527684ec78b0.mp4",gdult:"media/8cda131e26807eeeaf9d43a7b1933f8e.mp4",kirult:"media/30da2f55e9ecfe8c229a468b6d6f1267.mp4"};const VPRE={};
+const ZAV={jwps:"media/d7685d6ec4b325eaf961e28e3d5c9526.mp4",jwult:"media/5b625ad6db133912e7f7645dfa5cbdc3.mp4",tuv:"media/372bf85252c50ce970c3e8de12df6465.mp4",lvps:"media/0a8b604f3a519b9d1456ed94c059629c.mp4",lvult:"media/aa421bebf3d9d2b796dd57911c0f0189.mp4",boups:"media/c42252a88032db386274a308f92a7f16.mp4",boult:"media/f4c62a6494314d76ef24bd9f88891b85.mp4",ps:"media/5c883791508c3d9442b032be1d96d709.mp4",ult:"media/d1202f407a9b2843cd1dd1c110662671.mp4",beast:"media/34a3f36af5c7e77db47c6049e282a904.mp4",bult:"media/533eb248272cf7e749aa192bd865c478.mp4",mvps:"media/9d0b535d0713e1a16ef1e68d26f1668a.mp4",mvult:"media/af0246c64979c43a16501a4e9bfb474f.mp4",gdps:"media/e5702d769d4f7fb89fdd5ec549c72794.mp4",mgps:"media/0d3d80ffa4c75411675152fdcab9b3c1.mp4",mgult:"media/88e0980ef176f18cdfae3d412745871c.mp4",trps:"media/a291e6474de812aaca3fec2dd2c147d8.mp4",trult:"media/ed49863e9b78965b0b57010dce0b540f.mp4",sasult:"media/b1fd44c0be98b0ff74772b6807e6aba6.mp4",narult:"media/21c3dcbb90be95fd4a3a9a524ced5a32.mp4",clps:"media/7f4ffad3a8ebd907b5ae3f8ad9cc0340.mp4",clult:"media/11010bc51df86e44e227b28231f46055.mp4",gbkps:"media/fa567be3a2c372c007cdc28642678e74.mp4",gbkult:"media/63d993c04a5a3b4c2dfd527684ec78b0.mp4",gdult:"media/8cda131e26807eeeaf9d43a7b1933f8e.mp4",kirult:"media/30da2f55e9ecfe8c229a468b6d6f1267.mp4"};const VPRE={};
 function vPre(src){src=vdub(src);if(VPRE[src]||vidSkip(src))return;try{const v=document.createElement("video");v.src=src;v._src=src;v.preload="auto";v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.load();VPRE[src]=v}catch(e){}}
 function vidPlay(src,capHtml,cb){const done0=()=>{if(cb)try{cb()}catch(e){}};if(vidSkip(src)||G.sim){done0();return}
  const dbf=dubFalta(src);src=vdub(src);if(dbf)capHtml=(capHtml||"")+"<i class='g2dub'>Ainda sem dublagem brasileira</i>";const old=document.getElementById("g2v");if(old)old.remove();
@@ -6702,7 +6730,7 @@ function vidPlay(src,capHtml,cb){const done0=()=>{if(cb)try{cb()}catch(e){}};if(
  sk.onclick=()=>{G.vskd=1;fin()};v.onended=fin;v.onerror=fin;let started=0;v.onplaying=()=>{started=1;vspdApply(v);vdayMark(src)};setTimeout(()=>{if(!done&&!started&&v.currentTime==0)fin()},5000);setTimeout(fin,30000);const p=v.play();if(p&&p.catch)p.catch(()=>{v.muted=true;v.play().catch(fin)})}
 var RFZ=0;/* desenho da batalha congelado enquanto toca o vídeo de uma ultimate (Zamasu, Gohan Beast): dano, barras, números e log só aparecem quando o vídeo termina */
 function zaCheck(){if(G.sim||G.scr!="p")return;ULTV.forEach(V=>{if(G.u.some(u=>u.c==V.c))vPre(V.src)})}
-/* Vídeos de ultimate: personagem, linha do registro que dispara, vídeo e nome. Ultimate nova com vídeo: adicionar aqui. */const ULTV=[{c:"tr",re:/Trunks do Futuro SSJ.* usa Morra Freezaaaaa/,src:ZAV.trult,n:"Morra Freezaaaaa!!"},{c:"za",re:/Zamasu Fundido.* usa (Luz|Relâmpago) Absolut/,src:ZAV.ult,n:"Relâmpago Absoluto!!"},{c:"beast",re:/Gohan Beast.* usa Makankosappo Beast/,src:ZAV.bult,n:"Makankosappo Beast!!"},{c:"mv",re:/Mini Vegeta SSJ3.* usa Super Galick Gun/,src:ZAV.mvult,n:"Super Galick Gun!"},{c:"mg",re:/Mini Goku SSJ4.* usa Kaaa\.\.\.Meee/,src:ZAV.mgult,n:"Kaaa...Meee...Haaa...Meee..."},{c:"sas",re:/Sasuke Uchiha.* usa Susano Perfeito/,src:ZAV.sasult,n:"Susano Perfeito"},{c:"nar",re:/Naruto Uzumaki.* usa Kuramaaaaa/,src:ZAV.narult,n:"Kuramaaaaa!!!"},{c:"cl",re:/Cooler Forma Final.* usa Final Nova/,src:ZAV.clult,n:"Final Nova"},{c:"gbk",re:/Goku SSJ Blue Kaioken.* usa Eu ainda não terminei/,src:ZAV.gbkult,n:"Eu ainda não terminei!"},{c:"gd",re:/Goku SSJ Deus.* usa Esperança de um Amanhã/,src:ZAV.gdult,n:"Esperança de um Amanhã"},{c:"kir",re:/Kirito.* usa Starburst Stream/,src:ZAV.kirult,n:"Starburst Stream"},{c:"bo",re:/Otsutsuki Boruto.* usa Karma Rasengan/,src:ZAV.boult,n:"Karma Rasengan"},{c:"lv",re:/Levi Ackerman.* usa Não está se divertindo/,src:ZAV.lvult,n:"Não está se divertindo!?"}];
+/* Vídeos de ultimate: personagem, linha do registro que dispara, vídeo e nome. Ultimate nova com vídeo: adicionar aqui. */const ULTV=[{c:"tr",re:/Trunks do Futuro SSJ.* usa Morra Freezaaaaa/,src:ZAV.trult,n:"Morra Freezaaaaa!!"},{c:"za",re:/Zamasu Fundido.* usa (Luz|Relâmpago) Absolut/,src:ZAV.ult,n:"Relâmpago Absoluto!!"},{c:"beast",re:/Gohan Beast.* usa Makankosappo Beast/,src:ZAV.bult,n:"Makankosappo Beast!!"},{c:"mv",re:/Mini Vegeta SSJ3.* usa Super Galick Gun/,src:ZAV.mvult,n:"Super Galick Gun!"},{c:"mg",re:/Mini Goku SSJ4.* usa Kaaa\.\.\.Meee/,src:ZAV.mgult,n:"Kaaa...Meee...Haaa...Meee..."},{c:"sas",re:/Sasuke Uchiha.* usa Susano Perfeito/,src:ZAV.sasult,n:"Susano Perfeito"},{c:"nar",re:/Naruto Uzumaki.* usa Kuramaaaaa/,src:ZAV.narult,n:"Kuramaaaaa!!!"},{c:"cl",re:/Cooler Forma Final.* usa Final Nova/,src:ZAV.clult,n:"Final Nova"},{c:"gbk",re:/Goku SSJ Blue Kaioken.* usa Eu ainda não terminei/,src:ZAV.gbkult,n:"Eu ainda não terminei!"},{c:"gd",re:/Goku SSJ Deus.* usa Esperança de um Amanhã/,src:ZAV.gdult,n:"Esperança de um Amanhã"},{c:"kir",re:/Kirito.* usa Starburst Stream/,src:ZAV.kirult,n:"Starburst Stream"},{c:"jw",re:/Jin Woo.* usa Mutilação/,src:ZAV.jwult,n:"Mutilação"},{c:"bo",re:/Otsutsuki Boruto.* usa Karma Rasengan/,src:ZAV.boult,n:"Karma Rasengan"},{c:"lv",re:/Levi Ackerman.* usa Não está se divertindo/,src:ZAV.lvult,n:"Não está se divertindo!?"}];
 function zaPre(){if(G.sim)return 0;const k=G.gid||"x";G.zaSeen=G.zaSeen||{};
  let V=null,best=-1;const L=G.log||[];for(const W of ULTV){const ix=[];L.forEach((l,j)=>{if(W.re.test(l.m||""))ix.push(j)});const n=ix.length,kk=k+":"+W.c;if(G.zaSeen[kk]==null)G.zaSeen[kk]=G.t>1?n:0;if(n<G.zaSeen[kk])G.zaSeen[kk]=n;if(n>G.zaSeen[kk]){const pos=ix[n-1-G.zaSeen[kk]];/* registro é do mais novo para o mais antigo: toca primeiro a ultimate usada antes */if(pos>best){best=pos;V=W}}}
  if(V){const kk=k+":"+V.c;G.zaSeen[kk]++;if(vidSkip(V.src))return zaPre();
@@ -6823,7 +6851,12 @@ if(HOVPC){const typing=()=>{const a=document.activeElement;return a&&(a.tagName=
 function hovRe(){if(!HVON||HVLK)return;if(document.body.contains(HVON))return;hovHide();const e=HVX>=0&&document.elementFromPoint(HVX,HVY),a=e&&e.closest&&e.closest("[data-hv]");if(a)hovShow(a)}
 /* ===== Painel da habilidade (PC) — desativado, substituído pela dica flutuante ===== */
 function g2Pre(){if(window._g2pv||vidSkip("g2"))return;try{const v=document.createElement("video");v.src=vdub(SUBV.pt);v._sv=dubGet();v.preload="auto";v.muted=true;v.playsInline=true;v.setAttribute("playsinline","");v.load();window._g2pv=v}catch(e){}}
-/* Anúncio de revive para personagens sem vídeo. Personagem novo que revive: adicionar aqui [código, chave do PANN] (o Gohan SSJ2 usa o vídeo ou o anúncio g2rv em g2Play). */const RVANN={tu:"turv"};function rvCheck(){if(G.sim||G.scr!="p")return;G.rvseen=G.rvseen||{};G.u.forEach((u,i)=>{const k=u.rvk=="div"?"divrv":RVANN[u.c];if(!k||!u.rv||!u.alive)return;const key=(G.gid||"")+":"+i+":"+u.rvt;if(G.rvseen[key])return;G.rvseen[key]=1;if(G.t-u.rvt>1)return;phaseAnn(k,1)})}function g2Check(){if(G.sim||G.scr!="p")return;if(G.u.some(u=>u.c=="g2"))g2Pre();G.g2seen=G.g2seen||{};G.u.forEach((u,i)=>{if(u.c!="g2"||!u.rv||!u.alive)return;const key=(G.gid||"")+":"+i+":"+u.rvt;if(G.g2seen[key])return;G.g2seen[key]=1;if(G.t-u.rvt>1)return;g2Play(i)})}
+/* Anúncio de revive para personagens sem vídeo. Personagem novo que revive: adicionar aqui [código, chave do PANN] (o Gohan SSJ2 usa o vídeo ou o anúncio g2rv em g2Play). */const RVANN={tu:"turv"};
+/* Jin Woo: "Erga-se!" quando um inimigo derrotado se levanta como sombra */
+function sbSom(){if(G.sim||G.scr!="p")return;const k=G.gid||"x";G.sbSeen=G.sbSeen||{};
+ const n=(G.log||[]).filter(l=>/^Monarca das Sombras: .+ se levantou como sombra/.test(l.m||"")).length;
+ if(G.sbSeen[k]==null)G.sbSeen[k]=G.t>1?n:0;
+ if(n>G.sbSeen[k]){G.sbSeen[k]=n;sfx("ergase")}else if(n<G.sbSeen[k])G.sbSeen[k]=n}function rvCheck(){if(G.sim||G.scr!="p")return;G.rvseen=G.rvseen||{};G.u.forEach((u,i)=>{const k=u.rvk=="div"?"divrv":RVANN[u.c];if(!k||!u.rv||!u.alive)return;const key=(G.gid||"")+":"+i+":"+u.rvt;if(G.rvseen[key])return;G.rvseen[key]=1;if(G.t-u.rvt>1)return;if(k=="turv"&&!vidSkip(ZAV.tuv)){const gid=G.gid;let n=0;const go=()=>{if(G.gid!==gid||G.scr!="p")return;if((G.g2v||document.getElementById("g2v"))&&++n<120)return void setTimeout(go,300);vidPlay(ZAV.tuv,"<b>O fruto do poder garantirá minha vitória!</b><span>"+shn("tu")+" revive com 75 de HP</span>")};go();return}phaseAnn(k,1)});try{sbSom()}catch(e){}}function g2Check(){if(G.sim||G.scr!="p")return;if(G.u.some(u=>u.c=="g2"))g2Pre();G.g2seen=G.g2seen||{};G.u.forEach((u,i)=>{if(u.c!="g2"||!u.rv||!u.alive)return;const key=(G.gid||"")+":"+i+":"+u.rvt;if(G.g2seen[key])return;G.g2seen[key]=1;if(G.t-u.rvt>1)return;g2Play(i)})}
 function g2Play(i){const old=document.getElementById("g2v");if(old)old.remove();if(vidSkip("g2")){G.g2m=1;phaseAnn("g2rv",1);const M=MUSA&&MUSA.g2;if(M){try{M.currentTime=0}catch(e){}}return}const a=ANI.get(i+":h");if(a){a.cur=0;a.hold=1;const el=document.querySelector('#b .bar[data-k="'+i+':h"]');if(el){el.querySelector("i").style.width="0%";el.querySelector("span").innerHTML="<b class='brl'>"+a.n+" </b>0/"+a.mx;el.classList.add("z")}}G.g2v=1;G.holdT=Math.max(G.holdT||0,Date.now()+19000);
  const ov=mk("div","");ov.id="g2v";const v=window._g2pv&&window._g2pv._sv===dubGet()?window._g2pv:document.createElement("video");window._g2pv=null;if(!v.src)v.src=vdub(SUBV.pt);v.muted=false;try{v.currentTime=0}catch(e){}v.playsInline=true;v.setAttribute("playsinline","");v.preload="auto";v.volume=vol("v");
  const sk=mk("button","g2sk","Pular ▸▸"),sp=vspdBtn("g2sp"),cap=mk("div","g2cap","<b>Eu prometi que salvaria a Terra!</b><span>"+shn("g2")+" revive com o HP completo</span>");vspdApply(v);const fr=mk("div","g2fr");fr.append(v,sp,sk);ov.append(fr,cap);document.body.append(ov);
@@ -6894,7 +6927,7 @@ const jwInvTip=n=>"<b>"+n+"</b><small>Invocação ativa · Jin Woo</small><p>"+(
 function pbadge(u){if(u.c=="jw"&&!u.sb){const cd=(G.sbcd||[0,0])[u.s]||0,I=jwInv(u);
   return{c:cd?"":"up",t:"Sombra "+(cd?cd:"✓"),
    h:(cd?"Monarca das Sombras em recarga: faltam "+cd+" turno"+(cd>1?"s":"")+" da sua equipe para o próximo inimigo derrotado se levantar como sombra.":"Monarca das Sombras pronto: o próximo inimigo derrotado se levanta como sombra por "+SBT+" turnos.")+(I.length?" Invocações de pé: "+I.map(x=>x[1]).join(", ")+".":" Nenhuma invocação em campo.")}}
- if(u.c=="bo")return (u.km||0)?{c:"up",t:"\u0ca0"+u.km,h:"Karma: "+u.km+" de 3 acúmulos · +"+(10*u.km)+"% de REDUÇÃO DE DANO para o time"}:null;if(u.c=="cl")return u.ar?{c:"up",t:"🛡"+u.ar,h:"Eu sou o imperador do universo!: "+u.ar+" de ARMADURA permanente acumulada. Ao chegar a 30, é dividida entre os aliados no início do turno."}:null;if(u.c=="bj"){const g=u.bjp!=null?G.u[u.bjp]:null;return g&&g.alive?{c:"up",t:"Escudo",h:"Morra por mim!: "+C[g.c].n+" recebe as habilidades inimigas de alvo único no lugar de Boujack."}:null}if(u.c=="g2")return u.gx?{c:"up",t:"▲+"+u.gx,h:"Golpe Explosivo! causa +"+u.gx+" de dano (acumulado por Chega!, Ataque do dragão! e Kamehameha!)."+(u.rv?" Já reviveu: imune a debuffs.":"")}:null;if(u.c=="sas")return{c:u.fm?"up":"",t:u.fm?"Susano":"Rinnegan",h:u.fm?"Susano Perfeito ativo: as habilidades do Susano estão em campo.":"Rinnegan: as habilidades INVISÍVEIS do time inimigo ficam desabilitadas."};if(u.c=="kir"){const esp=u.swc||0;return{c:u.dw?"up":"",t:(u.fm?"Dark Repulser":"Elucidator")+((u.crc||0)?" ·"+u.crc+"%":""),h:"Empunhadura Dupla: cada troca de espada dá +20% de chance de CRÍTICO (agora "+(u.crc||0)+"%)."+(esp?" "+esp+" espada(s) usada(s): Starburst Stream está com +"+(10*esp)+" de DANO.":"")}}if(u.c=="nar"){const z=Math.max(1,6-(u.nz||0));return{c:(u.cln||u.fm)?"up":"",t:(u.fm?"Kurama":"Kurama "+z)+(u.cln?" ⟐":"")+(u.sage?" ✦":""),h:(u.fm?"Modo Kurama ativo: o kit trocou pelas habilidades da raposa.":"Vínculo com Kurama: “KURAMAAAAA!!!” custa "+z+" de Essência agora.")+(u.cln?" Clones das Sombras ligado: −"+(uq(u,"uq_nar_1")?0:5)+" de DANO e todas as habilidades atingem todos os inimigos.":"")+(u.sage?" Modo Sábio: −1 de Energia em todas as habilidades.":"")}}if(u.c=="sak"){const n=sakSt(u);return{c:u.bya?"up":"",t:"Byakugou "+n+(u.bya?" ✦":""),h:"Byakugou: "+n+" de 4 acúmulos."+(u.bya?" Ligado: a próxima habilidade gasta 1 acúmulo e fica mais forte.":" Desligado: toque na passiva para ligar.")}}if(u.c=="gbk")return u.kfree?{c:"up",t:"Grátis",h:"Kaioken x10!: a próxima habilidade não consome HP (um inimigo com Sangramento foi derrotado)."}:null;if(u.c=="beast")return u.bn?{c:"up",t:"▲+"+u.bn,h:"+"+u.bn+" de dano em todas as habilidades, acumulado pela passiva (+10 a cada início de turno sem debuffs)."}:null;if(u.c=="ab"){const n=u.gk+u.gz;return{c:"up",t:"Energia "+u.gk+" · Z "+u.gz,h:"Já gerou "+u.gk+" de Energia e "+u.gz+" de Essência pela Energia Ilimitada. A Violência Extrema ganha +"+Math.min(30,15*n)+" de dano por isso (máx. +30)."}}if(u.c=="mv"){const t=G.tc[u.s];return t<=4?{c:"up",t:"▲"+(5-t),h:"Bônus de +15 de dano ativo. Restam "+(5-t)+" turno(s) antes de começar a perder dano."}:{c:"dn",t:"▼"+Math.min(20,10*(t-4)),h:"Perdendo "+Math.min(20,10*(t-4))+" de dano em todas as habilidades (-10 a mais a cada turno aliado, até o limite de -20)."}}if(u.c=="black"){const v=10*Math.floor((u.mx-u.hp)/30);if(v)return{c:"up",t:"▲+"+v,h:"+"+v+" de dano por "+(u.mx-u.hp)+" de HP perdido."}}if(u.bn)return{c:u.bn>0?"up":"dn",t:(u.bn>0?"▲+":"▼")+u.bn,h:(u.bn>0?"+":"")+u.bn+" de dano em todas as habilidades, acumulado pela passiva."};return null}
+ if(u.c=="bo")return (u.km||0)?{c:"up",t:"\u0ca0"+u.km,h:"Karma: "+u.km+" de 3 acúmulos · +"+(10*u.km)+"% de REDUÇÃO DE DANO para o time"}:null;if(u.c=="cl")return u.ar?{c:"up",t:"🛡"+u.ar,h:"Eu sou o imperador do universo!: "+u.ar+" de ARMADURA permanente acumulada. Ao chegar a 30, é dividida entre os aliados no início do turno."}:null;if(u.c=="bj"){const g=u.bjp!=null?G.u[u.bjp]:null;return g&&g.alive?{c:"up",t:"Escudo",h:"Morra por mim!: "+C[g.c].n+" recebe as habilidades inimigas de alvo único no lugar de Boujack."}:null}if(u.c=="g2")return u.gx?{c:"up",t:"▲+"+u.gx,h:"Golpe Explosivo! causa +"+u.gx+" de dano (acumulado por Chega!, Ataque do dragão! e Kamehameha!)."+(u.rv?" Já reviveu: imune a debuffs.":"")}:null;if(u.c=="sas")return{c:u.fm?"up":"",t:u.fm?"Susano":"Rinnegan",h:u.fm?"Susano Perfeito ativo: as habilidades do Susano estão em campo.":"Rinnegan: as habilidades INVISÍVEIS do time inimigo ficam desabilitadas."};if(u.c=="kir"){const esp=u.swc||0;return{c:u.dw?"up":"",t:(u.fm?"Dark Repulser":"Elucidator")+((u.crc||0)?" ·"+u.crc+"%":""),h:"Empunhadura Dupla: cada troca de espada dá +20% de chance de CRÍTICO (agora "+(u.crc||0)+"%)."+(esp?" "+esp+" espada(s) usada(s): Starburst Stream está com +"+(10*esp)+" de DANO.":"")}}if(u.c=="nar"){const z=Math.max(1,6-(u.nz||0));return{c:(u.cln||u.fm)?"up":"",t:(u.fm?"Kurama":"Kurama "+z)+(u.cln?" ⟐":"")+(u.sage?" ✦":""),h:(u.fm?"Modo Kurama ativo: o kit trocou pelas habilidades da raposa.":"Vínculo com Kurama: “KURAMAAAAA!!!” custa "+z+" de Essência agora.")+(u.cln?" Clones das Sombras ligado: "+(uq(u,"uq_nar_1")?"":"−5 de DANO e ")+"todas as habilidades atingem todos os inimigos.":"")+(u.sage?" Modo Sábio: −1 de Energia em todas as habilidades.":"")}}if(u.c=="sak"){const n=sakSt(u);return{c:u.bya?"up":"",t:"Byakugou "+n+(u.bya?" ✦":""),h:"Byakugou: "+n+" de 4 acúmulos."+(u.bya?" Ligado: a próxima habilidade gasta 1 acúmulo e fica mais forte.":" Desligado: toque na passiva para ligar.")}}if(u.c=="gbk")return u.kfree?{c:"up",t:"Grátis",h:"Kaioken x10!: a próxima habilidade não consome HP (um inimigo com Sangramento foi derrotado)."}:null;if(u.c=="beast")return u.bn?{c:"up",t:"▲+"+u.bn,h:"+"+u.bn+" de dano em todas as habilidades, acumulado pela passiva (+10 a cada início de turno sem debuffs)."}:null;if(u.c=="ab"){const n=u.gk+u.gz;return{c:"up",t:"Energia "+u.gk+" · Z "+u.gz,h:"Já gerou "+u.gk+" de Energia e "+u.gz+" de Essência pela Energia Ilimitada. A Violência Extrema ganha +"+Math.min(30,15*n)+" de dano por isso (máx. +30)."}}if(u.c=="mv"){const t=G.tc[u.s];return t<=4?{c:"up",t:"▲"+(5-t),h:"Bônus de +15 de dano ativo. Restam "+(5-t)+" turno(s) antes de começar a perder dano."}:{c:"dn",t:"▼"+Math.min(20,10*(t-4)),h:"Perdendo "+Math.min(20,10*(t-4))+" de dano em todas as habilidades (-10 a mais a cada turno aliado, até o limite de -20)."}}if(u.c=="black"){const v=10*Math.floor((u.mx-u.hp)/30);if(v)return{c:"up",t:"▲+"+v,h:"+"+v+" de dano por "+(u.mx-u.hp)+" de HP perdido."}}if(u.bn)return{c:u.bn>0?"up":"dn",t:(u.bn>0?"▲+":"▼")+u.bn,h:(u.bn>0?"+":"")+u.bn+" de dano em todas as habilidades, acumulado pela passiva."};return null}
 const BF=["LIM","INV","REFL","IMUN","INVEST","RAIVA","ANUL","ARM","AURA","IMORT","HER"],np=u=>has(u,"PARAL"),pr=(u,a)=>G.rn?(u.nx||0):a?G.q.slice(0,G.q.indexOf(a)).filter(b=>b.u==u).length:G.q.filter(b=>b.u==u).length,ck=(u,k,a)=>{if((u.free&&pr(u,a)==0)||(u.c=="mg"&&!np(u)&&pr(u,a)>=1))return 0;if(!(k.ki||0))return 0;/* habilidade sem custo de Energia nunca passa a custar por campo, efeito ou debuff */
  const b=(k.ki||0)+(has(u,"SOBR")&&!k.zk?1:0),r=(G.lead[u.s]=="mg"?1:0)+(u.sed&&pr(u,a)==0?1:0)+kiUp(u,k)+(u.sage?1:0)+(u.trk?1:0);return fkC(b?Math.max(1,b-r):0,k.zk?0:fk(u))},cz=(u,k,a)=>{if(u.free&&pr(u,a)==0)return 0;if(k.vz)return (a&&a.z)||1;const pu=u.cp&&capUlt(k)?cpn(u,"ut4"):0;if(k.kz){const v=k.kz(u,a);if(!v)return 0;/* sem custo de Essencia continua sem custo */return fkC(Math.max(1,v-pu),fk(u))}if(!k.zk)return 0;return fkC(Math.max(1,k.zk-(k.zr?k.zr(u):0)-pu),fk(u))};
 DB.push("BCURA","FRAG","ANTIB","SOBR","DESTR","JSELO");
@@ -7243,6 +7276,16 @@ function askSur(yes,msg){closeSur();closeOrder();const ov=document.createElement
  b.append(mk("img","surimg"),mk("div","surt","Tem certeza que deseja desistir?"),mk("p","surp",rkEmJogo()?"A partida termina, a vitória vai para o oponente e você perde pontos na ranqueada.":(typeof msg=="function"?msg():msg||(G.online||G.bot?"A partida termina e a vitória vai para o oponente.":"A partida termina e a vitória vai para o Jogador "+(2-G.cur)+"."))));
  b.querySelector("img").src=IMG.ui_goku;b.querySelector("img").alt="";const bt=mk("div","qobt"),y=mk("button","qok","Sim"),n=mk("button","qcn","Cancelar");y.onclick=()=>{closeSur();(typeof yes=="function"?yes:doSurrender)()};n.onclick=closeSur;bt.append(y,n);b.append(bt);ov.append(b);
  ov.onclick=e=>{if(e.target===ov)closeSur()};document.body.append(ov);n.focus()}
+/* mesma caixa do "desistir", mas sem arte e com os textos livres: serve para
+   qualquer confirmacao (sair do jogo, por exemplo) */
+function askConf(titulo,texto,rotuloSim,yes,no){closeSur();try{closeOrder()}catch(e){}
+ const ov=document.createElement("div");ov.id="surc";const b=mk("div","surbox nim");
+ b.append(mk("div","surt",titulo),mk("p","surp",texto));
+ const bt=mk("div","qobt"),y=mk("button","qok",rotuloSim||"Sim"),n=mk("button","qcn","Cancelar");
+ y.onclick=()=>{closeSur();if(typeof yes=="function")yes()};
+ n.onclick=()=>{closeSur();if(typeof no=="function")no()};
+ bt.append(y,n);b.append(bt);ov.append(b);
+ ov.onclick=e=>{if(e.target===ov)n.onclick()};document.body.append(ov);n.focus();return ov}
 const SKORDN={p:"Padrão do personagem",e:"Custo de Energia",r:"Tempo de recarga",d:"Maior dano",b:"Debuff primeiro",s:"Suporte primeiro"};
 /* le o texto da habilidade: quanto de dano causa, se aplica debuff e se dá suporte */
 const SKCL=new Map();
@@ -7326,13 +7369,14 @@ AU.g2="media/b64/eb8e1038ebfd0a05.mp3";Object.assign(AU,{bo:"media/82bded0c6b373
  jw:"media/3b9332734768f9f94b2391afecedff35.webm",
  lv:"media/dbf5a7b1c771e6c74d00d62d8d750a1a.webm",
  cd10:"media/2b3d495a1a79f020f39f6d7aeb311f4b.webm",
+ ergase:"media/2eca02ad9a0805f0eb83012d35eec86f.webm",
  achou:"media/9d3da880faeb5b0b73317c361c1f59cd.webm"});
 const AUK={ab:["a18"]};let IN=null;
 const VOL=(()=>{let v={g:45,v:80,m:35,e:55};try{const s=JSON.parse(localStorage.getItem("za_vol")||"null");if(s&&localStorage.getItem("za_vol2")){v=Object.assign(v,s)}else if(s){const o={g:80,v:100,m:60,e:80};Object.keys(v).forEach(k=>{if(s[k]!=null&&s[k]!==o[k])v[k]=s[k]})}localStorage.setItem("za_vol2","1")}catch(e){}return v})();
 const vol=k=>Math.max(0,Math.min(1,VOL.g/100*VOL[k]/100));
 const SFXM=["media/b64/b6196ebeb5ec2b6f.mp3","media/b64/c581848dcfc84d80.mp3","media/b64/b6df8bbbd5d20e4f.mp3","media/b64/0ccd940d23cd5995.mp3","media/b64/020f07e7448833cb.mp3","media/b64/5cceb76fdf3e1f96.mp3","media/b64/9e7b35f3f1ef9f36.mp3","media/b64/c8f6b1d5be24ac45.mp3","media/b64/dadbf928767315f0.mp3","media/b64/0f634a668ad28bc4.mp3","media/b64/d24a13a0df0739b9.mp3","media/b64/07e97358c7674d93.mp3","media/b64/5dd0dc7a236eedc4.mp3","media/b64/f4b3953d4d3d50a3.mp3"];let ACX=null,BUS=null;const SBUF={},SLAST={};let SFXN=0;
 function acx(){try{if(!ACX){const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;ACX=new A();const cmp=ACX.createDynamicsCompressor();cmp.threshold.value=-18;cmp.knee.value=12;cmp.ratio.value=4;cmp.attack.value=.004;cmp.release.value=.25;BUS=ACX.createGain();BUS.gain.value=vol("e");BUS.connect(cmp);cmp.connect(ACX.destination);sload()}if(ACX.state=="suspended")ACX.resume();BUS.gain.setTargetAtTime(vol("e"),ACX.currentTime,.05);return ACX}catch(e){return null}}
-const SSRC=()=>Object.assign({ban:AU.ban,cd10:AU.cd10,achou:AU.achou,rng:"media/b64/5354d405697dabeb.mp3",rngc:"media/b64/01520d6a8d8756cc.mp3"},Object.fromEntries(SFXM.map((s,i)=>["m"+i,s])));
+const SSRC=()=>Object.assign({ban:AU.ban,cd10:AU.cd10,achou:AU.achou,ergase:AU.ergase,rng:"media/b64/5354d405697dabeb.mp3",rngc:"media/b64/01520d6a8d8756cc.mp3"},Object.fromEntries(SFXM.map((s,i)=>["m"+i,s])));
 /* O som pode chegar de duas formas: embutido na página (data:...;base64) ou como
    arquivo do site (media/...). O build tira as mídias grandes para fora, então
    ler só base64 deixava o jogo mudo. Aqui os dois caminhos viram bytes. */
@@ -7369,6 +7413,7 @@ function sfx(kind,delay){if(vol("e")<=0)return;const c=acx();if(!c)return;const 
  else if(kind=="ban"){splay("ban",t,1.1)}
  else if(kind=="cd10"){splay("cd10",t,1)}
  else if(kind=="achou"){splay("achou",t,1)}
+ else if(kind=="ergase"){splay("ergase",t,1)}
  else if(kind=="heal"){[660,880,1320].forEach((f,i)=>osc("sine",f,f*1.01,.35,.22,t+i*.07))}
  else if(kind=="sel"){osc("triangle",880,1200,.06,.25,t)}
  else if(kind=="ok"){osc("triangle",660,660,.08,.25,t);osc("triangle",990,990,.12,.25,t+.07)}}
@@ -7808,7 +7853,7 @@ function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=ZOFF
     att(e,()=>"<b>"+k.n+"</b><small>Habilidade de "+shn(r.u.c)+" · "+(r.fx?"até o alvo ou "+shn(r.u.c)+" cair":r.n+" vez(es) restante(s)")+"</small>"+(r.kg?"<p class='skgw'>▲ O dano já aumentou <b>+"+r.kg+"</b>: de "+(r.v||15)+" para <b>"+((r.v||15)+r.kg)+"</b>.</p>":"")+"<p>Causa <b>"+((r.v||15)+(r.kg||0))+"</b> de "+({e:"dano energizado",p:"dano perfurante",d:"dano direto",f:"dano fixo",n:"dano"}[r.ty||"e"])+" no fim de cada turno de "+shn(r.u.c)+".</p>",tc);cs.append(e)});
    if(0){const e=mk("div","si","💢<em>+"+u.bn+"</em>");att(e,()=>"<b>Bônus de dano</b><small>Permanente</small><p>Aumenta em "+u.bn+" o dano de todas as habilidades.</p>",tc);cs.append(e)}
    if(u.free&&u.alive&&!fogHid(u.s)){const e=mk("div","si sk2","<img src='"+IMG.black_f+"' alt=''><em>0</em>");att(e,()=>"<b>Líder Goku Black: próxima habilidade grátis</b><small>Até usar uma habilidade</small><p>Um personagem morreu em batalha: a próxima habilidade deste personagem não custa Energia nem Essência.</p>",tc);cs.append(e)}
-   if(u.c=="nar"&&u.cln&&u.alive&&!fogHid(u.s)){const e=mk("div","si sk2","<img src='"+IMG.nar_0+"' alt=''><em>∞</em>");att(e,()=>"<b>Clones das Sombras</b><small>Buff · ligada até ser desligada</small><p>As habilidades de Naruto causam −"+(uq(u,"uq_nar_1")?5:10)+" de DANO e passam a atingir <b>todos os inimigos</b>. Pode ser desligada a qualquer momento.</p>",tc);cs.append(e)}
+   if(u.c=="nar"&&u.cln&&u.alive&&!fogHid(u.s)){const e=mk("div","si sk2","<img src='"+IMG.nar_0+"' alt=''><em>∞</em>");att(e,()=>"<b>Clones das Sombras</b><small>Buff · ligada até ser desligada</small><p>As habilidades de Naruto "+(uq(u,"uq_nar_1")?"passam a atingir <b>todos os inimigos</b>, sem perder DANO.":"causam −5 de DANO e passam a atingir <b>todos os inimigos</b>.")+" Pode ser desligada a qualquer momento.</p>",tc);cs.append(e)}
    if(u.c=="tu"&&u.alive&&(!u.rv||u.rvt===G.t)){const e=mk("div","si rv im","<img src='"+IMG.st_REVV+"' alt=''><em>∞</em>");att(e,()=>"<b>Reviver</b><small>"+(u.rv?"Ativo até o fim deste turno":"Buff · permanente")+"</small><p>"+(u.rv?"Já reviveu: ignora o dano e os debuffs restantes deste turno. ":"")+"Ao ser derrotado, volta limpo à batalha com metade do HP máximo (uma vez), sem sofrer dano nem debuffs pelo resto do mesmo turno. Os efeitos do Fruto da Árvore do Poder passam a valer o dobro.</p>",tc);cs.append(e)}if(u.c=="g2"&&u.alive&&(!u.rv||u.rvt===G.t)){const e=mk("div","si rv im","<img src='"+IMG.st_REVV+"' alt=''><em>∞</em>");att(e,()=>"<b>Reviver</b><small>"+(u.rv?"Ativo até o fim deste turno":"Buff · permanente · não pode ser removido")+"</small><p>"+(u.rv?"Já reviveu: ignora o dano restante deste turno. ":"")+"Ao ser derrotado, volta à batalha com o HP completo (uma vez) e fica imune a debuffs pelo resto da batalha.</p>",tc);cs.append(e)}{const n=cs.children.length;if(n>4)cs.classList.add(n>5?"lots":"many");const bz=k.querySelector(".bars");if(bz&&document.body.classList.contains("bt")&&innerWidth>=900&&!document.body.classList.contains("ph")&&!document.body.classList.contains("php"))bz.prepend(cs);else k.append(cs)}
    const sk=mk("div","sk"+(HID?" fog":"")),pwr=mk("div","w pv"),pw=mk("img","ic p"),pb=HID?null:pbadge(u);pw.src=IMG[u.c+"_p"];pwr.append(pw);if(pb)pwr.append(mk("span","pb "+pb.c,pb.t));att(pwr,()=>pTip(ch.ps.n,ch.ps.t,"Passiva")+pstat(u));if(!HID)hovTip(pwr,()=>pTip(ch.ps.n,ch.ps.t,"Passiva")+pstat(u));if(u.c=="bj"&&u.alive&&!HID&&u.s==G.cur&&!(G.bot&&u.s==1)&&(!G.online||G.me===u.s)&&G.win==null){pwr.classList.add("bjc");pwr.onclick=ev=>{ev.stopPropagation();bjPick(u)}}if(u.c=="sak"&&u.alive&&!HID&&u.s==G.cur&&!(G.bot&&u.s==1)&&(!G.online||G.me===u.s)&&G.win==null){pwr.classList.add("bjc");pwr.onclick=ev=>{ev.stopPropagation();if(!u.bya&&sakSt(u)<1){log("Sakura está sem acúmulos de Byakugou");render();return}u.bya=u.bya?0:1;render()}}sk.append(pwr);
    if(HID&&fogRes(u.s)){sk.innerHTML="";const nb=ch.sk.filter(kk=>kk.fm==null||kk.fm===u.fm).length;sk.append(mk("div","w pv fogs"));for(let n=0;n<nb;n++)sk.append(mk("div","w fogs"));sk.onclick=()=>eInfo(u);sk.title="Ver habilidades";}
@@ -9695,12 +9740,12 @@ function showInv(){
   /* cartas das habilidades */
   const g=mk("div","ivskg");
   C[INVC].sk.forEach((k,i)=>{
-   let tx=k.t,sum=0,src=[];
+   let tx=kTxt(k,pu),sum=0,src=[];
    try{
-    const m=(/dano/i.test(k.t)?dm0(pu,tgu(k,pu)=="E"||k.tg=="2"?k:0).concat(k.dm?k.dm(pu):[]).filter(x=>x.v):[]);
+    const m=(temDano(k.t)?dm0(pu,tgu(k,pu)=="E"||k.tg=="2"?k:0).concat(k.dm?k.dm(pu):[]).filter(x=>x.v):[]);
     sum=m.reduce((a,x)=>a+x.v,0);src=m.map(x=>x.src);
     const hi=v=>"<b class='ivdn'>"+Math.max(0,Math.floor(v))+"</b>",fb=dfxB(pu);
-    if(sum||fb)tx=k.t.replace(/(^|[^+\d])(\d+) de (DANO|dano)(?! ou (?:mais|menos))/g,(a,pfx,n,w,off,str)=>{const tt=sum+(dfxAt(str,off,a.length)?fb:0);return tt?pfx+hi(+n+tt)+" de "+w:a})
+    if(sum||fb)tx=kTxt(k,pu).replace(/(^|[^+\-−\d])(\d+) de (DANO|dano)(?! ou (?:mais|menos))/g,(a,pfx,n,w,off,str)=>{const tt=sum+(dfxAt(str,off,a.length)?fb:0);return tt?pfx+hi(+n+tt)+" de "+w:a})
                  .replace(/ e (\d+) em todos os outros/g,(a,n)=>sum?" e "+hi(+n+sum)+" em todos os outros":a);
    }catch(err){}
    let cs="";
@@ -9829,7 +9874,7 @@ const CAPREC={
  cl:{s:{of5:6,df1:2,df5:2},ut:"ut3",sp:"ta3",un:"uq_cl_3",w:"Dano fixo e armadura: a Final Nova bate em todo mundo todo turno."},
  sak:{s:{df5:4,df3:3,of1:3},ut:"ut1",sp:"su2",un:"uq_sak_1",w:"Cura: as habilidades dela que não causam dano disparam Mãos de Cura."},
  sas:{s:{of1:5,of2:3,df3:2},ut:"ut1",sp:"ca1",un:"uq_sas_3",w:"Dano alto em um alvo: com crítico garantido os números dele explodem."},
- nar:{s:{of1:6,of2:4},ut:"ut1",sp:"de3",un:"uq_nar_1",w:"Dano fixo somado: compensa os −10 dos Clones das Sombras."},
+ nar:{s:{of1:6,of2:4},ut:"ut1",sp:"de3",un:"uq_nar_1",w:"Dano fixo somado: compensa os −5 dos Clones das Sombras."},
  jw:{s:{of1:5,of2:3,df3:2},ut:"ut1",sp:"bl1",un:"uq_jw_1",w:"As invocações são de uso único e custam o turno inteiro: o que decide a partida dele é sair dessa fila rápido. A Reserva Profunda paga uma invocação já no primeiro turno, e a cápsula única entrega o Igris de graça."},
  bo:{s:{df5:4,df1:3,df3:3},ut:"ut1",sp:"ta1",un:"uq_bo_3",w:"Ele protege o time com os acúmulos de KARMA, e cada habilidade usada é um acúmulo: recarga curta vale mais que dano. O Elo de Dor dá o HP que ele gasta pagando as habilidades, e a cápsula única impede que a ultimate derrube a REDUÇÃO DE DANO de todo mundo."},
  lv:{s:{of1:5,of2:3,df3:2},ut:"ut1",sp:"ca1",un:"uq_lv_1",w:"Dano e recarga: tr\u00eas habilidades dele j\u00e1 passam pelas defesas, ent\u00e3o o que falta \u00e9 bater r\u00e1pido o bastante para come\u00e7ar a somar os abates."},
@@ -11749,7 +11794,7 @@ function rkRegistra(m,win,r,st,ficha,fc){
   promo:r.promo,demo:r.demo,opp:m.oppNome,oppRank:m.oppRank,oppDiv:m.oppDiv,oppPc:m.oppPc,
   bot:m.bot?1:0,at:Date.now(),sn:ficha});
  try{rkPublica(st)}catch(e){}
- try{ls("za_room",null)}catch(e){}
+ try{roomEsquece()}catch(e){}
  if(!G.sim)setTimeout(()=>{try{rkPontosShow(G.rkLast)}catch(e){}},fc?320:1700)}
 
 /* ===== promoção de rank: fundo escuro, a animação do ícone e o novo posto ===== */
@@ -12518,9 +12563,13 @@ async function oInit(){if(O.st!="off")return;O.st="loading";oRender();
  const cl=window.claude&&typeof window.claude.use=="function"?window.claude:null;
  const [db,user]=cl?await Promise.all([cl.use("db").catch(()=>null),cl.use("user").catch(()=>null)]):[null,null];
  if(!db){O.st="nodb";return oRender()}
- O.db=db;O.user=user;let id=user?await user.id():null;
+ O.db=db;O.user=user;let id=null;
+ /* se o id da conta falha, o jogo NAO pode parar em "loading": sem isto o
+    vigia da reconexao nunca ligava e o jogador ficava preso no menu */
+ try{id=user?await user.id():null}catch(e){id=null}
  if(!id){id=ls("za_pid");if(!id){id="local-"+Math.random().toString(36).slice(2,12);ls("za_pid",id)}}
- O.pid=id;O.st="ready";try{mxDesce()}catch(e){}try{rkModoLer()}catch(e){}try{oVolta()}catch(e){}try{oVoltaVigia()}catch(e){}if(!O.tick)O.tick=setInterval(()=>{try{oTick()}catch(e){}},1000);if(!O.poll)O.poll=setInterval(oPoll,1500);oRender()}
+ O.pid=id;O.st="ready";try{mxDesce()}catch(e){}try{rkModoLer()}catch(e){}try{oVolta()}catch(e){}try{oVoltaVigia()}catch(e){}if(!O.tick)O.tick=setInterval(()=>{try{oTick()}catch(e){}},1000);if(!O.poll)O.poll=setInterval(oPoll,1500);
+ if(!O.txt)O.txt=setInterval(()=>{try{txTick()}catch(e){}},2000);oRender()}
 function showOnline(){dClear();G.scr="o";if(G.mode!="o")G.botPrev=G.bot;G.mode="o";oInit();oRender()}
 function oAfterWrite(){O.busy=0;O.last=0;oPoll()}
 async function oPoll(){const esp=(typeof D!="undefined"&&D&&D.spec)||O.seat==null;/* quem assiste busca o estado com mais frequência */
@@ -12535,31 +12584,161 @@ async function oVolta(){try{
  if(!cod||O.code||!O.db||!O.pid||O.voltando)return;
  if(G.win!=null&&G.scr!="d"&&G.scr!="p")return;
  const sn=await O.db.doc("rooms/"+cod).get();
- if(!sn||!sn.exists){ls("za_room",null);return}
- const d=sn.data()||{},meu=(d.p0===O.pid)?0:(d.p1===O.pid)?1:null;
- if(meu==null||(d.ph!="draft"&&d.ph!="battle")){if(d.ph=="lobby"&&!d.rk)ls("za_room",null);return}
+ if(!sn||!sn.exists){roomEsquece();return}
+ const d=sn.data()||{};let meu=(d.p0===O.pid)?0:(d.p1===O.pid)?1:null;
+ if(d.ph!="draft"&&d.ph!="battle"){if(d.ph=="lobby"&&!d.rk)roomEsquece();return}
+ if(txAcabou(d)){roomEsquece();return}
+ /* O id da conta pode trocar entre uma carga e outra (entrou ou saiu da conta,
+    perdeu o cache). Quando isso acontece o assento ainda e o mesmo jogador:
+    o codigo da sala e o assento ficaram guardados aqui no aparelho, entao ele
+    retoma o lugar em vez de ficar de fora da propria partida. */
+ if(meu==null){const sv=ls("za_room_seat");
+  if(sv=="0"||sv=="1"){const q=+sv,dono=d["p"+q];
+   if(!dono||dono===O.pid||d.p0===dono&&d.p1===dono){meu=q}
+   else{try{await O.db.doc("rooms/"+cod).update({["p"+q]:O.pid});meu=q}catch(e){}}}}
+ if(meu==null)return;
  try{zToast("Reconectando à sua partida…")}catch(e){}
- O.voltando=1;try{dClear();G.mode="o";O.rkSala=0;oSub(cod)}finally{setTimeout(()=>{O.voltando=0},4000)}
+ O.voltando=1;try{dClear();G.mode="o";O.rkSala=0;ss("za_seat_"+cod,String(meu));oSub(cod)}finally{setTimeout(()=>{O.voltando=0},4000)}
+ /* se em 9 segundos a partida nao abriu, a barra volta a aparecer com o botao */
+ setTimeout(()=>{try{if(G.scr!="p"&&G.scr!="d")reconOlha()}catch(e){}},9000);
 }catch(e){O.voltando=0}}
+/* apaga a partida guardada: um lugar so, para nunca sobrar meia informacao */
+/* a partida guardada ja terminou: nao ha para onde voltar */
+function txAcabou(d){try{return !!(d&&d.st&&/"win":\s*[01]\b/.test(d.st))}catch(e){return 0}}
+function roomEsquece(){try{ls("za_room",null);ls("za_room_seat",null)}catch(e){}try{reconBarra(0)}catch(e){}}
+/* o jogador pediu para voltar: desliga o que estiver pendurado e tenta de novo */
+function oVoltaForce(){try{
+ reconBarra(0);
+ if(O.unsub){try{O.unsub()}catch(e){}}
+ O.unsub=null;O.ref=null;O.d=null;O.code="";O.seat=null;O.voltando=0;O.left=0;O.err="";
+ if(O.st!="ready"){oInit();return}
+ oVolta();
+}catch(e){}}
+/* Barra "voltar para a partida": aparece fora da partida sempre que existe uma
+   sala guardada que ainda esta no draft ou na batalha. E a saida de quem a
+   reconexao automatica nao alcancou - navegador que bloqueia, aba restaurada
+   sem rede, id da conta que trocou. */
+function reconBarra(liga,txt){let b=document.getElementById("rcbar");
+ if(!liga){if(b)b.remove();return}
+ if(!b){b=mk("div","");b.id="rcbar";
+  const t=mk("span","",txt||"Partida em andamento");
+  const v=mk("button","","Voltar para a partida"),x=mk("button","rcx","✕");
+  x.title="Dispensar";x.onclick=()=>{RCOFF=1;reconBarra(0)};
+  v.onclick=()=>{reconBarra(0);oVoltaForce()};
+  b.append(t,v,x);document.body.append(b)}
+ else if(txt)b.querySelector("span").textContent=txt;}
+let RCOFF=0,RCVER=0;
+async function reconOlha(){try{
+ if(RCOFF)return reconBarra(0);
+ const cod=ls("za_room");
+ if(!cod||!O.db||!O.pid){return reconBarra(0)}
+ if(G.scr=="p"||G.scr=="d"){return reconBarra(0)}
+ if(Date.now()-RCVER<5000)return;RCVER=Date.now();
+ const sn=await O.db.doc("rooms/"+cod).get();
+ if(!sn||!sn.exists){roomEsquece();return}
+ const d=sn.data()||{};
+ if(d.ph!="draft"&&d.ph!="battle"){if(d.ph=="lobby"&&!d.rk)roomEsquece();else reconBarra(0);return}
+ if(txAcabou(d)){roomEsquece();return}
+ const sv=ls("za_room_seat"),meu=(d.p0===O.pid)?0:(d.p1===O.pid)?1:(sv=="0"||sv=="1"?+sv:null);
+ if(meu==null){roomEsquece();return}
+ reconBarra(1,d.ph=="draft"?"Draft em andamento":"Partida em andamento");
+}catch(e){}}
 /* Fica de olho: enquanto houver uma partida guardada e nenhuma sala ligada,
    tenta voltar sozinho. Cobre o draft, a apresentacao dos times e a batalha. */
 function oVoltaVigia(){
  if(O.vigia)return;
  O.vigia=setInterval(()=>{try{
-  if(!O.db||!O.pid||O.code||O.voltando)return;
-  if(!ls("za_room"))return;
-  oVolta();
+  if(!O.db||!O.pid)return;
+  if(!ls("za_room")){reconBarra(0);return}
+  if(G.scr=="p"||G.scr=="d"){reconBarra(0);return}
+  if(!O.code&&!O.voltando)oVolta();
+  reconOlha();
  }catch(e){}},6000);
  ["online","focus"].forEach(ev=>{try{addEventListener(ev,()=>{
   try{if(!O.code&&ls("za_room"))oVolta()}catch(e){}},{passive:true})}catch(e){}});
  try{document.addEventListener("visibilitychange",()=>{
   if(document.visibilityState==="visible"){try{if(!O.code&&ls("za_room"))oVolta()}catch(e){}}},{passive:true})}catch(e){}}
+/* ===== Transmissao de partida local =====
+   Quem cai contra um bot na fila, treina ou joga offline nao tem sala nenhuma
+   no servidor - e era por isso que o amigo nao conseguia assistir. Agora o jogo
+   abre uma sala de leitura com o estado da partida e publica o codigo dela na
+   presenca: o amigo entra como espectador pelo mesmo caminho das partidas
+   online. A sala so nasce quando ha algum amigo online, e morre com a partida. */
+const TX={code:"",env:"",seq:0,mand:0,criando:0,fim:0};
+function frAmigoOn(){try{const n=Date.now();return Object.keys(FR.pres||{}).some(k=>{const q=FR.pres[k];return q&&n-(q.at||0)<FRGAP})}catch(e){return 0}}
+function txNomeOp(){try{
+ if(G.rkm&&G.rkm.oppNome)return String(G.rkm.oppNome).slice(0,24);
+ if(typeof G.rkNome=="string"&&G.rkNome)return String(G.rkNome).slice(0,24);
+ return G.bot?"Jogador 2":"Jogador 2"}catch(e){return "Jogador 2"}}
+function txViva(){try{return !G.online&&G.scr=="p"&&G.u&&G.u.length>0}catch(e){return 0}}
+function txDeveLigar(){try{return !!(txViva()&&G.win==null&&O.db&&O.pid&&frAmigoOn())}catch(e){return 0}}
+async function txAbre(){if(TX.code||TX.criando)return;TX.criando=1;
+ try{let code,ok=0;
+  for(let i=0;i<5&&!ok;i++){code=newCode();const sn=await O.db.doc("rooms/"+code).get();ok=!sn.exists}
+  if(ok){const op="tx"+Math.random().toString(36).slice(2,10),st=ser();
+   await O.db.doc("rooms/"+code).set({v:2,tx:1,host:O.pid,p0:O.pid,p1:op,
+    s0:null,s1:null,s2:null,s3:null,s4:null,s5:null,
+    mem:{[okey(O.pid)]:oMeMem(),[okey(op)]:{n:txNomeOp()}},
+    ru:JSON.stringify({m:"p"}),lr0:false,lr1:false,cp0:"",cp1:"",cd:0,t0:"",t1:"",r0:false,r1:false,
+    fd:G.cf||"r",ph:"battle",st:st,seq:1,gid:G.gid||"",at:Date.now()});
+   TX.code=code;TX.seq=1;TX.env=st;TX.fim=0;try{frPres()}catch(e){}}
+ }catch(e){}
+ TX.criando=0}
+async function txManda(){if(!TX.code||TX.mand)return;let st;try{st=ser()}catch(e){return}
+ if(st===TX.env)return;TX.mand=1;const n=TX.seq+1;
+ try{await O.db.doc("rooms/"+TX.code).update({st:st,seq:n,gid:G.gid||"",at:Date.now()});TX.seq=n;TX.env=st}catch(e){}
+ TX.mand=0}
+async function txApaga(){const c=TX.code;if(!c)return;TX.code="";TX.env="";TX.seq=0;TX.fim=0;
+ try{frPres()}catch(e){}
+ try{await O.db.doc("rooms/"+c).delete()}catch(e){try{await O.db.doc("rooms/"+c).update({ph:"lobby",st:"",at:Date.now()})}catch(e2){}}}
+function txTick(){if(!O.db||!O.pid)return;
+ if(txDeveLigar()){if(!TX.code)txAbre();else txManda();return}
+ if(!TX.code)return;
+ /* acabou: manda o resultado e deixa a sala viva por mais um pouco, para quem
+    estava assistindo ver o fim */
+ if(txViva()&&G.win!=null){txManda();if(!TX.fim){TX.fim=1;setTimeout(()=>{try{txApaga()}catch(e){}},25000)}return}
+ txApaga()}
+
+/* ===== Nao sair sem querer =====
+   No celular o botao Voltar do aparelho fechava o jogo na hora. Agora o jogo
+   mantem um passo extra no historico: quando o Voltar e apertado, esse passo e
+   consumido, o jogo repoe o passo e pergunta antes de deixar sair. No PC vale o
+   mesmo para o Voltar do navegador, e fechar a aba ou recarregar durante uma
+   partida pede a confirmacao do proprio navegador.
+   Minimizar nao da para interceptar (nenhuma pagina recebe esse aviso); o que o
+   jogo faz nesse caso e voltar para a partida sozinho quando a tela reaparece. */
+let SAIRON=0,SAIRQ=0;
+function emPartidaViva(){try{return (G.scr=="p"||G.scr=="d"||G.scr=="b")&&G.win==null}catch(e){return 0}}
+function askSaida(){if(SAIRQ)return;SAIRQ=1;
+ const dentro=emPartidaViva();
+ askConf("Sair do jogo?",
+  dentro?"Sua partida continua em andamento. Se sair agora, o tempo do turno não para e você pode perder a vez — ou a partida."
+        :"Você vai fechar o Projeto Ânima e voltar para a página anterior.",
+  dentro?"Sair mesmo assim":"Sair",
+  ()=>{SAIRQ=0;SAIRON=0;try{removeEventListener("popstate",sairPop)}catch(e){}
+   try{history.go(-2)}catch(e){try{history.back()}catch(e2){}}},
+  ()=>{SAIRQ=0})}
+function sairPop(){
+ /* o passo extra acabou de ser consumido: repoe antes de qualquer coisa */
+ try{history.pushState({za:1},"",location.href)}catch(e){}
+ /* se havia uma caixa aberta, o Voltar serve para fechar ela */
+ const o=document.getElementById("surc");
+ if(o&&!SAIRQ){o.remove();return}
+ askSaida()}
+function sairGuarda(){if(SAIRON)return;SAIRON=1;
+ try{history.pushState({za:1},"",location.href)}catch(e){SAIRON=0;return}
+ try{addEventListener("popstate",sairPop)}catch(e){}
+ try{addEventListener("beforeunload",e=>{if(!emPartidaViva())return;e.preventDefault();e.returnValue=""})}catch(e){}}
 function oSub(code){O.eaSeen=undefined;if(O.unsub){try{O.unsub()}catch(e){}}O.code=code;O.ref=O.db.doc("rooms/"+code);O.d=null;O.slow=0;clearTimeout(O.slowT);O.slowT=setTimeout(()=>{if(!O.d){O.slow=1;oRender()}},10000);
  O.unsub=O.ref.onSnapshot(sn=>{O.last=Date.now();O.slow=0;O.busy=0;clearTimeout(O.slowT);if(!sn.exists){O.d=null;O.err="Essa sala não existe mais.";return oRender()}const nd=sn.data();if(O.d&&JSON.stringify(nd)===JSON.stringify(O.d))return;O.d=nd;oApply()},e=>{O.err="A conexão com a sala caiu ("+(e&&e.code||"erro")+"). Saia e entre de novo.";oRender()})}
 function oApply(){const d=O.d;if(!d)return;if(O.eaSeen===undefined)O.eaSeen=d.ea||"";if(d.ea&&d.ea!==O.eaSeen){O.eaSeen=d.ea;endClose();if(d.ea.startsWith("menu")){oLeave();return showMenu()}}
  {const a0=d.p0===O.pid,a1=d.p1===O.pid,sv=ss("za_seat_"+O.code);if(a0&&a1){if(sv=="0"||sv=="1"){O.seat=+sv;O.ask=null}else O.ask="seat"}else{O.ask=null;O.seat=a0?0:a1?1:null}}
  O.inRoom=OSL.some(k=>d[k]===O.pid);
  if(O.seat!=null)ss("za_seat_"+O.code,String(O.seat));
+ /* a sala fica guardada enquanto a partida existe - antes isso era escrito so
+    na entrada, e quem entrava por outro caminho (a fila monta a sala no
+    servidor) ficava sem o registro e nao tinha para onde voltar */
+ if(O.seat!=null&&(d.ph=="draft"||d.ph=="battle")){try{ls("za_room",O.code);ls("za_room_seat",String(O.seat));RCOFF=0}catch(e){}}
  G.me=O.seat==null?-1:O.seat;
  /* sala da fila ranqueada: entrou ou voltou, a partida continua valendo rank */
  if(d.rk&&d.rkp&&O.seat!=null&&(!G.rkm||G.rkm.id!==d.rkp)){const q=1-O.seat,me=rkLoad();
@@ -12787,7 +12966,10 @@ const frCor=id=>{let x=2166136261;for(const c of String(id||"")){x^=c.charCodeAt
 /* o estado que os outros veem */
 const frEstado=()=>{try{if(G.scr=="p"||G.scr=="d")return "play"}catch(e){}return "on"};
 /* a sala que o amigo pode assistir: so em partida online de verdade, e nunca a de quem ja esta assistindo */
-const frSala=()=>{try{if(typeof O=="undefined"||!O.code||!G.online)return "";
+const frSala=()=>{try{
+ /* partida local transmitindo: o codigo e o da sala de leitura */
+ if(typeof TX!="undefined"&&TX&&TX.code&&!G.online&&G.scr=="p")return TX.code;
+ if(typeof O=="undefined"||!O.code||!G.online)return "";
  if(O.seat==null||typeof FRW!="undefined"&&FRW&&FRW.id)return "";
  if(G.scr!="p"&&G.scr!="d")return "";return O.code}catch(e){return ""}};
 const FRGAP=45000;   /* depois disso sem dar sinal, o amigo conta como offline */
@@ -13127,7 +13309,7 @@ function frLista(ls){if(!ls)return;ls.innerHTML="";
  const on=L.filter(vivo),off=L.filter(x=>!vivo(x));
  const linha=(x,ligado)=>{const p=FR.pres[x.id]||{};const it=mk("div","ofrit"+(ligado?"":" off"));
   const av=mk("i","ofrav",frIni(nome(x)));av.style.setProperty("--ac",frCor(x.id));it.append(av);
-  const st=!ligado?"Offline":p.s=="play"?(p.sl?"Em partida":"Em partida · sozinho"):"Disponível";
+  const st=!ligado?"Offline":p.s=="play"?"Em partida":"Disponível";
   it.append(mk("div","ofrnm","<b>"+escH(nome(x))+"</b><small class='ofrst "+(!ligado?"z":p.s=="play"?"p":"d")+"'>"+st+"</small>"));
   const g=mk("div","ofrbt");
   /* como na arte: quem está livre recebe Convidar; os outros, Mensagem */
@@ -13138,11 +13320,11 @@ function frLista(ls){if(!ls)return;ls.innerHTML="";
   else if(ligado&&p.s=="play"&&p.sl&&p.sl!==(FRW&&FRW.sl)){const as=mk("button","ofrcv as","Assistir");
    as.title="Acompanhar a partida de "+nome(x)+" ao vivo";
    as.onclick=()=>frAssiste(x.id,p.sl,nome(x),as);g.append(as)}
-  /* em partida, mas fora da arena online (contra o bot, por exemplo): o botao
-     aparece desligado em vez de sumir, senao parece que o Assistir quebrou */
+  /* em partida e a transmissao ainda nao subiu (o draft, os primeiros segundos):
+     o botao aparece desligado em vez de sumir, senao parece que quebrou */
   else if(ligado&&p.s=="play"&&!p.sl){const as=mk("button","ofrcv as off","Assistir");
    as.disabled=true;as.setAttribute("aria-disabled","true");
-   as.title=nome(x)+" está numa partida que não dá para acompanhar: só as partidas da arena online podem ser assistidas.";
+   as.title="A partida de "+nome(x)+" ainda está começando. O botão liga sozinho quando a batalha abrir.";
    g.append(as)}
   const ms=mk("button","ofrms"+(livre?" ic":"")+(frDmNovas(x.id)?" nv":""),
    livre?icHTML("ui_chat","","Mensagem")+"":"Mensagem");
@@ -13461,4 +13643,5 @@ try{mxRetro()}catch(e){}
 try{const R=mxLer().retro;if(R&&R.lista&&R.lista.length&&!R.visto)RETROP=1}catch(e){}
 try{fsAplica(fsLer())}catch(e){}try{curAplica(curLer())}catch(e){}/* tamanho da letra salvo pelo jogador */
 try{if(document.body)fsUI();else document.addEventListener("DOMContentLoaded",fsUI)}catch(e){}
+try{sairGuarda()}catch(e){}/* o botao Voltar do aparelho pergunta antes de fechar o jogo */
 </script><script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script></body></html>
