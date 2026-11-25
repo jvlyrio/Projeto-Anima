@@ -384,7 +384,7 @@ body.ph .u:has(.sbt){margin-top:8px}
 .sbt.nasombra{border-color:#d2728599;box-shadow:0 3px 10px #000a,0 0 12px #d2728544}
 .sbti{width:20px;height:20px;border-radius:5px;display:block;flex:none}
 /* sombras invocadas do Jin Woo, sobre a foto */
-.fw .jwsb{position:absolute;left:2px;right:2px;bottom:2px;display:flex;justify-content:flex-start;gap:3px;pointer-events:none;z-index:4}
+.fw .jwsb{position:absolute;left:2px;right:2px;bottom:2px;display:flex;justify-content:flex-start;gap:3px;pointer-events:none;z-index:4}.fw .jwsbi{pointer-events:auto;cursor:help}
 .jwsbi{width:16px;height:16px;border-radius:5px;display:block;background:#221a24;
  border:1.5px solid #c8a2b5cc;box-shadow:0 1px 4px #000a,0 0 7px #c8a2b555}
 /* no PC a foto nao preenche a celula do personagem: a faixa acompanha o rodape dela */
@@ -7768,8 +7768,10 @@ function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=ZOFF
    if(can&&!(G.online&&G.me<0))k.onclick=()=>{const S=G.sel;if(ch2(S).tg=="S"||tgu(ch2(S),S.u)=="E"){qpush({u:S.u,i:S.i,z:S.z,o:S.o});G.sel=null;render();return}if(ch2(S).tg=="2"){S.ts=(S.ts||[]).concat(u);if(S.ts.length<2&&tgts(S.u,ch2(S)).length>S.ts.length){render();return}qpush({u:S.u,i:S.i,ts:S.ts,o:S.o})}else qpush({u:S.u,i:S.i,t:u,z:S.z,o:S.o});G.sel=null;render()};
    const fw=mk("div","fw"),f=mk("img","f");f.src=IMG[u.c+(u.fm?"_f2":"_f")];fw.append(f);if(can)fw.append(mk("b","tint "+(u.s==G.sel.u.s?"ta":"te")));if(!u.alive)fw.append(mk("b","xx","✖"));else if(has(u,"ATORD"))fw.append(mk("b","sp","🌀"));
    {const SI0=jwInv(u);if(SI0.length){const w=mk("div","jwsb");
-    SI0.forEach(([i,n])=>{const im=mk("img","jwsbi");im.src=IMG["jw_"+i];im.alt=n;im.title=n;
-     att(im,()=>jwInvTip(n));hovTip(im,()=>jwInvTip(n));w.append(im)});
+    SI0.forEach(([i,n])=>{const im=mk("img","jwsbi");im.src=IMG["jw_"+i];im.alt=n;
+     att(im,()=>jwInvTip(n));hovTip(im,()=>jwInvTip(n));
+     ["pointerdown","pointerup","mousedown","click"].forEach(ev=>im.addEventListener(ev,e=>e.stopPropagation()));
+     w.append(im)});
     fw.append(w)}}
    const HID=fogHid(u.s);if(HID)fw.classList.add("fogf");att(fw,()=>HID?"<b>"+ch.n+"</b><small>"+clsFmt(ch.cl)+"</small><p>Toque para ver as habilidades deste inimigo.</p>":pTip(ch.ps.n,ch.ps.t+(jwInv(u).length?" Sombras invocadas: "+jwInv(u).map(x=>x[1]).join(", ")+".":""),ch.n+" · "+clsFmt(ch.cl)+(ch.fms?" · "+ch.fms[u.fm]+" em campo · "+ch.fms[1-u.fm]+": "+u.al.hp+"/"+u.al.mx+" HP":"")),()=>{if(k.onclick)k.onclick();else if(HID)eInfo(u)});
    const ui=G.u.indexOf(u),br=(c,n,v,hp)=>{const key=ui+":"+c;let a=ANI.get(key);if(!a){a={cur:v};ANI.set(key,a)}a.to=v;a.mx=u.mx;a.n=n;a.hp=hp;const cv=a.cur;/* o rotulo vai sempre no HTML, dentro de <b class=brl>, e o CSS o esconde no
