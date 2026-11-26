@@ -5,7 +5,7 @@
    e por isso nunca fica desatualizada: se o desenho muda, o nome muda junto.
 
    Gerado pelo build.py — não editar o sw.js da raiz, editar este. */
-const VERSAO = "ebbe388dbbdf";
+const VERSAO = "708a17ece5ce";
 const CACHE = "anima-" + VERSAO;
 /* A mídia mora num cache que NÃO muda a cada publicação. Antes ela ficava no
    cache da versão, e toda publicação apagava tudo: os jogadores baixavam de
@@ -81,7 +81,10 @@ self.addEventListener("fetch", e => {
   if (r.mode === "navigate" || u.pathname.endsWith(".html") || u.pathname.endsWith("/")) {
     e.respondWith((async () => {
       try {
-        const res = await fetch(r);
+        /* "no-cache": confere com o servidor em vez de usar a página guardada
+           pelo navegador (o GitHub Pages manda guardar por 10 minutos), senão
+           quem recarrega para atualizar pode receber a versão antiga */
+        const res = await fetch(r.url, { cache: "no-cache", credentials: "same-origin" });
         if (res && res.status === 200) {
           const c = await caches.open(CACHE); c.put("./", res.clone());
         }

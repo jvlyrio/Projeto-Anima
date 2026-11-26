@@ -175,11 +175,14 @@ def main(src):
                   "navigator.serviceWorker.register('sw.js').catch(function(){})});</script>"
                   "</body></html>", 1)
 
-    open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(s)
-
     # o service worker carimba a versão da página: assim cada publicação
-    # troca o nome do cache e o aparelho do jogador larga o conteúdo antigo
+    # troca o nome do cache e o aparelho do jogador larga o conteúdo antigo.
+    # A mesma versão vai para a página (window.ZA_VER) e para versao.json:
+    # a página compara as duas e obriga o jogador a recarregar quando mudar.
     versao = hashlib.sha1(s.encode("utf-8")).hexdigest()[:12]
+    s = s.replace(sblib, "<script>window.ZA_VER=" + json.dumps(versao) + ";</script>" + sblib, 1)
+    open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(s)
+    open(os.path.join(ROOT, "versao.json"), "w", encoding="utf-8").write(json.dumps({"v": versao}))
     sw = open(os.path.join(ROOT, "src", "sw.js"), encoding="utf-8").read()
     open(os.path.join(ROOT, "sw.js"), "w", encoding="utf-8").write(
         sw.replace("__VERSAO__", versao))

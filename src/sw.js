@@ -81,7 +81,10 @@ self.addEventListener("fetch", e => {
   if (r.mode === "navigate" || u.pathname.endsWith(".html") || u.pathname.endsWith("/")) {
     e.respondWith((async () => {
       try {
-        const res = await fetch(r);
+        /* "no-cache": confere com o servidor em vez de usar a página guardada
+           pelo navegador (o GitHub Pages manda guardar por 10 minutos), senão
+           quem recarrega para atualizar pode receber a versão antiga */
+        const res = await fetch(r.url, { cache: "no-cache", credentials: "same-origin" });
         if (res && res.status === 200) {
           const c = await caches.open(CACHE); c.put("./", res.clone());
         }

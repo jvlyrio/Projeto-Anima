@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png"><link rel="apple-touch-icon" href="icons/icone-180.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#261b33"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png"><link rel="apple-touch-icon" href="icons/icone-180.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#261b33"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script>window.ZA_VER="708a17ece5ce";</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
 .zlb{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border-radius:10px;padding:11px 14px;font:700 15px system-ui;cursor:pointer;border:1.5px solid #ffffff33;background:#ffffff10;color:#fff}
 .zlb:hover{border-color:#ffd23f}.zl-google{background:#fff;color:#1f1f1f;border-color:#fff}.zl-discord{background:#5865f2;border-color:#5865f2}.zl-out{background:transparent;color:#ff8a80;border-color:#ff8a8066}
 .zlor{display:flex;align-items:center;gap:10px;color:#8fa0c4;font-size:12px}.zlor::before,.zlor::after{content:"";flex:1;height:1px;background:#ffffff26}
@@ -5098,6 +5098,9 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
 <style id="a2n">
 /* caixa de confirmacao sem arte (sair do jogo) */
 #surc .surbox.nim .surt{margin-top:18px}
+/* atualizacao obrigatoria: cobre tudo e nao fecha */
+#atzov{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;background:#0b080ce8;backdrop-filter:blur(3px)}
+#atzov .surbox{max-width:420px}
 #surc .surbox .avpts{margin-top:10px;font-size:16px;color:#1f7a3f}
 /* barra de reconexao: "voltar para a partida" */
 #rcbar{position:fixed;left:50%;transform:translateX(-50%);top:max(6px,env(safe-area-inset-top));z-index:720;
@@ -5919,6 +5922,9 @@ body.php #ofr.min .ofru{font-size:10px!important;min-width:17px;height:17px;line
 body.ph #dr .dcen,body.php #dr .dcen{overflow:hidden!important}
 body.ph #dr .dgrid,body.php #dr .dgrid{flex:1 1 auto;min-height:0;
  overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;align-content:start}
+/* celular em pe: a grade cresce e quem rola e a pagina; com "contain" o toque
+   que comecava em cima dos personagens morria na grade e nada rolava */
+body.php #dr .dgrid{overscroll-behavior:auto}
 /* numa tela baixa o quadro central tem ~347px: a instrucao repete o que o alto
    da tela ja diz, e os filtros de classe em duas linhas comiam o resto. Sem
    isso sobravam 60px para a grade - uma linha e meia de personagem. */
@@ -5977,7 +5983,7 @@ body.legado .chcard.lk i{position:absolute;left:0;right:0;bottom:0;background:#0
 .chmain{display:flex;flex-direction:column;min-height:0;height:100%}
 .chmain>.chgr{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain}
 /* celular em pe: a grade nao rola sozinha, entao o toque tem de passar para a pagina */
-body.php .chmain>.chgr{overscroll-behavior:auto}
+body.php .chmain>.chgr,body.php .chside{overscroll-behavior:auto}
 .chside{overflow-y:auto;overscroll-behavior:contain}
 /* No Legado o a2v esta desligado, e sem ele os itens da grade da tela de
    Personagens ficam com largura minima automatica: um nome comprido estica a
@@ -12829,6 +12835,39 @@ function txTick(){if(!O.db||!O.pid)return;
  if(txViva()&&G.win!=null){txManda();if(!TX.fim){TX.fim=1;setTimeout(()=>{try{txApaga()}catch(e){}},25000)}return}
  txApaga()}
 
+/* ===== Atualizacao obrigatoria (so no site) =====
+   O site publica versao.json com a versao no ar; a pagina sabe a propria
+   (window.ZA_VER, carimbada no build). Se mudar, o jogador tem de recarregar:
+   na hora, se estiver fora de partida; ou quando a partida dele terminar.
+   No link de testes nao existe ZA_VER e nada disso liga. */
+let ATZ=0,ATZFIM=0;
+async function atzChecar(){try{if(!window.ZA_VER||ATZ)return;
+ const r=await fetch("versao.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)return;
+ const j=await r.json();if(j&&j.v&&j.v!==window.ZA_VER){ATZ=1;atzTalvez()}}catch(e){}}
+function atzEmJogo(){try{
+ if(G.scr=="d")return true;
+ if(G.scr=="p"){if(G.win==null){ATZFIM=0;return true}
+  /* acabou: deixa ver o resultado (e a ranqueada registrar) antes */
+  if(!ATZFIM)ATZFIM=Date.now();return Date.now()-ATZFIM<12000}
+ if(typeof RKQ!="undefined"&&RKQ.on)return true;               /* procurando partida */
+ if(typeof O!="undefined"&&O.code&&O.d&&(O.d.ph=="draft"||O.d.ph=="battle"))return true;
+ return false}catch(e){return false}}
+function atzTalvez(){if(atzEmJogo()){setTimeout(atzTalvez,3000);return}atzMostra()}
+function atzMostra(){if(document.getElementById("atzov"))return;
+ const ov=document.createElement("div");ov.id="atzov";const b=mk("div","surbox nim");
+ b.append(mk("div","surt","Nova atualização disponível"),
+  mk("p","surp","O Projeto Ânima foi atualizado. Atualize a página para continuar jogando."));
+ const bt=mk("div","qobt"),y=mk("button","qok","Atualizar agora");bt.append(y);b.append(bt);ov.append(b);
+ y.onclick=async()=>{y.disabled=true;y.textContent="Atualizando…";
+  try{const rg=await navigator.serviceWorker.getRegistration();if(rg)await Promise.race([rg.update(),new Promise(r=>setTimeout(r,3000))])}catch(e){}
+  location.reload()};
+ /* ela cobre a tela inteira; o clique nela nao chega ao jogo */
+ ov.onclick=e=>e.stopPropagation();
+ document.body.append(ov);try{y.focus()}catch(e){}}
+try{if(window.ZA_VER){setTimeout(atzChecar,8000);setInterval(atzChecar,60000);
+ document.addEventListener("visibilitychange",()=>{if(!document.hidden)atzChecar()});
+ addEventListener("focus",atzChecar);addEventListener("online",atzChecar)}}catch(e){}
+
 /* ===== Nao sair sem querer =====
    No celular o botao Voltar do aparelho fechava o jogo na hora. Agora o jogo
    mantem um passo extra no historico: quando o Voltar e apertado, esse passo e
@@ -12852,6 +12891,7 @@ function sairPop(){
  /* o passo extra acabou de ser consumido: repoe antes de qualquer coisa */
  try{history.pushState({za:1},"",location.href)}catch(e){}
  /* se havia uma caixa aberta, o Voltar serve para fechar ela */
+ if(document.getElementById("atzov"))return;
  const o=document.getElementById("surc");
  if(o&&!SAIRQ){o.remove();return}
  askSaida()}
