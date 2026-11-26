@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png"><link rel="apple-touch-icon" href="icons/icone-180.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#261b33"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script>window.ZA_VER="011ffcbaf1d4";</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png"><link rel="apple-touch-icon" href="icons/icone-180.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#261b33"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script>window.ZA_VER="419314b469b0";</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
 .zlb{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border-radius:10px;padding:11px 14px;font:700 15px system-ui;cursor:pointer;border:1.5px solid #ffffff33;background:#ffffff10;color:#fff}
 .zlb:hover{border-color:#ffd23f}.zl-google{background:#fff;color:#1f1f1f;border-color:#fff}.zl-discord{background:#5865f2;border-color:#5865f2}.zl-out{background:transparent;color:#ff8a80;border-color:#ff8a8066}
 .zlor{display:flex;align-items:center;gap:10px;color:#8fa0c4;font-size:12px}.zlor::before,.zlor::after{content:"";flex:1;height:1px;background:#ffffff26}
@@ -6618,6 +6618,56 @@ body.php #zhud .pfzt{display:none}
 
 #mxrt.ecav .ecavi{width:72px;height:72px;object-fit:contain;display:block;margin:0 auto 6px;filter:drop-shadow(0 4px 12px #0009)}
 body.ph #mxrt.ecav .ecavi{width:48px;height:48px}
+
+/* Menu Principal: o Som e o tamanho da letra ficam so nas Configuracoes; o canto e do Perfil */
+body:has(#dr>.mm2:not(.pg)) #sndb,body:has(#dr>.mm2:not(.pg)) #fsb,body:has(#dr>.mm2:not(.pg)) #fsbp{display:none!important}
+/* Ecos, Tela 1: o mesmo fundo escuro da Tela 2 atras dos filtros e da grade */
+.ecr.ecsel{background:color-mix(in srgb,var(--a2bg) 82%,transparent);border:1px solid color-mix(in srgb,var(--a2lin) 70%,transparent);border-radius:14px;padding:14px clamp(12px,1.6vw,22px) 16px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);box-shadow:0 10px 30px #0007}
+body.ph .ecr.ecsel{padding:8px 10px 10px;border-radius:10px}
+body.php .ecr.ecsel{padding:10px}
+
+/* Perfil no canto: grande e chamativo, sem caixa: o icone na moldura e o nome com o nivel ao lado */
+#zhud .pfz{gap:10px;padding:0 6px 0 0;border:0;background:none;box-shadow:none;border-radius:0;align-items:center}
+#zhud .pfz:hover{border:0;box-shadow:none}
+#zhud .pfz:hover .pfav{transform:scale(1.04)}
+#zhud .pfz .pfav{width:78px;transition:transform .15s ease;filter:drop-shadow(0 4px 10px #000c) drop-shadow(0 0 6px #c9a77a55)}
+#zhud .pfzt b{font:800 19px/1.1 system-ui;color:#fff;max-width:180px;text-shadow:0 2px 0 #0009,0 0 8px #000c,0 1px 2px #000}
+#zhud .pfzt i{font:900 italic 17px/1.1 system-ui;margin-top:3px;letter-spacing:.01em;
+ background:linear-gradient(180deg,#ffffff 0%,#bfe6ff 45%,#5aaeff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+ filter:drop-shadow(0 2px 0 #0a1a3a) drop-shadow(0 0 4px #0009)}
+body.ph #zhud .pfz{gap:7px;padding:0 4px 0 0}
+body.ph #zhud .pfz .pfav{width:52px}
+body.ph #zhud .pfzt b{font-size:14px;max-width:110px}
+body.ph #zhud .pfzt i{font-size:12.5px}
+body.php #zhud .pfz{gap:6px;padding:0 2px 0 0}
+body.php #zhud .pfz .pfav{width:54px}
+body.php #zhud .pfzt{display:flex}
+body.php #zhud .pfzt b{font-size:13.5px;max-width:96px}
+body.php #zhud .pfzt i{font-size:12px}
+
+/* molduras tematicas: os enfeites passam da borda do icone */
+.pfav.pftm{overflow:visible}
+.pfav.pftm .pfavm{max-width:none!important;max-height:none!important}
+.pf .pfbc .pfav{flex:none}
+.pf .pfban.pfbt2{width:clamp(270px,24vw,350px)}
+.pf .pfban.pfbt2 .pfbc{gap:4px}
+.pf .pfban.pfbt2 .pfbc .pfav{width:78%}
+.pf .pfban.pfbt2 .pfnm,.pf .pfban.pfbt2 .pfti{background:#0d0810c4;border-radius:7px;padding:2px 9px;box-shadow:0 2px 8px #0007}
+.pf .pfban.pfbt2 .pfti{color:#f0dcbb}
+.pf .pfban.pfbt2 .pfxp{width:78%}
+.pf .pfban.pfbt2 .pfxt{background:#0d0810c4;border-radius:5px;padding:1px 6px}
+body.ph .pf .pfban.pfbt2{width:clamp(170px,44vh,220px)}
+body.ph .pf .pfban.pfbt2 .pfbc .pfav{width:56%}
+body.ph .pf .pfban.pfbt2 .pfbc{gap:2px}
+body.ph .pf .pfban.pfbt2 .pfnm,body.ph .pf .pfban.pfbt2 .pfti{padding:1px 6px}
+body.php .pf .pfban.pfbt2{width:min(74vw,300px)}
+body.php .pf.ed .pfban.pfbt2{width:min(56vw,230px)}
+.pf .pfgr.t-ba{grid-template-columns:repeat(auto-fill,minmax(96px,1fr))}
+.pf .pfbaim{display:flex;align-items:flex-end;justify-content:center;width:100%;height:120px}
+.pf .pfbaim img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 4px 8px #0009)}
+.pf .pfgr.t-mo .pfit,.pf .pfgr.t-ic .pfit{padding-top:16px;padding-bottom:10px}
+.pf small.pfpres{color:#ffd36b!important;font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:9.5px!important}
+body.ph .pf .pfbaim{height:90px}
 </style>
 </head><body><main><h1>Projeto Ânima</h1><div id="bar"></div><div id="b"></div><div id="lg"></div></main><div id="dr"></div><div id="tip"></div>
 <script>
@@ -7246,10 +7296,17 @@ Object.assign(IMG,{pf_bg:"media/b64/8b6a37e9b362b582.webp",pf_ban:"media/b64/d93
    za_perfil: o que o jogador equipou (icone, titulo, moldura e fundo). Tudo vem da
    Maestria: icone no 2, titulos no 4/8/10, fundo no 7 (de cada personagem) e as
    molduras gerais (bronze no 5, prata no 7, dourada no 10, com qualquer personagem). */
-const PFDEF={ic:"",ti:"",mo:"pad",fu:""};
+/* ===== Molduras, bandeiras e fundos de presente (comemoracao do Perfil): liberados para todos =====
+   ri: raio do buraco da moldura (fracao do lado da arte). l/r/t/b: a area do tecido da bandeira. */
+Object.assign(IMG,{"pfm_roxa": "media/b64/e65895888ad76fc3.webp", "pfb_roxa": "media/3e37028b1d0d0329500d3c7e1b590a31.webp", "pfm_floresta": "media/b64/f30e95ed989cebc9.webp", "pfb_floresta": "media/13ca4487c9e73c99f406cac4fb5b0252.webp", "pfm_magma": "media/b64/3d137084b6b0a8c9.webp", "pfb_magma": "media/82ae1cd3521dff74e960270f4c0a7ad6.webp", "pfm_natal": "media/b64/ff5e99a0837ec4b3.webp", "pfb_natal": "media/6ed200709fc31618c4393bdaecc10552.webp", "pfm_praia": "media/b64/e1997cb462b2b35d.webp", "pfb_praia": "media/808ea86ab3680f89e3b68f7600d1fe94.webp", "pfm_lua": "media/b64/5568169e3283ad29.webp", "pfb_lua": "media/a170c51a21075c437bcd852fb6156295.webp", "pfm_gelo": "media/b64/467cf1d01430e6b7.webp", "pfb_gelo": "media/c1b5ad8f01caf6315f2efd5e491f5ef5.webp", "pff_praia": "media/5bc5e67ec0b40d11a58b37fa0d683a4c.webp", "pff_santuario": "media/7434e310c870d2171a590038b8185448.webp", "pff_aurora": "media/35b3d450ae56c8e2cb6913d37580cfa5.webp", "pff_eclipse": "media/fb21461ea83f7123d86552e9ea586b5d.webp", "pff_floresta": "media/80c58755146e326b99309b8b94d37391.webp", "pff_gelo": "media/270b39a9587bc2ee069d05bb7fd81877.webp", "pff_magma": "media/edfc97d78ee61394c14a6ffb320a4959.webp", "pff_natal": "media/a859aa31468de04509c325ebef4da595.webp"});
+const PFTEMA={"roxa": {"n": "Violeta", "ri": 0.2712, "bw": 440, "bh": 774, "l": 0.1114, "r": 0.108, "t": 0.1034, "b": 0.2016}, "floresta": {"n": "Floresta", "ri": 0.2198, "bw": 440, "bh": 517, "l": 0.2045, "r": 0.2068, "t": 0.1219, "b": 0.2108}, "magma": {"n": "Magma", "ri": 0.2944, "bw": 440, "bh": 572, "l": 0.1886, "r": 0.1909, "t": 0.0787, "b": 0.264}, "natal": {"n": "Natal", "ri": 0.2495, "bw": 440, "bh": 561, "l": 0.1909, "r": 0.1886, "t": 0.0677, "b": 0.2799}, "praia": {"n": "Maré", "ri": 0.2444, "bw": 440, "bh": 520, "l": 0.1886, "r": 0.1932, "t": 0.0654, "b": 0.2808}, "lua": {"n": "Lua Roxa", "ri": 0.3, "bw": 440, "bh": 587, "l": 0.2045, "r": 0.2068, "t": 0.063, "b": 0.2896}, "gelo": {"n": "Gelo", "ri": 0.282, "bw": 440, "bh": 594, "l": 0.2114, "r": 0.2114, "t": 0.0976, "b": 0.3519}};
+const PFFUNDO=[["bg_praia", "Praia de Cristal"], ["bg_santuario", "Santuário"], ["bg_aurora", "Aurora Boreal"], ["bg_eclipse", "Eclipse"], ["bg_floresta", "Jardim de Jade"], ["bg_gelo", "Palácio de Gelo"], ["bg_magma", "Fortaleza de Magma"], ["bg_natal", "Natal 2026"]];
+const pfFuImg=f=>f&&f.indexOf("bg_")===0&&IMG["pff_"+f.slice(3)]?IMG["pff_"+f.slice(3)]:null;
+const pfFuOk=f=>!f||(C[f]?1:!!pfFuImg(f));
+const PFDEF={ic:"",ti:"",mo:"pad",fu:"",ba:""};
 /* o nome que aparece: o nick escolhido; sem nick ainda, so mostra (nao grava nada) */
 const pfNick=()=>{try{return String(ls("za_nick")||"").trim()||"Jogador"}catch(e){return "Jogador"}};
-const PFMOLD=[["pad","Padrão",0],["bronze","Bronze",5],["prata","Prata",7],["ouro","Dourada",10]];
+const PFMOLD=[["pad","Padrão",0],["bronze","Bronze",5],["prata","Prata",7],["ouro","Dourada",10]].concat(Object.keys(PFTEMA).map(k=>[k,PFTEMA[k].n,0,1]));
 const pfRos=()=>ROS.filter(k=>C[k]);
 const mxMaiorNv=()=>pfRos().reduce((a,k)=>Math.max(a,mxNivelDe(k)),0);
 function pfLer(){let p=null;try{p=JSON.parse(ls("za_perfil")||"null")}catch(e){p=null}
@@ -7259,22 +7316,28 @@ function pfVal(p){p=Object.assign({},PFDEF,p||{});
  if(p.ic&&!(C[p.ic]&&mxNivelDe(p.ic)>=2))p.ic="";
  if(p.ti){const [k,n]=String(p.ti).split(":");if(!(C[k]&&MXTIT[n]&&mxNivelDe(k)>=+n))p.ti=""}
  const m=PFMOLD.find(x=>x[0]==p.mo);if(!m||mxMaiorNv()<m[2])p.mo="pad";
- if(p.fu&&!(C[p.fu]&&mxNivelDe(p.fu)>=7))p.fu="";
+ if(p.fu&&!(pfFuImg(p.fu)||(C[p.fu]&&mxNivelDe(p.fu)>=7)))p.fu="";
+ if(p.ba&&!PFTEMA[p.ba])p.ba="";
  return p}
-function pfGrava(p){p=pfVal(p);ls("za_perfil",JSON.stringify({ic:p.ic,ti:p.ti,mo:p.mo,fu:p.fu}));
+function pfGrava(p){p=pfVal(p);ls("za_perfil",JSON.stringify({ic:p.ic,ti:p.ti,mo:p.mo,fu:p.fu,ba:p.ba}));
  try{if(typeof pfPublica=="function")pfPublica()}catch(e){}}
 const pfTitTxt=ti=>{if(!ti)return"";const [k,n]=String(ti).split(":");return C[k]?mxTitulo(k,+n):""};
 const pfIcSrc=ic=>ic&&IMG[ic+"_f"]?IMG[ic+"_f"]:IMG.ui_marca;
 /* moldura da maestria de um personagem: a mesma escada das molduras gerais */
 const pfMoNv=n=>n>=10?"ouro":n>=7?"prata":n>=5?"bronze":"pad";
 /* o icone dentro da moldura */
-function pfAv(ic,mo,cls){return "<span class='pfav mo-"+(mo||"pad")+(ic?"":" pfdef")+(cls?" "+cls:"")+"'><img class='pfavi' src='"+pfIcSrc(ic)+"' alt=''><img class='pfavm' src='"+IMG.pf_mold+"' alt=''></span>"}
+function pfAv(ic,mo,cls){const T=PFTEMA[mo];
+ if(!T)return "<span class='pfav mo-"+(mo||"pad")+(ic?"":" pfdef")+(cls?" "+cls:"")+"'><img class='pfavi' src='"+pfIcSrc(ic)+"' alt=''><img class='pfavm' src='"+IMG.pf_mold+"' alt=''></span>";
+ /* a moldura ocupa o mesmo espaco do icone (como a padrao); o rosto preenche o buraco dela */
+ const k=1,f=Math.min(.852,2*T.ri*1.153);
+ const pc=v=>(v*100).toFixed(2)+"%";
+ return "<span class='pfav pftm mo-"+mo+(ic?"":" pfdef")+(cls?" "+cls:"")+"' style='--k:"+k.toFixed(3)+"'><img class='pfavi' src='"+pfIcSrc(ic)+"' alt='' style='width:"+pc(f)+"!important;height:"+pc(f)+"!important;left:"+pc((1-f)/2)+"!important;top:"+pc((1-f)/2)+"!important'><img class='pfavm' src='"+IMG["pfm_"+mo]+"' alt='' style='width:"+pc(k)+"!important;height:"+pc(k)+"!important;left:"+pc((1-k)/2)+"!important;top:"+pc((1-k)/2)+"!important;inset:auto'></span>"}
 /* os 3 personagens com mais pontos de Maestria */
 function pfTop(){return pfRos().map(k=>{const r=mxDe(k);return[k,r.pt||0,mxNivelInfDe(k)]}).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,3)}
 function pfPos(){try{const L=rkTopLista(),i=L.findIndex(x=>x.eu);return i>=0?i+1:0}catch(e){return 0}}
 /* os dados que a tela desenha: os meus (deste aparelho) ou os de um amigo */
 function pfMeu(){const p=pfVal(pfLer()),P=ctProg(ctLer().xp);let st=null;try{st=rkLoad()}catch(e){}
- return{nick:pfNick(),ic:p.ic,ti:p.ti,tit:pfTitTxt(p.ti),mo:p.mo,fu:p.fu,nv:P.n,no:P.no,passo:P.passo,
+ return{nick:pfNick(),ic:p.ic,ti:p.ti,tit:pfTitTxt(p.ti),mo:p.mo,fu:p.fu,ba:p.ba,nv:P.n,no:P.no,passo:P.passo,
   rk:st&&st.n?{rank:st.rank,div:st.div,pc:st.pc,pos:pfPos()}:null,top:pfTop()}}
 
 let PFED=null,PFTAB="ic";
@@ -7282,9 +7345,10 @@ let PFED=null,PFTAB="ic";
 function pfItens(tab){const R=pfRos();
  if(tab=="ic")return[{id:"",n:"Ânima",ok:1,img:IMG.ui_marca,def:1}].concat(R.map(k=>({id:k,n:shn(k),ok:mxNivelDe(k)>=2,req:"Maestria 2 com "+shn(k),img:IMG[k+"_f"]})));
  if(tab=="ti"){const L=[{id:"",n:"Sem título",ok:1}];R.forEach(k=>[4,8,10].forEach(n=>L.push({id:k+":"+n,n:mxTitulo(k,n),ok:mxNivelDe(k)>=n,req:"Maestria "+n+" com "+shn(k)})));return L}
- if(tab=="mo"){const mx=mxMaiorNv();return PFMOLD.map(([id,n,nv])=>({id,n,ok:mx>=nv,req:"Maestria "+nv+" com qualquer personagem"}))}
- return[{id:"",n:"Padrão",ok:1,img:IMG.pf_bg,def:1}].concat(R.map(k=>({id:k,n:shn(k),ok:mxNivelDe(k)>=7,req:"Maestria 7 com "+shn(k),img:IMG[k+"_s"]})))}
-const PFABAS=[["ic","Ícone"],["ti","Título"],["mo","Moldura"],["fu","Fundo"]];
+ if(tab=="mo"){const mx=mxMaiorNv();const L=PFMOLD.map(([id,n,nv,pr])=>({id,n,ok:mx>=nv,pr,req:"Maestria "+nv+" com qualquer personagem"}));return[L[0]].concat(L.filter(x=>x.pr),L.slice(1).filter(x=>!x.pr))}
+ if(tab=="ba")return[{id:"",n:"Padrão",ok:1,img:IMG.pf_ban}].concat(Object.keys(PFTEMA).map(k=>({id:k,n:PFTEMA[k].n,ok:1,pr:1,img:IMG["pfb_"+k]})));
+ return[{id:"",n:"Padrão",ok:1,img:IMG.pf_bg,def:1}].concat(PFFUNDO.map(([id,n])=>({id,n,ok:1,pr:1,img:pfFuImg(id)})),R.map(k=>({id:k,n:shn(k),ok:mxNivelDe(k)>=7,req:"Maestria 7 com "+shn(k),img:IMG[k+"_s"]})))}
+const PFABAS=[["ic","Ícone"],["ti","Título"],["mo","Moldura"],["ba","Bandeira"],["fu","Fundo"]];
 
 /* a tela. V: os dados de outro jogador (so para ver); sem V, o meu perfil */
 function showPerfil(V,op){op=op||{};const ed=!!op.ed&&!V;
@@ -7295,7 +7359,7 @@ function showPerfil(V,op){op=op||{};const ed=!!op.ed&&!V;
  const r=$("#dr");r.innerHTML="";
  const w=mk("div","pf"+(ed?" ed":"")+(V?" vis":""));
  const sp=D.fu&&IMG[D.fu+"_s"];
- w.innerHTML="<div class='pfbg' style=\"background-image:url('"+IMG.pf_bg+"')\"></div>"+(sp?"<div class='pfsp'><img src='"+sp+"' alt=''></div>":"")+"<div class='pfdim'></div>";
+ w.innerHTML="<div class='pfbg' style=\"background-image:url('"+(pfFuImg(D.fu)||IMG.pf_bg)+"')\"></div>"+(sp?"<div class='pfsp'><img src='"+sp+"' alt=''></div>":"")+"<div class='pfdim'></div>";
  /* topo: Voltar, a marca do Anima e Personalizar */
  const top=mk("div","pftop");
  const vt=mk("button","pfbt pfvt","<span>←</span> Voltar");vt.onclick=()=>{if(ed){PFED=null;return showPerfil()}if(op.volta)return op.volta();showMenu()};
@@ -7305,8 +7369,9 @@ function showPerfil(V,op){op=op||{};const ed=!!op.ed&&!V;
  w.append(top);
  /* o estandarte */
  const meio=mk("div","pfmeio");
- const ban=mk("div","pfban");ban.style.backgroundImage="url('"+IMG.pf_ban+"')";
- ban.innerHTML="<div class='pfbc'>"+pfAv(D.ic,D.mo)+"<b class='pfnm'>"+escH(D.nick||"Jogador")+"</b>"
+ const ban=mk("div","pfban");const BT=PFTEMA[D.ba];ban.style.backgroundImage="url('"+(BT?IMG["pfb_"+D.ba]:IMG.pf_ban)+"')";
+ if(BT){ban.classList.add("pfbt2");ban.style.aspectRatio=BT.bw+"/"+BT.bh}
+ ban.innerHTML="<div class='pfbc'"+(BT?" style='left:"+((BT.l+.04)*100).toFixed(1)+"%;right:"+((BT.r+.04)*100).toFixed(1)+"%;top:"+((BT.t+.035)*100).toFixed(1)+"%;bottom:5%'":"")+">"+pfAv(D.ic,D.mo,"pfbav")+"<b class='pfnm'>"+escH(D.nick||"Jogador")+"</b>"
   +(D.tit?"<i class='pfti'>"+escH(D.tit)+"</i>":"")
   +(D.nv?"<span class='pfnv'>Nível "+fnum(D.nv)+"</span>":"")
   +(D.passo?"<div class='pfxp'><i style='width:"+(100*Math.min(1,(D.no||0)/D.passo)).toFixed(1)+"%'></i></div><small class='pfxt'>"+fnum(D.no||0)+" / "+fnum(D.passo)+" EXP</small>":"")+"</div>";
@@ -7345,9 +7410,10 @@ function pfEditor(){const p=mk("div","pfed");
   if(PFTAB=="ic")h=pfAv(it.id,PFED.mo,"pfgi");
   else if(PFTAB=="mo")h=pfAv(PFED.ic,it.id,"pfgi");
   else if(PFTAB=="fu")h="<span class='pffu'><img src='"+it.img+"' alt=''></span>";
+  else if(PFTAB=="ba")h="<span class='pfbaim'><img src='"+it.img+"' alt=''></span>";
   else h="";
-  const b=mk("button","pfit"+(on?" on":"")+(it.ok?"":" lk"),h+"<b>"+(it.ok?"":"<i class='mmcad' aria-hidden='true'>🔒</i>")+escH(it.n)+"</b>"+(it.ok?"":"<small>"+escH(it.req)+"</small>"));
-  b.title=it.ok?it.n:it.req;
+  const b=mk("button","pfit"+(on?" on":"")+(it.ok?"":" lk"),h+"<b>"+(it.ok?"":"<i class='mmcad' aria-hidden='true'>🔒</i>")+escH(it.n)+"</b>"+(it.pr?"<small class='pfpres'>Presente</small>":"")+(it.ok?"":"<small>"+escH(it.req)+"</small>"));
+  b.title=it.ok?(it.pr?it.n+" · presente de comemoração do Perfil, liberado para todos":it.n):it.req;
   b.onclick=()=>{if(!it.ok)return zToast(it.req);PFED[PFTAB]=it.id;showPerfil(null,{ed:1,keep:1})};
   g.append(b)});
  p.append(g);
@@ -7361,10 +7427,10 @@ function pfEditor(){const p=mk("div","pfed");
 /* o resumo que vai junto do nome: icone, titulo (o id), moldura e nivel */
 function pfMini(){const p=pfVal(pfLer());return{ic:p.ic,ti:p.ti,mo:p.mo,nv:ctNivel()}}
 /* o pacote inteiro, para quem abrir o meu perfil */
-function pfPacote(){const D=pfMeu();return{ic:D.ic,ti:D.ti,mo:D.mo,fu:D.fu,nv:D.nv,no:D.no,passo:D.passo,rk:D.rk,top:D.top,mx:(()=>{try{return mxPacote()}catch(e){return{}}})(),at:Date.now()}}
+function pfPacote(){const D=pfMeu();return{ic:D.ic,ti:D.ti,mo:D.mo,fu:D.fu,ba:D.ba,nv:D.nv,no:D.no,passo:D.passo,rk:D.rk,top:D.top,mx:(()=>{try{return mxPacote()}catch(e){return{}}})(),at:Date.now()}}
 /* o que chega de outra conta: so o que o jogo conhece passa */
 function pfLimpa(p,nick){p=p&&typeof p=="object"?p:{};const o={nick:String(nick||"Jogador").slice(0,24)};
- o.ic=C[p.ic]?p.ic:"";o.mo=PFMOLD.some(x=>x[0]==p.mo)?p.mo:"pad";o.fu=C[p.fu]?p.fu:"";
+ o.ic=C[p.ic]?p.ic:"";o.mo=PFMOLD.some(x=>x[0]==p.mo)?p.mo:"pad";o.fu=(C[p.fu]||pfFuImg(p.fu))?p.fu:"";o.ba=PFTEMA[p.ba]?p.ba:"";
  o.ti=typeof p.ti=="string"&&pfTitTxt(p.ti)?p.ti:"";o.tit=pfTitTxt(o.ti);
  o.nv=+p.nv>0?Math.max(1,Math.floor(+p.nv)):null;
  if(+p.passo>0){o.no=Math.max(0,Math.floor(+p.no||0));o.passo=Math.floor(+p.passo)}
@@ -9355,7 +9421,7 @@ const TUT=[
   "<p>No fim de cada partida aparece a barra de EXP enchendo. Quando você sobe de nível, o desbloqueio aparece ali mesmo.</p>"},
  {g:"Modos de jogo",i:"🪪",n:"Perfil",f:()=>tSum("O <b>Perfil</b> mostra o seu estandarte: ícone, nome, título, nível da conta, ranqueada e as suas três maiores maestrias.")+
   "<p>Para abrir, toque no <b>seu ícone</b> no canto superior direito do Menu Principal.</p><h3>Personalizar</h3><p>Toque em <b>Personalizar</b> para trocar o <b>ícone</b>, o <b>título</b>, a <b>moldura</b> e o <b>fundo</b>. A prévia muda na hora; depois é só <b>Salvar</b>.</p>"+
-  "<ul><li><b>Ícone</b> com o rosto do personagem: Maestria 2.</li><li><b>Títulos</b>: Maestria 4, 8 e 10.</li><li><b>Fundo</b> com a arte do personagem: Maestria 7.</li><li><b>Molduras</b> de bronze, prata e dourada: Maestria 5, 7 e 10 com qualquer personagem.</li></ul>"+
+  "<ul><li><b>Ícone</b> com o rosto do personagem: Maestria 2.</li><li><b>Títulos</b>: Maestria 4, 8 e 10.</li><li><b>Fundo</b> com a arte do personagem: Maestria 7.</li><li><b>Molduras</b> de bronze, prata e dourada: Maestria 5, 7 e 10 com qualquer personagem.</li><li><b>Presentes</b>: molduras, bandeiras e fundos temáticos liberados para todos em comemoração ao Perfil.</li></ul>"+
   "<p>O que ainda está trancado aparece com cadeado e diz como liberar.</p>"+
   "<h3>Perfil dos outros</h3><p>O seu ícone, título, moldura e nível aparecem ao lado do seu nome no draft, na partida e na lista de amigos. Na lista de amigos, toque no ícone ou no nome de alguém para ver o perfil dele.</p>"},
  {g:"Modos de jogo",i:"💡",n:"Dicas de iniciante",f:()=>"<div class='ttips'>"+[["🎯","Foque um alvo","Derrubar um inimigo de cada vez é melhor do que machucar todos um pouco: lutador caído não ataca."],["🔢","A ordem importa","Atordoe antes do inimigo agir e quebre a barreira antes do golpe forte."],["🔥","Essência é rara","Guarde para a ultimate que vai fazer diferença."],[icHTML("ui_tt_oponente","tti","")+"","Olhe os efeitos do inimigo","Inalvejável, Esquiva e Anulador podem fazer o seu golpe não pegar."],["🛡️","Escolha o tipo de dano","Muita barreira? Use ENERGIZADO. Muita armadura? Use PERFURANTE."],["🔮","Na dúvida, Vovó","A previsão mostra o resultado antes de confirmar."]].map(x=>"<div><span>"+x[0]+"</span><b>"+x[1]+"</b><p>"+x[2]+"</p></div>").join("")+"</div>"+
