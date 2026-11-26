@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png"><link rel="apple-touch-icon" href="icons/icone-180.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#261b33"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script>window.ZA_VER="fa0d89e6d35e";</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png"><link rel="apple-touch-icon" href="icons/icone-180.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#261b33"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script>window.ZA_VER="6ffe22b64d8e";</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
 .zlb{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border-radius:10px;padding:11px 14px;font:700 15px system-ui;cursor:pointer;border:1.5px solid #ffffff33;background:#ffffff10;color:#fff}
 .zlb:hover{border-color:#ffd23f}.zl-google{background:#fff;color:#1f1f1f;border-color:#fff}.zl-discord{background:#5865f2;border-color:#5865f2}.zl-out{background:transparent;color:#ff8a80;border-color:#ff8a8066}
 .zlor{display:flex;align-items:center;gap:10px;color:#8fa0c4;font-size:12px}.zlor::before,.zlor::after{content:"";flex:1;height:1px;background:#ffffff26}
@@ -6353,6 +6353,271 @@ body.ph .ecab .ivi{width:34px;height:34px}
 /* celular em pe: o texto do menu nao passa da borda e a dica de baixo nao fica sob a Lista de amigos e o Chat */
 body.php #dr .mm2 .mmit b{font-size:min(19px,4.1vw)!important}
 body.php #dr .mm2 .mmdesc{padding-right:142px}
+
+/* Tela 2: painel escuro atras dos slots, para o texto ler bem sobre qualquer fundo */
+.eceq .eccols{background:color-mix(in srgb,var(--a2bg) 82%,transparent);border:1px solid color-mix(in srgb,var(--a2lin) 70%,transparent);
+ border-radius:14px;padding:16px clamp(14px,2vw,26px) 18px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);box-shadow:0 10px 30px #0007}
+.eceq .eccols{flex:0 1 auto}
+body.ph .eceq .eccols{padding:10px 12px 12px;border-radius:10px}
+body.php .eceq .eccols{padding:12px}
+.eceq .ecdet{align-self:flex-start;background:color-mix(in srgb,var(--a2bg) 82%,transparent);border-radius:8px;padding:6px 12px}
+
+/* ===== Nivel da Conta ===== */
+.ctfim{width:min(420px,86vw);display:flex;flex-direction:column;gap:6px;padding:12px 16px 14px;border-radius:12px;background:#120c16d9;border:1px solid #ffffff1f;box-shadow:0 8px 24px #0008;text-align:left}
+.ctfim .ctl{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.ctfim .ctl b{font:800 17px system-ui;color:#f3e9e0;letter-spacing:.02em}
+.ctfim .ctl em{font:800 14px system-ui;font-style:normal;color:#ffd36b}
+.ctfim .ctbar{height:10px;border-radius:6px;background:#ffffff17;overflow:hidden}
+.ctfim .ctbar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#b27c97,#ffd36b);transition:width .8s cubic-bezier(.3,.7,.3,1)}
+.ctfim small{font:600 12px system-ui;color:#c9bcb3}
+.ctfim .ctup{display:flex;flex-direction:column;gap:3px;margin-top:4px;padding-top:8px;border-top:1px solid #ffffff1a;animation:mxpop .45s cubic-bezier(.2,1.3,.4,1)}
+.ctfim .ctup b{font:800 15px system-ui;color:#ffd36b}
+.ctfim .ctup span{font:700 13px system-ui;color:#9fe3c4}
+body.ph .ctfim{padding:8px 12px 10px;gap:4px}
+body.ph .endbox{gap:12px}
+#dr .mmit.mmlk{opacity:.55;filter:grayscale(.5)}
+.mmcad{font-style:normal;font-size:.85em;margin-right:6px;line-height:1}
+.lbgo.lblk{filter:grayscale(.7);opacity:.75;cursor:not-allowed}
+
+/* ===== Maestria: selo I/II/III no rosto e efeito de entrada (provisorios em CSS) ===== */
+.fw b.mxbw{background:none!important;box-shadow:none!important;border:0!important;text-shadow:none;pointer-events:none;z-index:3;display:block;animation:none}
+.fw .mxbt{position:absolute;right:-6px;bottom:-6px;z-index:3;min-width:19px;height:19px;padding:0 4px;border-radius:10px;display:grid;place-items:center;
+ font:900 10px/1 Georgia,serif;font-style:normal;letter-spacing:.02em;pointer-events:auto;border:1.5px solid #0009;box-shadow:0 1px 4px #000a}
+.fw .mxbt.t1{background:linear-gradient(180deg,#e8b48a,#9a5a32);color:#2b1406}
+.fw .mxbt.t2{background:linear-gradient(180deg,#f1f3f6,#8e98a6);color:#1c222b}
+.fw .mxbt.t3{background:linear-gradient(180deg,#fff2b0,#d9a21e);color:#3a2600;animation:mxbtb 2.2s ease-in-out infinite}
+@keyframes mxbtb{0%,100%{box-shadow:0 0 4px #ffd34a88,0 1px 4px #000a}50%{box-shadow:0 0 12px #ffd34a,0 0 4px #fff6,0 1px 4px #000a}}
+body.lite .fw .mxbt.t3{animation:none;box-shadow:0 0 8px #ffd34acc}
+body.ph .fw .mxbt,body.php .fw .mxbt{min-width:15px;height:15px;font-size:8px;right:-3px;bottom:-3px;padding:0 3px}
+#vsi .vcd.mxent.in .vim{animation:mxent 1.6s ease-out both}
+#vsi .vcd.mxent.in .vim::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(110deg,#0000 30%,#fff7 48%,#ffd34a66 52%,#0000 70%);background-size:250% 100%;animation:mxent2 1.4s ease-out .15s both}
+#vsi .vcd.mxent .vim{position:relative}
+@keyframes mxent{0%{box-shadow:0 0 0 #ffd34a00}35%{box-shadow:0 0 34px #ffd34ae0,0 0 12px #fff8}100%{box-shadow:0 0 14px #ffd34a80}}
+@keyframes mxent2{0%{background-position:120% 0;opacity:1}100%{background-position:-60% 0;opacity:0}}
+.mxfev{max-height:min(300px,46vh);width:auto;max-width:min(300px,62vw)}
+body.ph .mxfbx .mxfdb{margin-top:6px;font-size:12.5px}
+.mxfbx .mxfdb{display:block;margin-top:10px;font:700 14px system-ui;font-style:normal;color:#9fe3c4;max-width:min(420px,86vw);margin-left:auto;margin-right:auto}
+
+/* ===== Perfil do jogador ===== */
+#dr .pf{position:relative;flex:1 0 auto;min-height:100vh;min-height:100dvh;overflow:visible;overflow-x:clip;display:flex;flex-direction:column;color:#f1e6ee;-webkit-overflow-scrolling:touch}
+.pf .pfbg{position:fixed;inset:0;z-index:0;background-size:cover;background-position:50% 50%;pointer-events:none}
+.pf .pfsp{position:fixed;top:0;right:0;bottom:0;width:62vw;z-index:0;display:flex;justify-content:flex-end;align-items:flex-end;pointer-events:none}
+.pf .pfsp img{height:100%;max-width:100%;object-fit:contain;object-position:right bottom;-webkit-mask-image:linear-gradient(to left,#000 62%,transparent 100%);mask-image:linear-gradient(to left,#000 62%,transparent 100%);filter:drop-shadow(0 0 30px #0008)}
+.pf .pfdim{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,#140a1ad9 0%,#140a1a80 34%,#140a1a14 62%,#0000 100%),linear-gradient(0deg,#0e0712e6 0%,#0e071200 32%)}
+.pf>*:not(.pfbg):not(.pfsp):not(.pfdim){position:relative;z-index:1}
+.pf .pftop{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px clamp(14px,2.4vw,34px) 6px}
+#dr .pf .pfbt{font:600 15px/1 Georgia,"Times New Roman",serif;color:#f3e6d6;background:#1a1020cc;border:1px solid #c9a77a80;border-radius:999px;padding:9px 20px;cursor:pointer;box-shadow:0 4px 14px #0007;white-space:nowrap}
+#dr .pf .pfbt:hover{border-color:#e9c87a;background:#2a1830e0}
+#dr .pf .pfbt span{font-family:system-ui;margin-right:4px}
+.pf .pflogo{display:flex;align-items:center;gap:10px;min-width:0}
+.pf .pflogo img{width:32px;height:32px;object-fit:contain;filter:drop-shadow(0 2px 6px #000a)}
+.pf .pflogo b{font:600 15px Georgia,serif;letter-spacing:.34em;color:#ecdcc6;white-space:nowrap}
+.pf .pfsp0{width:120px}
+.pf .pfmeio{flex:1 0 auto;display:flex;align-items:flex-start;gap:clamp(14px,2.6vw,44px);padding:4px clamp(14px,2.4vw,34px) 0}
+.pf .pfban{flex:none;position:relative;width:clamp(230px,21vw,320px);aspect-ratio:440/661;background-size:100% 100%;background-repeat:no-repeat;filter:drop-shadow(0 14px 22px #000b)}
+.pf .pfbc{position:absolute;left:27.5%;right:27.5%;top:10%;bottom:17%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;text-align:center}
+.pf .pfbc .pfav{width:96%;margin-bottom:2px}
+.pfav{position:relative;display:block;aspect-ratio:1/1;flex:none}
+.pfavi{position:absolute;left:7.4%;top:7.4%;width:85.2%;height:85.2%;border-radius:50%;object-fit:cover;box-sizing:border-box;background:#140b18}
+.pf .pfdef .pfavi,.pfdef .pfavi{object-fit:contain;padding:17%;background:radial-gradient(circle,#3b2443 0%,#160c1b 75%)}
+.pfavm{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+/* molduras gerais: a padrao e a arte do jogo; bronze, prata e dourada sao tons dela (provisorio) */
+.mo-bronze .pfavm{filter:sepia(1) saturate(2.4) hue-rotate(-14deg) brightness(.82) contrast(1.1)}
+.mo-prata .pfavm{filter:grayscale(1) brightness(1.4) contrast(1.15)}
+.mo-ouro .pfavm{filter:sepia(1) saturate(4.5) hue-rotate(4deg) brightness(1.12) drop-shadow(0 0 5px #ffd34a99)}
+.pf .pfnm{font:700 clamp(15px,1.35vw,20px)/1.15 Georgia,serif;color:#f6ecdf;word-break:break-word;text-shadow:0 2px 6px #000a}
+.pf .pfti{font:italic 500 clamp(11.5px,1vw,13.5px)/1.25 Georgia,serif;color:#dcc6a6}
+.pf .pfnv{font:700 13px/1 Georgia,serif;color:#e8efe6;background:#10222acc;border:1px solid #c9a77a99;border-radius:6px;padding:5px 12px;margin-top:2px;white-space:nowrap}
+.pf .pfxp{width:100%;height:6px;border-radius:4px;background:#ffffff1f;overflow:hidden}
+.pf .pfxp i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,#b27c97,#ffd36b)}
+.pf .pfxt{font:600 10.5px system-ui;color:#d6c8d0;white-space:nowrap}
+.pf .pflado{flex:1;min-width:0}
+.pf .pfh{font:600 clamp(24px,2.5vw,38px)/1.15 Georgia,serif;color:#f3e6d6;margin:8px 0 0;text-shadow:0 2px 14px #000}
+.pf .pfh::after{content:"";display:block;width:min(240px,60%);height:1px;margin-top:10px;background:linear-gradient(90deg,#c9a77a,#c9a77a00)}
+.pf .pfbot{flex:none;display:flex;align-items:stretch;gap:clamp(16px,3vw,52px);margin:16px max(clamp(14px,2.4vw,34px),300px) 62px clamp(14px,2.4vw,34px);padding:12px clamp(14px,2vw,28px);border-radius:12px;background:linear-gradient(90deg,#1a1020ee,#1a1020c4);border:1px solid #c9a77a44;box-shadow:0 10px 30px #0009;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.pf .pfbot h3{font:600 17px Georgia,serif;color:#f3e6d6;margin:0 0 8px}
+.pf .pfrk{flex:none;display:flex;flex-direction:column;padding-right:clamp(16px,3vw,52px);border-right:1px solid #c9a77a44}
+.pf .pfrkb{display:flex;align-items:center;gap:12px;flex:1}
+.pf .pfrkb .rkmed{width:64px;height:64px;flex:none}
+.pf .pfrkb .rkmed img{width:100%;height:100%;object-fit:contain}
+.pf .pfrkb b{display:block;font:700 18px Georgia,serif;color:#f3e6d6}
+.pf .pfrkb small{display:block;font:600 12px system-ui;color:#d6c8d0;margin-top:3px}
+.pf .pfmx{flex:1;min-width:0}
+.pf .pfmxr{display:flex;gap:clamp(10px,2.2vw,30px);flex-wrap:wrap}
+.pf .pfmxi{display:flex;flex-direction:column;align-items:center;gap:3px;width:104px;text-align:center}
+.pf .pfmxi .pfav{width:70px}
+.pf .pfmxi b{font:700 13.5px/1.15 Georgia,serif;color:#f3e6d6}
+.pf .pfmxi small{font:600 11px/1.2 system-ui;color:#dcc6a6}
+.pf .pfmxi.vz small{color:#b8a8b2}
+.pf .pfvz{opacity:.4}
+/* edicao */
+.pf.ed .pfban{position:sticky;top:10px}
+.pf .pfed{margin:14px 0 18px;padding:14px;border-radius:12px;background:#150c1aeb;border:1px solid #c9a77a44;box-shadow:0 10px 30px #0009;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.pf .pfedh{position:sticky;top:0;z-index:3;display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:-14px -14px 12px;padding:14px;border-radius:12px 12px 0 0;background:#150c1a;border-bottom:1px solid #c9a77a33;box-shadow:0 -14px 0 #150c1a}
+.pf .pftabs{display:flex;gap:6px;flex:1 1 340px}
+#dr .pf .pftab{flex:1 1 0;font:700 14px system-ui;color:#e9dcc8;background:#ffffff0d;border:1px solid #ffffff24;border-radius:8px;padding:9px 6px}
+#dr .pf .pftab.on{background:#c9a77a;color:#1a1020;border-color:#e9c87a}
+.pf .pfgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+.pf .pfgr.t-ti{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.pf .pfgr.t-fu{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+#dr .pf .pfit{display:flex;flex-direction:column;align-items:center;gap:5px;padding:9px 6px;border-radius:10px;border:1px solid #ffffff16;background:#ffffff08;color:#f1e6ee;text-align:center;min-width:0}
+#dr .pf .pfit:hover{border-color:#c9a77a88}
+#dr .pf .pfit.on{border-color:#e9c87a;background:#e9c87a24;box-shadow:inset 0 0 0 1px #e9c87a}
+#dr .pf .pfit.lk{opacity:.6}
+#dr .pf .pfit.lk img{filter:grayscale(1) brightness(.7)}
+.pf .pfit b{font:700 12.5px/1.2 system-ui;word-break:break-word}
+.pf .pfit small{font:600 10.5px/1.2 system-ui;color:#cdb0bd}
+.pf .pfgi{width:66px}
+#dr .pf .t-ti .pfit{align-items:flex-start;text-align:left;padding:10px 12px}
+.pf .t-ti .pfit b{font:italic 600 13.5px/1.25 Georgia,serif}
+.pf .pffu{display:block;width:100%;aspect-ratio:16/10;border-radius:6px;overflow:hidden;background:#0c0710}
+.pf .pffu img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.pf .pfft{display:flex;justify-content:flex-end;gap:8px;flex:none}
+#dr .pf .pfsv{background:#c9a77a;color:#1a1020;border-color:#e9c87a}
+/* menu: o icone do perfil */
+/* celular deitado */
+body.ph .pf .pftop{padding:8px 104px 4px 12px}
+body.ph .pf{min-height:100vh;min-height:100dvh}
+body.ph .pf .pfbot{position:absolute;left:calc(12px + clamp(150px,30vh,200px) + 14px);right:130px;bottom:10px;margin:0!important}
+body.ph #dr .pf .pfbt{font-size:13px;padding:7px 14px}
+body.ph .pf .pflogo b{font-size:12px;letter-spacing:.24em}
+body.ph .pf .pflogo img{width:24px;height:24px}
+body.ph .pf .pfsp0{width:60px}
+body.ph .pf .pfban{width:clamp(150px,30vh,200px)}
+body.ph .pf .pfbc{gap:3px}
+body.ph .pf .pfnm{font-size:13px}
+body.ph .pf .pfti{font-size:10.5px}
+body.ph .pf .pfnv{font-size:11px;padding:3px 8px}
+body.ph .pf .pfxt{font-size:9px}
+body.ph .pf .pfh{font-size:20px;margin-top:2px}
+body.ph .pf .pfbot{padding:8px 12px;gap:14px}
+body.ph .pf .pfrk{padding-right:14px}
+body.ph .pf .pfbot h3{font-size:14px;margin-bottom:4px}
+body.ph .pf .pfrkb .rkmed{width:44px;height:44px}
+body.ph .pf .pfrkb b{font-size:14px}
+body.ph .pf .pfmxi{width:78px}
+body.ph .pf .pfmxi .pfav{width:46px}
+body.ph .pf .pfmxi b{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+body.ph .pf .pfmxi small{font-size:9.5px}
+body.ph .pf .pfgr{grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:7px}
+body.ph .pf .pfgi{width:50px}
+/* celular em pe: tudo empilhado */
+body.php .pf .pftop{padding:10px 12px 4px}
+body.php #dr .pf .pfbt{font-size:13px;padding:7px 13px}
+body.php .pf .pflogo b{display:none}
+body.php .pf .pfsp0{width:70px}
+body.php .pf .pfmeio{flex-direction:column;align-items:center;gap:8px}
+body.php .pf .pflado{width:100%;order:-1;text-align:center}
+body.php .pf .pfh{font-size:22px}
+body.php .pf .pfh::after{margin:8px auto 0}
+body.php .pf .pfban{width:min(62vw,250px)}
+body.php .pf.ed .pfban{position:relative;top:0;width:min(46vw,190px)}
+body.php .pf.ed .pflado{order:0;text-align:left}
+body.php .pf .pfbot{flex-direction:column;align-items:stretch;margin:12px 12px 120px;gap:12px}
+body.php .pf .pfrk{border-right:0;padding-right:0;border-bottom:1px solid #c9a77a44;padding-bottom:12px}
+body.php .pf .pfmxr{justify-content:space-between;flex-wrap:nowrap}
+body.php .pf .pfmxi{width:31%}
+body.php .pf .pfmxi .pfav{width:58px}
+body.php .pf .pfsp{width:100vw;opacity:.55}
+body.php .pf .pfgr{grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px}
+body.php .pf .pfgr.t-ti{grid-template-columns:1fr 1fr}
+body.php .pf .pfgr.t-fu{grid-template-columns:1fr 1fr}
+body.php .pf .pfgi{width:54px}
+body.php .pf .pfft{order:-1;width:100%}
+body.php .pf .pfedh{padding:10px;margin:-14px -14px 10px}
+body.php .pf .pfed{margin-bottom:24px}
+body.php .pf.ed{padding-bottom:110px}
+body.ph .pf .pfedh{padding-right:100px}
+body.ph .pf .pfgr.t-ti{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+body.ph .pf .pfgr.t-fu{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+body.ph #dr .pf .pftab{font-size:12.5px;padding:7px 4px}
+
+/* ao lado do nome: draft, partida e lista de amigos */
+.pfch{display:inline-block;vertical-align:middle;width:1.75em;margin-right:.4em;line-height:0}
+.pfch .pfav{width:100%}
+.pfci{display:inline-flex;align-items:center;gap:6px;margin-left:.5em;vertical-align:middle;line-height:1}
+.pfcn{font:800 11px/1 system-ui;font-style:normal;color:#ffe3a3;background:#0009;border:1px solid #c9a77a88;border-radius:5px;padding:3px 6px;white-space:nowrap;text-shadow:none;-webkit-text-stroke:0}
+.pfct{font:italic 600 12px/1.1 Georgia,serif;color:#e7cfa9;white-space:nowrap;text-shadow:0 1px 3px #000;-webkit-text-stroke:0}
+body.ph .pfcn{font-size:9.5px;padding:2px 4px}
+body.ph .pfct,body.php .pfct{font-size:9.5px;max-width:92px;overflow:hidden;text-overflow:ellipsis;display:inline-block;vertical-align:middle}
+#ofr .ofrav.pfo{border:0;background:none;width:38px;height:38px;cursor:pointer;display:block}
+#ofr .ofrav.pfo .pfav{width:100%}
+#ofr .ofrnm b.pfab{cursor:pointer}
+#ofr .ofrnm b.pfab:hover{text-decoration:underline}
+#ofr .ofrnm small.ofrpf{color:#e7cfa9;font-style:italic}
+.pfch .pfavi,.pfch .pfavm{position:absolute!important;margin:0!important;border:0!important;box-shadow:none!important;padding:0;max-width:none!important;max-height:none!important}
+.pfch .pfavi{border-radius:50%!important;width:85.2%!important;height:85.2%!important;left:7.4%!important;top:7.4%!important}
+.pfch .pfdef .pfavi{padding:17%!important}
+.pfch .pfavm{width:100%!important;height:100%!important;left:0!important;top:0!important;border-radius:0!important}
+.hd .pfct{max-width:170px;overflow:hidden;text-overflow:ellipsis;display:inline-block;vertical-align:middle}
+#ofr .ofrnm small.ofrpf{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ===== Rank de Maestria ===== */
+.mxrk .mxrkf{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 8px;margin-bottom:6px;scrollbar-width:thin}
+#dr .mxrk .mxrkc{flex:none;width:44px;height:44px;padding:0;border-radius:8px;overflow:hidden;border:2px solid #ffffff22;background:#0006;opacity:.7}
+#dr .mxrk .mxrkc img{width:100%;height:100%;object-fit:cover;display:block}
+#dr .mxrk .mxrkc.on{border-color:#e9c87a;opacity:1;box-shadow:0 0 10px #e9c87a66}
+#dr .mxrk .mxrkc:hover{opacity:1}
+.mxrkt .mxrkn{display:flex;align-items:center;gap:8px;min-width:0}
+.mxrkt .mxrkn .pfch{width:30px;margin:0;flex:none}
+.mxrkt .mxrkn span{display:flex;flex-direction:column;min-width:0;line-height:1.15}
+.mxrkt .mxrkn b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mxrkt .mxrkn em{font:italic 600 11px Georgia,serif;color:#dcc6a6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mxrkt .mxrkv{font-weight:800;white-space:nowrap}
+.mxrkt tr.mxdz td{background:linear-gradient(90deg,#e9c87a2e,#e9c87a0a)}
+.mxrkt tr.mxdz td:first-child{box-shadow:inset 3px 0 0 #e9c87a}
+.mxrkt tr.mxdz .mxrkv{color:#ffd36b}
+.mxrkt .mxrks{width:20px;height:20px;object-fit:contain;vertical-align:-5px;margin-right:4px}
+.mxrk .mxrkd{font:600 11.5px system-ui;color:#c9bcb3;margin:8px 0 0}
+body.ph .mxrkt .mxrkn .pfch{width:24px}
+body.ph #dr .mxrk .mxrkc{width:36px;height:36px}
+.rktab.mxrkt{table-layout:fixed}
+.rktab.mxrkt th:nth-child(1),.rktab.mxrkt td:nth-child(1){width:34px}
+.rktab.mxrkt th:nth-child(3),.rktab.mxrkt td:nth-child(3){width:84px}
+.rktab.mxrkt th:nth-child(4),.rktab.mxrkt td:nth-child(4){width:84px}
+.rktab.mxrkt td.rknm{width:auto}
+body.ph .rktab.mxrkt th:nth-child(3),body.ph .rktab.mxrkt td:nth-child(3),body.php .rktab.mxrkt th:nth-child(3),body.php .rktab.mxrkt td:nth-child(3){width:62px}
+body.ph .rktab.mxrkt th:nth-child(4),body.ph .rktab.mxrkt td:nth-child(4),body.php .rktab.mxrkt th:nth-child(4),body.php .rktab.mxrkt td:nth-child(4){width:68px}
+body.ph .rktab.mxrkt th:nth-child(1),body.ph .rktab.mxrkt td:nth-child(1),body.php .rktab.mxrkt th:nth-child(1),body.php .rktab.mxrkt td:nth-child(1){width:24px}
+body.ph #dr .lbR .lbit small{display:none!important}
+body.php .lbpan .rktab.mxrkt,body.ph .lbpan .rktab.mxrkt{font-size:12px}
+body.php .rktab.mxrkt th,body.ph .rktab.mxrkt th{letter-spacing:0;font-size:9px}
+body.php .rktab.mxrkt td,body.ph .rktab.mxrkt td{padding:4px 3px}
+
+/* retroativo do Nivel da Conta (usa a caixa do retroativo da Maestria) */
+#mxrt.ctrt .ctrtz{width:84px;margin:0 auto 6px}
+#mxrt.ctrt .ctrtz .pfav{width:100%}
+#mxrt.ctrt .ctrtg{font-size:16px}
+#mxrt.ctrt .ctrtp{white-space:normal;line-height:1.3}
+#mxrt.ctrt .mxrtft{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+#mxrt.ctrt .mxrtbx{max-height:calc(100dvh - 20px);overflow-y:auto}
+body.ph #mxrt.ctrt .ctrtz{width:54px;margin-bottom:2px}
+body.ph #mxrt.ctrt .mxrtbx h2{margin:2px 0}
+body.ph #mxrt.ctrt .ctrtg{font-size:14px;margin:4px 0}
+body.ph #mxrt.ctrt p{margin:4px 0}
+
+/* acesso ao Perfil: o icone no canto superior direito do menu */
+#zhud .pfz{display:flex;align-items:center;gap:9px;padding:3px 14px 3px 3px;border-radius:999px;cursor:pointer;
+ background:linear-gradient(90deg,#1a1020f2,#2a1830e6);border:1px solid #c9a77a77;color:#f3e6d6;box-shadow:0 4px 14px #0008;font:inherit}
+#zhud .pfz:hover{border-color:#e9c87a;box-shadow:0 0 0 1px #e9c87a55,0 4px 14px #0008}
+#zhud .pfz .pfav{width:42px}
+#zhud .pfzt{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1;min-width:0}
+#zhud .pfzt b{font:700 14px Georgia,serif;color:#f6ecdf;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#zhud .pfzt i{font:800 11.5px system-ui;font-style:normal;color:#ffd36b;margin-top:2px}
+#zhud .pfz .pfavi,#zhud .pfz .pfavm{position:absolute!important;margin:0!important;border:0!important;box-shadow:none!important;max-width:none!important;max-height:none!important}
+#zhud .pfz .pfavi{border-radius:50%!important;width:85.2%!important;height:85.2%!important;left:7.4%!important;top:7.4%!important}
+#zhud .pfz .pfdef .pfavi{padding:17%!important;box-sizing:border-box}
+#zhud .pfz .pfavm{width:100%!important;height:100%!important;left:0!important;top:0!important;border-radius:0!important}
+body.ph #zhud .pfz{padding:2px 10px 2px 2px;gap:6px}
+body.ph #zhud .pfz .pfav{width:32px}
+body.ph #zhud .pfzt b{font-size:12px;max-width:90px}
+body.ph #zhud .pfzt i{font-size:10px}
+body.php #zhud .pfz{padding:2px;gap:0}
+body.php #zhud .pfz .pfav{width:36px}
+body.php #zhud .pfzt{display:none}
+
+#mxrt.ecav .ecavi{width:72px;height:72px;object-fit:contain;display:block;margin:0 auto 6px;filter:drop-shadow(0 4px 12px #0009)}
+body.ph #mxrt.ecav .ecavi{width:48px;height:48px}
 </style>
 </head><body><main><h1>Projeto Ânima</h1><div id="bar"></div><div id="b"></div><div id="lg"></div></main><div id="dr"></div><div id="tip"></div>
 <script>
@@ -6843,7 +7108,7 @@ function endTurn(){if(G.scr!="p"||G.win!=null||RFZ)return;const s=G.cur;const hp
   log("Limite de "+TLIM+" turnos: decidido pela vida restante ("+a+" x "+b+")");
   G.q=[];G.sel=null;render();return}
  G.cur=1-s;G.q=[];G.sel=null;G.kkc={};begin()}
-function newGame(){pannOff();G.dsnap=G.dsnapN||null;G.dsnapN=null;G.tutp=G._tutn?1:0;G._tutn=0;const T=G.tm;try{lbSalvaTime()}catch(e){}try{if(!G.sim)voxPre(T)}catch(e){}try{[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups],["lv",ZAV.lvps],["jw",ZAV.jwps],["tu",ZAV.tuv]].forEach(([c,v])=>{if(T&&T.some(t=>t.slice(1).includes(c)))vPre(v)});ULTV.forEach(V=>{if(T&&T.some(t=>t.slice(1).includes(V.c)))vPre(V.src)})}catch(e){}RFZ=0;G.g2m=0;G.g2v=0;G.g2seen={};SBV=[0,0];Object.assign(G,{t:0,ki:[0,0],zk:[0,0],zg:[0,0],tc:[0,0],sbcd:[0,0],q:[],sel:null,u:[],rep:[],log:[],win:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,kz:0,zs:[0,0],zd:[0,0],dr:[0,0],lead:G.ann?["none","none"]:[T[0][0],T[1][0]],ldisp:[T[0][0],T[1][0]],scr:"p",cf:G.fd=="x"?"x":G.fd&&G.fd!="r"?G.fd:FDS[Math.floor(Math.random()*FDS.length)].k});
+function newGame(){pannOff();G._ctk=null;G._ctr=null;G._ctAnim=0;G._wan=null;G.dsnap=G.dsnapN||null;G.dsnapN=null;G.tutp=G._tutn?1:0;G._tutn=0;const T=G.tm;try{lbSalvaTime()}catch(e){}try{if(!G.sim)voxPre(T)}catch(e){}try{[["za",ZAV.ps],["beast",ZAV.beast],["mv",ZAV.mvps],["gd",ZAV.gdps],["mg",ZAV.mgps],["tr",ZAV.trps],["cl",ZAV.clps],["gbk",ZAV.gbkps],["bo",ZAV.boups],["lv",ZAV.lvps],["jw",ZAV.jwps],["tu",ZAV.tuv]].forEach(([c,v])=>{if(T&&T.some(t=>t.slice(1).includes(c)))vPre(v)});ULTV.forEach(V=>{if(T&&T.some(t=>t.slice(1).includes(V.c)))vPre(V.src)})}catch(e){}RFZ=0;G.g2m=0;G.g2v=0;G.g2seen={};SBV=[0,0];Object.assign(G,{t:0,ki:[0,0],zk:[0,0],zg:[0,0],tc:[0,0],sbcd:[0,0],q:[],sel:null,u:[],rep:[],log:[],win:null,bp:0,sim:0,nul:[],ar:0,dd:0,su:null,kz:0,zs:[0,0],zd:[0,0],dr:[0,0],lead:G.ann?["none","none"]:[T[0][0],T[1][0]],ldisp:[T[0][0],T[1][0]],scr:"p",cf:G.fd=="x"?"x":G.fd&&G.fd!="r"?G.fd:FDS[Math.floor(Math.random()*FDS.length)].k});
  T.forEach((t,s)=>t.slice(1).forEach(c=>G.u.push({s,c,hp:100,mx:100,ar:0,br:0,st:[],cd:C[c].sk.map(()=>0),bn:0,rec:0,alive:true,im:0,rv:0,dbl:0,rvt:0,nx:0,fm:0,gk:0,gz:0,ept:0,al:{hp:100,mx:100}})));
  /* G.ann diz que os dois times tiraram o mesmo lider e as habilidades de lider
     se anulam. Nao tem nada a ver com eco: a flag estava desligando a build
@@ -6922,7 +7187,7 @@ function eInfo(u){let o=document.getElementById("einfo");if(o&&o.dataset.i==G.u.
  it(IMG[u.c+"_p"],"Passiva",ch.ps.n,()=>pTip(ch.ps.n,ch.ps.t,"Passiva"));
  ch.sk.forEach((k,i)=>{if(k.fm!=null&&k.fm!==u.fm)return;it(IMG[u.c+"_"+i],k.n,k.ho?(k.hc?"−"+k.hc+" HP":"Sem custo"):k.zk?k.zk+" Essência":k.kz||k.vz?"Essência variável":(k.ki||0)+" Energia",()=>sTip(k,u,1))});
  o.append(row,det,mk("p","eino","Toque numa habilidade para ler o que ela faz. Recargas e uso das habilidades do inimigo ficam ocultos."));document.body.append(o)}
-function winAnn(){if(G.win==null||G.sim||G.scr!="p"){return}const key=(G.gid||"")+":"+G.u.length+":"+G.t+":"+G.win;if(G._wan===key)return;G._wan=key;capReward();try{rkFimPartida()}catch(e){}const v=fogView(),me=G.online?(G.me>=0?G.me:null):G.bot?0:null;
+function winAnn(){if(G.win==null||G.sim||G.scr!="p"){return}const key=(G.gid||"")+":"+G.u.length+":"+G.t+":"+G.win;if(G._wan===key)return;G._wan=key;capReward();try{rkFimPartida()}catch(e){}try{ctFim()}catch(e){}const v=fogView(),me=G.online?(G.me>=0?G.me:null):G.bot?0:null;
  if(empate())PANN.win=["Empate!","Ninguém conseguiu tirar vida do outro: os times terminaram com a mesma vida.","pw"];else if(me==null)PANN.win=[pn(G.win)+" Venceu!","Fim da batalha.","pw"];else if(G.win===me)PANN.win=["Você Venceu!","Parabéns, a vitória é sua!","pwin"];else PANN.win=["Você Perdeu!","Não foi dessa vez. Tente de novo!","plose"];
  G._rem={tm:JSON.parse(JSON.stringify(G.tm||[])),fd:G.cf,ann:G.ann,mode:G.mode};G._endAt=Date.now()+5000;setTimeout(()=>{if(G._wan===key&&G.scr=="p")phaseAnn("win",1)},600);setTimeout(()=>{if(G.win!=null&&G.scr=="p")endScreen()},5100)}
 
@@ -6934,7 +7199,366 @@ function endBuscar(){endClose();
  try{if(G.online)oLeave()}catch(e){}
  try{LBM="fila";showLobby()}catch(e){}
  try{RKQ.de="lb";rkEntraFila(1)}catch(e){}}
-function endScreen(){if(G.win==null||G.scr!="p")return endClose();let o=document.getElementById("endov");if(!o){o=mk("div","");o.id="endov";document.body.append(o);try{rkPromoSolta()}catch(e){}if(window.ZGUESTNAG)setTimeout(window.ZGUESTNAG,2500)}
+/* ===== Nivel da Conta: EXP em toda partida, de todos os modos, sem limite =====
+   Do nivel N para o N+1 sao 100 + 25 x (N-1) de EXP. Fica em za_conta (vai junto
+   com a conta). g: as ultimas partidas ja pagas, para nenhuma pagar duas vezes. */
+const CTCFG={vit:275,der:195,ecos:5,rank:10};
+const ctPasso=n=>100+25*(n-1);                    /* EXP do nivel n para o n+1 */
+const ctTotal=n=>100*(n-1)+25*(n-1)*(n-2)/2;      /* EXP total para ESTAR no nivel n */
+function ctProg(xp){xp=Math.max(0,Math.floor(+xp||0));let n=1;while(xp>=ctTotal(n+1))n++;
+ const base=ctTotal(n),passo=ctPasso(n);return{n,xp,no:xp-base,passo,frac:(xp-base)/passo}}
+function ctLer(){let c=null;try{c=JSON.parse(ls("za_conta")||"null")}catch(e){c=null}
+ if(!c||typeof c!="object")c={};if(typeof c.xp!="number"||!isFinite(c.xp))c.xp=0;if(!Array.isArray(c.g))c.g=[];return c}
+function ctGrava(c){try{ls("za_conta",JSON.stringify(c))}catch(e){}}
+const ctNivel=()=>ctProg(ctLer().xp).n;
+/* o que libera em cada nivel */
+const CTDESB={5:"Aba Ecos",10:"Fila Ranqueada"};
+const ctLiberado=o=>ctNivel()>=(o=="ecos"?CTCFG.ecos:CTCFG.rank);
+function ctDesbEntre(a,b){const L=[];Object.keys(CTDESB).map(Number).sort((x,y)=>x-y).forEach(n=>{if(n>a&&n<=b)L.push(CTDESB[n])});return L}
+/* paga uma partida: devolve antes, depois, ganho e o que desbloqueou (ou nada, se ja foi paga) */
+function ctCredita(gid,venceu){if(!gid)return null;const c=ctLer();if(c.g.indexOf(gid)>=0)return null;
+ c.g.push(gid);if(c.g.length>200)c.g=c.g.slice(-200);
+ const antes=ctProg(c.xp),ganho=venceu?CTCFG.vit:CTCFG.der;c.xp=antes.xp+ganho;ctGrava(c);
+ const depois=ctProg(c.xp);return{antes,depois,ganho,desb:ctDesbEntre(antes.n,depois.n)}}
+/* fim da partida: de quem e o resultado. Tutorial, simulacao e quem so assiste nao ganham.
+   No mesmo aparelho (treino a dois) vale o lado esquerdo, que e sempre o do jogador. */
+function ctFim(){if(G.sim||G.tutp||G.win==null)return null;
+ const me=G.online?(G.me>=0?G.me:null):0;if(me==null)return null;
+ if(!G._ctk)G._ctk=(G.online&&G.gid)?"o:"+G.gid:"l:"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+ const r=ctCredita(G._ctk,G.win===me);if(r){G._ctr=r;try{pfPublica()}catch(e){}}return G._ctr||null}
+/* o bloco da EXP na tela de fim: a barra enche do que era ate o que ficou */
+function ctBloco(r){const b=mk("div","ctfim");if(!r)return b;
+ const p0=r.antes,p1=r.depois,txt=p=>fnum(p.no)+" / "+fnum(p.passo)+" EXP";
+ b.innerHTML="<div class='ctl'><b>Nível <span>"+p0.n+"</span></b><em>+"+fnum(r.ganho)+" EXP</em></div>"+
+  "<div class='ctbar'><i style='width:"+(p0.frac*100).toFixed(1)+"%'></i></div><small>"+txt(p0)+"</small><div class='ctup' hidden></div>";
+ const bar=b.querySelector(".ctbar i"),nv=b.querySelector(".ctl span"),sm=b.querySelector("small"),up=b.querySelector(".ctup");
+ const fim=()=>{nv.textContent=p1.n;sm.textContent=txt(p1);bar.style.transition="none";bar.style.width=(p1.frac*100).toFixed(1)+"%";
+  if(p1.n>p0.n){up.hidden=false;up.innerHTML="<b>Subiu para o nível "+p1.n+"!</b>"+r.desb.map(d=>"<span>Desbloqueado: "+escH(d)+"</span>").join("")}};
+ if(G._ctAnim){fim();return b}G._ctAnim=1;
+ const sobe=p1.n-p0.n;
+ setTimeout(()=>{if(!sobe){bar.style.width=(p1.frac*100).toFixed(1)+"%";setTimeout(fim,900);return}
+  bar.style.width="100%";setTimeout(()=>{bar.style.transition="none";bar.style.width="0%";nv.textContent=p1.n;
+   void bar.offsetWidth;bar.style.transition="";bar.style.width=(p1.frac*100).toFixed(1)+"%";setTimeout(fim,900)},800)},350);
+ return b}
+/* perfil: fundo, estandarte e moldura padrao (artes do jogo) */
+Object.assign(IMG,{pf_bg:"media/b64/8b6a37e9b362b582.webp",pf_ban:"media/b64/d93b2256393497de.webp",pf_mold:"media/b64/2202682f4e0f45e2.webp"});
+/* ===== Perfil do jogador =====
+   za_perfil: o que o jogador equipou (icone, titulo, moldura e fundo). Tudo vem da
+   Maestria: icone no 2, titulos no 4/8/10, fundo no 7 (de cada personagem) e as
+   molduras gerais (bronze no 5, prata no 7, dourada no 10, com qualquer personagem). */
+const PFDEF={ic:"",ti:"",mo:"pad",fu:""};
+/* o nome que aparece: o nick escolhido; sem nick ainda, so mostra (nao grava nada) */
+const pfNick=()=>{try{return String(ls("za_nick")||"").trim()||"Jogador"}catch(e){return "Jogador"}};
+const PFMOLD=[["pad","Padrão",0],["bronze","Bronze",5],["prata","Prata",7],["ouro","Dourada",10]];
+const pfRos=()=>ROS.filter(k=>C[k]);
+const mxMaiorNv=()=>pfRos().reduce((a,k)=>Math.max(a,mxNivelDe(k)),0);
+function pfLer(){let p=null;try{p=JSON.parse(ls("za_perfil")||"null")}catch(e){p=null}
+ if(!p||typeof p!="object")p={};return Object.assign({},PFDEF,p)}
+/* o que esta equipado e nao esta mais liberado (outro aparelho, regra mudou) volta para o padrao */
+function pfVal(p){p=Object.assign({},PFDEF,p||{});
+ if(p.ic&&!(C[p.ic]&&mxNivelDe(p.ic)>=2))p.ic="";
+ if(p.ti){const [k,n]=String(p.ti).split(":");if(!(C[k]&&MXTIT[n]&&mxNivelDe(k)>=+n))p.ti=""}
+ const m=PFMOLD.find(x=>x[0]==p.mo);if(!m||mxMaiorNv()<m[2])p.mo="pad";
+ if(p.fu&&!(C[p.fu]&&mxNivelDe(p.fu)>=7))p.fu="";
+ return p}
+function pfGrava(p){p=pfVal(p);ls("za_perfil",JSON.stringify({ic:p.ic,ti:p.ti,mo:p.mo,fu:p.fu}));
+ try{if(typeof pfPublica=="function")pfPublica()}catch(e){}}
+const pfTitTxt=ti=>{if(!ti)return"";const [k,n]=String(ti).split(":");return C[k]?mxTitulo(k,+n):""};
+const pfIcSrc=ic=>ic&&IMG[ic+"_f"]?IMG[ic+"_f"]:IMG.ui_marca;
+/* moldura da maestria de um personagem: a mesma escada das molduras gerais */
+const pfMoNv=n=>n>=10?"ouro":n>=7?"prata":n>=5?"bronze":"pad";
+/* o icone dentro da moldura */
+function pfAv(ic,mo,cls){return "<span class='pfav mo-"+(mo||"pad")+(ic?"":" pfdef")+(cls?" "+cls:"")+"'><img class='pfavi' src='"+pfIcSrc(ic)+"' alt=''><img class='pfavm' src='"+IMG.pf_mold+"' alt=''></span>"}
+/* os 3 personagens com mais pontos de Maestria */
+function pfTop(){return pfRos().map(k=>{const r=mxDe(k);return[k,r.pt||0,mxNivelInfDe(k)]}).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,3)}
+function pfPos(){try{const L=rkTopLista(),i=L.findIndex(x=>x.eu);return i>=0?i+1:0}catch(e){return 0}}
+/* os dados que a tela desenha: os meus (deste aparelho) ou os de um amigo */
+function pfMeu(){const p=pfVal(pfLer()),P=ctProg(ctLer().xp);let st=null;try{st=rkLoad()}catch(e){}
+ return{nick:pfNick(),ic:p.ic,ti:p.ti,tit:pfTitTxt(p.ti),mo:p.mo,fu:p.fu,nv:P.n,no:P.no,passo:P.passo,
+  rk:st&&st.n?{rank:st.rank,div:st.div,pc:st.pc,pos:pfPos()}:null,top:pfTop()}}
+
+let PFED=null,PFTAB="ic";
+/* tudo o que existe numa aba, liberado ou nao, com o jeito de liberar */
+function pfItens(tab){const R=pfRos();
+ if(tab=="ic")return[{id:"",n:"Ânima",ok:1,img:IMG.ui_marca,def:1}].concat(R.map(k=>({id:k,n:shn(k),ok:mxNivelDe(k)>=2,req:"Maestria 2 com "+shn(k),img:IMG[k+"_f"]})));
+ if(tab=="ti"){const L=[{id:"",n:"Sem título",ok:1}];R.forEach(k=>[4,8,10].forEach(n=>L.push({id:k+":"+n,n:mxTitulo(k,n),ok:mxNivelDe(k)>=n,req:"Maestria "+n+" com "+shn(k)})));return L}
+ if(tab=="mo"){const mx=mxMaiorNv();return PFMOLD.map(([id,n,nv])=>({id,n,ok:mx>=nv,req:"Maestria "+nv+" com qualquer personagem"}))}
+ return[{id:"",n:"Padrão",ok:1,img:IMG.pf_bg,def:1}].concat(R.map(k=>({id:k,n:shn(k),ok:mxNivelDe(k)>=7,req:"Maestria 7 com "+shn(k),img:IMG[k+"_s"]})))}
+const PFABAS=[["ic","Ícone"],["ti","Título"],["mo","Moldura"],["fu","Fundo"]];
+
+/* a tela. V: os dados de outro jogador (so para ver); sem V, o meu perfil */
+function showPerfil(V,op){op=op||{};const ed=!!op.ed&&!V;
+ if(ed&&!PFED)PFED=pfVal(pfLer());if(!ed)PFED=null;
+ const D=V||pfMeu();if(ed)Object.assign(D,PFED,{tit:pfTitTxt(PFED.ti)});
+ const se=document.scrollingElement,y0=op.keep&&se?se.scrollTop:0;
+ pannOff(1);dClear();G.scr="pf";document.body.classList.remove("bt");document.body.classList.add("dm");
+ const r=$("#dr");r.innerHTML="";
+ const w=mk("div","pf"+(ed?" ed":"")+(V?" vis":""));
+ const sp=D.fu&&IMG[D.fu+"_s"];
+ w.innerHTML="<div class='pfbg' style=\"background-image:url('"+IMG.pf_bg+"')\"></div>"+(sp?"<div class='pfsp'><img src='"+sp+"' alt=''></div>":"")+"<div class='pfdim'></div>";
+ /* topo: Voltar, a marca do Anima e Personalizar */
+ const top=mk("div","pftop");
+ const vt=mk("button","pfbt pfvt","<span>←</span> Voltar");vt.onclick=()=>{if(ed){PFED=null;return showPerfil()}if(op.volta)return op.volta();showMenu()};
+ top.append(vt,mk("div","pflogo","<img src='"+IMG.ui_marca+"' alt=''><b>PROJETO ÂNIMA</b>"));
+ if(!V&&!ed){const pz=mk("button","pfbt pfpz","Personalizar");pz.onclick=()=>showPerfil(null,{ed:1});top.append(pz)}
+ else top.append(mk("span","pfsp0"));
+ w.append(top);
+ /* o estandarte */
+ const meio=mk("div","pfmeio");
+ const ban=mk("div","pfban");ban.style.backgroundImage="url('"+IMG.pf_ban+"')";
+ ban.innerHTML="<div class='pfbc'>"+pfAv(D.ic,D.mo)+"<b class='pfnm'>"+escH(D.nick||"Jogador")+"</b>"
+  +(D.tit?"<i class='pfti'>"+escH(D.tit)+"</i>":"")
+  +(D.nv?"<span class='pfnv'>Nível "+fnum(D.nv)+"</span>":"")
+  +(D.passo?"<div class='pfxp'><i style='width:"+(100*Math.min(1,(D.no||0)/D.passo)).toFixed(1)+"%'></i></div><small class='pfxt'>"+fnum(D.no||0)+" / "+fnum(D.passo)+" EXP</small>":"")+"</div>";
+ meio.append(ban);
+ const lado=mk("div","pflado");
+ lado.append(mk("h1","pfh",ed?"Personalizar perfil":V?"Perfil de "+escH(D.nick||"jogador"):"Perfil do jogador"));
+ if(ed)lado.append(pfEditor());
+ meio.append(lado);w.append(meio);
+ /* faixa de baixo: ranqueada e maiores maestrias */
+ if(!ed){const bt=mk("div","pfbot");
+  const rk=mk("div","pfrk");
+  if(D.rk){const st={rank:D.rk.rank||1,div:D.rk.div||5,pc:D.rk.pc==null?null:D.rk.pc};
+   rk.innerHTML="<h3>Ranqueada</h3><div class='pfrkb'>"+rkMedalha(st)+"<div><b>"+escH(rkNome(st))+"</b>"+(D.rk.pos?"<small>#"+fnum(D.rk.pos)+" no ranking</small>":"")+"</div></div>"}
+  else rk.innerHTML="<h3>Ranqueada</h3><div class='pfrkb'><div><b>Sem classificação</b><small>Ainda não jogou a Fila Ranqueada</small></div></div>";
+  const mx=mk("div","pfmx");mx.append(mk("h3","","Maiores maestrias"));
+  const row=mk("div","pfmxr"),T=D.top||[];
+  for(let i=0;i<3;i++){const t=T[i];
+   row.append(mk("div","pfmxi"+(t?"":" vz"),t&&C[t[0]]
+    ?pfAv(t[0],pfMoNv(t[2]),"pfmxa")+"<b>"+escH(shn(t[0]))+"</b><small>"+fnum(t[1])+" pts</small><small>Maestria "+t[2]+"</small>"
+    :"<span class='pfav pfvz'><img class='pfavm' src='"+IMG.pf_mold+"' alt=''></span><small>Jogue para desbloquear</small>"))}
+  mx.append(row);bt.append(rk,mx);w.append(bt)}
+ r.append(w);zHud();
+ try{if(se)se.scrollTop=op.keep?y0:0}catch(e){}
+ /* a posicao no ranking chega depois da classificacao carregar */
+ if(!V&&!ed&&D.rk&&!D.rk.pos){try{rkBuscaTop()}catch(e){}setTimeout(()=>{if(G.scr=="pf"&&!PFED&&pfPos())showPerfil()},2500)}
+ return w}
+
+/* o painel de abas da edicao */
+function pfEditor(){const p=mk("div","pfed");
+ const tb=mk("div","pftabs");
+ PFABAS.forEach(([k,t])=>{const b=mk("button","pftab"+(PFTAB==k?" on":""),t);b.onclick=()=>{PFTAB=k;showPerfil(null,{ed:1,keep:1})};tb.append(b)});
+ const hd=mk("div","pfedh");hd.append(tb);p.append(hd);
+ const L=pfItens(PFTAB),cur=PFED[PFTAB],g=mk("div","pfgr t-"+PFTAB);
+ L.forEach(it=>{const on=it.id===cur;
+  let h;
+  if(PFTAB=="ic")h=pfAv(it.id,PFED.mo,"pfgi");
+  else if(PFTAB=="mo")h=pfAv(PFED.ic,it.id,"pfgi");
+  else if(PFTAB=="fu")h="<span class='pffu'><img src='"+it.img+"' alt=''></span>";
+  else h="";
+  const b=mk("button","pfit"+(on?" on":"")+(it.ok?"":" lk"),h+"<b>"+(it.ok?"":"<i class='mmcad' aria-hidden='true'>🔒</i>")+escH(it.n)+"</b>"+(it.ok?"":"<small>"+escH(it.req)+"</small>"));
+  b.title=it.ok?it.n:it.req;
+  b.onclick=()=>{if(!it.ok)return zToast(it.req);PFED[PFTAB]=it.id;showPerfil(null,{ed:1,keep:1})};
+  g.append(b)});
+ p.append(g);
+ const ft=mk("div","pfft");
+ const cc=mk("button","pfbt pfcc","Cancelar");cc.onclick=()=>{PFED=null;showPerfil()};
+ const sv=mk("button","pfbt pfsv","Salvar");sv.onclick=()=>{pfGrava(PFED);PFED=null;zToast("Perfil salvo");showPerfil()};
+ ft.append(cc,sv);hd.append(ft);
+ return p}
+
+/* ===== Perfil fora da tela de perfil: ao lado do nome, na lista de amigos e no perfil do amigo ===== */
+/* o resumo que vai junto do nome: icone, titulo (o id), moldura e nivel */
+function pfMini(){const p=pfVal(pfLer());return{ic:p.ic,ti:p.ti,mo:p.mo,nv:ctNivel()}}
+/* o pacote inteiro, para quem abrir o meu perfil */
+function pfPacote(){const D=pfMeu();return{ic:D.ic,ti:D.ti,mo:D.mo,fu:D.fu,nv:D.nv,no:D.no,passo:D.passo,rk:D.rk,top:D.top,mx:(()=>{try{return mxPacote()}catch(e){return{}}})(),at:Date.now()}}
+/* o que chega de outra conta: so o que o jogo conhece passa */
+function pfLimpa(p,nick){p=p&&typeof p=="object"?p:{};const o={nick:String(nick||"Jogador").slice(0,24)};
+ o.ic=C[p.ic]?p.ic:"";o.mo=PFMOLD.some(x=>x[0]==p.mo)?p.mo:"pad";o.fu=C[p.fu]?p.fu:"";
+ o.ti=typeof p.ti=="string"&&pfTitTxt(p.ti)?p.ti:"";o.tit=pfTitTxt(o.ti);
+ o.nv=+p.nv>0?Math.max(1,Math.floor(+p.nv)):null;
+ if(+p.passo>0){o.no=Math.max(0,Math.floor(+p.no||0));o.passo=Math.floor(+p.passo)}
+ if(p.rk&&typeof p.rk=="object")o.rk={rank:Math.min(RKCFG.ranks,Math.max(1,+p.rk.rank||1)),div:Math.max(1,+p.rk.div||5),pc:p.rk.pc==null?null:+p.rk.pc,pos:Math.max(0,+p.rk.pos||0)};else o.rk=null;
+ o.top=Array.isArray(p.top)?p.top.filter(t=>Array.isArray(t)&&C[t[0]]).slice(0,3).map(t=>[t[0],Math.max(0,+t[1]||0),Math.max(1,+t[2]||1)]):[];
+ return o}
+/* os adversarios da populacao da ranqueada tambem tem perfil: sai das mesmas partidas
+   que dao a maestria deles. Mesmo adversario, mesmo perfil, em qualquer aparelho. */
+function pfBot(){try{if(!rkEmJogo())return null;
+ const m=G.rkm||{},id=m.pop!=null?"p"+m.pop:"n"+String(G.rkNome||m.oppNome||"");
+ let n=0,wr=.5;if(m.pop!=null){const s=rkPopLoad().st[m.pop];if(s){n=(s.w||0)+(s.l||0);wr=n?(s.w||0)/n:.5}}else n=40+Math.floor(rkH(rkSH(id),3,9)*160);
+ return pfDeConta(id,n,wr,rkBotMx)}catch(e){return null}}
+/* o resumo de cada lado da partida (draft e batalha) */
+function pfEuLado(){try{if(G.online)return mxEuLado();
+ if(typeof D!="undefined"&&D&&D.on)return D.spec?2:O.seat;
+ return 0}catch(e){return 0}}
+function pfDoLado(s){try{
+ const on=G.online||(typeof D!="undefined"&&D&&D.on);
+ if(!on){if(s===0&&(G.bot||rkEmJogo()))return pfMini();if(s===1&&rkEmJogo())return pfBot();return null}
+ if(s===pfEuLado())return pfMini();
+ const d=(typeof O!=="undefined"&&O&&O.d)||null,pid=d&&d["p"+s],m=pid&&d.mem&&d.mem[okey(pid)];
+ if(!m||!m.pf)return null;return pfLimpa(m.pf,m.n)}catch(e){return null}}
+/* icone na moldura + nivel e titulo, para ir ao lado do nome */
+function pfChip(p){if(!p)return"";const t=pfTitTxt(p.ti);
+ return"<span class='pfch'>"+pfAv(p.ic,p.mo,"pfcha")+"</span>"}
+function pfInfo(p){if(!p)return"";const t=pfTitTxt(p.ti);
+ return"<span class='pfci'>"+(p.nv?"<i class='pfcn'>Nv "+fnum(p.nv)+"</i>":"")+(t?"<em class='pfct'>"+escH(t)+"</em>":"")+"</span>"}
+/* publica o meu perfil (players/<pid>) e o resumo na presenca */
+let PFPUB=0;
+function pfPublica(){try{if(typeof FR=="undefined"||!FR.pronto||!FR.pid||!FR.code)return;const db=frDb();if(!db)return;
+ clearTimeout(PFPUB);PFPUB=setTimeout(()=>{db.doc("players/"+FR.pid).set({n:frNick(),code:FR.code,at:Date.now(),pf:pfPacote()}).catch(()=>{});try{frPres()}catch(e){}},600)}catch(e){}}
+/* abre o perfil de um amigo (so para ver) */
+async function pfAmigo(id,nome){
+ if(G.scr=="p"||G.scr=="d")return zToast("Abra o perfil de "+nome+" fora da partida.");
+ let pf=null;try{const sn=await frDb().doc("players/"+id).get();const d=sn&&sn.exists?sn.data():null;pf=d&&d.pf;if(d&&d.n)nome=d.n}catch(e){}
+ if(!pf){const p=FR.pres[id];pf=p&&p.pf}
+ const volta=G.scr=="pf"?showMenu:(()=>{const f=G.scr=="inv"?showInv:G.scr=="lb"?showLobby:showMenu;return()=>f()})();
+ showPerfil(pfLimpa(pf,nome),{volta})}
+
+/* ===== Maestria depois do 10: niveis sem limite =====
+   Depois do 10 (com o desafio final concluido), cada nivel pede 250 pontos a mais
+   que o anterior: 10->11 2.450, 11->12 2.700, 12->13 2.950... As recompensas ficam no 10. */
+const MXPOS0=2450,MXPOSD=250;
+function mxProgInf(pt,dn){pt=Math.max(0,+pt||0);const n=mxNivel(pt,dn);
+ if(n<MXMAX)return{n,inf:0};
+ let x=pt-MXAC[MXMAX-1],k=MXMAX,p=MXPOS0;while(x>=p){x-=p;k++;p+=MXPOSD}
+ return{n:k,inf:1,no:x,passo:p}}
+const mxNivelInf=(pt,dn)=>mxProgInf(pt,dn).n;
+const mxNivelInfDe=k=>{const r=mxDe(k);return mxNivelInf(r.pt,mxDestNv(r))};
+
+/* a maestria de uma conta da populacao da ranqueada, pelas partidas da temporada */
+function rkMxCalc(id,n,wr,k){const sea=rkSeasonId(),sd=rkSH("mx|"+sea+"|"+id),L=ROS.filter(x=>C[x]);
+ const pe=L.map((x,i)=>{const h=rkH(sd,i,5);return .25+7*Math.pow(h,4)}),tot=pe.reduce((a,b)=>a+b,0);
+ const i=L.indexOf(k);if(i<0)return {pt:0,d:0,dn:0};
+ const jg=3*n*pe[i]/tot,vit=jg*wr,der=jg-vit;
+ const mvp=Math.floor(vit*(.16+.12*rkH(sd,i,11))),svp=Math.floor(der*(.10+.10*rkH(sd,i,13)));
+ const pt=Math.round(vit*MXCFG.vit+der*MXCFG.der+mvp*MXCFG.mvp+svp*MXCFG.svp),lim=MXAC[MXMAX-1];
+ const dn=pt>lim?Math.floor((mvp+svp)*(pt-lim)/pt):0;
+ return {pt,d:mvp+svp,dn}}
+/* o perfil de uma conta da populacao (mesma regra do adversario da partida) */
+function pfDeConta(id,n,wr,mxDe){const sd=rkSH("pf|"+id);
+ const fora=Math.floor(n*(.4+1.6*rkH(sd,1,3)));
+ let xp=Math.floor(n*wr*CTCFG.vit+n*(1-wr)*CTCFG.der+fora*(CTCFG.vit+CTCFG.der)/2);
+ xp=Math.max(xp,ctTotal(CTCFG.rank)+Math.floor(rkH(sd,2,5)*3000));
+ const L=pfRos().map(k=>{const r=mxDe(k)||{pt:0,dn:0};return[k,r.pt||0,mxNivel(r.pt||0,r.dn||0)]}).sort((a,b)=>b[1]-a[1]);
+ const top=L[0]||["",0,1],mx=top[2];
+ const ic=mx>=2&&rkH(sd,3,7)<.85?top[0]:"";
+ const tn=[10,8,4].find(t=>mx>=t);const ti=tn&&rkH(sd,4,7)<.7?top[0]+":"+tn:"";
+ const mo=rkH(sd,5,7)<.75?pfMoNv(L.reduce((a,x)=>Math.max(a,x[2]),0)):"pad";
+ return{ic,ti,mo,nv:ctProg(xp).n}}
+
+/* ===== Rank de Maestria: os mestres de cada personagem ===== */
+const MXRK={lista:null,at:0,em:0,k:""};
+async function mxRankBusca(f){const db=(typeof frDb=="function"&&frDb())||(typeof O!="undefined"&&O.db);
+ if(!db||MXRK.em||(!f&&Date.now()-MXRK.at<30000))return;MXRK.em=1;
+ try{const sn=await db.collection("players").get();
+  const nmr=v=>{const n=Math.floor(+v);return isFinite(n)?Math.max(0,Math.min(9e8,n)):0};
+  MXRK.lista=(sn.docs||[]).map(d=>{const x=d.data()||{},pf=x.pf||{},mx={};
+   if(pf.mx&&typeof pf.mx=="object")Object.keys(pf.mx).forEach(k=>{const v=pf.mx[k];if(C[k]&&Array.isArray(v))mx[k]=[nmr(v[0]),nmr(v[1])]});
+   return{id:d.id,nome:String(x.n==null?"":x.n).replace(/[\u0000-\u001f]/g,"").slice(0,24)||"Jogador",pf:pfLimpa(pf,x.n),mx}});
+  MXRK.at=Date.now();if(G.scr=="lb"&&LBM=="mx")showLobby()}catch(e){}finally{MXRK.em=0}}
+/* a lista de um personagem: contas de verdade, a populacao da temporada e eu */
+function mxRankLista(k){const L=[],eu=(typeof FR!="undefined"&&FR.pid)||(typeof O!="undefined"&&O.pid)||"",vis={};
+ (MXRK.lista||[]).forEach(x=>{if(x.id===eu)return;const v=x.mx[k];if(!v||!v[0])return;vis[x.nome.toLowerCase()]=1;
+  L.push({nome:x.nome,pt:v[0],nv:mxNivelInf(v[0],v[1]),pf:x.pf})});
+ try{let P=rkPopLoad();try{if(P.t<rkPopTickAgora()){rkPopSync();P=rkPopLoad()}}catch(e){}const B=rkPopBase().L;
+  P.st.forEach((s,i)=>{const n=(s.w||0)+(s.l||0);if(!n||!B[i]||B[i].ent>P.t)return;const nome=(B[i]&&B[i].nome)||"";if(!nome||vis[nome.toLowerCase()])return;
+   const wr=(s.w||0)/n,r=rkMxCalc("p"+i,n,wr,k);if(!r.pt)return;
+   L.push({nome,pt:r.pt,nv:mxNivelInf(r.pt,r.dn),pop:[i,n,wr]})})}catch(e){}
+ const me=mxDe(k);if(me.pt>0)L.push({nome:pfNick(),pt:me.pt,nv:mxNivelInfDe(k),pf:pfMini(),eu:1});
+ return L.sort((a,b)=>(b.pt-a.pt)||String(a.nome).localeCompare(String(b.nome),"pt-BR")||(a.eu?-1:b.eu?1:0))}
+function mxPainelRank(){const t=mk("div","rktop mxrk");
+ if(!MXRK.k||!C[MXRK.k]){const tp=pfTop();MXRK.k=tp[0]?tp[0][0]:pfRos()[0]}
+ const k=MXRK.k;
+ /* faixa com todos os personagens */
+ const fx=mk("div","mxrkf");
+ pfRos().forEach(c=>{const b=mk("button","mxrkc"+(c===k?" on":""),"<img src='"+IMG[c+"_f"]+"' alt=''>");b.title=shn(c);
+  b.onclick=()=>{MXRK.k=c;showLobby()};fx.append(b)});
+ t.append(fx);
+ t.append(mk("h3","","Rank de Maestria · "+escH(shn(k))));
+ const L=mxRankLista(k),meu=L.findIndex(x=>x.eu),lim=100;
+ t.append(mk("p","rknada",(L.length?L.length+" jogador"+(L.length==1?"":"es")+" com Maestria":"Ninguém jogou com "+escH(shn(k))+" ainda.")+(meu>=0?" · você está em "+(meu+1)+"º":"")+(MXRK.em?" · atualizando…":"")));
+ if(L.length){const tb=mk("div","rkrol");
+  tb.innerHTML="<table class='rktab mxrkt'><thead><tr><th>#</th><th>Jogador</th><th>Maestria</th><th>Pontos</th></tr></thead><tbody>"+
+   L.slice(0,lim).map((x,i)=>{const pf=x.pf||(x.pop?pfDeConta("p"+x.pop[0],x.pop[1],x.pop[2],c=>rkMxCalc("p"+x.pop[0],x.pop[1],x.pop[2],c)):null);
+    const tit=pf?pfTitTxt(pf.ti):"";
+    return "<tr class='"+(x.eu?"eu ":"")+(x.nv>=MXMAX?"mxdz":"")+"'><td>"+(i+1)+"</td>"+
+     "<td class='rknm mxrkn'>"+(pf?"<span class='pfch'>"+pfAv(pf.ic,pf.mo)+"</span>":"")+"<span><b>"+escH(x.nome)+"</b>"+(tit?"<em>"+escH(tit)+"</em>":"")+"</span></td>"+
+     "<td class='mxrkv'>"+(x.nv>=MXMAX?"<img class='mxrks' src='"+mxArte(MXMAX)+"' alt='' title='Maestria 10'>":"")+x.nv+"</td><td class='rkpt'>"+fnum(x.pt)+"</td></tr>"}).join("")+"</tbody></table>";
+  t.append(tb)}
+ if(meu>=lim)t.append(mk("p","rknada","Você está em "+(meu+1)+"º, fora dos "+lim+" mostrados."));
+ t.append(mk("p","mxrkd","Quem chega à Maestria 10 ganha destaque dourado aqui. Depois do 10 os níveis continuam subindo, sem limite."));
+ try{mxRankBusca()}catch(e){}
+ return t}
+
+/* ===== Retroativo do Nivel da Conta =====
+   Uma vez por conta: as partidas ranqueadas ja salvas viram EXP (as mesmas 275/195 das
+   partidas novas). A fonte com mais partidas vale: a Maestria (cada partida paga os 4 do
+   time) ou o placar da ranqueada (temporada atual e as arquivadas). Garantia: quem ja
+   jogava a ranqueada fica no minimo no nivel 10 e quem ja tinha Ecos, no 5. */
+let CTRETP=0;
+function ctRetro(){try{const c=ctLer();if(c.ret)return c.retro||null;
+ const J=k=>{try{return JSON.parse(ls(k)||"null")}catch(e){return null}};
+ let mv=0,md=0;const M=J("za_mx");if(M&&M.p)Object.keys(M.p).forEach(k=>{const r=M.p[k]||{};mv+=Math.max(0,+r.v||0);md+=Math.max(0,+r.d||0)});
+ const Wm=Math.round(mv/4),Lm=Math.round(md/4);
+ let rw=0,rl=0;const st=J("za_rk");if(st){rw+=Math.max(0,+st.w||0);rl+=Math.max(0,+st.l||0)}
+ const A=J("za_rk_arq");if(Array.isArray(A))A.forEach(x=>{rw+=Math.max(0,+(x&&x.w)||0);rl+=Math.max(0,+(x&&x.l)||0)});
+ const H=J("za_rk_hist"),hn=Array.isArray(H)?H.length:0;
+ const [W,L]=Wm+Lm>=rw+rl?[Wm,Lm]:[rw,rl];
+ let xp=W*CTCFG.vit+L*CTCFG.der,gar=0;
+ const eco=(()=>{const e=J("za_eco");if(e&&typeof e=="object"&&Object.values(e).some(v=>v&&(v.aw||v.cl||v.rt||(Array.isArray(v.cb)&&v.cb.length))))return 1;
+  const q=J("za_eq");return q&&typeof q=="object"&&Object.values(q).some(v=>Array.isArray(v)?v.some(Boolean):!!v)?1:0})();
+ if(W+L>0||hn>0){if(xp<ctTotal(CTCFG.rank)){xp=ctTotal(CTCFG.rank);gar=CTCFG.rank}}
+ else if(eco&&xp<ctTotal(CTCFG.ecos)){xp=ctTotal(CTCFG.ecos);gar=CTCFG.ecos}
+ c.xp=(c.xp||0)+xp;c.ret=1;
+ c.retro={at:Date.now(),xp,partidas:W+L,gar,visto:xp>0?0:1};
+ ctGrava(c);if(xp>0)CTRETP=1;
+ try{pfPublica()}catch(e){}
+ return c.retro}catch(e){return null}}
+function ctRetroShow(dps){const fim=()=>{if(dps)try{dps()}catch(e){}};
+ const c=ctLer(),R=c.retro;if(!R||R.visto||!R.xp){fim();return}
+ if(document.getElementById("mxrt")){CTRETP=1;return}   /* outro aviso aberto: volta para a fila */
+ const nv=ctNivel(),ov=mk("div","ctrt");ov.id="mxrt";
+ const bx=mk("div","mxrtbx");bx.setAttribute("role","dialog");
+ bx.innerHTML="<div class='ctrtz'>"+pfAv(pfVal(pfLer()).ic,pfVal(pfLer()).mo)+"</div><h2>Nível da Conta</h2>"+
+  "<p class='ctrtg'>Você recebeu <b>"+fnum(R.xp)+" de EXP</b>"+(R.partidas?" pelas suas <b>"+fnum(R.partidas)+" partida"+(R.partidas==1?"":"s")+" anterior"+(R.partidas==1?"":"es")+"</b>":" pelo que você já jogava")+"! Nível atual: <b>"+fnum(nv)+"</b>.</p>"+
+  (R.gar?"<p>Como você já "+(R.gar>=CTCFG.rank?"jogava a Fila Ranqueada":"usava Ecos")+", a sua conta começa no mínimo no <b>nível "+R.gar+"</b>, para nada do que você já usava ficar trancado.</p>":"")+
+  "<p>"+(nv>=CTCFG.rank?"A aba <b>Ecos</b> e a <b>Fila Ranqueada</b> estão liberadas.":nv>=CTCFG.ecos?"A aba <b>Ecos</b> está liberada. A Fila Ranqueada libera no nível 10.":"A aba Ecos libera no nível 5 e a Fila Ranqueada no 10.")+"</p>";
+ /* as recompensas de Maestria que ja estao liberadas */
+ const L=pfRos().map(k=>({k,n:mxNivelDe(k)})).filter(x=>x.n>=2).sort((a,b)=>b.n-a.n);
+ if(L.length){bx.append(mk("p","mxrtt","Recompensas de Maestria liberadas para o seu <b>Perfil</b>:"));
+  const l=mk("div","mxrtl");
+  L.slice(0,document.body.classList.contains("ph")?2:5).forEach(x=>{const n=x.n,ps=["Ícone"];const t=mxSeloTier(n);if(t)ps.push("Selo "+["","I","II","III"][t]);
+   const tn=[10,8,4].find(v=>n>=v);if(tn)ps.push("Título “"+mxTitulo(x.k,tn)+"”");if(n>=7)ps.push("Fundo");if(n>=9)ps.push("Efeito de entrada");
+   const r=mk("div","mxrti");
+   r.innerHTML="<img class='mxrtf' src='"+(IMG[x.k+"_f"]||"")+"' alt=''><div class='mxrtd'><b>"+escH(shn(x.k))+" · Maestria "+x.n+"</b><span class='ctrtp'>"+ps.map(escH).join(" · ")+"</span></div>";
+   l.append(r)});bx.append(l);
+  const mais=L.length-(document.body.classList.contains("ph")?2:5);if(mais>0)bx.append(mk("p","mxrtt","E mais <b>"+mais+"</b> personage"+(mais==1?"m":"ns")+". Tudo aparece no <b>Personalizar</b> do Perfil."));
+  const mo=PFMOLD.filter(m=>m[2]&&mxMaiorNv()>=m[2]).map(m=>m[1].toLowerCase());
+  if(mo.length)bx.append(mk("p","mxrtt","Molduras: <b>"+mo.join(", ")+"</b>"))}
+ const ft=mk("div","mxrtft"),ok=mk("button","lam lam-g","<b>Valeu!</b>"),pf=mk("button","lam","<b>Ver meu perfil</b>");
+ const fecha=ir=>{ov.remove();document.removeEventListener("keydown",tec,true);
+  try{const x=ctLer();if(x.retro){x.retro.visto=1;ctGrava(x)}}catch(e){}if(ir)showPerfil();else{if(G.scr=="m")try{showMenu()}catch(e){}fim()}};
+ const tec=e=>{if(e.key=="Escape"){e.stopPropagation();fecha()}};
+ ok.onclick=()=>fecha();pf.onclick=()=>fecha(1);ft.append(pf,ok);bx.append(ft);ov.append(bx);
+ document.body.append(ov);document.addEventListener("keydown",tec,true);
+ try{sfx("ok")}catch(e){}}
+
+/* ===== Aviso: os equipamentos viraram Ecos =====
+   Uma vez so, para quem ja tinha equipamento montado e esta com a aba Ecos liberada.
+   Quem nunca montou nada nao precisa do aviso: fica marcado como visto. */
+let ECOAVP=0;
+function ecoAvisoCheca(){try{if(ls("za_ecoav")==="1")return;
+ const J=k=>{try{return JSON.parse(ls(k)||"null")}catch(e){return null}};
+ const e=J("za_eco"),q=J("za_eq");
+ const tinha=(e&&typeof e=="object"&&Object.values(e).some(v=>v&&(v.aw||v.cl||v.rt||(Array.isArray(v.cb)&&v.cb.length))))||
+  (q&&typeof q=="object"&&Object.values(q).some(v=>Array.isArray(v)?v.some(Boolean):!!v));
+ if(!tinha){ls("za_ecoav","1");return}
+ if(ctLiberado("ecos"))ECOAVP=1}catch(e){}}
+function ecoAvisoShow(dps){const fim=()=>{if(dps)try{dps()}catch(e){}};
+ if(ls("za_ecoav")==="1"){fim();return}
+ if(document.getElementById("mxrt")){ECOAVP=1;return}   /* outro aviso aberto: volta para a fila */
+ const ov=mk("div","ctrt ecav");ov.id="mxrt";const bx=mk("div","mxrtbx");bx.setAttribute("role","dialog");
+ bx.innerHTML="<img class='ecavi' src='"+(IMG.ui_inv||"")+"' alt=''><h2>Os Ecos chegaram</h2>"+
+  "<p class='ctrtg'>Os seus equipamentos viraram <b>Ecos</b>.</p>"+
+  "<p>Passe na nova aba <b>Ecos</b>, no Menu Principal, e revise os Ecos de cada personagem: agora são 5 por personagem (Despertado, Classe, Ritmo e dois de Combate) e muitos efeitos são novos.</p>"+
+  "<p>O botão <b>Equipar em lote</b> monta de uma vez os Ecos recomendados para quem você escolher.</p>";
+ const ft=mk("div","mxrtft"),go=mk("button","lam lam-g","<b>Ir para os Ecos</b>"),dp=mk("button","lam","<b>Depois</b>");
+ const fecha=ir=>{ov.remove();document.removeEventListener("keydown",tec,true);ls("za_ecoav","1");if(ir){try{showInv()}catch(e){}}else fim()};
+ const tec=e=>{if(e.key=="Escape"){e.stopPropagation();fecha()}};
+ go.onclick=()=>fecha(1);dp.onclick=()=>fecha();ft.append(dp,go);bx.append(ft);ov.append(bx);
+ document.body.append(ov);document.addEventListener("keydown",tec,true);try{sfx("ok")}catch(e){}}
+
+function endScreen(){if(G.win==null||G.scr!="p")return endClose();let o=document.getElementById("endov");if(!o){o=mk("div","");o.id="endov";document.body.append(o);try{ctFim()}catch(e){}try{rkPromoSolta()}catch(e){}if(window.ZGUESTNAG)setTimeout(window.ZGUESTNAG,2500)}
  const me=G.online?(G.me>=0?G.me:null):G.bot?0:null,cls=empate()?"pw":me==null?"pw":G.win===me?"pwin":"plose",tt=empate()?"Empate!":me==null?pn(G.win)+" Venceu!":G.win===me?"Você Venceu!":"Você Perdeu!";
  let st="",btns=[];
  if(!G.online){
@@ -6948,7 +7572,7 @@ function endScreen(){if(G.win==null||G.scr!="p")return endClose();let o=document
    st=d.rc?"":mine&&!oth?"Aguardando o oponente aceitar a revanche…":oth&&!mine?"O oponente quer revanche!":""}}
 btns.push([scic("%SC%")+"<i class='stbt'>Estatísticas</i>",showStats,"stb"]);
  const sig=cls+"|"+tt+"|"+st+"|"+btns.map(b=>b[0]+(b[2]||"")).join(",")+"|"+(G.online&&O.d&&O.d.rc||0);if(o.dataset.sig===sig)return;o.dataset.sig=sig;
- o.innerHTML="";const bx=mk("div","endbox"),t=mk("div","pbox "+cls);t.append(mk("div","pk",icHTML("ui_marca","","Projeto Ânima","<span>PROJETO ÂNIMA</span>")),mk("div","pt",tt));bx.append(t);
+ o.innerHTML="";const bx=mk("div","endbox"),t=mk("div","pbox "+cls);t.append(mk("div","pk",icHTML("ui_marca","","Projeto Ânima","<span>PROJETO ÂNIMA</span>")),mk("div","pt",tt));bx.append(t);if(G._ctr)bx.append(ctBloco(G._ctr));
  const row=mk("div","endbt");btns.forEach(([n,f,c])=>{const b=mk("button","endb"+(c?" "+c:""),"<span>"+n+"</span>");b.onclick=f;row.append(b)});bx.append(row);
  if(st)bx.append(mk("p","endst",st));if(G.online&&O.d&&O.d.rc){bx.append(mk("div","endcd","<small>Revanche em</small><b id='endcd'>5</b>"))}o.append(bx)}
 async function oEnd(a){if(!O.ref)return;try{await O.ref.update({ph:"lobby",r0:false,r1:false,lr0:false,lr1:false,cd:0,rm0:false,rm1:false,rc:0,note:"",ea:a+":"+Date.now()})}catch(e){O.err="Não foi possível sair.";endScreen()}}
@@ -8087,6 +8711,23 @@ function inSay(keys,cb){keys=keys.filter(k=>AU[k]);let i=0,done=0;const fin=()=>
  const nx=()=>{if(!IN)return;if(i>=keys.length)return setTimeout(fin,350);const a=vox(AU[keys[i++]]);if(!a){setTimeout(nx,900);return}IN.au=a;let ok=0;a.onended=()=>{ok=1;nx()};a.onerror=()=>{if(!ok){ok=1;setTimeout(nx,900)}};if(!VOX.has(a)&&!ok&&!a.onended){ok=1;setTimeout(nx,1200)}};
  if(!keys.length)return setTimeout(fin,1300);nx();setTimeout(fin,7000)}
 function inEnd(){if(!IN)return;const o=IN.o,cb=IN.cb;try{IN.au&&IN.au.pause()}catch(e){}IN.tm.forEach(clearTimeout);IN=null;G.inOn=0;o.classList.add("out");setTimeout(()=>o.remove(),600);cb&&cb();if(typeof botPlay=="function")botPlay()}
+/* a maestria de um personagem num lado da partida: [pontos, destaques do 10, destaques] ou nada.
+   A minha vem deste aparelho; a do adversario vem da sala (cada um publica a sua) ou,
+   contra a populacao da ranqueada, das partidas que aquela conta ja jogou. */
+function mxEuLado(){try{if(!G.online)return 0;
+ if(G.me===0||G.me===1)return G.me;
+ const a=(typeof O!=="undefined"&&O&&O.seat!=null)?O.seat:null;
+ return (a===0||a===1)?a:2}catch(e){return 0}}
+function mxDoLado(s,k){try{
+ const eu=r=>[r.pt,mxDestNv(r),mxDest(r)];
+ if(!G.online){if(s===0)return eu(mxDe(k));if(rkEmJogo()){const r=rkBotMx(k);return r?[r.pt,r.dn,r.d]:null}return null}
+ if(s===mxEuLado())return eu(mxDe(k));
+ const d=(typeof O!=="undefined"&&O&&O.d)||null,pid=d&&d["p"+s],m=pid&&d.mem&&d.mem[okey(pid)];
+ if(!m||!m.mx)return null;
+ return m.mx[k]||[0,0,0]}catch(e){return null}}
+/* selo I, II ou III no rosto durante a partida (nivel 3, 6 e 9) */
+function mxSeloBat(s,k){if(!C[k]||ROS.indexOf(k)<0)return "";const v=mxDoLado(s,k);if(!v)return "";const n=mxNivel(v[0],v[1]),t=mxSeloTier(n);if(!t)return "";
+ const R=["","I","II","III"][t];return "<b class='mxbw'><i class='mxbt t"+t+"' title='Selo de Maestria "+R+" · Maestria "+n+"'>"+R+"</i></b>"}
 function playIntro(cb){const old=document.getElementById("vsi");if(old)old.remove();G.inOn=1;
  const o=mk("div","");o.id="vsi";const ff=FDS.find(x=>x.k==G.cf);if(ff)o.style.setProperty("--vbg",'url("'+IMG["fd_"+ff.k]+'")');
  /* a apresentação dos times não tem mais botão de pular: ela mostra a maestria
@@ -8104,13 +8745,8 @@ function playIntro(cb){const old=document.getElementById("vsi");if(old)old.remov
  /* cada lado mostra a maestria do dono: a minha vem deste aparelho, a do
     adversario vem da sala (cada um publica a sua) ou, contra a populacao da
     ranqueada, das partidas que aquela conta ja jogou */
- const seloDe=(s,k)=>{try{
-  if(!G.online){if(s===0)return mxSelo(k);if(rkEmJogo()){const r=rkBotMx(k);return r?mxSeloV(r.pt,r.dn,r.d):""}return ""}
-  if(s===EUV)return mxSelo(k);
-  const d=(typeof O!=="undefined"&&O&&O.d)||null,pid=d&&d["p"+s],m=pid&&d.mem&&d.mem[okey(pid)];
-  if(!m||!m.mx)return "";
-  const v=m.mx[k];return v?mxSeloV(v[0],v[1],v[2]):mxSeloV(0,0)}catch(e){return ""}};
- const half=s=>{const w=mk("div","vhalf t"+s),hd=mk("div","vhd",nm(s)),row=mk("div","vrow");w.append(hd,row);T(s).forEach(u=>{const c=mk("div","vcd");c.innerHTML="<div class='vim'><img src='"+(IMG[u.c+"_s"]||IMG[u.c+"_f"])+"' alt=''></div>"+seloDe(s,u.c)+"<b>"+C[u.c].n+"</b>";row.append(c)});return w};
+ const seloDe=(s,k)=>{const v=mxDoLado(s,k);return v?mxSeloV(v[0],v[1],v[2]):""};
+ const half=s=>{const w=mk("div","vhalf t"+s),hd=mk("div","vhd",nm(s)),row=mk("div","vrow");w.append(hd,row);T(s).forEach(u=>{const mv=mxDoLado(s,u.c),c=mk("div","vcd"+(mv&&mxNivel(mv[0],mv[1])>=9?" mxent":""));c.innerHTML="<div class='vim'><img src='"+(IMG[u.c+"_s"]||IMG[u.c+"_f"])+"' alt=''></div>"+seloDe(s,u.c)+"<b>"+C[u.c].n+"</b>";row.append(c)});return w};
  const H=[half(0),null,half(1)],V=mk("div","vsb","<img src='"+IMG.ui_vs+"' alt='VS'>");H[1]=V;st.append(H[0],V,H[2]);
  const side=(s,k)=>{if(!IN)return;const w=H[s?2:0],L=T(s),row=w.querySelector(".vrow");w.classList.add("on");
   const step=i=>{if(!IN)return;[...st.querySelectorAll(".vcd")].forEach(x=>x.classList.remove("cur"));if(i>=L.length)return k();const c=row.children[i];c.classList.add("in","cur");inSay(AUK[L[i].c]||[L[i].c],()=>step(i+1))};step(0)};
@@ -8125,7 +8761,7 @@ function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=!(ZO
  const EU=(()=>{try{return G.online?G.me:0}catch(e){return 0}})();
  const ORD=(EU===1)?[1,0]:[0,1];
  ORD.forEach((s,lado)=>{const row=mk("div","row t"+lado+(s==G.cur&&G.win==null?" cur":"")),hd=mk("div","hd"),L0=(G.ldisp||G.lead)[s],L=C[L0]?L0:null,an=!!L&&G.lead[s]=="none",lf=mk("img");if(L){lf.src=IMG[L+"_f"];if(an)lf.style.filter="grayscale(1)";att(lf,()=>pTip(C[L].n,C[L].ld,an?"Líder anulado: os dois times escolheram o mesmo":"Habilidade de Líder"))}else lf.style.visibility="hidden";
-  hd.append(lf,mk("div","","<b>"+pnv(s)+"</b> · "+(L?"líder "+C[L].n+(an?" (anulado)":""):"sem líder")+"<br>"+resChips(s)));row.append(hd);
+  hd.append(lf,mk("div","",(()=>{const pp=pfDoLado(s);return pfChip(pp)+"<b>"+pnv(s)+"</b>"+pfInfo(pp)})()+" · "+(L?"líder "+C[L].n+(an?" (anulado)":""):"sem líder")+"<br>"+resChips(s)));row.append(hd);
   const us=mk("div","us");
   G.u.filter(x=>x.s==s&&!x.sb).forEach(u0=>{
    /* ===== Monarca das Sombras =====
@@ -8136,7 +8772,7 @@ function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=!(ZO
    const u=(sbU&&SBV[u0.s])?sbU:u0;
    const ch=C[u.c],can=G.sel&&(!ch2(G.sel).vz||G.sel.z)&&selT(G.sel.u,ch2(G.sel)).includes(u)&&!(G.sel.ts||[]).includes(u),k=mk("div","u"+(u.alive?"":" dead")+(can?" tg":"")),tc=()=>k.onclick&&k.onclick();
    if(can&&!(G.online&&G.me<0))k.onclick=()=>{const S=G.sel;if(ch2(S).tg=="S"||tgu(ch2(S),S.u)=="E"){qpush({u:S.u,i:S.i,z:S.z,o:S.o});G.sel=null;render();return}if(ch2(S).tg=="2"){S.ts=(S.ts||[]).concat(u);if(S.ts.length<2&&tgts(S.u,ch2(S)).length>S.ts.length){render();return}qpush({u:S.u,i:S.i,ts:S.ts,o:S.o})}else qpush({u:S.u,i:S.i,t:u,z:S.z,o:S.o});G.sel=null;render()};
-   const fw=mk("div","fw"),f=mk("img","f");f.src=IMG[u.c+(u.fm?"_f2":"_f")];fw.append(f);if(can)fw.append(mk("b","tint "+(u.s==G.sel.u.s?"ta":"te")));if(!u.alive)fw.append(mk("b","xx","✖"));else if(has(u,"ATORD"))fw.append(mk("b","sp","🌀"));
+   const fw=mk("div","fw"),f=mk("img","f");f.src=IMG[u.c+(u.fm?"_f2":"_f")];fw.append(f);try{const sl=u.sb?"":mxSeloBat(u.s,u.c);if(sl)fw.insertAdjacentHTML("beforeend",sl)}catch(e){}if(can)fw.append(mk("b","tint "+(u.s==G.sel.u.s?"ta":"te")));if(!u.alive)fw.append(mk("b","xx","✖"));else if(has(u,"ATORD"))fw.append(mk("b","sp","🌀"));
    {const SI0=jwInv(u);if(SI0.length){const w=mk("div","jwsb");
     SI0.forEach(([i,n])=>{const im=mk("img","jwsbi");im.src=IMG["jw_"+i];im.alt=n;
      att(im,()=>jwInvTip(n));hovTip(im,()=>jwInvTip(n));
@@ -8165,7 +8801,7 @@ function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=!(ZO
    if(u.c=="tu"&&u.alive&&(!u.rv||u.rvt===G.t)){const e=mk("div","si rv im","<img src='"+IMG.st_REVV+"' alt=''><em>∞</em>");att(e,()=>"<b>Reviver</b><small>"+(u.rv?"Ativo até o fim deste turno":"Buff · permanente")+"</small><p>"+(u.rv?"Já reviveu: ignora o dano e os debuffs restantes deste turno. ":"")+"Ao ser derrotado, volta limpo à batalha com metade do HP máximo (uma vez), sem sofrer dano nem debuffs pelo resto do mesmo turno. Os efeitos do Fruto da Árvore do Poder passam a valer o dobro.</p>",tc);cs.append(e)}if(u.c=="g2"&&u.alive&&(!u.rv||u.rvt===G.t)){const e=mk("div","si rv im","<img src='"+IMG.st_REVV+"' alt=''><em>∞</em>");att(e,()=>"<b>Reviver</b><small>"+(u.rv?"Ativo até o fim deste turno":"Buff · permanente · não pode ser removido")+"</small><p>"+(u.rv?"Já reviveu: ignora o dano restante deste turno. ":"")+"Ao ser derrotado, volta à batalha com o HP completo (uma vez) e fica imune a debuffs pelo resto da batalha.</p>",tc);cs.append(e)}{const n=cs.children.length;if(n>4)cs.classList.add(n>5?"lots":"many");const bz=k.querySelector(".bars");if(bz&&document.body.classList.contains("bt")&&innerWidth>=900&&!document.body.classList.contains("ph")&&!document.body.classList.contains("php"))bz.prepend(cs);else k.append(cs)}
    const sk=mk("div","sk"+(HID?" fog":"")),pwr=mk("div","w pv"),pw=mk("img","ic p"),pb=HID?null:pbadge(u);pw.src=IMG[u.c+"_p"];pwr.append(pw);if(pb)pwr.append(mk("span","pb "+pb.c,pb.t));att(pwr,()=>pTip(ch.ps.n,ch.ps.t,"Passiva")+pstat(u));if(!HID)hovTip(pwr,()=>pTip(ch.ps.n,ch.ps.t,"Passiva")+pstat(u));if(u.c=="bj"&&u.alive&&!HID&&u.s==G.cur&&!(G.bot&&u.s==1)&&(!G.online||G.me===u.s)&&G.win==null){pwr.classList.add("bjc");pwr.onclick=ev=>{ev.stopPropagation();bjPick(u)}}if(u.c=="sak"&&u.alive&&!HID&&u.s==G.cur&&!(G.bot&&u.s==1)&&(!G.online||G.me===u.s)&&G.win==null){pwr.classList.add("bjc");pwr.onclick=ev=>{ev.stopPropagation();if(!u.bya&&sakSt(u)<1){log("Sakura está sem acúmulos de Byakugou");render();return}u.bya=u.bya?0:1;render()}}sk.append(pwr);
    if(HID&&fogRes(u.s)){sk.innerHTML="";const nb=ch.sk.filter(kk=>kk.fm==null||kk.fm===u.fm).length;sk.append(mk("div","w pv fogs"));for(let n=0;n<nb;n++)sk.append(mk("div","w fogs"));sk.onclick=()=>eInfo(u);sk.title="Ver habilidades";}
-   else skOrd(ch,u).forEach(i=>{const kk=ch.sk[i];const _wu=(typeof upSk=="function"&&upSk(u,i));const w=mk("div","w"+(_wu?" wup":"")+(kk.pv?" pv":"")+(kk.zn?" zn":"")+(G.rqf&&G.rqf.u===G.u.indexOf(u)&&G.rqf.i===i&&Date.now()-G.rqf.t<1500?" rqf":""));w.dataset.i=i;w.dataset.c=u.c,qd=G.q.some(a=>a.u==u&&a.i==i),im=mk("img","ic"+(qd?" q on":ok(u,i)?" on":" off"));im.src=IMG[u.c+"_"+i];w.append(im);if(_wu)w.append(mk("span","wupm","<img src='"+(IMG.ui_cap_un||"")+"' alt='Eco Despertado'>"));if(qd)w.append(mk("span","qn",String(G.q.findIndex(a=>a.u==u&&a.i==i)+1)));if(u.cd[i]>0)w.append(mk("em","",u.cd[i]>=50?"✖":u.cd[i]));if(cfBloq(u,kk))w.append(mk("span","blqf","🚫"));if(kk.vz){const sl=G.sel&&G.sel.u==u&&G.sel.i==i,qa=G.q.find(a=>a.u==u&&a.i==i);if(sl||qa)w.append(zStep(u,kk,sl?G.sel:qa,!!qa))}if(G.lead[u.s]=="gbk"&&kkDmg(kk)&&G.bot&&u.s==1&&G.q.some(a=>a.u==u&&a.i==i&&a.kk))w.append(mk("span","kkt on","Kaioken ✓"));if(G.lead[u.s]=="gbk"&&kkDmg(kk)&&!(G.bot&&u.s==1)&&!fogHid(u.s)){const sl=G.sel&&G.sel.u==u&&G.sel.i==i,qa=G.q.some(a=>a.u==u&&a.i==i);if(sl||qa)w.append(kkTog(u,i))}att(w,()=>sTip(kk,u)+(kk.pv?pstat(u):""),()=>pick(u,i));hovTip(w,()=>sTip(kk,u)+(kk.pv?pstat(u):""));sk.append(w)});
+   else skOrd(ch,u).forEach(i=>{const kk=ch.sk[i];const _wu=(typeof upSk=="function"&&upSk(u,i));const w=mk("div","w"+(_wu?" wup":"")+(kk.pv?" pv":"")+(kk.zn?" zn":"")+(G.rqf&&G.rqf.u===G.u.indexOf(u)&&G.rqf.i===i&&Date.now()-G.rqf.t<1500?" rqf":""));w.dataset.i=i;w.dataset.c=u.c,qd=G.q.some(a=>a.u==u&&a.i==i),im=mk("img","ic"+(qd?" q on":ok(u,i)?" on":" off"));im.src=IMG[u.c+"_"+i];w.append(im);if(_wu)w.append(mk("span","wupm","<img src='"+(IMG.ui_eco||"")+"' alt='Eco Despertado'>"));if(qd)w.append(mk("span","qn",String(G.q.findIndex(a=>a.u==u&&a.i==i)+1)));if(u.cd[i]>0)w.append(mk("em","",u.cd[i]>=50?"✖":u.cd[i]));if(cfBloq(u,kk))w.append(mk("span","blqf","🚫"));if(kk.vz){const sl=G.sel&&G.sel.u==u&&G.sel.i==i,qa=G.q.find(a=>a.u==u&&a.i==i);if(sl||qa)w.append(zStep(u,kk,sl?G.sel:qa,!!qa))}if(G.lead[u.s]=="gbk"&&kkDmg(kk)&&G.bot&&u.s==1&&G.q.some(a=>a.u==u&&a.i==i&&a.kk))w.append(mk("span","kkt on","Kaioken ✓"));if(G.lead[u.s]=="gbk"&&kkDmg(kk)&&!(G.bot&&u.s==1)&&!fogHid(u.s)){const sl=G.sel&&G.sel.u==u&&G.sel.i==i,qa=G.q.some(a=>a.u==u&&a.i==i);if(sl||qa)w.append(kkTog(u,i))}att(w,()=>sTip(kk,u)+(kk.pv?pstat(u):""),()=>pick(u,i));hovTip(w,()=>sTip(kk,u)+(kk.pv?pstat(u):""));sk.append(w)});
    if(sbU)k.append(sbTira(u0,sbU,u));
    k.append(sk);us.append(k)});row.append(us);b.append(row)});
  const bar=$("#bar");bar.innerHTML="";const p=spent();
@@ -8335,7 +8971,7 @@ function fieldVote(){const w=mk("div","fvw"),my=D.on?O.seat:D.who;w.append(mk("d
 function dClear(){try{const e=document.getElementById("rkpn");if(e)e.remove();if(RKPT){clearInterval(RKPT);RKPT=null}}catch(x){}
  try{cdPara()}catch(x){}
  clearInterval(DT);DT=null}
-IMG.st_ANUL="media/b64/d2b0cd2fa303e79d.webp";IMG.ui_baba="media/b64/f66d4540e1ef73e7.webp";IMG.ui_cap_of="media/b64/06133a6c8d851635.webp";IMG.ui_cap_df="media/b64/cf4908d03a1a7973.webp";IMG.ui_cap_ut="media/b64/dd3681d3c0fcf4a9.webp";IMG.ui_cap_sp="media/b64/92d246419845fad6.webp";IMG.ui_cap_un="media/b64/678cbee69bae133a.webp";IMG.ui_inv="media/b64/b7835016e74dbf6d.webp";IMG.ui_zeni="media/b64/0d3c9552ad348044.webp";IMG.ui_poster="media/5f595b834f459301a728c52f5e950ab2.webp";let MSEL=0,MTY=null;
+IMG.st_ANUL="media/b64/d2b0cd2fa303e79d.webp";IMG.ui_baba="media/b64/f66d4540e1ef73e7.webp";IMG.ui_inv="media/b64/b7835016e74dbf6d.webp";IMG.ui_zeni="media/b64/0d3c9552ad348044.webp";IMG.ui_poster="media/5f595b834f459301a728c52f5e950ab2.webp";let MSEL=0,MTY=null;
 function dball(n){let s="";const P=[[50,50],[35,50,65,50],[50,32,34,62,66,62],[35,35,65,35,35,65,65,65],[50,50,30,30,70,30,30,70,70,70],[33,30,67,30,33,52,67,52,33,74,67,74],[50,50,50,24,50,76,28,37,72,37,28,63,72,63]][n-1];for(let i=0;i<P.length;i+=2)s+="<i style='left:"+P[i]+"%;top:"+P[i+1]+"%'>★</i>";return"<span class='dbb'>"+s+"</span>"}
 /* fundo do menu animado: folhas das palmeiras balançando e água ondulando (WebGL) */
 const MBA={cv:null,gl:null,raf:0,ok:0,miss:0,t0:0,lt:0,u:null};
@@ -8702,7 +9338,7 @@ const TUT=[
  {g:"Jogando melhor",i:icHTML("ui_tt_lider","tti","")+"",n:"Líder e passiva",f:()=>tSum("Cada time tem <b>1 líder</b> fora de campo que dá um bônus ao time inteiro. Cada lutador também tem uma <b>passiva</b>, que funciona sozinha.")+
   "<ul><li>O líder <b>não luta</b>: ele só dá a <b>habilidade de líder</b> dele.</li><li>Se os dois times tiverem o <b>mesmo líder</b>, os dois bônus são anulados.</li><li>A <b>passiva</b> é o ícone redondo, o primeiro das habilidades. Ela não custa nada e não precisa ser clicada.</li><li>Quando a passiva acumula cargas, o número aparece no próprio ícone dela.</li><li>Uma passiva pode até colocar <b>mais um lutador em campo</b>: a <b>SOMBRA</b> do Jin Woo entra com as habilidades do inimigo derrotado, age sozinha, não tem vida e <b>não pode ser alvo</b> de nada. Ela divide o espaço dele na tela: a setinha <b>⇅</b> em cima do personagem troca qual dos dois você está vendo.</li></ul>"+tTip("Na aba <b>Personagens</b> do menu você vê o líder, a passiva e as habilidades de cada um com calma.")},
  {g:"Jogando melhor",i:icHTML("ui_tt_campo","tti","")+"",n:"Campos",f:()=>tSum("Cada batalha acontece num campo, e o campo muda uma regra para os dois times.")+"<div class='ttfd'>"+FDS.map(f=>"<div style=\"background-image:linear-gradient(90deg,#0b1f33ee 40%,#0b1f3388),url('"+IMG["fd_"+f.k]+"')\"><b>"+f.n+"</b><p>"+f.d+"</p></div>").join("")+"</div>"},
- {g:"Jogando melhor",i:"🎒",n:"Ecos",f:()=>tSum("Cada personagem equipa <b>5 Ecos</b>. O Eco não muda <i>o que</i> a habilidade faz na maioria das vezes — ele muda <i>o quanto</i>. Fica tudo em <b>Ecos</b>, no menu principal.")+"<h3>Tela 1: escolher o personagem</h3>"+tImg("tt_eco1","Tela de escolher o personagem, com as partes numeradas","","wide")+tLeg([["1","<b>Personagem escolhido</b>: nome, classes e a arte."],["2","<b>Atributos</b>: a soma de tudo o que ele tem equipado. O que está com um tracinho ainda não recebeu nada."],["3","<b>Botões</b>: Gerenciar Ecos, Equipar em lote (os Ecos recomendados de uma vez) e Desequipar tudo."],["4","<b>Filtros</b>: toque numa classe, ou em duas para ver quem tem as duas, e use a busca."],["5","<b>Personagens</b>: o número no canto mostra quantos Ecos ele já tem."],["6","<b>Confirmar</b> leva para a tela de equipar."]])+"<h3>Tela 2: equipar</h3>"+tImg("tt_eco2","Tela de equipar os Ecos, com as partes numeradas","","wide")+tLeg([["1","<b>Personagens</b> volta para a grade; <b>Ver habilidades</b> mostra o kit já com os Ecos somados."],["2","<b>Eco Despertado</b>: aprimora uma habilidade desse personagem."],["3","<b>Eco de Classe</b>: um efeito forte da classe dele."],["4","<b>Eco de Ritmo</b>: mexe em recarga, Energia e Essência."],["5","<b>Eco de Combate</b>: dois slots com números de dano, HP, armadura, barreira ou cura."],["6","<b>Lado</b>: Ofensivo ou Defensivo. Os 2 Ecos de Combate são sempre do mesmo lado."]])+"<h3>Os quatro tipos</h3><div class='ttips'>"+"<div><span><img src='"+(IMG["ui_cap_un"]||"")+"' alt='' style='width:30px;height:30px;border-radius:50%;vertical-align:middle'></span><b>Despertado</b><p>Aprimora <b>uma habilidade</b> desse personagem. Cada um tem três para escolher.</p></div>"+"<div><span><img src='"+(IMG["eco_ta3"]||"")+"' alt='' style='width:30px;height:30px;border-radius:50%;vertical-align:middle'></span><b>Classe</b><p>Três por classe. Quem tem duas classes vê os Ecos das duas.</p></div>"+"<div><span><img src='"+(IMG["eco_ut1"]||"")+"' alt='' style='width:30px;height:30px;border-radius:50%;vertical-align:middle'></span><b>Ritmo</b><p>Menos recarga, menos Essência, mais Energia ou a chance de não gastar nada.</p></div>"+"<div><span><img src='"+(IMG["eco_of1"]||"")+"' alt='' style='width:30px;height:30px;border-radius:50%;vertical-align:middle'></span><b>Combate</b><p><b>Ofensivo</b>: dano e HP máximo. <b>Defensivo</b>: armadura, barreira e cura.</p></div>"+"</div>"+"<h3>Escolhendo um Eco</h3><p>Toque num slot e as opções abrem <b>do lado dele</b>, na mesma tela, com <b>só os Ecos que servem</b> naquele slot e naquele personagem. <b>Segure o toque</b> numa opção (ou passe o mouse, no PC) para ler o que ela faz; toque para equipar. O <b>✕</b> deixa o slot vazio, e tocar fora fecha as opções.</p>"+tImg("tt_eco3","Opções do Eco de Classe abertas ao lado do slot","Passando o mouse numa opção, o efeito aparece por cima.")+tTip("Embaixo dos slots fica <b>Exibir descrições detalhadas dos Ecos</b>. Marcado, cada Eco mostra o efeito embaixo do nome; desmarcado, fica só o nome, com menos texto na tela. A escolha fica guardada.")+"<h3>As regras</h3><div class='tduo'><div class='tbox ki'><b>⚔️ Eco de Combate</b><ul><li>Escolha o lado: <b>Ofensivo</b> ou <b>Defensivo</b>.</li><li>Equipe <b>2 Ecos diferentes</b> desse lado: não dá para misturar lados nem repetir o mesmo.</li><li>Trocar de lado <b>limpa os 2 slots</b>.</li></ul></div><div class='tbox zk'><b>⚠️ Uma regra do time</b><ul><li>O <b>Eco de Classe</b> não acumula: se dois personagens do seu time levarem o mesmo, só vale o do primeiro.</li><li>No Draft é quem foi escolhido antes; no Treino é a ordem dos slots.</li><li>O <b>Despertado</b> nunca tem esse problema: ele é de um personagem só.</li></ul></div></div>"+"<h3>Veja o número mudar</h3><p>Em <b>Ver habilidades</b>, o dano, a cura, a barreira e a recarga aparecem <b>já somados</b>. O selo verde embaixo de cada habilidade mostra quanto veio dos Ecos. <b>Simular turno 1 a 3</b> serve para os Ecos que crescem a cada turno (como Fúria Crescente e Aura Protetora): do 3º turno em diante eles param de crescer.</p>"+"<h3>Montando os seus primeiros</h3><div class='tsteps'><div class='tstep'><i>1</i><div><b>Abra os Ecos</b><p>Menu → <b>Ecos</b> → toque no personagem que você mais usa → <b>Confirmar</b>.</p></div></div><div class='tstep'><i>2</i><div><b>Comece pelo lote</b><p><b>Equipar em lote</b> põe os Ecos recomendados de uma vez. Depois troque o que quiser, sem perder nada.</p></div></div><div class='tstep'><i>3</i><div><b>Escolha o lado do Combate</b><p><b>Ofensivo</b> se você gosta de atacar (Punho Pesado, Fúria Crescente), <b>Defensivo</b> se você costuma apanhar (Placa de Batalha, Escudo de Energia).</p></div></div><div class='tstep'><i>4</i><div><b>Confira as habilidades</b><p>Abra <b>Ver habilidades</b> e veja se o número que você queria subiu mesmo.</p></div></div></div>"+"<p class='tbig'>Os Ecos valem em <b>todos os modos</b>: Treino, Draft, contra o Bot e no Online — cada jogador leva os seus, e o bot monta os recomendados.</p>"},
+ {g:"Jogando melhor",i:"🎒",n:"Ecos",f:()=>tSum("Cada personagem equipa <b>5 Ecos</b>. O Eco não muda <i>o que</i> a habilidade faz na maioria das vezes — ele muda <i>o quanto</i>. Fica tudo em <b>Ecos</b>, no menu principal, que libera no <b>nível 5</b> da conta.")+"<h3>Tela 1: escolher o personagem</h3>"+tImg("tt_eco1","Tela de escolher o personagem, com as partes numeradas","","wide")+tLeg([["1","<b>Personagem escolhido</b>: nome, classes e a arte."],["2","<b>Atributos</b>: a soma de tudo o que ele tem equipado. O que está com um tracinho ainda não recebeu nada."],["3","<b>Botões</b>: Gerenciar Ecos, Equipar em lote (os Ecos recomendados de uma vez) e Desequipar tudo."],["4","<b>Filtros</b>: toque numa classe, ou em duas para ver quem tem as duas, e use a busca."],["5","<b>Personagens</b>: o número no canto mostra quantos Ecos ele já tem."],["6","<b>Confirmar</b> leva para a tela de equipar."]])+"<h3>Tela 2: equipar</h3>"+tImg("tt_eco2","Tela de equipar os Ecos, com as partes numeradas","","wide")+tLeg([["1","<b>Personagens</b> volta para a grade; <b>Ver habilidades</b> mostra o kit já com os Ecos somados."],["2","<b>Eco Despertado</b>: aprimora uma habilidade desse personagem."],["3","<b>Eco de Classe</b>: um efeito forte da classe dele."],["4","<b>Eco de Ritmo</b>: mexe em recarga, Energia e Essência."],["5","<b>Eco de Combate</b>: dois slots com números de dano, HP, armadura, barreira ou cura."],["6","<b>Lado</b>: Ofensivo ou Defensivo. Os 2 Ecos de Combate são sempre do mesmo lado."]])+"<h3>Os quatro tipos</h3><div class='ttips'>"+"<div><span><img src='"+(IMG["ui_eco"]||"")+"' alt='' style='width:30px;height:30px;border-radius:50%;vertical-align:middle'></span><b>Despertado</b><p>Aprimora <b>uma habilidade</b> desse personagem. Cada um tem três para escolher.</p></div>"+"<div><span><img src='"+(IMG["eco_ta3"]||"")+"' alt='' style='width:30px;height:30px;border-radius:50%;vertical-align:middle'></span><b>Classe</b><p>Três por classe. Quem tem duas classes vê os Ecos das duas.</p></div>"+"<div><span><img src='"+(IMG["eco_ut1"]||"")+"' alt='' style='width:30px;height:30px;border-radius:50%;vertical-align:middle'></span><b>Ritmo</b><p>Menos recarga, menos Essência, mais Energia ou a chance de não gastar nada.</p></div>"+"<div><span><img src='"+(IMG["eco_of1"]||"")+"' alt='' style='width:30px;height:30px;border-radius:50%;vertical-align:middle'></span><b>Combate</b><p><b>Ofensivo</b>: dano e HP máximo. <b>Defensivo</b>: armadura, barreira e cura.</p></div>"+"</div>"+"<h3>Escolhendo um Eco</h3><p>Toque num slot e as opções abrem <b>do lado dele</b>, na mesma tela, com <b>só os Ecos que servem</b> naquele slot e naquele personagem. <b>Segure o toque</b> numa opção (ou passe o mouse, no PC) para ler o que ela faz; toque para equipar. O <b>✕</b> deixa o slot vazio, e tocar fora fecha as opções.</p>"+tImg("tt_eco3","Opções do Eco de Classe abertas ao lado do slot","Passando o mouse numa opção, o efeito aparece por cima.")+tTip("Embaixo dos slots fica <b>Exibir descrições detalhadas dos Ecos</b>. Marcado, cada Eco mostra o efeito embaixo do nome; desmarcado, fica só o nome, com menos texto na tela. A escolha fica guardada.")+"<h3>As regras</h3><div class='tduo'><div class='tbox ki'><b>⚔️ Eco de Combate</b><ul><li>Escolha o lado: <b>Ofensivo</b> ou <b>Defensivo</b>.</li><li>Equipe <b>2 Ecos diferentes</b> desse lado: não dá para misturar lados nem repetir o mesmo.</li><li>Trocar de lado <b>limpa os 2 slots</b>.</li></ul></div><div class='tbox zk'><b>⚠️ Uma regra do time</b><ul><li>O <b>Eco de Classe</b> não acumula: se dois personagens do seu time levarem o mesmo, só vale o do primeiro.</li><li>No Draft é quem foi escolhido antes; no Treino é a ordem dos slots.</li><li>O <b>Despertado</b> nunca tem esse problema: ele é de um personagem só.</li></ul></div></div>"+"<h3>Veja o número mudar</h3><p>Em <b>Ver habilidades</b>, o dano, a cura, a barreira e a recarga aparecem <b>já somados</b>. O selo verde embaixo de cada habilidade mostra quanto veio dos Ecos. <b>Simular turno 1 a 3</b> serve para os Ecos que crescem a cada turno (como Fúria Crescente e Aura Protetora): do 3º turno em diante eles param de crescer.</p>"+"<h3>Montando os seus primeiros</h3><div class='tsteps'><div class='tstep'><i>1</i><div><b>Abra os Ecos</b><p>Menu → <b>Ecos</b> → toque no personagem que você mais usa → <b>Confirmar</b>.</p></div></div><div class='tstep'><i>2</i><div><b>Comece pelo lote</b><p><b>Equipar em lote</b> põe os Ecos recomendados de uma vez. Depois troque o que quiser, sem perder nada.</p></div></div><div class='tstep'><i>3</i><div><b>Escolha o lado do Combate</b><p><b>Ofensivo</b> se você gosta de atacar (Punho Pesado, Fúria Crescente), <b>Defensivo</b> se você costuma apanhar (Placa de Batalha, Escudo de Energia).</p></div></div><div class='tstep'><i>4</i><div><b>Confira as habilidades</b><p>Abra <b>Ver habilidades</b> e veja se o número que você queria subiu mesmo.</p></div></div></div>"+"<p class='tbig'>Os Ecos valem em <b>todos os modos</b>: Treino, Draft, contra o Bot e no Online — cada jogador leva os seus, e o bot monta os recomendados.</p>"},
  {g:"Modos de jogo",i:"🧪",n:"Treino",f:()=>tSum("O melhor lugar para começar: você monta os times como quiser e joga sem pressão.")+
   "<ol><li>No menu, vá em <b>Jogar → Modo Treino</b>.</li><li>Escolha <b>Contra o Bot</b> e o nível. Comece pelo <b style='color:#3b8cff'>Iniciante</b>.</li><li>Monte os times: o 1º espaço é o <b>líder</b>, os outros 3 são os lutadores. Ou aperte <b>Sortear</b>.</li><li>Escolha o campo e aperte <b>Iniciar batalha</b>.</li></ol>"+
   "<div class='tcards'><button class='tcard hot' data-play='1'><span>"+icHTML("ui_tt_jogando","tti","","\ud83c\udfae")+"</span><b>Aprender jogando</b><small>Já começa uma partida pronta contra o bot Iniciante, com dicas na tela.</small></button></div>"},
@@ -8711,7 +9347,17 @@ const TUT=[
   "<div class='tcards'><button class='tcard hot' data-go='"+tIdx("Draft em 1 minuto")+"'><span>🏆</span><b>Aprender o Draft</b><small>7 tópicos curtos com vídeos e imagens de cada fase.</small></button><button class='tcard' data-go='"+tIdx("Em poucas palavras e Sugestão")+"'><span>💡</span><b>Em poucas palavras e Sugestão</b><small>Como escolher bem sem ler o kit inteiro.</small></button></div>"+tTip("Antes do Draft, jogue algumas partidas de Treino para conhecer os personagens.")},
  {g:"Modos de jogo",i:"🌐",n:"Jogar online",f:()=>tSum("Crie uma sala, mande o código para um amigo e joguem cada um na sua tela.")+
   "<ol><li>No menu, entre em <b>Jogar → Jogar Online</b>, escolha seu apelido e crie uma sala.</li><li>Mande o <b>código da sala</b>. Seu amigo entra em Jogar Online e digita o código.</li><li>A sala tem <b>2 lugares de jogador</b> e <b>6 de espectador</b>. O dono da sala pode trocar as pessoas de lugar, mudar as regras e até colocar um bot.</li><li>Os dois apertam <b>Pronto</b> e o draft começa.</li></ol><p><b>Espectadores</b> veem os dois times e acompanham cada clique ao vivo.</p><h3>Assistir um amigo</h3><p>Na <b>lista de amigos</b>, quem está jogando aparece como <b>Em partida</b> e ganha o botão <b>Assistir</b>. Você entra direto na sala dele, sem precisar de código, e uma faixa no alto mostra de quem é a partida.</p><p>A diferença para entrar pelo código: por ali <b>você vê só as jogadas do seu amigo</b>. No turno do adversário, o que ele está montando só aparece depois de confirmado — do mesmo jeito que o próprio amigo enxerga.</p>"},
- {g:"Modos de jogo",i:"🏅",n:"Maestria",f:()=>tSum("Cada personagem tem a sua própria Maestria, que sobe conforme você joga com ele. São 10 níveis, e os pontos <b>nunca caem</b>: perder também soma.")+"<h3>Como ganhar pontos</h3>"+"<ul><li><b>Vitória</b>: 90 pontos.</li>"+"<li><b>Derrota</b>: 55 pontos. Jogar já conta, mesmo quando a partida não sai do jeito que você queria.</li>"+"<li><b>MVP</b> (melhor do time que venceu): +35.</li>"+"<li><b>SVP</b> (melhor do time que perdeu): +25.</li></ul>"+"<p>Os <b>quatro personagens</b> do seu time ganham os pontos da partida. Já o bônus de MVP ou SVP vai só para quem conquistou.</p>"+"<p>Só a <b>fila ranqueada</b> dá Maestria. Treino, sala particular e tutorial não contam.</p>"+"<h3>O nível 10</h3>"+tImg("mx_10","Selo de Maestria 10","O selo de quem chegou ao nível máximo","timgp")+"<p>Chegar ao 10 pede <b>duas</b> coisas com o mesmo personagem: <b>9.000 pontos</b> e <b>"+MXCFG.destaques+" destaques</b> (cada MVP ou SVP vale 1).</p>"+"<p>Os destaques só começam a contar <b>depois</b> que os pontos do nível 9 ficam completos: nessa hora aparece a missão final, e os "+MXCFG.destaques+" MVPs/SVPs têm de vir a partir dali. A ficha e a tela de <b>Missões</b> (botão no alto do Menu Principal) mostram quanto falta.</p>"+"<h3>Onde ver</h3>"+"<p>Em <b>Personagens</b>, cada card mostra o selo com o nível. Abra a ficha para ver a barra de progresso, suas partidas, MVPs, SVPs e as recompensas que já liberou.</p>"+"<p class='tnota'>Maestria é dedicação, não vantagem: as recompensas são só visuais e <b>nenhuma</b> muda dano, vida ou qualquer número da batalha.</p>"},
+ {g:"Modos de jogo",i:"🏅",n:"Maestria",f:()=>tSum("Cada personagem tem a sua própria Maestria, que sobe conforme você joga com ele. São 10 níveis, e os pontos <b>nunca caem</b>: perder também soma.")+"<h3>Como ganhar pontos</h3>"+"<ul><li><b>Vitória</b>: 90 pontos.</li>"+"<li><b>Derrota</b>: 55 pontos. Jogar já conta, mesmo quando a partida não sai do jeito que você queria.</li>"+"<li><b>MVP</b> (melhor do time que venceu): +35.</li>"+"<li><b>SVP</b> (melhor do time que perdeu): +25.</li></ul>"+"<p>Os <b>quatro personagens</b> do seu time ganham os pontos da partida. Já o bônus de MVP ou SVP vai só para quem conquistou.</p>"+"<p>Só a <b>fila ranqueada</b> dá Maestria. Treino, sala particular e tutorial não contam.</p>"+"<h3>O nível 10</h3>"+tImg("mx_10","Selo de Maestria 10","O selo de quem chegou ao nível máximo","timgp")+"<p>Chegar ao 10 pede <b>duas</b> coisas com o mesmo personagem: <b>9.000 pontos</b> e <b>"+MXCFG.destaques+" destaques</b> (cada MVP ou SVP vale 1).</p>"+"<p>Os destaques só começam a contar <b>depois</b> que os pontos do nível 9 ficam completos: nessa hora aparece a missão final, e os "+MXCFG.destaques+" MVPs/SVPs têm de vir a partir dali. A ficha e a tela de <b>Missões</b> (botão no alto do Menu Principal) mostram quanto falta.</p>"+"<h3>Depois do 10</h3><p>Com o desafio final concluído, a Maestria continua subindo <b>sem limite</b>. Do 10 para o 11 são 2.450 pontos, e cada nível pede 250 a mais que o anterior.</p>"+"<h3>Rank de Maestria</h3><p>No lobby, embaixo da Classificação, o <b>Rank de Maestria</b> mostra quem tem mais Maestria com cada personagem. Quem chega ao 10 ganha destaque dourado.</p>"+"<h3>Recompensas</h3>"+"<ul><li><b>2:</b> ícone de perfil com o rosto do personagem.</li><li><b>3, 6 e 9:</b> selo de Maestria I, II e III no rosto dele durante a partida (o III brilha).</li><li><b>4, 8 e 10:</b> títulos para usar no perfil.</li><li><b>5, 7 e 10:</b> molduras de bronze, prata e dourada.</li><li><b>7:</b> fundo de perfil com a arte do personagem.</li><li><b>9:</b> efeito de entrada na apresentação dos times.</li></ul>"+"<h3>Onde ver</h3>"+"<p>Em <b>Personagens</b>, cada card mostra o selo com o nível. Abra a ficha para ver a barra de progresso, suas partidas, MVPs, SVPs e as recompensas que já liberou.</p>"+"<p class='tnota'>Maestria é dedicação, não vantagem: as recompensas são só visuais e <b>nenhuma</b> muda dano, vida ou qualquer número da batalha.</p>"},
+ {g:"Modos de jogo",i:"⭐",n:"Nível da conta",f:()=>tSum("A sua conta tem um <b>nível</b>, sem limite. Ele sobe com a EXP que você ganha em <b>toda partida</b>, em qualquer modo: Treino, Draft, contra o Bot e Online.")+
+  "<ul><li><b>Vitória:</b> 275 de EXP.</li><li><b>Derrota ou empate:</b> 195 de EXP.</li><li>O tutorial não dá EXP.</li></ul>"+
+  "<h3>Quanto falta para subir</h3><p>Do nível 1 para o 2 são 100 de EXP. Cada nível pede 25 a mais que o anterior: 125, 150, 175…</p>"+
+  "<h3>O que o nível libera</h3><ul><li><b>Nível 5:</b> a aba <b>Ecos</b>.</li><li><b>Nível 10:</b> a <b>Fila Ranqueada</b>.</li></ul>"+
+  "<p>No fim de cada partida aparece a barra de EXP enchendo. Quando você sobe de nível, o desbloqueio aparece ali mesmo.</p>"},
+ {g:"Modos de jogo",i:"🪪",n:"Perfil",f:()=>tSum("O <b>Perfil</b> mostra o seu estandarte: ícone, nome, título, nível da conta, ranqueada e as suas três maiores maestrias.")+
+  "<p>Para abrir, toque no <b>seu ícone</b> no canto superior direito do Menu Principal.</p><h3>Personalizar</h3><p>Toque em <b>Personalizar</b> para trocar o <b>ícone</b>, o <b>título</b>, a <b>moldura</b> e o <b>fundo</b>. A prévia muda na hora; depois é só <b>Salvar</b>.</p>"+
+  "<ul><li><b>Ícone</b> com o rosto do personagem: Maestria 2.</li><li><b>Títulos</b>: Maestria 4, 8 e 10.</li><li><b>Fundo</b> com a arte do personagem: Maestria 7.</li><li><b>Molduras</b> de bronze, prata e dourada: Maestria 5, 7 e 10 com qualquer personagem.</li></ul>"+
+  "<p>O que ainda está trancado aparece com cadeado e diz como liberar.</p>"+
+  "<h3>Perfil dos outros</h3><p>O seu ícone, título, moldura e nível aparecem ao lado do seu nome no draft, na partida e na lista de amigos. Na lista de amigos, toque no ícone ou no nome de alguém para ver o perfil dele.</p>"},
  {g:"Modos de jogo",i:"💡",n:"Dicas de iniciante",f:()=>"<div class='ttips'>"+[["🎯","Foque um alvo","Derrubar um inimigo de cada vez é melhor do que machucar todos um pouco: lutador caído não ataca."],["🔢","A ordem importa","Atordoe antes do inimigo agir e quebre a barreira antes do golpe forte."],["🔥","Essência é rara","Guarde para a ultimate que vai fazer diferença."],[icHTML("ui_tt_oponente","tti","")+"","Olhe os efeitos do inimigo","Inalvejável, Esquiva e Anulador podem fazer o seu golpe não pegar."],["🛡️","Escolha o tipo de dano","Muita barreira? Use ENERGIZADO. Muita armadura? Use PERFURANTE."],["🔮","Na dúvida, Vovó","A previsão mostra o resultado antes de confirmar."]].map(x=>"<div><span>"+x[0]+"</span><b>"+x[1]+"</b><p>"+x[2]+"</p></div>").join("")+"</div>"+
   "<p class='tbig'>Agora é a hora de jogar. Perder faz parte: cada partida ensina alguma coisa, e quando se sentir pronto é só subir o nível do bot.</p><div class='tcards'><button class='tcard hot' data-play='1'><span>"+icHTML("ui_tt_jogando","tti","","\ud83c\udfae")+"</span><b>Aprender jogando</b><small>Uma partida inteira contra o bot Iniciante, com o guia na tela: cada clique, os efeitos, a recarga, os tipos de dano e a ultimate.</small></button></div>"}];
 const TUTVID="media/f5757587d5fb16780b71ddeb46635830.mp4";
@@ -8761,7 +9407,7 @@ function coach(){let c=document.getElementById("coach");const kill=()=>{if(c)c.r
  {const pa=document.getElementById("pann");if(pa&&pa.className&&G.win==null){if(c)c.style.visibility="hidden";const s0=document.getElementById("cspot");if(s0)s0.remove();clearTimeout(G._cpt);G._cpt=setTimeout(coach,500);return}}
  const T=G.tutd||(G.tutd={}),me=0;if(document.querySelector(".pvov")){T.vv=1;if(c)c.style.visibility="hidden";const s=document.getElementById("cspot");if(s)s.remove();return}if(c)c.style.visibility="";
  let k,t,btn=null,el=null,top=0;
- if(G.win!=null){k="win";t=empate()?"<b>Empate!</b> Ninguém conseguiu abrir vantagem.":G.win==me?"🎉 <b>Você venceu!</b> Agora você já sabe jogar. Dois próximos passos: suba o bot para <b>Fácil</b> no Modo Treino, e passe em <b>Ecos</b> para montar os Ecos do seu personagem favorito.":"Não foi dessa vez, e tudo bem: cada partida ensina alguma coisa. Tente de novo, ou passe em <b>Equipamentos</b> para deixar o seu time mais forte com os Ecos."}
+ if(G.win!=null){k="win";t=empate()?"<b>Empate!</b> Ninguém conseguiu abrir vantagem.":G.win==me?"🎉 <b>Você venceu!</b> Agora você já sabe jogar. Dois próximos passos: suba o bot para <b>Fácil</b> no Modo Treino, e jogue partidas para chegar ao <b>nível 5</b> e liberar os <b>Ecos</b>.":"Não foi dessa vez, e tudo bem: cada partida ensina alguma coisa. Tente de novo: cada partida também dá EXP, e no <b>nível 5</b> os <b>Ecos</b> são liberados para deixar o seu time mais forte."}
  else{let i=T.si||0;while(i<CSTEP.length&&CSTEP[i].done(T))i++;
   if(i<3&&cQ("g2"))i=Math.max(i,3);if(i<5&&cQ("a17"))i=Math.max(i,5);if(i<7&&(G.q||[]).filter(a=>a.u&&a.u.s==0).length>=3)i=Math.max(i,7);
   if(i<9&&(document.getElementById("qord")||G.cur!=0))i=Math.max(i,9);while(i<CSTEP.length&&CSTEP[i].done(T))i++;T.si=i;
@@ -9141,7 +9787,7 @@ const PATCH=[
  nv:[{i:"🍥",hl:1,n:"Naruto Uzumaki",t:"Sela os buffs do inimigo, bloqueia a cura e, no Modo Kurama, recupera todo o HP e troca as quatro habilidades por versões novas.",
    li:["<b>Clones das Sombras</b>: −10 de DANO, mas tudo vira habilidade em área","<b>Jiton: Rasengan</b>: a MARCA DO JITON anula o buff e castiga o alvo","<b>Lava: Rasenshuriken</b>: BLOQUEIO DE CURA e +15 em quem já se curou","<b>Modo Kurama</b>: Bomba Bijuu, Modo Sábio e Oodama Rasenshuriken"]},
   {i:"🎚️",n:"Barra de habilidades do seu jeito",t:"Ao lado do Rende-se tem o <b>Personalizar barra</b>: dá para ordenar as habilidades por custo de Energia, recarga, maior dano, debuff primeiro ou suporte primeiro. A ultimate e a habilidade de campo ficam sempre no fim."},
-  {i:"💊",n:"Ecos aparecem na batalha",t:"A habilidade aprimorada pela Única agora tem <b>borda dourada</b> e o selo do Eco dentro da luta, e o texto do efeito entra no tooltip. Antes isso só dava para ver no Inventário."},
+  {i:"<img src='"+(IMG.ui_eco||"")+"' alt='' style='width:26px;height:26px'>",n:"Ecos aparecem na batalha",t:"A habilidade aprimorada pela Única agora tem <b>borda dourada</b> e o selo do Eco dentro da luta, e o texto do efeito entra no tooltip. Antes isso só dava para ver no Inventário."},
   {i:"🧬",n:"Passiva sempre visível no Inventário",t:"A passiva do personagem aparece na lista de habilidades mesmo sem Única equipada."}]},
  {t:"Patch 0.3.3",d:"13/11/2026",nw:[],ch:[["gi",["<b>Instinto Radiante</b>: o contra-ataque por esquiva passa a causar <b>5</b> de DANO, como o texto da habilidade e o Rework Patch já diziam. O código ainda causava 10. A Única <b>Instinto Radiante II</b> devolve os 10 para quem quiser."],"n"]],
  sy:["<b>Golpe Extra</b> (Ofensiva): volta a ser <b>+0,5 de DANO nas habilidades de DANO FIXO</b>. A versão que dava dano em inimigos sem BARREIRA acabou virando quase um Punho Pesado, porque quase ninguém entra o turno com BARREIRA. Com mais personagens de DANO FIXO a caminho, ela volta ao papel de nicho.",
@@ -9150,7 +9796,7 @@ const PATCH=[
   "<b>A Especial de classe não acumula no time.</b> Se dois personagens seus levarem a mesma Especial, só a do primeiro ativa — no Draft, quem foi escolhido antes; no Treino, a ordem dos slots.",
   "<b>COMPARTILHAMENTO DE DANO mudou de sentido.</b> Antes, quem tinha o efeito espalhava metade do próprio dano entre os aliados. Agora ele <b>puxa 20% do dano que cada aliado receberia</b>. Quando o portador é o alvo, nada é compartilhado.",
   "<b>Saiyajin imundo</b> (Cooler): a versão aprimorada passa a proteger também contra <b>DANO ENERGIZADO</b> e contra roubo de <b>BARREIRA</b>."],
- nv:[{i:"💊",hl:1,n:"Únicas: uma habilidade, três caminhos",t:"A Única é o Eco do próprio personagem. Ela não dá número solto: melhora uma habilidade específica, e cada personagem tem três opções para o mesmo kit.",
+ nv:[{i:"<img src='"+(IMG.ui_eco||"")+"' alt='' style='width:26px;height:26px'>",hl:1,n:"Únicas: uma habilidade, três caminhos",t:"A Única é o Eco do próprio personagem. Ela não dá número solto: melhora uma habilidade específica, e cada personagem tem três opções para o mesmo kit.",
    li:["<b>Goku SSJ Blue Kaioken</b>: gastar menos HP, ganhar INALVEJÁVEL sem precisar de SANGRAMENTO, ou converter SANGRAMENTO em dano",
     "<b>Trunks do Futuro SSJ</b>: armadura permanente, começar a batalha com HERANÇA ativa, ou executar com 55 de HP",
     "<b>Sakura Haruno</b>: começar com 4 acúmulos de BYAKUGOU, barreira no aliado curado, ou mais dano em área"]},
@@ -9325,10 +9971,10 @@ function tutSeen(){try{if((window.LSMEM||{}).za_tut_ok==="1")return true;return 
 function tutSeenSet(){try{ls("za_tut_ok","1")}catch(e){}}
 /* nenhum personagem com Eco: o jogador ainda não montou nada */
 function invVazio(){try{const a=eqAll();return!Object.keys(a).some(k=>C[k]&&ecoN(eqGet(k)))}catch(e){return false}}
-function invBadge(){try{const v=invVazio();document.querySelectorAll(".mmnwb.iv").forEach(e=>{e.textContent="!";e.hidden=!v})}catch(e){}}
+function invBadge(){try{const v=invVazio()&&ctLiberado("ecos");document.querySelectorAll(".mmnwb.iv").forEach(e=>{e.textContent="!";e.hidden=!v})}catch(e){}}
 /* saindo do tutorial: avisa antes, em vez de jogar o jogador direto no Inventário */
 function invAviso(){
- if(document.getElementById("ivad"))return;
+ if(document.getElementById("ivad")||!ctLiberado("ecos"))return;
  const ov=mk("div","");ov.id="ivad";const bx=mk("div","ivadbx");ov.append(bx);
  bx.innerHTML="<img class='ivadi' src='"+(IMG.ui_inv||"")+"' alt=''>"+
   "<h2>Aconselhamos a equipar seus personagens antes de começar</h2>"+
@@ -9401,7 +10047,7 @@ function nickAsk(){if(document.getElementById("nkm"))return;if(window.ZLOGIN&&wi
 function bnNext(){if(!nickOk()||document.getElementById("nkm")||document.getElementById("rotm"))return;
  const bqLivre=()=>(!BQ||!BQ.length)&&!document.getElementById("bnr")&&!document.getElementById("nws")&&G.scr=="m";
  if(CFG1P&&bqLivre()){CFG1P=0;return cfgInicial(()=>{try{bnNext()}catch(e){}})}
- if(RETROP&&bqLivre()){RETROP=0;return mxRetroShow(()=>{try{bnNext()}catch(e){}})}
+ if(RETROP&&bqLivre()){RETROP=0;return mxRetroShow(()=>{try{bnNext()}catch(e){}})}  if(CTRETP&&bqLivre()){CTRETP=0;return ctRetroShow(()=>{try{bnNext()}catch(e){}})}  if(ECOAVP&&bqLivre()){ECOAVP=0;return ecoAvisoShow(()=>{try{bnNext()}catch(e){}})}
  if(BQEND&&(!BQ||!BQ.length)&&!document.getElementById("bnr")&&!document.getElementById("nws")&&G.scr=="m"){const f=BQEND;BQEND=null;return f()}
  if(!BQ||!BQ.length||document.getElementById("bnr")||G.scr!="m")return;const b=BQ.shift();try{if(b.ty=="news")return nwOpen(true);bnShow(b)}catch(e){const x=document.getElementById("bnr");if(x)x.remove();const y=document.getElementById("nws");if(y&&!y.querySelector(".nwc"))y.remove()}}
 function bnShow(b){const ids=b.ty=="pt"?["pt_"+b.p.t]:b.ty=="nw"?["nw_"+b.k]:b.ty=="co"?["co_"+b.k]:b.ty=="sn"?["sn_"+b.k]:b.ty=="ft"?["ft_"+b.k]:b.ps.map(p=>"bal_"+p.t),ov=mk("div","");ov.id="bnr";const bx=mk("div","bnbox "+(b.ty=="sn"?"nw sn":b.ty=="ft"?"nw ft":b.ty));ov.append(bx);
@@ -9623,7 +10269,7 @@ function showPatch(){G.scr="pt";const w=pgShell("Patch de Balanceamento","pat"),
   ["nw","b","n","r"].forEach(ty=>{const E=p.ch.filter(x=>C[x[0]]&&(x[2]||"r")==ty);if(!E.length)return;s.append(mk("div","ptg "+ty,ptIco(ty)+"<span>"+PTY[ty][0]+"</span><small>"+E.length+"</small>"));
    E.forEach(([k,L])=>{if(L&&!Array.isArray(L)){s.append(pkChar(k,L,ty,"pk"+pi+"_"+k));return}
     const c=mk("div","ptc "+ty);c.id="pk"+pi+"_"+k;c.innerHTML="<span class='ptf'><img src='"+IMG[k+"_f"]+"' alt=''>"+ptIco(ty)+"</span><div><b>"+C[k].n+"</b><ul>"+L.map(x=>"<li>"+skIcons(x,k)+"</li>").join("")+"</ul></div>";c.querySelector("img").onclick=()=>chPop(k);c.querySelector("img").title="Ver personagem";s.append(c)})});
-  {const CP=(p.cp||[]).filter(o=>CAPM[o.i]);if(CP.length){s.append(mk("div","ptg cp","<i class='pti cp'>💊</i><span>Ecos</span><small>"+CP.length+"</small>"));CP.forEach(o=>{const c=pkCap(o,"pkc"+pi+"_"+o.i);if(c)s.append(c)})}}
+  {const CP=(p.cp||[]).filter(o=>CAPM[o.i]);if(CP.length){s.append(mk("div","ptg cp","<i class='pti cp'><img src='"+(IMG.ui_eco||"")+"' alt='' style='width:100%;height:100%;object-fit:contain'></i><span>Ecos</span><small>"+CP.length+"</small>"));CP.forEach(o=>{const c=pkCap(o,"pkc"+pi+"_"+o.i);if(c)s.append(c)})}}
   if(syOf(p).length){const c=mk("div","ptc sys");c.innerHTML="<i>⚙️</i><div><b>Sistema</b><ul>"+syOf(p).map(x=>"<li>"+skIcons(x)+"</li>").join("")+"</ul></div>";s.append(c)}
   bd.append(s)})}
 const PTY={nw:["Novos personagens","Novo"],b:["Buffs","Buff"],n:["Nerfs","Nerf"],r:["Ajustes e reworks","Ajuste"]};
@@ -9634,7 +10280,7 @@ function ptIco(t){if(t=="b")return"<i class='pti b' title='Buff'><svg viewBox='0
 let TUTI=0;
 if(!window._pgk){window._pgk=1;document.addEventListener("keydown",e=>{if(e.target&&(/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)||(e.target.closest&&e.target.closest("#och,#nkm"))))return;if((G.scr=="c"||G.scr=="t"||G.scr=="pt")&&e.key=="Escape"&&!document.querySelector(".mmopt")){showMenu()}else if(G.scr=="c"&&e.key=="Escape"){const o=document.querySelector(".chov");o&&o.remove()}})}
 /* ================= CÁPSULAS · ZENI · INVENTÁRIO ================= */
-const CAPC={of:{n:"Ofensivo",c:"#ff5050",i:"ui_cap_of",t:"Eco de Combate: Ofensivo"},df:{n:"Defensivo",c:"#4a9bff",i:"ui_cap_df",t:"Eco de Combate: Defensivo"},ut:{n:"Ritmo",c:"#36d14d",i:"ui_cap_ut",t:"Eco de Ritmo"},sp:{n:"Classe",c:"#cf4ae0",i:"ui_cap_sp",t:"Eco de Classe"},un:{n:"Despertado",c:"#ffd63a",i:"ui_cap_un",t:"Eco Despertado"}};
+const CAPC={of:{n:"Ofensivo",c:"#ff5050",i:"ui_eco",t:"Eco de Combate: Ofensivo"},df:{n:"Defensivo",c:"#4a9bff",i:"ui_eco",t:"Eco de Combate: Defensivo"},ut:{n:"Ritmo",c:"#36d14d",i:"ui_eco",t:"Eco de Ritmo"},sp:{n:"Classe",c:"#cf4ae0",i:"ui_eco",t:"Eco de Classe"},un:{n:"Despertado",c:"#ffd63a",i:"ui_eco",t:"Eco Despertado"}};
 const CAPG={as:["Assassino"],ca:["Carregador"],bl:["Blaster"],lu:["Lutador"],ta:["Tanque"],su:["Suporte"],de:["Debuffer"]};
 const UNOFF=0;/* 1 desativa o slot Unico. As Unicas sao upgrades de habilidade, 3 por personagem. */
 const CAP=[
@@ -9760,7 +10406,9 @@ const CAPM={};CAP.forEach(x=>CAPM[x.i]=x); const CAPT=3;/* Ecos de "a cada turno
 /* valor de cada Eco de Combate (um de cada: os 2 slots nao repetem o mesmo Eco) */
 const ECOV={of1:3,of2:2,of3:10,of4:5,of5:3,df1:5,df2:3,df3:10,df4:5,df5:3};
 const ecoV=i=>ECOV[i]||0;
-IMG.tt_eco1="media/b64/a63fdfb7388d11e1.webp";IMG.tt_eco2="media/b64/4418dacb9088d69b.webp";IMG.tt_eco3="media/b64/bde7da6fb35c497f.webp";
+/* simbolo do Eco (o da aba Ecos do menu): marca o Eco Despertado na batalha e nas habilidades */
+IMG.ui_eco="media/b64/9374fa84475a4af4.webp";
+IMG.tt_eco1="media/b64/a63fdfb7388d11e1.webp";IMG.tt_eco2="media/b64/3ac2c6f77771f313.webp";IMG.tt_eco3="media/b64/bde7da6fb35c497f.webp";
 /* arte de cada Eco de Combate, Ritmo e Classe (o Despertado usa a arte da habilidade) */
 Object.assign(IMG,{"eco_as1":"media/b64/62a484be472e32e5.webp","eco_as2":"media/b64/9b2479292d660305.webp","eco_as3":"media/b64/d0153be407aec6ec.webp","eco_bl1":"media/b64/0c190bd4a175b3a2.webp","eco_bl2":"media/b64/0b50911710676f72.webp","eco_bl3":"media/b64/14aa3eb7c732e8f3.webp","eco_ca1":"media/b64/2a5229d6446c589c.webp","eco_ca2":"media/b64/c77a93008ee01326.webp","eco_ca3":"media/b64/87d250abaf45a50a.webp","eco_de1":"data:image/webp;base64,UklGRmwLAABXRUJQVlA4IGALAACwLgCdASqQAJAAPm00lUekIyIhJ/gKGIANiWIA0uC50zSbbS/m+EzO1Ye/2/sa/O3sAfrB0sfMd+0n7Ae9n6Kf796gH9M/1/WOeg7+wHppfuv8H/9h/1v7me1x//+sAzBXhT5DPayg78p/DP6ziR+FeoR+Mfzb/Fb/nq/+k9Aj2D+lf73jZ/qvJP/03G+0BPzz/pPT9z9Pnn+Z/83+e+BD+Y/2f/sdjMrtB/bmV00zRG1So58fyWBW6Y0TmUrO5x9rAwkdH2TWtn3tQzdwaoGDRyppQqg12Kfy7DwGDBKL8aDPF/VB4/sQ9tbhTf9MDPgB/b8mVL5VOOCbk/1z8VtgPA/YdKwBpA+65dkMtuQRM1JN3B/i8VWAGlyX1ENfL3C0It0xAqRnqydNfOya+lPLL+4KhL7g54youJVHabhnz4xuj2gEm73JWVQ3hfoB8ZvfquTGS2s7/nT+E5QXH25XCDubbpAoyN35/gmPDAnJR4h8ERQQ7LCRi8Q0+DEoAP78mKkXUqONsAHDQeEuB3fBgUnDupo3M76oYqAPJQ9xs/gwUqEj/y5RcEc2kdWnOO5EbaIJA6W6WScB+2PL9LScte0eOJWt7N7+4B2xLe43p8kdvs22hr5GLDSHKc3nmq9E2gYBWAwZmuE4Pbit96SyXhTh/7R/Igr0lnxl+FC0mbP3ryvXlKmCDiNQIegrUSza5mnv7n09Cj7LY1eGEDUN+VJ9wWhX37LydeX+KHCAGPgxrCBF+gRvcjj4Y7xeeLB6Fbpk1o4wLlnqjLvj+03Wl5uE/BynA/l2+uDWvecs/oOTV349PWZtDxBKgc9oX5Hst2WJADiMvGaQfUsxr27b1DfGZTqzC0YeOH8jUvhLPD2VKtH+PFPDD+KqXrDajdY1eBJdhW8RKOFqecfC5L/+N7c6nPk/iy56T/z14LK1/bo++6fYs2j1IjbmTb/KxfRR+RD5R9yFW10j8KvACw292AZEEVIg5971D1XMwyvu8l4dJ5q8L+fELJnbUB38RCx9rD6MBZNcM/0QpEZHCr+Fz/xu+Dod5XvrTOkWTf9/NVrbymXUumMCUumGZTfhpiBbWk1MJtFWnGyiewJiWw6U+LaHA2y+Dh6nq8q/0T7jxG1IGkF2l/mLeW+aqgoY0sKWq3qpAut4JyVV3qJ8ujF39oVVMRtatATetV8XjI/ODRjvaKtAGXzkYx8X8AtEpji+szFeRwRB+nSqb52dvdvo/rkGo4fLWd9IkkLvB9X6c5pY+J5yQpdsfcMJzTgXwf0xvkcnDwT+U1i/1S33DEshgHu4k5F5XGwF92YeNjvosGlwlGCiVlnnKrqVw/Uctn9IXj/AbC35749jxX1JfWg57KEs5XJPy2yblth1FJuPzmiUBaNO5ICxvgIvWM0Si1HN7fSWgYCAYuF9J8D3BQxv3tl2HQ4H7twqMEPwLti8SJIDSEYvPTUGbg+3OS45p3ZLaq2O6QYW80e0NzXykfXUX9CLPK7s76k2NA3K+db6EjHA2e98ARmczEEYyJ3tBI4CrICncBUt21HC4rsimVin/4NJSb5xayGycn2x6u3aAmnUzDDWpxnWuUXnA9vy/tpXyxA+tPbmk0EVApFNh94bbcfe7Nfpm5v75kBuKYtcTLzaWxqx2GzM5PbDwcC9RQyXsHjRTpqaunwj+nV4bWMpJa4gZ9IpTkMF5cTKgTVnqourlwYl2hZ0T2bq3+I3d3XbCMFOEi6es1IaoRsaXoUyiVBclA9w4TZw/f23KTpM2jhVUUFxE94uU1iY4GJNdMrAs9OXdt7bW7EwYVHRCXUMAQymAoMgNERLhPFUPzUj2jA6+RzBUeykBWw27eAFhV0uDDdlt51BP5AtS+Ptph/pGH8CfZ5ocJ3wrHeJgSotnyY3q+qjXcsgB2z+o64yVgG+JyRYDLU1+Qwpr6IpZLRJiKtEKHa8xDrU9SJ+T8m0KD4+zQGbbUIMuNUfFO8OL/65mP7EQChTMyJ5Oqkw9PYIts6Kh8aKvUh+Yux/nmEN1ahf+TBNRrODBT/XCitbZFyUpi2BXllRVlLNOPL7JoSCKLXHcu+QJ+uDcYC/teLsybbZrj+oFgOV9Xnqz/alU3PaOxLplXuGVG54PpXnMTFSwsFDu6Q9ieijVMFNS3Qt4kxCCDZATnAJ9y91kEbyOYtfQge7RKqGtXQV6tY1K1l7lzuJVu6Y4C2p7JBAwxY2tnkI7+VcoW39hAyrel7YN6X0Kvkmuy4Xm2uthAX0PgN5FBKZ72+QOm+B/SPFY5CtLelMwTXCVD7eXJjiOsb6b8ztG8gswBf7TOwQ1z+1tbdGxmzcLuliJoHkGVetNzZ0v7k9zwYKgpoL+Q7T0xyUmw3XaVt1pL5ch5ejGX9RVl4hivhgnpB7+4ODmKFFGlUrZ7gyODbvu1Awb/Inmo1WsKevwkzv9+yKbWNVJVa5oF5e+eqzKGEjsed87lp20/9g0nXlFLM73mxuoqf415KQ7i9l27Ere9fyAROjq1btOy6cQ8FOfDE/dKZn20X+eelLaJsws4GpzGF4ocKc/5tkgQ0l2uJtkNCgRr9KIPLIUAR5i/3E+vtebywU1wf10m83tcxvfzpWIvnNOr0lHQ12t8bRduJ/TepnVS9SbXjdTeITLg1KOLj26EH2KK8tGFYlGciPHYBswLSh5puqPjl1n+J9GBRi6wYYJcuk/kMLUTjvasPNPF5VvGe9cm92O0bEIVplXMZ5FWbn+0ZXF9TH/+igg/CI/C//BfnuZF4f83LZFhefvoX9hA5oWG3yNEY0qjPCeYTfkoN0ZTxYWTjbo3mKLmvQNdvBFYTqxfL9bGTzZobOsrBmdOl9sNA6yn72EzEGT6CKXij+M2/6v3wR+0dVAkhRUs5YjJ5C7V0LumdaTE9kjmBopXiHAceAS8nxsYUWTRFmghGRhna5Av7iEjstIvhgKdsmqb4kNz9HZmrLtxejtofIMc89Qe9p2A/K32U+fFJQAm0FnkrWeBe+KNivqyBk8K/ywA/lNoK6Xkdx9Ibus9AXw1c0esGRtyqV5HuNB+4FjizruGv91vyaYL6uO5JWhrXdUR4yScVoc+PWXE+N/4xgityt4McJBKkvtBfh7UisHf1fkIUS11syAWwHWVgqKxcnuSnKXJOedwbvgv4w1zKzTuREVeFEqZVOpgTI4uZnnKVu00tpw7mM71mJRM7s0LbfhY2a3VrsoUvPxor/MSmcFAJR/QABuICRcE46sOHo67UgTSO7gIb19TST+gtkBh61j+38OznE75dhQr5G0LAhy0yvLX5aeODkIDKwsuTTWeOaDUK8cfunHrmHRwfQ9PSeqMwAnSa5Ovt8wuxW+bl3YZ68Od1q8hCg6aTJBgqK0qzCrbT/k2DT+9dPC0zM5NkF1DU79fSxBE+IJUPNDxbfv4CQKnONsbFk/SFO6Gssip5tUn/9qeWd7I83LMTh82hIzkm+nxZwHsAYEgtq8f+EyU2XDtidrcX1DXzK89G84tVruGAbi2JWHadTfzGuzmL/u5Wd8WxubMhThxV73s8sdVHE+J0Fvtk2N78OABkdOFZc4tUlZsNsAsR9FwcLGzlWs92Dm5+dlH1CseR/2EWLcWL2YDSZ9xS1EXvwXEvQKF9OSbf7GLS5plNWcL0vcU7X//I+nc5+MZR00qA8bGgmowBrLZUU+JJItJG1lZBf1Vor3jqPIiwXZP+M4kIBLcvMBjYyUjmdJFwj1RRxyqpr5bY3J1u4pegxk8MXRXSaru+Y71JMEKeccuuU/7OhvmC9BHu7wBYHtKDM2TfMH3nP6GeQN+Rbqtl2P/jh3XdRNRoLwDMwL6/A2W+B5it8coxP/hzeMzwDsntOqFd+YvFhS2HKKg9oSgoAAA==","eco_de2":"media/b64/c6334cb168e90a76.webp","eco_de3":"media/b64/567a4df0eeee2226.webp","eco_df1":"media/b64/69582f9dd112ea51.webp","eco_df2":"media/b64/db8e8baa9baa2820.webp","eco_df3":"media/b64/23abbbc97ecd64ce.webp","eco_df4":"media/b64/581a741e2c9dc288.webp","eco_df5":"media/b64/67c54de557f060b9.webp","eco_lu1":"media/b64/15e32c00614ce2ef.webp","eco_lu2":"media/b64/a597c80b60c3163c.webp","eco_lu3":"media/b64/708532bc9e0fdc40.webp","eco_of1":"media/b64/92b5f79d78709daf.webp","eco_of2":"media/b64/b3f77d52c3cb308d.webp","eco_of3":"media/b64/fae90bfd02e0f791.webp","eco_of4":"media/b64/1660731c26aba374.webp","eco_of5":"media/b64/c1d1a5c6ee38bf88.webp","eco_su1":"media/b64/7b17d6c3d17431d4.webp","eco_su2":"media/b64/a865bc91c48afde5.webp","eco_su3":"media/b64/65fd7cd90aa33c54.webp","eco_ta1":"media/b64/982a2a3a68567f19.webp","eco_ta2":"media/b64/db7bbea2e4c44d78.webp","eco_ta3":"media/b64/f1b7d637787773ed.webp","eco_ut1":"media/b64/027b78c9a4017e15.webp","eco_ut2":"media/b64/1ec75098564c8da9.webp","eco_ut3":"media/b64/c3d255ce4736168e.webp","eco_ut4":"media/b64/94737d68e5ef452d.webp","eco_ut5":"media/b64/444b8f37868ce0e3.webp"});
 const CAPN=c=>CAP.filter(x=>x.c==c);
@@ -9817,7 +10465,7 @@ function ecoMapSan(m,ck){if(!m||typeof m!="object")return null;
  const lado=nof||ndf?(nof>=ndf?"of":"df"):"";
  const cb=lado?ids.filter(i=>CAPM[i].c==lado).sort((a,b)=>(m[b]|0)-(m[a]|0)):[];
  const r=capMap(ecoSan({aw:pick("un"),cl:pick("sp"),rt:pick("ut"),lado,cb},ck));return Object.keys(r).length?r:null}
-function capLoad(){const e=eqAll(),o={};for(const k in e){if(!C[k])continue;const m=capMap(eqGet(k));if(Object.keys(m).length)o[k]=m}return o}
+function capLoad(){const e=eqAll(),o={};if(!ctLiberado("ecos"))return o;for(const k in e){if(!C[k])continue;const m=capMap(eqGet(k));if(Object.keys(m).length)o[k]=m}return o}
 /* o bot monta os Ecos recomendados de cada personagem */
 function ecoBot(){const o={};ROS.forEach(k=>{if(!C[k])return;const m=capMap(capRecEq(k));if(Object.keys(m).length)o[k]=m});return o}
 const cpn=(u,i)=>(u&&u.cp&&u.cp[i])||0;
@@ -9845,7 +10493,7 @@ const uq=(u,id)=>!!(u&&u.uq===id);
 const hcOf=(u,k)=>Math.max(0,(k.hc||0)-((uq(u,"uq_gbk_1")&&k===C.gbk.sk[0])?10:0));
 const upSk=(u,i)=>!!(u&&u.uq&&u.uqs===i);
 function uqTag(u,i,ck){const x=(u&&u.uq&&upSk(u,i))?CAPM[u.uq]:null;if(!x)return"";
- return "<span class='uqfx' title='Eco Despertado: "+x.n+" "+x.rm+"'><img src='"+(IMG.ui_cap_un||"")+"' alt='Eco Despertado'>"+skIcons(x.t,ck||"")+"</span>"}
+ return "<span class='uqfx' title='Eco Despertado: "+x.n+" "+x.rm+"'><img src='"+(IMG.ui_eco||"")+"' alt='Eco Despertado'>"+skIcons(x.t,ck||"")+"</span>"}
 const UQCD={beast:0};/* Unica que reduz recarga: personagem -> indice da habilidade */
 const cdUp=(u,k)=>{if(!u||!u.uq)return 0;const x=CAPM[u.uq];if(!x)return 0;return (UQCD[x.ck]===x.sk&&C[x.ck]&&C[x.ck].sk[x.sk]===k)?1:0};
 const UQKI={black:1,gi:2};/* Unica que reduz Energia */
@@ -9956,7 +10604,7 @@ if(!window._zhudObs){window._zhudObs=1;try{const ob=new MutationObserver(()=>{if
 function zHud(){
  let e=document.getElementById("zhud");
  if(!e){e=mk("div","");e.id="zhud";document.body.appendChild(e);
-  e.onclick=ev=>{const b=ev.target.closest("button");if(b&&b.dataset.go=="ms")showMiss()};}
+  e.onclick=ev=>{const b=ev.target.closest("button");if(b&&b.dataset.go=="ms")showMiss();if(b&&b.dataset.go=="pf")showPerfil()};}
  /* com o Zeni desligado (ZOFF) fica so o botao de Missoes, e ele nao aparece na propria tela de Missoes */
  const on=(ZOFF?["m","inv"]:["m","inv","ms"]).includes(G.scr);
  e.hidden=!on;if(!on)return;
@@ -9972,7 +10620,9 @@ function zHud(){
  e.innerHTML=(ZOFF?"":"<span class='zh z' title='Zeni'><img src='"+IMG.ui_zeni+"' alt=''><b>"+fnum(zeni())+"</b></span>")+
   "<button class='zh ms' data-go='ms' title='Missões' aria-label='Missões'>"+
   "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>"+
-  "<path d='M9 3.2h6v3H9z'/><path d='M15 4.7h2.3A1.7 1.7 0 0 1 19 6.4v13.1a1.7 1.7 0 0 1-1.7 1.7H6.7A1.7 1.7 0 0 1 5 19.5V6.4a1.7 1.7 0 0 1 1.7-1.7H9'/><path d='M8.6 12.6l2 2 4.6-4.6'/></svg><b>Missões</b></button>";
+  "<path d='M9 3.2h6v3H9z'/><path d='M15 4.7h2.3A1.7 1.7 0 0 1 19 6.4v13.1a1.7 1.7 0 0 1-1.7 1.7H6.7A1.7 1.7 0 0 1 5 19.5V6.4a1.7 1.7 0 0 1 1.7-1.7H9'/><path d='M8.6 12.6l2 2 4.6-4.6'/></svg><b>Missões</b></button>"+
+  /* o perfil: o seu icone, o nome e o nivel; tocar abre o Perfil */
+  (G.scr=="m"?(()=>{try{const p=pfVal(pfLer());return"<button class='zh pfz' data-go='pf' title='Perfil' aria-label='Abrir o seu perfil'>"+pfAv(p.ic,p.mo,"pfzav")+"<span class='pfzt'><b>"+escH(pfNick().slice(0,18))+"</b><i>Nível "+fnum(ctNivel())+"</i></span></button>"}catch(x){return""}})():"");
  /* o Som e o Aa podem mudar de lugar logo depois que a pagina abre: confere de novo */
  if(e._fixa){e._fixa();clearTimeout(e._fxt);e._fxt=setTimeout(()=>{if(e._fixa){e.style.marginRight="";e._fixa()}},300)}
 }
@@ -10112,7 +10762,7 @@ function ecoSkills(ck){
  };
  draw();
 }
-function showInv(t){
+function showInv(t){if(!ctLiberado("ecos")){zToast("Desbloqueia no nível 5");return}
  ECOT=t===2?2:1;/* a aba Ecos sempre abre na Tela 1 */
  G.scr="inv";const w=pgShell("Ecos","inv eco"),bd=mk("div","ecbd");
  {const bg=mk("div","ivbg");bg.style.backgroundImage="url('"+IMG.ui_ivbg+"')";const sky=w.querySelector(".mmsky");w.insertBefore(bg,sky?sky.nextSibling:w.firstChild)}
@@ -11590,7 +12240,7 @@ function rkAceite(){let ov=document.getElementById("rkac");
  a.onclick=()=>{RKQ.aceitei=1;rkAceite();rkTentaComeçar()};
  const r=mk("button","rkab lam-r","Recusar");r.onclick=()=>{rkFilaSair(0);RKQ.msg="Você recusou a partida.";showLobby()};
  row.append(a,r);bx.append(row)}
-function rkEntraFila(semTela){const st=rkLoad();
+function rkEntraFila(semTela){if(!ctLiberado("rank")){zToast("Desbloqueia no nível 10");return}const st=rkLoad();
  RKQ.on=1;RKQ.t0=Date.now();RKQ.fase="busca";RKQ.op=null;RKQ.aceitei=0;RKQ.opAceitou=0;RKQ.msg="";
  try{rkQEntra(st)}catch(e){}
  clearTimeout(RKQ.botT);
@@ -11693,9 +12343,18 @@ const MXCFG={
  destaques:5,                      /* destaques exigidos para o nivel 10 */
  destaquesAntigo:3,                /* regra anterior: quem ja era 10 com ela continua no 10 */
  modos:["rk"],                     /* onde vale: so a fila ranqueada */
- premios:{2:"Borda simples de Maestria",4:"Ícone de perfil do personagem",
-  6:"Borda especial de Maestria",8:"Título exclusivo do personagem",
-  10:"Moldura animada e selo de Maestria máxima"}};
+ premios:{2:"Ícone de perfil com o rosto de {p}",3:"Selo de Maestria I no rosto, durante a partida",
+  4:"Título de iniciante: “{t4}”",5:"Moldura de bronze",6:"Selo de Maestria II",
+  7:"Moldura de prata e fundo de perfil de {p}",8:"Título avançado: “{t8}”",
+  9:"Selo de Maestria III (com brilho) e efeito de entrada na partida",
+  10:"Moldura dourada, título máximo (“{t10}”) e destaque no ranking de Maestria"}};
+/* titulos de cada personagem por nivel de Maestria. Provisorios ate chegarem os oficiais:
+   MXTITK[chave]={4:"...",8:"...",10:"..."} troca so aquele personagem. */
+const MXTIT={4:"Aprendiz de {p}",8:"Veterano de {p}",10:"Mestre de {p}"},MXTITK={};
+const mxTitulo=(k,nv)=>((MXTITK[k]&&MXTITK[k][nv])||MXTIT[nv]||"").replace("{p}",shn(k));
+const mxPremioTxt=(k,nv)=>(MXCFG.premios[nv]||"").replace(/\{p\}/g,k?shn(k):"o personagem").replace(/\{t(\d+)\}/g,(_,n)=>k?mxTitulo(k,+n):MXTIT[n].replace("{p}","…"));
+/* selo da partida: I no 3, II no 6, III no 9 */
+const mxSeloTier=n=>n>=9?3:n>=6?2:n>=3?1:0;
 /* total acumulado para ESTAR em cada nivel: MXAC[0]=nivel 1, MXAC[9]=nivel 10 */
 const MXAC=(()=>{const a=[0];MXCFG.passos.forEach(p=>a.push(a[a.length-1]+p));return a})();
 const MXMAX=MXAC.length;                    /* 10 */
@@ -11727,7 +12386,7 @@ function mxLer(){if(MX)return MX;
  if(!Array.isArray(MX.g))MX.g=[];
  return MX}
 function mxGrava(){try{ls("za_mx",JSON.stringify(MX))}catch(e){}
- try{mxSobe()}catch(e){}}
+ try{mxSobe()}catch(e){}try{if(typeof pfPublica=="function")pfPublica()}catch(e){}}
 /* um registro por personagem, sempre com todos os campos */
 function mxDe(k){const M=mxLer();let r=M.p[k];
  if(!r)r=M.p[k]={pt:0,j:0,v:0,d:0,mvp:0,svp:0,pr:[],at:0,d10:0,m10:0};
@@ -11745,9 +12404,9 @@ const mxTotalNiveis=()=>ROS.filter(k=>C[k]).reduce((a,k)=>a+mxNivelDe(k),0);
 const mxTotalDest=()=>Object.keys(mxLer().p).reduce((a,k)=>a+mxDest(mxLer().p[k]),0);
 
 /* premios do nivel: cosmeticos, nunca mexem em combate */
-function mxPremios(r){const n=mxNivel(r.pt,mxDestNv(r)),L=[];
+function mxPremios(r,k){const n=mxNivel(r.pt,mxDestNv(r)),L=[];
  Object.keys(MXCFG.premios).map(Number).sort((a,b)=>a-b).forEach(nv=>{
-  if(n>=nv)L.push({nv,t:MXCFG.premios[nv]})});
+  if(n>=nv)L.push({nv,t:mxPremioTxt(k,nv)})});
  return L}
 
 /* ---- credito de uma partida ---- */
@@ -11764,7 +12423,7 @@ function mxCredita(gid,time,venceu,dest,modo){
  const vistos={};
  time.filter(k=>k&&C[k]).forEach(k=>{
   if(vistos[k])return;vistos[k]=1;                    /* o mesmo personagem so conta uma vez */
-  const r=mxDe(k),antesPt=r.pt,antesNv=mxNivel(r.pt,mxDestNv(r)),noMax=r.pt>=MXAC[MXMAX-1];
+  const r=mxDe(k),antesPt=r.pt,antesNv=mxNivel(r.pt,mxDestNv(r)),noMax=r.pt>=MXAC[MXMAX-1],antesInf=mxNivelInf(r.pt,mxDestNv(r));
   let ganho=base,eMvp=0,eSvp=0;
   if(dest&&dest.mvp===k){ganho+=MXCFG.mvp;eMvp=1}
   else if(dest&&dest.svp===k){ganho+=MXCFG.svp;eSvp=1} /* nunca os dois na mesma partida */
@@ -11779,7 +12438,8 @@ function mxCredita(gid,time,venceu,dest,modo){
   M.h=(M.h||[]);M.h.unshift({gid,k,res:venceu?"v":"d",base,bon:ganho-base,
     total:ganho,ptAnt:antesPt,ptDep:r.pt,nvAnt:antesNv,nvDep:depoisNv,t:agora});
   if(M.h.length>200)M.h.length=200;
-  if(depoisNv>antesNv)subiu.push({k,de:antesNv,para:depoisNv})});
+  if(depoisNv>antesNv)subiu.push({k,de:antesNv,para:depoisNv});
+  else if(antesNv>=MXMAX){const di=mxNivelInf(r.pt,mxDestNv(r));if(di>antesInf)subiu.push({k,de:antesInf,para:di})}});
  mxGrava();
  return subiu}
 /* ===== Retroatividade: a Maestria chegou depois de muita gente j\u00e1 ter jogado =====
@@ -11933,14 +12593,7 @@ function rkBotMx(k){try{
  const m=G.rkm||{},sea=rkSeasonId();let n=0,wr=.5,id="";
  if(m.pop!=null){const s=rkPopLoad().st[m.pop];if(s){n=(s.w||0)+(s.l||0);wr=n?(s.w||0)/n:.5}id="p"+m.pop}
  else{id="n"+String(G.rkNome||m.oppNome||"");n=40+Math.floor(rkH(rkSH(id),3,9)*160)}
- const sd=rkSH("mx|"+sea+"|"+id),L=ROS.filter(x=>C[x]);
- const pe=L.map((x,i)=>{const h=rkH(sd,i,5);return .25+7*Math.pow(h,4)}),tot=pe.reduce((a,b)=>a+b,0);
- const i=L.indexOf(k);if(i<0)return {pt:0,d:0};
- const jg=3*n*pe[i]/tot,vit=jg*wr,der=jg-vit;
- const mvp=Math.floor(vit*(.16+.12*rkH(sd,i,11))),svp=Math.floor(der*(.10+.10*rkH(sd,i,13)));
- const pt=Math.round(vit*MXCFG.vit+der*MXCFG.der+mvp*MXCFG.mvp+svp*MXCFG.svp),lim=MXAC[MXMAX-1];
- const dn=pt>lim?Math.floor((mvp+svp)*(pt-lim)/pt):0;
- return {pt,d:mvp+svp,dn}
+ return rkMxCalc(id,n,wr,k)
 }catch(e){return null}}
 /* pacote no mesmo formato do mxPacote, para quem assiste a partida contra o bot */
 function rkBotMxPac(){const o={};try{if(!rkEmJogo())return null;
@@ -11953,14 +12606,16 @@ function mxResumo(){const ks=ROS.filter(k=>C[k]);
   +"<div><b>"+mxN(des)+"</b><small>Destaques</small></div></div>"}
 /* painel da ficha: progresso, numeros e recompensas */
 function mxPainel(k){const r=mxDe(k),d=mxDest(r),P=mxProg(r.pt,mxDestNv(r)),n=P.n;
- const premios=mxPremios(r);
+ const premios=mxPremios(r,k);
  const cab="<div class='mxpc'><span class='mxsli mxslg'><img src='"+mxArte(n)+"' alt=''><b>"+n+"</b></span>"
-  +"<div><small>Maestria</small><b>"+(n>=MXMAX?"Nível máximo · 10":"Nível "+n)+"</b>"
+  +"<div><small>Maestria</small><b>"+(n>=MXMAX?"Nível "+mxNivelInf(r.pt,mxDestNv(r)):"Nível "+n)+"</b>"
   +"<em>"+mxN(r.pt)+" pontos acumulados</em></div></div>";
  let meio;
  if(n>=MXMAX){
-  meio="<p class='mxmax'>MAESTRIA MÁXIMA — NÍVEL 10</p>"
-   +"<p class='mxsub'>Desafio final concluído. Os pontos continuam sendo somados como registro de dedicação.</p>"}
+  const I=mxProgInf(r.pt,mxDestNv(r));
+  meio="<p class='mxmax'>MAESTRIA "+I.n+"</p>"
+   +"<div class='mxbr'><span>Nível "+(I.n+1)+"</span><i><u style='width:"+(100*I.no/I.passo).toFixed(1)+"%'></u></i><b>"+mxN(I.no)+"/"+mxN(I.passo)+"</b></div>"
+   +"<p class='mxsub'>Desafio final concluído. Depois do 10 os níveis não têm limite: faltam <b>"+mxN(I.passo-I.no)+"</b> pontos para o nível "+(I.n+1)+".</p>"}
  else if(P.desafio){const D=P.desafio;
   meio="<p class='mxdt'>Maestria 10 — Desafio final</p>"
    +"<div class='mxbr'><span>Pontos</span><i><u style='width:"+(100*D.pt/D.ptAlvo).toFixed(1)+"%'></u></i>"
@@ -11990,9 +12645,10 @@ function mxFesta(L,fim){if(!L||!L.length){if(fim)try{fim()}catch(e){}return}cons
   ?"<div class='mxfbx mxfmi'><img class='mxfev' src='"+mxArte(MXMAX)+"' alt=''>"
    +"<b>Missão final da Maestria</b><span>"+escH(shn(it.k))+"</span>"
    +"<small>Consiga "+MXCFG.destaques+" MVPs/SVPs com "+escH(shn(it.k))+" para completar a maestria</small></div>"
-  :"<div class='mxfbx'><img class='mxfev' src='"+mxEvo(it.de)+"' alt=''>"
+  :"<div class='mxfbx'><img class='mxfev' src='"+(it.de>=MXMAX?mxArte(MXMAX):mxEvo(it.de))+"' alt=''>"
    +"<b>Maestria "+it.para+"</b><span>"+escH(shn(it.k))+"</span>"
-   +"<small>"+(it.para>=MXMAX?"Desafio final concluído":"Nível "+it.de+" → "+it.para)+"</small></div>";
+   +"<small>"+(it.para==MXMAX?"Desafio final concluído":"Nível "+it.de+" → "+it.para)+"</small>"
+   +(MXCFG.premios[it.para]?"<em class='mxfdb'>Desbloqueado: "+escH(mxPremioTxt(it.k,it.para))+"</em>":"")+"</div>";
  let foi=0;const fecha=()=>{if(foi)return;foi=1;ov.remove();mxFesta(L,fim)};
  ov.onclick=fecha;document.body.append(ov);
  try{sfx("ok")}catch(e){}
@@ -12174,7 +12830,8 @@ const LBIT=[
  ["fila","Fila Ranqueada","Valendo rank","ui_fila"],
  ["sala","Criar sala","Jogue com um amigo","ui_sala"],
  ["hist","Histórico","Suas últimas partidas","ui_hist"],
- ["top","Classificação","Os melhores da temporada","ui_rank"]];
+ ["top","Classificação","Os melhores da temporada","ui_rank"],
+ ["mx","Rank de Maestria","Os mestres de cada personagem","mx_10"]];
 /* a coluna de modos se acomoda acima do chat, sem brigar por espaço */
 function lbPos(){const R=document.querySelector(".lbR"),W=document.querySelector(".lbw"),L=document.querySelector(".lbL");
  if(!R||!W||!L)return;
@@ -12236,9 +12893,9 @@ function showLobby0(){
 
  /* ---- meio: a arena com o time, ou o painel aberto ---- */
  const C2=mk("div","lbC");
- if(LBM=="top"||LBM=="hist"){
+ if(LBM=="top"||LBM=="hist"||LBM=="mx"){
   const pan=mk("div","lbpan");
-  pan.append(LBM=="top"?rkPainelTop(st,showLobby):rkPainelHist(st,showLobby));
+  pan.append(LBM=="top"?rkPainelTop(st,showLobby):LBM=="mx"?mxPainelRank():rkPainelHist(st,showLobby));
   C2.append(pan)}
  else{
   const tm=mk("div","lbteam"),t=lbTime();
@@ -12248,8 +12905,11 @@ function showLobby0(){
   else tm.append(mk("p","lbvazio","A arena está vazia. Jogue uma partida e o seu time aparece aqui."));
   C2.append(tm);
   if(RKQ.msg){C2.append(mk("p","lbmsg",RKQ.msg));RKQ.msg=""}
-  const go=mk("button","lam lam-g lbgo","<b>"+(LBM=="sala"?"Criar sala":"Encontrar Adversário")+"</b>");
+  const trk=LBM!="sala"&&!ctLiberado("rank");
+  const go=mk("button","lam lam-g lbgo"+(trk?" lblk":""),"<b>"+(LBM=="sala"?"Criar sala":trk?"\ud83d\udd12 Desbloqueia no nível 10":"Encontrar Adversário")+"</b>");
+  if(trk)C2.append(mk("p","lbmsg","Você está no nível "+ctNivel()+". Jogue partidas em qualquer modo para ganhar EXP de conta."));
   go.onclick=()=>{if(LBM=="sala")return showOnline();
+   if(trk)return zToast("Desbloqueia no nível 10");
    if(RKQ.on&&RKQ.fase=="busca"){rkFilaSair(0);return lbTickBotao()}
    RKQ.de="lb";rkEntraFila(1)};
   C2.append(go);try{lbTickBotao()}catch(e){}
@@ -12261,7 +12921,7 @@ function showLobby0(){
  const R=mk("div","lbR");
  LBIT.forEach(([k,n,d,ic])=>{
   const b=mk("button","lbit"+(k===LBM?" on":""),
-   "<img src='"+(IMG[ic]||"")+"' alt=''><span>"+n+"<small>"+d+"</small></span>");
+   "<img src='"+(IMG[ic]||"")+"' alt=''><span>"+(k=="fila"&&!ctLiberado("rank")?"<i class='mmcad' aria-hidden='true'>\ud83d\udd12</i>":"")+n+"<small>"+(k=="fila"&&!ctLiberado("rank")?"Desbloqueia no nível 10":d)+"</small></span>");
   b.onclick=()=>{if(k===LBM&&k!="fila")return;
    if(k=="top"&&LBM!="top"){const e=rkLoad();RKFR=rkComp(e)?{r:0,d:0}:{r:e.rank,d:0}}
    LBM=k;RKHS=null;showLobby()};
@@ -12618,7 +13278,7 @@ dClear();pannOff(1);G.rkm=null;G.rkBlv=null;G.rkNome=null;/* saiu da ranqueada: 
   ["Voltar","Voltar para a escolha de modo.",()=>go("play"),3,"bk"]]
  :[["Jogar","Escolha como quer jogar: offline no seu aparelho ou online na arena.",()=>go("play"),4,"jg"],
   ["Notícias","Novos personagens, o que vem por aí, balanceamentos e eventos.",()=>nwOpen(),0,"nw"],["Personagens","Conheça todos os lutadores: habilidades, passivas e habilidades de líder.",showChars,2,"pe"],
-  ["Ecos","Equipe Ecos nos seus personagens e deixe o time mais forte.",showInv,1,"iv"],
+  (ctLiberado("ecos")?["Ecos","Equipe Ecos nos seus personagens e deixe o time mais forte.",showInv,1,"iv"]:["Ecos","Desbloqueia no nível 5. Você ganha EXP de conta em toda partida, em qualquer modo.",()=>zToast("Desbloqueia no nível 5"),1,"iv"]),
   ["Patch de Balanceamento","Todas as mudanças nos personagens e nas regras do jogo, da mais nova para a mais antiga.",showPatch,6,"pa"],
   ["Tutorial","Novo por aqui? Comece aqui: aprenda com imagens, vídeo e uma partida guiada contra o bot.",showTut,5,"km"],
   ["Configurações","Som, vídeo, imagem, tamanho da letra e o nível do bot.",mmOpts,3,"op"]]
@@ -12638,7 +13298,7 @@ dClear();pannOff(1);G.rkm=null;G.rkBlv=null;G.rkNome=null;/* saiu da ranqueada: 
    const im=leg?null:(lst.children[MSEL]&&lst.children[MSEL].querySelector(".dbb img"));
    dic.innerHTML=im?"<img src='"+im.getAttribute("src")+"' alt=''>":""}[...lst.children].forEach((b,x)=>{b.classList.toggle("on",x===MSEL);b.setAttribute("aria-selected",x===MSEL?"true":"false");b.style.setProperty("--d",Math.abs(x-MSEL))});
   clearInterval(MTY);const t=IT[MSEL][1];if(!typ){dt.textContent=t;return}let n=0;dt.textContent="";MTY=setInterval(()=>{n+=2;dt.textContent=t.slice(0,n);if(n>=t.length)clearInterval(MTY)},18)};
- IT.forEach(([n,d,f,_,ic],x)=>{const b=mk("button","mmit",(ic=="gl"?glb():ic=="off"?glb("ui_off"):ic=="tr"?glb("ui_treino"):ic=="km"?glb("ui_kame"):ic=="op"?glb("ui_gear"):ic=="rk"?glb("ui_rank"):ic=="pa"?glb("ui_patch"):ic=="dr"?glb("ui_draft"):ic=="pe"?glb("ui_pers"):ic=="jg"?glb("ui_arc"):ic=="nw"?glb("ui_news"):ic=="iv"?glb("ui_inv"):ic=="bk"?glb("ui_back"):ic=="dl"?glb("ui_dl"):dball(x%7+1))+"<b>"+n+"</b>"+(ic=="nw"?"<i class='mmnwb' hidden></i>":ic=="iv"?"<i class='mmnwb iv' hidden></i>":""));b.setAttribute("role","menuitem");b.style.animationDelay=(.08*x+.15)+"s";{const n=IT.length,t=n>1?x/(n-1):.5;const a=Math.sin(Math.PI*t)*.123-t*.066+.066;b.style.setProperty("--arcn",(a/.156).toFixed(4))}
+ IT.forEach(([n,d,f,_,ic],x)=>{const b=mk("button","mmit",(ic=="gl"?glb():ic=="off"?glb("ui_off"):ic=="tr"?glb("ui_treino"):ic=="km"?glb("ui_kame"):ic=="op"?glb("ui_gear"):ic=="rk"?glb("ui_rank"):ic=="pa"?glb("ui_patch"):ic=="dr"?glb("ui_draft"):ic=="pe"?glb("ui_pers"):ic=="jg"?glb("ui_arc"):ic=="nw"?glb("ui_news"):ic=="iv"?glb("ui_inv"):ic=="bk"?glb("ui_back"):ic=="dl"?glb("ui_dl"):dball(x%7+1))+"<b>"+n+"</b>"+(ic=="nw"?"<i class='mmnwb' hidden></i>":ic=="iv"?"<i class='mmnwb iv' hidden></i>":""));b.setAttribute("role","menuitem");if(ic=="iv"&&!ctLiberado("ecos")){b.classList.add("mmlk");b.querySelector("b").insertAdjacentHTML("afterbegin","<i class='mmcad' aria-hidden='true'>\ud83d\udd12</i>")}b.style.animationDelay=(.08*x+.15)+"s";{const n=IT.length,t=n>1?x/(n-1):.5;const a=Math.sin(Math.PI*t)*.123-t*.066+.066;b.style.setProperty("--arcn",(a/.156).toFixed(4))}
   b.onmouseenter=()=>{if(MSEL!==x)sel(x,1)};b.onfocus=()=>{if(MSEL!==x)sel(x,1)};b.onclick=()=>{clearInterval(MTY);dt.textContent=d;f()};lst.append(b)});
  up.onclick=()=>sel(MSEL-1,1);dn.onclick=()=>sel(MSEL+1,1);
  L.append(hd,up,lst,dn);/* as esferas saíram de baixo das opções do menu */w.append(art,L,ds);r.append(w);sel(MSEL,1);if(!nickOk())nickAsk();else rotAsk();if(BQ==null)BQ=bnBuild();if(BQ.length&&!MSUB)setTimeout(bnNext,700);nwBadge();invBadge();zBonus();zHud();tutZeni();lsWarn();
@@ -12720,7 +13380,7 @@ function dSlot(k,lab,cl){const e=mk("div","dslot"+(cl?" "+cl:""));if(k){e.style.
  const rr=mk("i","dfc");rr.style.backgroundImage='url("'+(IMG[k+"_f"]||IMG[k+"_b"])+'")';e.append(rr);if(/\bld\b/.test(cl||""))att(e,()=>ldTip(k),()=>tipAt(ldTip(k)));else att(e,()=>card(k))}e.append(mk("small","",lab));if(k)e.append(mk("b","",shn(k)));else if(cl&&cl.includes("cur"))e.append(mk("b","q","Escolhendo…"));return e}
 function dHid(k){const e=mk("div","dslot ld hid");if(k){const f=mk("div","faint");f.style.backgroundImage='url("'+(IMG[k+"_b"]||IMG[k+"_f"])+'")';e.append(f);att(e,()=>ldTip(k),()=>tipAt(ldTip(k)))}
  e.append(mk("small","",k?"Seu líder · secreto":"Líder escolhido"),mk("b","qm","?"));return e}
-function dCol(s,lado){if(lado==null)lado=s;const live=!["fvote","field","prerev","done","banrev","fbanrev","sur"].includes(D.ph),c=mk("div","dcol "+(lado?"r":"l")+(live&&D.who==s&&!(D.on&&D.wait)?" act":""));c.append(mk("div","dteam",pnv(s)));if(D.ph!="field"&&D.ph!="fvote"&&D.bf!=null){const t=mk("div","dfirst");if((D.nb>0||D.ph=="pre")&&D.bf===s)t.append(mk("span","fb","🥇 Bane primeiro"));if(1-D.bf===s)t.append(mk("span","fp","🥇 Escolhe primeiro"));if(t.children.length)c.append(t)}
+function dCol(s,lado){if(lado==null)lado=s;const live=!["fvote","field","prerev","done","banrev","fbanrev","sur"].includes(D.ph),c=mk("div","dcol "+(lado?"r":"l")+(live&&D.who==s&&!(D.on&&D.wait)?" act":""));c.append(mk("div","dteam",(()=>{const pp=pfDoLado(s);return pfChip(pp)+"<span>"+pnv(s)+"</span>"+pfInfo(pp)})()));if(D.ph!="field"&&D.ph!="fvote"&&D.bf!=null){const t=mk("div","dfirst");if((D.nb>0||D.ph=="pre")&&D.bf===s)t.append(mk("span","fb","🥇 Bane primeiro"));if(1-D.bf===s)t.append(mk("span","fp","🥇 Escolhe primeiro"));if(t.children.length)c.append(t)}
  const rev=["fban","fbanrev","newlead","done"].includes(D.ph),L=D.lead[s],cur=D.ph=="seq"?D.seq[D.si]:null;
  if(D.noLead)c.append(dSlot(null,"Sem líder","ld none"));
  else if(D.ph=="newlead"&&D.who==s&&!L)c.append(dSlot(D.sel[0]||null,"Novo líder","ld cur"));
@@ -13003,7 +13663,7 @@ async function txAbre(){if(TX.code||TX.criando)return;TX.criando=1;
   if(ok){const op="tx"+Math.random().toString(36).slice(2,10),cg=txCarga(),st=cg.st;
    await O.db.doc("rooms/"+code).set({v:2,tx:1,host:O.pid,p0:O.pid,p1:op,
     s0:null,s1:null,s2:null,s3:null,s4:null,s5:null,
-    mem:{[okey(O.pid)]:oMeMem(),[okey(op)]:Object.assign({n:txNomeOp()},(()=>{const x=rkBotMxPac();return x?{mx:x}:{}})())},
+    mem:{[okey(O.pid)]:oMeMem(),[okey(op)]:Object.assign({n:txNomeOp()},(()=>{const x=rkBotMxPac();return x?{mx:x}:{}})(),(()=>{const b=pfBot();return b?{pf:b}:{}})())},
     ru:JSON.stringify({m:"p"}),lr0:false,lr1:false,cp0:"",cp1:"",cd:0,t0:"",t1:"",r0:false,r1:false,
     fd:G.cf||"r",ph:cg.ph,st:st,dr:cg.dr,did:cg.did||"",rd0:false,rd1:false,b0:"",b1:"",
     dseq:1,dms:(cg._t||0)*1000,seq:1,gid:cg.gid,at:Date.now()});
@@ -13250,7 +13910,7 @@ const okey=id=>"m_"+String(id).replace(/[^A-Za-z0-9_-]/g,"_").slice(0,60);
 function oNick(){let n=ls("za_nick");if(!n){n="Lutador "+String(O.pid||"").replace(/[^A-Za-z0-9]/g,"").slice(-4).toUpperCase();ls("za_nick",n)}return n}
 function oName(d,id){const m=d&&d.mem&&d.mem[okey(id)];return(m&&m.n)||"Jogador"}
 /* o que este aparelho publica sobre si na sala: nome e rank da temporada */
-function oMeMem(n){const o={n:(n||oNick())};try{const st=rkLoad();o.rk=st.rank;o.dv=st.div;o.pc=st.pc==null?-1:st.pc}catch(e){}try{o.mx=mxPacote()}catch(e){}return o}
+function oMeMem(n){const o={n:(n||oNick())};try{o.pf=pfMini()}catch(e){}try{const st=rkLoad();o.rk=st.rank;o.dv=st.div;o.pc=st.pc==null?-1:st.pc}catch(e){}try{o.mx=mxPacote()}catch(e){}return o}
 /* medalha do rank ao lado do nick (quem nunca jogou ranqueada e o bot ficam sem) */
 function oMed(d,id){const m=d&&d.mem&&d.mem[okey(id)];if(!m||!m.rk)return"";
  const st={rank:+m.rk||1,div:+m.dv||5,pc:(m.pc==null||m.pc<0)?null:+m.pc};
@@ -13368,7 +14028,7 @@ async function frInit(){if(FR.pronto||FR.lendo)return;FR.lendo=1;
   /* sem codigo gravado, o banco nao aceita escrever: o painel nao aparece
      em vez de ficar na tela vazio e sem funcionar */
   if(!FR.code){FR.lendo=0;frRender();return}
-  try{await db.doc("players/"+pid).set({n:FR.nick,code:FR.code,at:Date.now()})}catch(e){}
+  try{await db.doc("players/"+pid).set({n:FR.nick,code:FR.code,at:Date.now(),pf:pfPacote()})}catch(e){}
   FR.pronto=1;frPres();frSub();
   if(!FR.tick)FR.tick=setInterval(()=>{try{frPres();frLePres()}catch(e){}},20000);
  }catch(e){}
@@ -13376,7 +14036,7 @@ async function frInit(){if(FR.pronto||FR.lendo)return;FR.lendo=1;
 
 /* ---- presenca: escreve a minha, le a dos amigos ---- */
 async function frPres(){const db=frDb();if(!db||!FR.pid)return;
- try{await db.doc("pres/"+FR.pid).set({n:frNick(),s:frEstado(),at:Date.now(),sl:frSala()})}catch(e){}}
+ try{await db.doc("pres/"+FR.pid).set({n:frNick(),s:frEstado(),at:Date.now(),sl:frSala(),pf:pfMini()})}catch(e){}}
 async function frLePres(){const db=frDb();if(!db||!FR.list.length)return;
  const ks=FR.list.map(x=>x.id).slice(0,60);
  await Promise.all(ks.map(async k=>{try{const sn=await db.doc("pres/"+k).get();
@@ -13692,9 +14352,12 @@ function frLista(ls){if(!ls)return;ls.innerHTML="";
  const L=FR.list.filter(x=>!qq||nome(x).toLowerCase().includes(qq));
  const on=L.filter(vivo),off=L.filter(x=>!vivo(x));
  const linha=(x,ligado)=>{const p=FR.pres[x.id]||{};const it=mk("div","ofrit"+(ligado?"":" off"));
-  const av=mk("i","ofrav",frIni(nome(x)));av.style.setProperty("--ac",frCor(x.id));it.append(av);
+  const pf=p.pf?pfLimpa(p.pf,nome(x)):null;
+  let av;if(pf){av=mk("span","ofrav pfo",pfAv(pf.ic,pf.mo))}else{av=mk("i","ofrav",frIni(nome(x)));av.style.setProperty("--ac",frCor(x.id))}
+  av.title="Ver perfil";av.onclick=()=>pfAmigo(x.id,nome(x));it.append(av);
   const st=!ligado?"Offline":p.s=="play"?"Em partida":"Disponível";
-  it.append(mk("div","ofrnm","<b>"+escH(nome(x))+"</b><small class='ofrst "+(!ligado?"z":p.s=="play"?"p":"d")+"'>"+st+"</small>"));
+  const nmb=mk("div","ofrnm","<b class='pfab' title='Ver perfil'>"+escH(nome(x))+"</b>"+(pf&&(pf.nv||pf.tit)?"<small class='ofrpf'>"+(pf.nv?"Nível "+fnum(pf.nv):"")+(pf.nv&&pf.tit?" · ":"")+escH(pf.tit||"")+"</small>":"")+"<small class='ofrst "+(!ligado?"z":p.s=="play"?"p":"d")+"'>"+st+"</small>");
+  nmb.querySelector("b").onclick=()=>pfAmigo(x.id,nome(x));it.append(nmb);
   const g=mk("div","ofrbt");
   /* como na arte: quem está livre recebe Convidar; os outros, Mensagem */
   const livre=ligado&&p.s!="play";
@@ -14033,6 +14696,10 @@ try{if(ls("za_cfg1")!=="1")CFG1P=1}catch(e){}
 /* a retroatividade da Maestria: conta uma vez so, na primeira carga depois da atualizacao */
 try{mxRetro()}catch(e){}
 try{const R=mxLer().retro;if(R&&R.lista&&R.lista.length&&!R.visto)RETROP=1}catch(e){}
+/* o retroativo do Nivel da Conta: tambem uma vez so, depois do da Maestria */
+try{const R=ctRetro();if(R&&R.xp&&!R.visto)CTRETP=1}catch(e){}
+/* o aviso dos Ecos vem depois do retroativo (o nivel ja esta certo) */
+try{ecoAvisoCheca()}catch(e){}
 try{fsAplica(fsLer())}catch(e){}try{curAplica(curLer())}catch(e){}/* tamanho da letra salvo pelo jogador */
 try{if(document.body)fsUI();else document.addEventListener("DOMContentLoaded",fsUI)}catch(e){}
 try{sairGuarda()}catch(e){}/* o botao Voltar do aparelho pergunta antes de fechar o jogo */
