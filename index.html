@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png"><link rel="apple-touch-icon" href="icons/icone-180.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#261b33"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script>window.ZA_VER="203cb8c91bef";</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png"><link rel="apple-touch-icon" href="icons/icone-180.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#261b33"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script>window.ZA_VER="7b41df36cfbb";</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
 .zlb{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border-radius:10px;padding:11px 14px;font:700 15px system-ui;cursor:pointer;border:1.5px solid #ffffff33;background:#ffffff10;color:#fff}
 .zlb:hover{border-color:#ffd23f}.zl-google{background:#fff;color:#1f1f1f;border-color:#fff}.zl-discord{background:#5865f2;border-color:#5865f2}.zl-out{background:transparent;color:#ff8a80;border-color:#ff8a8066}
 .zlor{display:flex;align-items:center;gap:10px;color:#8fa0c4;font-size:12px}.zlor::before,.zlor::after{content:"";flex:1;height:1px;background:#ffffff26}
@@ -5599,7 +5599,8 @@ body:not(.php) #dr .cfL::-webkit-scrollbar-track{background:transparent}
 /* celular: os numeros em duas linhas */
 @media (max-width:760px){.mxnum{grid-template-columns:repeat(3,1fr)}}
 /* comemoracao ao subir de nivel */
-.mxfes{position:fixed;inset:0;z-index:999;display:grid;place-items:center;
+/* acima da soma de pontos da Maestria (#mxgn, 9100): a festa aparece ali mesmo */
+.mxfes{position:fixed;inset:0;z-index:9200;display:grid;place-items:center;
  background:#0a080ad9;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);cursor:pointer}
 .mxfbx{text-align:center;animation:mxpop .45s cubic-bezier(.2,1.3,.4,1)}
 .mxfev{width:min(300px,62vw);height:auto;display:block;margin:0 auto 10px;
@@ -6111,6 +6112,78 @@ body.ph #ofr .ofrb,body.php #ofr .ofrb{width:23px;height:23px;font-size:11px}
 /* minimizada nao obedece tamanho nenhum */
 #ofr.min{width:auto!important;height:auto!important}
 /* ===== ANIMA2 NOVO FIM ===== */
+
+/* ---------- MISSOES: so a Maestria, no visual atual ---------- */
+.msbd.mxms{max-width:1080px;gap:14px;padding:14px 16px 44px}
+.msbd.mxms>*{flex:none}
+.mxms .mxmshd{position:relative;display:flex;gap:18px;align-items:center;background:var(--a2pan0);
+ border:1px solid var(--a2lin);padding:18px 20px;overflow:hidden}
+.mxms .mxmshd::before{content:"";position:absolute;right:0;top:0;width:46%;height:100%;pointer-events:none;
+ background:radial-gradient(circle at 50% 50%,var(--a2ros2) 1.3px,#0000 1.6px) 0 0/9px 9px;
+ -webkit-mask:linear-gradient(200deg,#000,#0000 70%);mask:linear-gradient(200deg,#000,#0000 70%);opacity:.4}
+.mxms .mxmsev{position:relative;width:clamp(64px,8vw,96px);height:auto;flex:none;filter:drop-shadow(0 3px 8px #000c)}
+.mxms .mxmshd>div{position:relative;min-width:0}
+.mxms .mxmshd small,.mxms .mxmsi small{display:block;color:var(--a2ros2);font:800 11px/1 system-ui;
+ letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.mxms .mxmshd>div>b{display:block;font:900 italic clamp(20px,2.2vw,28px)/1.15 system-ui;color:var(--a2cre)}
+.mxms .mxmshd p{margin:8px 0 0;color:var(--a2cre);opacity:.86;font:500 14px/1.45 system-ui}
+.mxms .mxmshd p b{color:var(--a2ros2)}
+.mxms .mxmsct{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.mxms .mxmsct span{background:var(--a2pan3);border:1px solid var(--a2lin);color:var(--a2cre);font:700 12.5px/1 system-ui;padding:7px 11px}
+.mxms .mxmsct b{color:var(--a2ros2);margin-left:3px}
+/* titulo da secao em lamina, igual ao "Galeria" */
+.mxms .mxmsh{align-self:flex-start;margin:6px 0 0;padding:8px 38px 8px 14px;
+ background:linear-gradient(100deg,var(--a2pan2) 0%,var(--a2pan2) 62%,transparent 100%);
+ clip-path:polygon(0 0,100% 0,calc(100% - 22px) 100%,0 100%)}
+.mxms .mxmsh span{font:900 italic clamp(16px,1.8vw,22px)/1.1 system-ui;color:var(--a2cre)}
+.mxms .mxmsvz{background:var(--a2pan0);border:1px dashed var(--a2lin);padding:18px 20px;color:var(--a2cre)}
+.mxms .mxmsvz b{font:800 15px/1.3 system-ui}
+.mxms .mxmsvz p{margin:6px 0 0;opacity:.8;font:500 13.5px/1.45 system-ui}
+.mxms .mxmsgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:14px}
+.mxms .mxmsc{position:relative;display:flex;gap:16px;align-items:stretch;background:var(--a2pan0);
+ border:1px solid var(--a2lin);border-left:3px solid var(--a2ros2);padding:12px 14px 12px 12px;min-width:0}
+.mxms .mxmsc figure,.mxms .mxmsf figure{position:relative;margin:0;flex:none;overflow:visible;
+ border:2px solid #ded3c6;background:var(--a2bg)}
+.mxms .mxmsc figure{width:clamp(78px,9vw,104px);aspect-ratio:3/4;align-self:center}
+.mxms .mxmsc figure>img,.mxms .mxmsf figure>img{width:100%;height:100%;object-fit:cover;display:block}
+.mxms figure .mxsl{position:absolute;left:-8px;bottom:-10px;z-index:2;display:flex;align-items:center;
+ width:auto;height:auto;font-style:normal;background:none;border:0;padding:0}
+.mxms figure .mxsl u{display:none}
+.mxms figure .mxsli{position:relative;display:block;width:44px;height:44px;flex:none}
+.mxms figure .mxsl img{width:44px!important;height:44px!important;object-fit:contain!important;display:block;
+ border:0!important;border-radius:0!important;aspect-ratio:auto!important;filter:drop-shadow(0 2px 4px #000c)}
+.mxms figure .mxsli b{position:absolute;left:0;right:0;bottom:-2px;text-align:center;font:900 italic 14px/1 system-ui;
+ color:#fdf6ee;text-shadow:0 1px 0 #000,0 0 5px #000}
+.mxms .mxmsi{display:flex;flex-direction:column;justify-content:center;min-width:0;flex:1}
+.mxms .mxmsi>b{font:900 italic clamp(17px,1.7vw,21px)/1.15 system-ui;color:var(--a2cre);overflow-wrap:anywhere}
+.mxms .mxmsi p{margin:6px 0 10px;color:var(--a2cre);opacity:.82;font:500 13.5px/1.4 system-ui}
+.mxms .mxmspp{display:flex;gap:6px}
+.mxms .mxmspp i{flex:1;height:9px;background:var(--a2pan3);border:1px solid var(--a2lin);transform:skewX(-18deg)}
+.mxms .mxmspp i.on{background:linear-gradient(90deg,var(--a2ros),var(--a2ros2));border-color:var(--a2ros2)}
+.mxms .mxmsi em{margin-top:6px;font:800 12.5px/1 system-ui;font-style:normal;color:var(--a2cre);opacity:.9}
+.mxms .mxmsok{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:22px 14px}
+.mxms .mxmsf{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;min-width:0}
+.mxms .mxmsf figure{width:100%;aspect-ratio:3/4}
+.mxms .mxmsf>b{font:800 13.5px/1.25 system-ui;color:var(--a2cre);overflow-wrap:anywhere}
+.mxms .mxmsf>small{margin-top:-8px;color:var(--a2ros2);font:800 10.5px/1 system-ui;letter-spacing:.1em;text-transform:uppercase}
+/* celular */
+body.php .msbd.mxms{padding:10px 10px 40px;gap:12px}
+body.php .mxms .mxmshd{padding:14px;gap:12px;align-items:flex-start}
+body.php .mxms .mxmsev{width:56px}
+body.php .mxms .mxmshd p{font-size:13px}
+body.php .mxms .mxmsc{gap:12px;padding:10px}
+body.php .mxms .mxmsc figure{width:74px}
+body.php .mxms .mxmsok{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 10px}
+body.ph .msbd.mxms{padding:8px 10px 30px;gap:10px}
+body.ph .mxms .mxmshd{padding:10px 14px;gap:12px}
+body.ph .mxms .mxmsev{width:52px}
+body.ph .mxms .mxmshd p{font-size:12.5px;margin-top:5px}
+body.ph .mxms .mxmsct{margin-top:8px}
+body.ph .mxms .mxmsh{padding:5px 26px 5px 10px}
+body.ph .mxms .mxmsc figure{width:66px}
+body.ph .mxms .mxmsi p{margin:4px 0 8px;font-size:12.5px}
+body.ph .mxms .mxmsok{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}
+body.php .msbd.mxms,body.ph .msbd.mxms{overscroll-behavior:auto}
 </style>
 </head><body><main><h1>Projeto Ânima</h1><div id="bar"></div><div id="b"></div><div id="lg"></div></main><div id="dr"></div><div id="tip"></div>
 <script>
@@ -6555,7 +6628,7 @@ GL.PURIFICAR="Remove a quantidade de debuffs indicada na habilidade (por exemplo
 function run(){const s=G.cur;G.rn=1;G.kkU=0;G.u.forEach(x=>x.nx=0);G.q.forEach(a=>{const u=a.u;if(!u.alive||has(u,"ATORD"))return;const k=C[u.c].sk[a.i];let t=a.t;if(t&&t.c=="bj"&&t.s!=u.s&&tgu(k,u)=="e"&&!np(t)&&t.bjp!=null){const g=G.u[t.bjp];if(g&&g.alive&&g.s==t.s&&g!==t){log("Morra por mim!: "+C[g.c].n+" recebeu a habilidade no lugar de Boujack");t=g}}
   if(a.ts)a.ts=a.ts.filter(x=>x.alive);
   if(t&&t.s!=s&&!t.alive){const f=foes(u);if(!f.length)return;t=f[0]}
-  G.su=u;G.nul=[];G.cp=[];G.dst=0;G.nvpd=0;G.ar=tgu(k,u)=="E"||k.tg=="2";if(u.c=="mg"&&!np(u)&&(u.nx||0)>=1&&!k.zk){pst(u,"seg");pst(u,"eco",Math.max(0,(k.ki||0)+(has(u,"SOBR")?1:0)-(G.lead[u.s]=="mg"?1:0)+fk(u)))}{let _k=ck(u,k,a),_z=cz(u,k,a);if(cpn(u,"ut5")&&!G.sim&&Math.random()<.25){if(_k||_z)log(C[u.c].n+" não gastou recursos (Cápsula: Sorte do Guerreiro)");_k=0;_z=0}G.ki[s]-=_k;G.zk[s]-=_z;G.ski=a.i;sx(u,"use",1);sx(u,"kis",_k);sx(u,"zks",_z);if(!G.sim){G.skU=G.skU||[0,0];G.skU[u.s]=(G.skU[u.s]||0)+1}}if(u.free&&(u.nx||0)==0)u.free=0;if(u.sed&&(u.nx||0)==0)u.sed=0;u.nx=(u.nx||0)+1;if(u.c=="sak")u.byu0=1;u.cd[a.i]=k.cd?Math.max(2,k.cd+1-(u.cp?(capUlt(k)?cpn(u,"ut3"):cpn(u,"ut1")):0)-cdUp(u,k)):0;
+  G.su=u;G.nul=[];G.cp=[];G.dst=0;G.nvpd=0;G.ar=tgu(k,u)=="E"||k.tg=="2";if(u.c=="mg"&&!np(u)&&(u.nx||0)>=1&&!k.zk){pst(u,"seg");pst(u,"eco",Math.max(0,(k.ki||0)+(has(u,"SOBR")?1:0)-(G.lead[u.s]=="mg"?1:0)+fk(u)))}{let _k=ck(u,k,a),_z=cz(u,k,a);if(cpn(u,"ut5")&&!G.sim&&Math.random()<.25){if(_k||_z)log(C[u.c].n+" não gastou recursos (Cápsula: Sorte do Guerreiro)");_k=0;_z=0}G.ki[s]-=_k;G.zk[s]-=_z;G.ski=a.i;sx(u,"use",1);sx(u,"kis",_k);sx(u,"zks",_z);}if(u.free&&(u.nx||0)==0)u.free=0;if(u.sed&&(u.nx||0)==0)u.sed=0;u.nx=(u.nx||0)+1;if(u.c=="sak")u.byu0=1;u.cd[a.i]=k.cd?Math.max(2,k.cd+1-(u.cp?(capUlt(k)?cpn(u,"ut3"):cpn(u,"ut1")):0)-cdUp(u,k)):0;
   if(has(u,"INVEST")){const it=tgu(k,u)=="E"?foes(u):k.tg=="2"?(a.ts||[]).filter(x=>x.alive):t&&t.s!=s?[t]:[];if(it.length){rm(u,"INVEST");G.su=u;G.ar=tgu(k,u)=="E"||k.tg=="2";it.forEach(x=>add(x,"ATORD",1))}}
   if(k.hc&&!u.sb){const hcv=hcOf(u,k);if(u.kfree){u.kfree=0;log("Kaioken x10!: "+C[u.c].n+" não consumiu HP");pst(u,"free")}else if(hcv>0){u.hp=Math.max(1,u.hp-hcv);pst(u,"hpc",hcv)}}
   G.kkb=0;if(G.lead[u.s]=="gbk"&&!G.kkU&&(a.kk||(G.kkc&&G.kkc[kkKey(u,a.i)]))&&kkDmg(k)&&u.hp>20){G.kkU=1;u.hp-=20;G.kkb=20;log("Kaioken do líder: "+C[u.c].n+" consumiu 20 de HP para +"+G.kkb+" de dano")}
@@ -6592,7 +6665,7 @@ function newGame(){pannOff();G.dsnap=G.dsnapN||null;G.dsnapN=null;G.tutp=G._tutn
  /* G.ann diz que os dois times tiraram o mesmo lider e as habilidades de lider
     se anulam. Nao tem nada a ver com capsula: a flag estava desligando a build
     inteira dos dois times nessas partidas. So o tutorial joga sem capsula. */
- G.cap=G.tutp?[null,null]:((G.online&&G.capO)?G.capO:[capLoad(),G.mode=="t"?capLoad():null]);capApply();G.skU=[0,0];G.u.forEach(x=>{x.mrP=0;if(x.c=="sak"){x.byk=uq(x,"uq_sak_1")?4:3;x.bya=0;x.byu0=0}if(x.c=="sas")x.cd[6]=3;x.sld=0;if(x.c=="tr"&&uq(x,"uq_tr_2")){add0(x,"HER",999);const y=x.st.find(z=>z.k=="HER");if(y)y.nr=1;x.cd[0]=99;x.herP=1}if(x.c=="tr"&&uq(x,"uq_tr_1")){}});
+ G.cap=G.tutp?[null,null]:((G.online&&G.capO)?G.capO:[capLoad(),G.mode=="t"?capLoad():null]);capApply();G.u.forEach(x=>{x.mrP=0;if(x.c=="sak"){x.byk=uq(x,"uq_sak_1")?4:3;x.bya=0;x.byu0=0}if(x.c=="sas")x.cd[6]=3;x.sld=0;if(x.c=="tr"&&uq(x,"uq_tr_2")){add0(x,"HER",999);const y=x.st.find(z=>z.k=="HER");if(y)y.nr=1;x.cd[0]=99;x.herP=1}if(x.c=="tr"&&uq(x,"uq_tr_1")){}});
  G.u.filter(x=>x.c=="gu").forEach(g=>G.u.filter(x=>x.s==g.s).forEach(x=>x.st.push({k:"ARM",t:2,v:15,g:1})));[0,1].forEach(s=>{if(G.lead[s]=="gd")G.u.filter(x=>x.s==s).forEach(x=>x.st.push({k:"IMUN",t:2}))});[0,1].forEach(s=>{if(G.lead[s]=="kf")G.u.filter(x=>x.s!=s).forEach(x=>{if(!x.st.some(y=>y.k=="IMUN"))x.st.push({k:"SOBR",t:2})})});
  G.u.filter(x=>x.c=="gi").forEach(x=>{add(x,"ESQ",999);const r=x.st.find(y=>y.k=="ESQ");if(r)r.nr=1});
  [0,1].forEach(s=>{if(G.lead[s]=="gi")G.u.filter(x=>x.s==s).forEach(x=>{x.mx+=35;x.hp+=35})});[0,1].forEach(s=>{if(G.lead[s]=="mv")G.u.filter(x=>x.s!=s).forEach(x=>x.hp-=20+10*Math.floor(Math.max(0,x.mx-100)/10))});
@@ -7849,11 +7922,11 @@ function playIntro(cb){const old=document.getElementById("vsi");if(old)old.remov
     adversario vem da sala (cada um publica a sua) ou, contra a populacao da
     ranqueada, das partidas que aquela conta ja jogou */
  const seloDe=(s,k)=>{try{
-  if(!G.online){if(s===0)return mxSelo(k);if(rkEmJogo()){const r=rkBotMx(k);return r?mxSeloV(r.pt,r.d):""}return ""}
+  if(!G.online){if(s===0)return mxSelo(k);if(rkEmJogo()){const r=rkBotMx(k);return r?mxSeloV(r.pt,r.dn,r.d):""}return ""}
   if(s===EUV)return mxSelo(k);
   const d=(typeof O!=="undefined"&&O&&O.d)||null,pid=d&&d["p"+s],m=pid&&d.mem&&d.mem[okey(pid)];
   if(!m||!m.mx)return "";
-  const v=m.mx[k];return v?mxSeloV(v[0],v[1]):mxSeloV(0,0)}catch(e){return ""}};
+  const v=m.mx[k];return v?mxSeloV(v[0],v[1],v[2]):mxSeloV(0,0)}catch(e){return ""}};
  const half=s=>{const w=mk("div","vhalf t"+s),hd=mk("div","vhd",nm(s)),row=mk("div","vrow");w.append(hd,row);T(s).forEach(u=>{const c=mk("div","vcd");c.innerHTML="<div class='vim'><img src='"+(IMG[u.c+"_s"]||IMG[u.c+"_f"])+"' alt=''></div>"+seloDe(s,u.c)+"<b>"+C[u.c].n+"</b>";row.append(c)});return w};
  const H=[half(0),null,half(1)],V=mk("div","vsb","<img src='"+IMG.ui_vs+"' alt='VS'>");H[1]=V;st.append(H[0],V,H[2]);
  const side=(s,k)=>{if(!IN)return;const w=H[s?2:0],L=T(s),row=w.querySelector(".vrow");w.classList.add("on");
@@ -7861,7 +7934,7 @@ function playIntro(cb){const old=document.getElementById("vsi");if(old)old.remov
  const vs=k=>{if(!IN)return;V.classList.add("on");inSay(["vs"],k)};
  side(0,()=>vs(()=>side(1,()=>{if(IN)IN.tm.push(setTimeout(inEnd,900))})))}
 function lgFill(){const el=$("#lg");if(!el)return;const sig=G.log.length+"|"+fogView()+"|"+G.log.map(l=>(l.t||0)+l.m).join("¦");if(el._sg===sig)return;const h0=el.scrollHeight,st=el.scrollTop;let pt=null,h="";G.log.forEach(l=>{if(l.hv!=null&&fogHid(l.hv))return;if(l.t&&l.t!==pt){pt=l.t;h+="<div class='lgt'>Turno "+l.t+"</div>"}h+="<div>"+(l.ic?"<img src='"+l.ic+"' alt=''>":"")+"<span>"+l.m+"</span></div>"});el.innerHTML=h+"<div>Dica: "+(HOVPC?"passe o mouse":"segure o clique")+" em um ícone para ver o que ele faz. Clique de novo numa habilidade da fila para cancelá-la.</div>";el._sg=sig;if(st>0)el.scrollTop=st+(el.scrollHeight-h0)}
-function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=ZOFF||!["m","inv","gac","ms"].includes(G.scr)}if(G.scr!="p")pannOff();if(RFZ){if(G.scr=="p")return;RFZ=0}if(G.scr=="p"&&zaPre())return;if(G.scr=="pt")return;if(G.scr=="o")return oRender();if(G.scr=="m")return showMenu();if(G.scr=="d")return dRender();document.body.classList.remove("dm");if(G.scr!="p"||G.win!=null||(G.bot&&G.cur==1))closeOrder();if(G.scr!="p"||G.win!=null)closeSur();if(G.scr!="p")return G.scr=="b"?build():undefined;/* so o montador de times se redesenha aqui; inventario, tutorial e companhia nao */document.body.classList.add("bt");{const ff=FDS.find(x=>x.k==G.cf);document.body.style.setProperty("--fbg",ff?'url("'+IMG["fd_"+ff.k]+'")':"none")}const b=$("#b");b.innerHTML="";{const f=FDS.find(x=>x.k==G.cf);if(f){const fb=mk("div","fdb","<span><small class='fdlb'>Campo</small><b>"+f.n+"</b>"+"<em class='fdd'>"+f.d+"</em></span>");fb.style.backgroundImage='url("'+IMG["fd_"+f.k]+'")';b.append(fb)}if(0)b.append(mk("div","fdb","<b>Campo: "+f.n+"</b> · "+f.d))}
+function render(){{const zh=document.getElementById("zhud");if(zh)zh.hidden=!(ZOFF?["m","inv","gac"]:["m","inv","gac","ms"]).includes(G.scr)}if(G.scr!="p")pannOff();if(RFZ){if(G.scr=="p")return;RFZ=0}if(G.scr=="p"&&zaPre())return;if(G.scr=="pt")return;if(G.scr=="o")return oRender();if(G.scr=="m")return showMenu();if(G.scr=="d")return dRender();document.body.classList.remove("dm");if(G.scr!="p"||G.win!=null||(G.bot&&G.cur==1))closeOrder();if(G.scr!="p"||G.win!=null)closeSur();if(G.scr!="p")return G.scr=="b"?build():undefined;/* so o montador de times se redesenha aqui; inventario, tutorial e companhia nao */document.body.classList.add("bt");{const ff=FDS.find(x=>x.k==G.cf);document.body.style.setProperty("--fbg",ff?'url("'+IMG["fd_"+ff.k]+'")':"none")}const b=$("#b");b.innerHTML="";{const f=FDS.find(x=>x.k==G.cf);if(f){const fb=mk("div","fdb","<span><small class='fdlb'>Campo</small><b>"+f.n+"</b>"+"<em class='fdd'>"+f.d+"</em></span>");fb.style.backgroundImage='url("'+IMG["fd_"+f.k]+'")';b.append(fb)}if(0)b.append(mk("div","fdb","<b>Campo: "+f.n+"</b> · "+f.d))}
  /* ===== Voce sempre joga do lado esquerdo =====
     A classe t0/t1 diz o LADO na tela, nao o numero do time: quem esta no
     assento 1 via o proprio time a direita e reclamava. Agora o time de quem
@@ -8429,7 +8502,7 @@ const TUT=[
   "<div class='tcards'><button class='tcard hot' data-go='"+tIdx("Draft em 1 minuto")+"'><span>🏆</span><b>Aprender o Draft</b><small>7 tópicos curtos com vídeos e imagens de cada fase.</small></button><button class='tcard' data-go='"+tIdx("Em poucas palavras e Sugestão")+"'><span>💡</span><b>Em poucas palavras e Sugestão</b><small>Como escolher bem sem ler o kit inteiro.</small></button></div>"+tTip("Antes do Draft, jogue algumas partidas de Treino para conhecer os personagens.")},
  {g:"Modos de jogo",i:"🌐",n:"Jogar online",f:()=>tSum("Crie uma sala, mande o código para um amigo e joguem cada um na sua tela.")+
   "<ol><li>No menu, entre em <b>Jogar → Jogar Online</b>, escolha seu apelido e crie uma sala.</li><li>Mande o <b>código da sala</b>. Seu amigo entra em Jogar Online e digita o código.</li><li>A sala tem <b>2 lugares de jogador</b> e <b>6 de espectador</b>. O dono da sala pode trocar as pessoas de lugar, mudar as regras e até colocar um bot.</li><li>Os dois apertam <b>Pronto</b> e o draft começa.</li></ol><p><b>Espectadores</b> veem os dois times e acompanham cada clique ao vivo.</p><h3>Assistir um amigo</h3><p>Na <b>lista de amigos</b>, quem está jogando aparece como <b>Em partida</b> e ganha o botão <b>Assistir</b>. Você entra direto na sala dele, sem precisar de código, e uma faixa no alto mostra de quem é a partida.</p><p>A diferença para entrar pelo código: por ali <b>você vê só as jogadas do seu amigo</b>. No turno do adversário, o que ele está montando só aparece depois de confirmado — do mesmo jeito que o próprio amigo enxerga.</p>"},
- {g:"Modos de jogo",i:"🏅",n:"Maestria",f:()=>tSum("Cada personagem tem a sua própria Maestria, que sobe conforme você joga com ele. São 10 níveis, e os pontos <b>nunca caem</b>: perder também soma.")+"<h3>Como ganhar pontos</h3>"+"<ul><li><b>Vitória</b>: 90 pontos.</li>"+"<li><b>Derrota</b>: 55 pontos. Jogar já conta, mesmo quando a partida não sai do jeito que você queria.</li>"+"<li><b>MVP</b> (melhor do time que venceu): +35.</li>"+"<li><b>SVP</b> (melhor do time que perdeu): +25.</li></ul>"+"<p>Os <b>quatro personagens</b> do seu time ganham os pontos da partida. Já o bônus de MVP ou SVP vai só para quem conquistou.</p>"+"<p>Só a <b>fila ranqueada</b> dá Maestria. Treino, sala particular e tutorial não contam.</p>"+"<h3>O nível 10</h3>"+tImg("mx_10","Selo de Maestria 10","O selo de quem chegou ao nível máximo","timgp")+"<p>Chegar ao 10 pede <b>duas</b> coisas com o mesmo personagem: <b>9.000 pontos</b> e <b>3 destaques</b> (cada MVP ou SVP vale 1). Os destaques contam desde a sua primeira partida, então não precisa esperar o nível 9 para juntá-los.</p>"+"<p>Se os pontos chegarem antes dos destaques, o personagem espera no nível 9 e a ficha mostra o que ainda falta.</p>"+"<h3>Onde ver</h3>"+"<p>Em <b>Personagens</b>, cada card mostra o selo com o nível. Abra a ficha para ver a barra de progresso, suas partidas, MVPs, SVPs e as recompensas que já liberou.</p>"+"<p class='tnota'>Maestria é dedicação, não vantagem: as recompensas são só visuais e <b>nenhuma</b> muda dano, vida ou qualquer número da batalha.</p>"},
+ {g:"Modos de jogo",i:"🏅",n:"Maestria",f:()=>tSum("Cada personagem tem a sua própria Maestria, que sobe conforme você joga com ele. São 10 níveis, e os pontos <b>nunca caem</b>: perder também soma.")+"<h3>Como ganhar pontos</h3>"+"<ul><li><b>Vitória</b>: 90 pontos.</li>"+"<li><b>Derrota</b>: 55 pontos. Jogar já conta, mesmo quando a partida não sai do jeito que você queria.</li>"+"<li><b>MVP</b> (melhor do time que venceu): +35.</li>"+"<li><b>SVP</b> (melhor do time que perdeu): +25.</li></ul>"+"<p>Os <b>quatro personagens</b> do seu time ganham os pontos da partida. Já o bônus de MVP ou SVP vai só para quem conquistou.</p>"+"<p>Só a <b>fila ranqueada</b> dá Maestria. Treino, sala particular e tutorial não contam.</p>"+"<h3>O nível 10</h3>"+tImg("mx_10","Selo de Maestria 10","O selo de quem chegou ao nível máximo","timgp")+"<p>Chegar ao 10 pede <b>duas</b> coisas com o mesmo personagem: <b>9.000 pontos</b> e <b>"+MXCFG.destaques+" destaques</b> (cada MVP ou SVP vale 1).</p>"+"<p>Os destaques só começam a contar <b>depois</b> que os pontos do nível 9 ficam completos: nessa hora aparece a missão final, e os "+MXCFG.destaques+" MVPs/SVPs têm de vir a partir dali. A ficha e a tela de <b>Missões</b> (botão no alto do Menu Principal) mostram quanto falta.</p>"+"<h3>Onde ver</h3>"+"<p>Em <b>Personagens</b>, cada card mostra o selo com o nível. Abra a ficha para ver a barra de progresso, suas partidas, MVPs, SVPs e as recompensas que já liberou.</p>"+"<p class='tnota'>Maestria é dedicação, não vantagem: as recompensas são só visuais e <b>nenhuma</b> muda dano, vida ou qualquer número da batalha.</p>"},
  {g:"Modos de jogo",i:"💡",n:"Dicas de iniciante",f:()=>"<div class='ttips'>"+[["🎯","Foque um alvo","Derrubar um inimigo de cada vez é melhor do que machucar todos um pouco: lutador caído não ataca."],["🔢","A ordem importa","Atordoe antes do inimigo agir e quebre a barreira antes do golpe forte."],["🔥","Essência é rara","Guarde para a ultimate que vai fazer diferença."],[icHTML("ui_tt_oponente","tti","")+"","Olhe os efeitos do inimigo","Inalvejável, Esquiva e Anulador podem fazer o seu golpe não pegar."],["🛡️","Escolha o tipo de dano","Muita barreira? Use ENERGIZADO. Muita armadura? Use PERFURANTE."],["🔮","Na dúvida, Vovó","A previsão mostra o resultado antes de confirmar."]].map(x=>"<div><span>"+x[0]+"</span><b>"+x[1]+"</b><p>"+x[2]+"</p></div>").join("")+"</div>"+
   "<p class='tbig'>Agora é a hora de jogar. Perder faz parte: cada partida ensina alguma coisa, e quando se sentir pronto é só subir o nível do bot.</p><div class='tcards'><button class='tcard hot' data-play='1'><span>"+icHTML("ui_tt_jogando","tti","","\ud83c\udfae")+"</span><b>Aprender jogando</b><small>Uma partida inteira contra o bot Iniciante, com o guia na tela: cada clique, os efeitos, a recarga, os tipos de dano e a ultimate.</small></button></div>"}];
 const TUTVID="media/f5757587d5fb16780b71ddeb46635830.mp4";
@@ -9539,59 +9612,9 @@ function gaTicket(n){
  for(let i=0;i<n;i++){if(gTick()<=0)break;zS("za_tick",gTick()-1);const id=L[Math.floor(Math.random()*L.length)].i;capsAdd(id,1);out.push(id)}
  return{out,tk:0};
 }
-/* ---- Missões ---- */
-const MSD=[
- {i:"d1",n:"Aquecendo",t:"Complete 1 partida",k:"p",g:1,z:200},
- {i:"d2",n:"Vitória do Dia",t:"Vença 1 partida",k:"v",g:1,z:300},
- {i:"d3",n:"Combatente",t:"Complete 10 partidas",k:"p",g:10,z:400},
- {i:"d4",n:"Competitivo",t:"Jogue 3 partidas no modo Draft",k:"cp",g:3,z:300},
- {i:"d5",n:"Mestre da Competição",t:"Vença 5 partidas no modo Draft",k:"rv",g:5,z:500},
- {i:"d6",n:"Especialista",t:"Use 25 habilidades",k:"sk",g:25,z:300},
- {i:"d7",n:"Determinação",t:"Vença 5 partidas",k:"v",g:5,z:500}];
-const MSW=[
- {i:"w1",n:"Incansável",t:"Complete 25 partidas",k:"p",g:25,z:1500},
- {i:"w2",n:"Rumo à Vitória",t:"Vença 15 partidas",k:"v",g:15,z:2500},
- {i:"w3",n:"Mestre das Habilidades",t:"Use 250 habilidades",k:"sk",g:250,z:1500},
- {i:"w4",n:"Versatilidade",t:"Jogue com 8 personagens diferentes",k:"ch",g:8,z:1000},
- {i:"w5",n:"Eu serei o melhor",t:"Jogue 35 partidas no modo Draft",k:"cp",g:35,z:3000},
- {i:"w6",n:"Eu sou o melhor",t:"Vença 15 partidas no modo Draft",k:"rv",g:15,z:4500},
- {i:"w7",n:"Dedicação Diária",t:"Complete 28 missões diárias",k:"dm",g:28,z:1000}];
-function msDay(){const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
-function msWeek(){const d=new Date();const t=new Date(d.getFullYear(),d.getMonth(),d.getDate());const dow=(t.getDay()+6)%7;t.setDate(t.getDate()-dow);return t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0")}
-function msGet(){
- const s=zJ("za_ms",{});let ch=0;
- if(s.d!=msDay()){s.d=msDay();s.c={};s.dcl=[];ch=1}
- if(s.w!=msWeek()){s.w=msWeek();s.wc={};s.wcl=[];s.dm=0;ch=1}
- s.c=s.c||{};s.wc=s.wc||{};s.dcl=s.dcl||[];s.wcl=s.wcl||[];s.dm=s.dm||0;
- if(ch)zSJ("za_ms",s);
- return s;
-}
-function msVal(s,m,wk){
- if(m.k=="dm")return s.dm||0;
- const c=wk?s.wc:s.c;
- if(m.k=="ch")return (c.ch||[]).length;
- return c[m.k]||0;
-}
-function msBump(k,v){
- const s=msGet();
- [s.c,s.wc].forEach(c=>{
-  if(k=="ch"){c.ch=c.ch||[];(v||[]).forEach(x=>{if(!c.ch.includes(x))c.ch.push(x)})}
-  else c[k]=(c[k]||0)+v;
- });
- zSJ("za_ms",s);
-}
-function msReady(){const s=msGet();let n=0;
- MSD.forEach(m=>{if(!s.dcl.includes(m.i)&&msVal(s,m,0)>=m.g)n++});
- MSW.forEach(m=>{if(!s.wcl.includes(m.i)&&msVal(s,m,1)>=m.g)n++});
- return n}
-function msClaim(id){
- const s=msGet();const m=MSD.find(x=>x.i==id)||MSW.find(x=>x.i==id);if(!m)return 0;
- const wk=id[0]=="w",L=wk?s.wcl:s.dcl;
- if(L.includes(id)||msVal(s,m,wk)<m.g)return 0;
- L.push(id);if(!wk)s.dm=(s.dm||0)+1;
- zSJ("za_ms",s);zeniAdd(m.z,m.n);return m.z;
-}
-function msClaimAll(){let t=0;MSD.forEach(m=>t+=msClaim(m.i));MSW.forEach(m=>t+=msClaim(m.i));return t}
+/* As missoes de Zeni (diarias e semanais) sairam: a tela de Missoes mostra so a Maestria.
+   Limpa o progresso que elas deixaram guardado no aparelho. */
+try{localStorage.removeItem("za_ms")}catch(e){}
 /* ---- recompensa de partida ---- */
 let mtQuit=0;
 
@@ -9695,7 +9718,7 @@ function capBuff(u,SB){
 }
 
 /* ---- HUD do Zeni ---- */
-/* ZOFF=1: Zeni e Missoes fora da interface por enquanto. Para voltar, troque para 0. */
+/* ZOFF=1: Zeni fora da interface por enquanto (o botao de Missoes continua no alto). Para voltar, troque para 0. */
 const ZOFF=1;
 function zToast(t){
  let w=document.getElementById("ztoast");
@@ -9706,44 +9729,54 @@ function zHud(){
  let e=document.getElementById("zhud");
  if(!e){e=mk("div","");e.id="zhud";document.body.appendChild(e);
   e.onclick=ev=>{const b=ev.target.closest("button");if(b&&b.dataset.go=="ms")showMiss()};}
- const on=!ZOFF&&["m","inv","gac","ms"].includes(G.scr),tk=gTick(),rd=msReady();
+ /* com o Zeni desligado (ZOFF) fica so o botao de Missoes, e ele nao aparece na propria tela de Missoes */
+ const on=(ZOFF?["m","inv","gac"]:["m","inv","gac","ms"]).includes(G.scr),tk=ZOFF?0:gTick();
  e.hidden=!on;if(!on)return;
  const hd=document.querySelector(".pg .pghd");
  if(hd&&G.scr!="m"){if(e.parentNode!==hd)hd.appendChild(e);e.classList.add("inhd")}
  else{if(e.parentNode!==document.body)document.body.appendChild(e);e.classList.remove("inhd")}
- if(e.classList.contains("inhd"))e.style.right="";
- else{let rt=12;try{const sb=document.querySelector(".sndb");if(sb){const r=sb.getBoundingClientRect();if(r.width&&r.top<140&&r.right>innerWidth-340)rt=Math.max(12,Math.round(innerWidth-r.left)+10)}}catch(x){}e.style.right=rt+"px"}
- e.innerHTML="<span class='zh z' title='Zeni'><img src='"+IMG.ui_zeni+"' alt=''><b>"+fnum(zeni())+"</b></span>"+
+ if(e.classList.contains("inhd")){e.style.right="";e.style.marginRight="";
+  /* no cabecalho da pagina: abre espaco para o Som e o botao de letra (Aa), que ficam por cima */
+  const fixa=()=>{try{const me=e.getBoundingClientRect();let lim=innerWidth;
+   document.querySelectorAll(".sndb,#fsb").forEach(sb=>{const r=sb.getBoundingClientRect();if(r.width&&r.bottom>me.top&&r.top<me.bottom)lim=Math.min(lim,r.left)});
+   if(me.width&&me.right>lim-10)e.style.marginRight=Math.round(me.right-lim+10+(parseFloat(getComputedStyle(e).marginRight)||0))+"px"}catch(x){}};e._fixa=fixa}
+ else{e._fixa=null;let rt=12;try{/* fica a esquerda do Som e do botao de letra (Aa) */document.querySelectorAll(".sndb,#fsb").forEach(sb=>{const r=sb.getBoundingClientRect();if(r.width&&r.top<140&&r.right>innerWidth-340)rt=Math.max(rt,Math.round(innerWidth-r.left)+10)})}catch(x){}e.style.right=rt+"px"}
+ e.innerHTML=(ZOFF?"":"<span class='zh z' title='Zeni'><img src='"+IMG.ui_zeni+"' alt=''><b>"+fnum(zeni())+"</b></span>")+
   (tk?"<span class='zh t' title='Tickets de Cápsula Única'><img src='"+IMG.ui_cap_un+"' alt=''><b>"+tk+"</b></span>":"")+
   "<button class='zh ms' data-go='ms' title='Missões' aria-label='Missões'>"+
   "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'>"+
-  "<path d='M9 3.2h6v3H9z'/><path d='M15 4.7h2.3A1.7 1.7 0 0 1 19 6.4v13.1a1.7 1.7 0 0 1-1.7 1.7H6.7A1.7 1.7 0 0 1 5 19.5V6.4a1.7 1.7 0 0 1 1.7-1.7H9'/><path d='M8.6 12.6l2 2 4.6-4.6'/></svg><b>Missões</b>"+
-  (rd?"<i class='zdot'>"+rd+"</i>":"")+"</button>";
+  "<path d='M9 3.2h6v3H9z'/><path d='M15 4.7h2.3A1.7 1.7 0 0 1 19 6.4v13.1a1.7 1.7 0 0 1-1.7 1.7H6.7A1.7 1.7 0 0 1 5 19.5V6.4a1.7 1.7 0 0 1 1.7-1.7H9'/><path d='M8.6 12.6l2 2 4.6-4.6'/></svg><b>Missões</b></button>";
+ /* o Som e o Aa podem mudar de lugar logo depois que a pagina abre: confere de novo */
+ if(e._fixa){e._fixa();clearTimeout(e._fxt);e._fxt=setTimeout(()=>{if(e._fixa){e.style.marginRight="";e._fixa()}},300)}
 }
 const capIco=(id,cl)=>{const x=CAPM[id];if(!x)return"";const im=(x.ck&&IMG[x.ck+"_"+x.sk])||IMG[CAPC[x.c].i];return"<span class='cpic "+(cl||"")+"' style='--cc:"+CAPC[x.c].c+"'><img src='"+im+"' alt=''>"+(x.rm?"<i class='cprm'>"+x.rm+"</i>":"")+"</span>"};
 const capCard=(id,extra)=>{const x=CAPM[id];return"<div class='cpcd k-"+x.c+"' style='--cc:"+CAPC[x.c].c+"'>"+capIco(id)+"<div><b>"+x.n+capClCh(id)+"</b><small>"+CAPC[x.c].n+"</small><p>"+x.t+"</p>"+(extra||"")+"</div></div>"};
 /* ---- Missões ---- */
 function showMiss(){
- G.scr="ms";const w=pgShell("Missões","msn"),bd=mk("div","msbd");w.append(bd);zHud();
- const draw=()=>{
-  const s=msGet();bd.innerHTML="";
-  const tot=msReady();
-  const top=mk("div","mstop","<p>Jogue partidas para ganhar <b>Zeni</b> e gastar na Corporação Cápsula.</p><div class='mszr'><span>Vitória <b>+100</b></span><span>Derrota <b>+25</b></span></div>");
-  if(tot){const b=mk("button","msall","Resgatar tudo ("+tot+")");b.onclick=()=>{const t=msClaimAll();if(t)zToast("+"+fnum(t)+" Zeni");draw();zHud()};top.append(b)}
-  bd.append(top);
-  [["Diárias",MSD,0,s.dcl],["Semanais",MSW,1,s.wcl]].forEach(([tl,L,wk,cl])=>{
-   bd.append(mk("div","msg","<h2>"+tl+"</h2><small>"+(wk?"Renovam toda segunda":"Renovam todo dia")+"</small>"));
-   L.forEach(m=>{
-    const v=Math.min(msVal(s,m,wk),m.g),ok=v>=m.g,got=cl.includes(m.i);
-    const c=mk("div","msc"+(got?" got":ok?" ok":""));
-    c.innerHTML="<div class='msi'><b>"+m.n+"</b><p>"+m.t+"</p><div class='msbar'><i style='width:"+(v/m.g*100)+"%'></i></div><small>"+v+" / "+m.g+"</small></div><div class='msz'><img src='"+IMG.ui_zeni+"' alt=''><b>"+fnum(m.z)+"</b></div>";
-    const b=mk("button","msb",got?"Resgatado":ok?"Resgatar":"Em andamento");b.disabled=got||!ok;
-    b.onclick=()=>{if(msClaim(m.i))draw(),zHud()};
-    c.append(b);bd.append(c);
-   });
-  });
- };
- draw();
+ G.scr="ms";const w=pgShell("Missões","msn"),bd=mk("div","msbd mxms");w.append(bd);zHud();
+ /* so a Maestria: a missao final aparece quando os pontos do nivel 9 ficam completos */
+ const g=MXCFG.destaques,lim=MXAC[MXMAX-1],L=ROS.filter(k=>C[k]);
+ const and=[],fim=[];
+ L.forEach(k=>{try{const r=mxDe(k),nv=mxNivel(r.pt,mxDestNv(r));
+  if(nv>=MXMAX)fim.push(k);else if(r.pt>=lim)and.push([k,Math.min(mxDestNv(r),g)])}catch(e){}});
+ and.sort((a,b)=>b[1]-a[1]);
+ const ar=k=>IMG[k+"_s"]||IMG[k+"_f"]||"";
+ bd.append(mk("div","mxmshd","<img class='mxmsev' src='"+mxArte(MXMAX)+"' alt=''><div><small>Maestria</small><b>Missão final</b>"
+  +"<p>Quando um personagem completa os pontos do nível 9 ("+fnum(lim)+"), começa a missão final: consiga <b>"+g+" MVPs/SVPs</b> com ele na ranqueada para chegar à <b>Maestria 10</b>.</p>"
+  +"<div class='mxmsct'><span>Em andamento <b>"+and.length+"</b></span><span>Concluídas <b>"+fim.length+"</b></span></div></div>"));
+ bd.append(mk("div","mxmsh","<span>Em andamento</span>"));
+ if(!and.length)bd.append(mk("div","mxmsvz","<b>Nenhuma missão no momento</b><p>Jogue ranqueadas: a missão de um personagem aparece aqui assim que ele completar "+fnum(lim)+" pontos de Maestria.</p>"));
+ else{const gr=mk("div","mxmsgr");
+  and.forEach(([k,v])=>{let pp="";for(let i=0;i<g;i++)pp+="<i"+(i<v?" class='on'":"")+"></i>";
+   gr.append(mk("div","mxmsc","<figure><img src='"+ar(k)+"' alt='' loading='lazy'>"+mxSelo(k)+"</figure>"
+    +"<div class='mxmsi'><small>Maestria 10</small><b>"+escH(shn(k))+"</b>"
+    +"<p>Consiga "+g+" MVPs/SVPs com "+escH(shn(k))+" para completar a maestria</p>"
+    +"<div class='mxmspp' role='img' aria-label='"+v+" de "+g+"'>"+pp+"</div><em>"+v+" / "+g+"</em></div>"))});
+  bd.append(gr)}
+ if(fim.length){bd.append(mk("div","mxmsh","<span>Concluídas</span>"));
+  const gr=mk("div","mxmsok");
+  fim.forEach(k=>gr.append(mk("div","mxmsf","<figure><img src='"+ar(k)+"' alt='' loading='lazy'>"+mxSelo(k)+"</figure><b>"+escH(shn(k))+"</b><small>Maestria 10</small>")));
+  bd.append(gr)}
 }
 /* ---- Inventário ---- */
 let INVC=null;let IVFOPEN=0,IVF={c:"all",c2:"all",f:"all",q:""};
@@ -10191,10 +10224,6 @@ function capReward(){
   if(G.tutp){if(me!=null)zS("za_tutdone",1);mtQuit=0;return}
   if(me==null){mtQuit=0;return}
   const win=G.win===me,quit=!win&&mtQuit&&G.t<5;mtQuit=0;
-  const sk=(G.skU&&G.skU[me])||0;if(sk)msBump("sk",sk);
-  const ch=G.u.filter(x=>x.s==me).map(x=>x.c);if(ch.length)msBump("ch",ch);
-  if(!quit){msBump("p",1);if(G.mode=="d")msBump("cp",1)}
-  if(win){msBump("v",1);if(G.mode=="d")msBump("rv",1)}
   zeniAdd(win?100:25,win?"Vitória":"Derrota");
  }catch(e){}
 }
@@ -11536,7 +11565,8 @@ Object.assign(IMG,{"mx_01":"media/7c385a7fd1e3117d900d7eb6dfee4b4b.webp","mx_02"
 const MXCFG={
  passos:[200,350,500,650,850,1100,1400,1750,2200], /* 1->2, 2->3, ... 9->10 */
  vit:90, der:55, mvp:35, svp:25,  /* pontos por partida e bonus de destaque */
- destaques:3,                      /* destaques exigidos para o nivel 10 */
+ destaques:5,                      /* destaques exigidos para o nivel 10 */
+ destaquesAntigo:3,                /* regra anterior: quem ja era 10 com ela continua no 10 */
  modos:["rk"],                     /* onde vale: so a fila ranqueada */
  premios:{2:"Borda simples de Maestria",4:"Ícone de perfil do personagem",
   6:"Borda especial de Maestria",8:"Título exclusivo do personagem",
@@ -11575,17 +11605,22 @@ function mxGrava(){try{ls("za_mx",JSON.stringify(MX))}catch(e){}
  try{mxSobe()}catch(e){}}
 /* um registro por personagem, sempre com todos os campos */
 function mxDe(k){const M=mxLer();let r=M.p[k];
- if(!r)r=M.p[k]={pt:0,j:0,v:0,d:0,mvp:0,svp:0,pr:[],at:0};
- ["pt","j","v","d","mvp","svp"].forEach(c=>{if(typeof r[c]!="number")r[c]=0});
+ if(!r)r=M.p[k]={pt:0,j:0,v:0,d:0,mvp:0,svp:0,pr:[],at:0,d10:0,m10:0};
+ ["pt","j","v","d","mvp","svp","d10"].forEach(c=>{if(typeof r[c]!="number")r[c]=0});
+ /* quem ja tinha chegado ao 10 pela regra antiga continua no 10 */
+ if(typeof r.m10!="number")r.m10=((r.pt||0)>=MXAC[MXMAX-1]&&(r.mvp||0)+(r.svp||0)>=MXCFG.destaquesAntigo)?1:0;
  if(!Array.isArray(r.pr))r.pr=[];
  return r}
 const mxDest=r=>(r.mvp||0)+(r.svp||0);          /* MVP e SVP valem 1 destaque cada */
-const mxNivelDe=k=>{const r=mxDe(k);return mxNivel(r.pt,mxDest(r))};
+/* Destaques que valem para o nivel 10: so os conquistados depois de completar os
+   pontos do nivel 9 (a missao final). Quem ja era 10 pela regra antiga fica no 10. */
+const mxDestNv=r=>r&&r.m10?MXCFG.destaques:Math.max(0,(r&&r.d10)||0);
+const mxNivelDe=k=>{const r=mxDe(k);return mxNivel(r.pt,mxDestNv(r))};
 const mxTotalNiveis=()=>ROS.filter(k=>C[k]).reduce((a,k)=>a+mxNivelDe(k),0);
 const mxTotalDest=()=>Object.keys(mxLer().p).reduce((a,k)=>a+mxDest(mxLer().p[k]),0);
 
 /* premios do nivel: cosmeticos, nunca mexem em combate */
-function mxPremios(r){const n=mxNivel(r.pt,mxDest(r)),L=[];
+function mxPremios(r){const n=mxNivel(r.pt,mxDestNv(r)),L=[];
  Object.keys(MXCFG.premios).map(Number).sort((a,b)=>a-b).forEach(nv=>{
   if(n>=nv)L.push({nv,t:MXCFG.premios[nv]})});
  return L}
@@ -11604,13 +11639,17 @@ function mxCredita(gid,time,venceu,dest,modo){
  const vistos={};
  time.filter(k=>k&&C[k]).forEach(k=>{
   if(vistos[k])return;vistos[k]=1;                    /* o mesmo personagem so conta uma vez */
-  const r=mxDe(k),antesPt=r.pt,antesNv=mxNivel(r.pt,mxDest(r));
+  const r=mxDe(k),antesPt=r.pt,antesNv=mxNivel(r.pt,mxDestNv(r)),noMax=r.pt>=MXAC[MXMAX-1];
   let ganho=base,eMvp=0,eSvp=0;
   if(dest&&dest.mvp===k){ganho+=MXCFG.mvp;eMvp=1}
   else if(dest&&dest.svp===k){ganho+=MXCFG.svp;eSvp=1} /* nunca os dois na mesma partida */
   r.pt+=ganho;r.j++;venceu?r.v++:r.d++;
   r.mvp+=eMvp;r.svp+=eSvp;r.at=agora;
-  const depoisNv=mxNivel(r.pt,mxDest(r));
+  /* o destaque so entra na missao final se os pontos do 9 ja estavam completos */
+  if(noMax&&(eMvp||eSvp))r.d10=(r.d10||0)+1;
+  const depoisNv=mxNivel(r.pt,mxDestNv(r));
+  /* completou agora os pontos do 9: a missao final aparece */
+  if(!noMax&&r.pt>=MXAC[MXMAX-1]&&depoisNv<MXMAX)subiu.push({k,missao:1});
   mxPremios(r).forEach(p=>{if(r.pr.indexOf(p.nv)<0)r.pr.push(p.nv)});
   M.h=(M.h||[]);M.h.unshift({gid,k,res:venceu?"v":"d",base,bon:ganho-base,
     total:ganho,ptAnt:antesPt,ptDep:r.pt,nvAnt:antesNv,nvDep:depoisNv,t:agora});
@@ -11645,14 +11684,14 @@ function mxRetro(){try{
   const venceu=!!reg.win,base=venceu?MXCFG.vit:MXCFG.der;
   M.g.push(gid);partidas++;
   time.forEach(k=>{const r=mxDe(k);
-   if(!ganhos[k])ganhos[k]={pt:0,j:0,v:0,d:0,nvAnt:mxNivel(r.pt,mxDest(r))};
+   if(!ganhos[k])ganhos[k]={pt:0,j:0,v:0,d:0,nvAnt:mxNivel(r.pt,mxDestNv(r))};
    r.pt+=base;r.j++;venceu?r.v++:r.d++;r.at=agora;
    ganhos[k].pt+=base;ganhos[k].j++;venceu?ganhos[k].v++:ganhos[k].d++})});
  if(M.g.length>400)M.g=M.g.slice(-400);
  const lista=Object.keys(ganhos).map(k=>{const r=mxDe(k);
    mxPremios(r).forEach(pz=>{if(r.pr.indexOf(pz.nv)<0)r.pr.push(pz.nv)});
    return{k,pt:ganhos[k].pt,j:ganhos[k].j,v:ganhos[k].v,d:ganhos[k].d,
-    nvAnt:ganhos[k].nvAnt,nvDep:mxNivel(r.pt,mxDest(r)),ptDep:r.pt}})
+    nvAnt:ganhos[k].nvAnt,nvDep:mxNivel(r.pt,mxDestNv(r)),ptDep:r.pt}})
   .sort((a,b)=>b.pt-a.pt);
  M.retro={at:agora,partidas,visto:lista.length?0:1,lista};
  mxGrava();
@@ -11712,21 +11751,32 @@ function mxGanhoShow(gid){
    +"<div class='mxgnb'><i style='width:"+Math.round(a.frac*100)+"%'></i></div>"
    +"<small>"+(subiu?"Subiu para o n\u00edvel "+x.nvDep:"N\u00edvel "+x.nvDep)
    +(x.bon?" \u00b7 +"+x.bon+" de destaque":"")+"</small></div>"
-   +"<em>+"+x.total+"</em></div>"})
+   +"<em>+0</em></div>"})
  h+="</div>";
  bx.innerHTML=h;ov.append(bx);document.body.append(ov);
- /* a barra anda do que era para o que ficou */
- const t0=Date.now(),dur=1300;
+ /* os pontos somam devagar e a barra anda do que era para o que ficou; quem
+    subiu de nivel (ou chegou na missao final) comemora aqui mesmo, no fim da soma */
+ const t0=Date.now(),dur=2600;let acabou=0,fechou=0,tmo=null;
+ const fecha=()=>{if(fechou)return;fechou=1;clearInterval(MXGT);MXGT=null;clearTimeout(tmo);
+  const o=document.getElementById("mxgn");if(o)o.remove()};
+ const fimSoma=()=>{if(acabou)return;acabou=1;clearInterval(MXGT);MXGT=null;
+  L.forEach((x,i)=>{const it=bx.querySelector(".mxgni[data-i='"+i+"']");if(!it)return;
+   const el=it.querySelector(".mxgnb i"),em=it.querySelector("em");
+   if(el)el.style.width=Math.round(mxProg(x.ptDep,0).frac*100)+"%";if(em)em.textContent="+"+x.total});
+  const F=(MXSUB||[]).slice();MXSUB=null;
+  if(F.length)setTimeout(()=>{if(!fechou)mxFesta(F,fecha)},500);else tmo=setTimeout(fecha,1900)};
  MXGT=setInterval(()=>{
   const k=Math.min(1,(Date.now()-t0)/dur),e=1-Math.pow(1-k,3);
-  L.forEach((x,i)=>{const el=bx.querySelector(".mxgni[data-i='"+i+"'] .mxgnb i");if(!el)return;
+  L.forEach((x,i)=>{const it=bx.querySelector(".mxgni[data-i='"+i+"']");if(!it)return;
+   const el=it.querySelector(".mxgnb i"),em=it.querySelector("em");
    const a=mxProg(x.ptAnt,0),d=mxProg(x.ptDep,0);
    const f=(x.nvDep>x.nvAnt)?(k<.55?(a.frac+(1-a.frac)*(k/.55)):(d.frac*((k-.55)/.45))):(a.frac+(d.frac-a.frac)*e);
-   el.style.width=Math.max(0,Math.min(100,f*100))+"%"});
-  if(k>=1){clearInterval(MXGT);MXGT=null}
+   if(el)el.style.width=Math.max(0,Math.min(100,f*100))+"%";
+   if(em)em.textContent="+"+Math.round(x.total*e)});
+  if(k>=1)fimSoma()
  },40);
- const fecha=()=>{clearInterval(MXGT);MXGT=null;const o=document.getElementById("mxgn");if(o)o.remove()};
- ov.onclick=fecha;setTimeout(fecha,4200);
+ /* tocar pula a soma; tocar de novo fecha */
+ ov.onclick=()=>{if(!acabou)fimSoma();else if(!document.getElementById("mxfes"))fecha()};
  return ov}
 let MXGT=null;
 /* quem levou MVP e SVP na partida que acabou, pela mesma nota da tela de estatisticas */
@@ -11739,15 +11789,15 @@ function mxDestaques(){try{
 /* ---- Maestria na tela: selo no card, painel na ficha ---- */
 const mxN=v=>Math.round(v||0).toLocaleString("pt-BR");
 /* selo pequeno, no canto da arte do card (nivel 1 sem partida nao mostra nada) */
-function mxSelo(k){const r=mxDe(k);return mxSeloV(r.pt,mxDest(r))}
-function mxSeloV(pt,d){pt=Math.max(0,+pt||0);d=Math.max(0,+d||0);const r={pt:pt};
- const n=mxNivel(pt,d);
+function mxSelo(k){const r=mxDe(k);return mxSeloV(r.pt,mxDestNv(r),mxDest(r))}
+function mxSeloV(pt,dn,dt){pt=Math.max(0,+pt||0);dn=Math.max(0,+dn||0);const d=Math.max(0,dt==null?dn:+dt||0),r={pt:pt};
+ const n=mxNivel(pt,dn);
  return "<i class='mxsl"+(n>=MXMAX?" max":"")+"' title='Maestria "+n+" · "+mxN(r.pt)+" pontos"+(d?" · "+d+" destaque"+(d>1?"s":""):"")+"'>"
   +"<span class='mxsli'><img src='"+mxArte(n)+"' alt=''><b>"+n+"</b></span>"
   +(d?"<u><i class='mxsld'></i>"+d+"</u>":"")+"</i>"}
 /* a maestria que este aparelho mostra aos outros: [pontos, destaques] por personagem */
 function mxPacote(){const M=mxLer(),o={};
- Object.keys(M.p||{}).forEach(k=>{const r=M.p[k];if(r&&((r.pt||0)>0||mxDest(r)>0))o[k]=[Math.round(r.pt||0),mxDest(r)]});
+ Object.keys(M.p||{}).forEach(k=>{const r=M.p[k];if(r&&((r.pt||0)>0||mxDest(r)>0))o[k]=[Math.round(r.pt||0),mxDestNv(r),mxDest(r)]});
  return o}
 /* Maestria dos adversarios da populacao da ranqueada. Eles jogam so a fila,
    entao a maestria sai das partidas que cada um ja jogou na temporada: cada
@@ -11763,11 +11813,13 @@ function rkBotMx(k){try{
  const i=L.indexOf(k);if(i<0)return {pt:0,d:0};
  const jg=3*n*pe[i]/tot,vit=jg*wr,der=jg-vit;
  const mvp=Math.floor(vit*(.16+.12*rkH(sd,i,11))),svp=Math.floor(der*(.10+.10*rkH(sd,i,13)));
- return {pt:Math.round(vit*MXCFG.vit+der*MXCFG.der+mvp*MXCFG.mvp+svp*MXCFG.svp),d:mvp+svp}
+ const pt=Math.round(vit*MXCFG.vit+der*MXCFG.der+mvp*MXCFG.mvp+svp*MXCFG.svp),lim=MXAC[MXMAX-1];
+ const dn=pt>lim?Math.floor((mvp+svp)*(pt-lim)/pt):0;
+ return {pt,d:mvp+svp,dn}
 }catch(e){return null}}
 /* pacote no mesmo formato do mxPacote, para quem assiste a partida contra o bot */
 function rkBotMxPac(){const o={};try{if(!rkEmJogo())return null;
- ROS.filter(x=>C[x]).forEach(k=>{const r=rkBotMx(k);if(r&&(r.pt>0||r.d>0))o[k]=[r.pt,r.d]})}catch(e){return null}return o}
+ ROS.filter(x=>C[x]).forEach(k=>{const r=rkBotMx(k);if(r&&(r.pt>0||r.d>0))o[k]=[r.pt,r.dn,r.d]})}catch(e){return null}return o}
 /* resumo do elenco, no alto da galeria */
 function mxResumo(){const ks=ROS.filter(k=>C[k]);
  if(!ks.length)return "";
@@ -11775,7 +11827,7 @@ function mxResumo(){const ks=ROS.filter(k=>C[k]);
  return "<div class='mxres'><div><b>"+mxN(niv)+"</b><small>Nível de maestria total</small></div>"
   +"<div><b>"+mxN(des)+"</b><small>Destaques</small></div></div>"}
 /* painel da ficha: progresso, numeros e recompensas */
-function mxPainel(k){const r=mxDe(k),d=mxDest(r),P=mxProg(r.pt,d),n=P.n;
+function mxPainel(k){const r=mxDe(k),d=mxDest(r),P=mxProg(r.pt,mxDestNv(r)),n=P.n;
  const premios=mxPremios(r);
  const cab="<div class='mxpc'><span class='mxsli mxslg'><img src='"+mxArte(n)+"' alt=''><b>"+n+"</b></span>"
   +"<div><small>Maestria</small><b>"+(n>=MXMAX?"Nível máximo · 10":"Nível "+n)+"</b>"
@@ -11791,13 +11843,12 @@ function mxPainel(k){const r=mxDe(k),d=mxDest(r),P=mxProg(r.pt,d),n=P.n;
    +"<div class='mxbr'><span>Destaques</span><i><u style='width:"+(100*Math.min(1,D.dest/D.destAlvo)).toFixed(1)+"%'></u></i>"
     +"<b>"+D.dest+"/"+D.destAlvo+(D.dest>=D.destAlvo?" ✓":"")+"</b></div>"
    +"<p class='mxsub'>"+(D.dest>=D.destAlvo?"Só faltam os pontos."
-     :"Falta"+(D.destAlvo-D.dest>1?"m ":" ")+(D.destAlvo-D.dest)+" destaque"+(D.destAlvo-D.dest>1?"s":"")
-      +" como MVP ou SVP com este personagem.")+"</p>"}
+     :"Missão final: consiga "+MXCFG.destaques+" MVPs/SVPs com "+escH(shn(k))+" para completar a maestria. Falta"+(D.destAlvo-D.dest>1?"m ":" ")+(D.destAlvo-D.dest)+".")+"</p>"}
  else{
   meio="<div class='mxbr'><span>Nível "+(n+1)+"</span><i><u style='width:"+(100*P.frac).toFixed(1)+"%'></u></i>"
    +"<b>"+mxN(P.no)+"/"+mxN(P.alvo-P.base)+"</b></div>"
    +"<p class='mxsub'>Faltam <b>"+mxN(P.falta)+"</b> pontos para o nível "+(n+1)+"."+
-    (n===MXMAX-1?" O nível 10 ainda pede "+MXCFG.destaques+" destaques.":"")+"</p>"}
+    (n===MXMAX-1?" Ao completar os pontos, começa a missão final: "+MXCFG.destaques+" MVPs/SVPs com este personagem.":"")+"</p>"}
  const num=[["Partidas",r.j],["Vitórias",r.v],["Derrotas",r.d],["MVP",r.mvp],["SVP",r.svp],["Destaques",d]]
   .map(([t,v])=>"<div><b>"+mxN(v)+"</b><small>"+t+"</small></div>").join("");
  const pr=premios.length
@@ -11808,15 +11859,19 @@ function mxPainel(k){const r=mxDe(k),d=mxDest(r),P=mxProg(r.pt,d),n=P.n;
  z.innerHTML=cab+meio+"<div class='mxnum'>"+num+"</div>"+pr;
  return z}
 /* comemoracao: toca a animacao da transicao de quem subiu de nivel */
-function mxFesta(L){if(!L||!L.length)return;const it=L.shift();
+function mxFesta(L,fim){if(!L||!L.length){if(fim)try{fim()}catch(e){}return}const it=L.shift();
  const ov=mk("div","mxfes");ov.id="mxfes";
- ov.innerHTML="<div class='mxfbx'><img class='mxfev' src='"+mxEvo(it.de)+"' alt=''>"
-  +"<b>Maestria "+it.para+"</b><span>"+escH(shn(it.k))+"</span>"
-  +"<small>"+(it.para>=MXMAX?"Desafio final concluído":"Nível "+it.de+" → "+it.para)+"</small></div>";
- const fecha=()=>{ov.remove();mxFesta(L)};
+ ov.innerHTML=it.missao
+  ?"<div class='mxfbx mxfmi'><img class='mxfev' src='"+mxArte(MXMAX)+"' alt=''>"
+   +"<b>Missão final da Maestria</b><span>"+escH(shn(it.k))+"</span>"
+   +"<small>Consiga "+MXCFG.destaques+" MVPs/SVPs com "+escH(shn(it.k))+" para completar a maestria</small></div>"
+  :"<div class='mxfbx'><img class='mxfev' src='"+mxEvo(it.de)+"' alt=''>"
+   +"<b>Maestria "+it.para+"</b><span>"+escH(shn(it.k))+"</span>"
+   +"<small>"+(it.para>=MXMAX?"Desafio final concluído":"Nível "+it.de+" → "+it.para)+"</small></div>";
+ let foi=0;const fecha=()=>{if(foi)return;foi=1;ov.remove();mxFesta(L,fim)};
  ov.onclick=fecha;document.body.append(ov);
  try{sfx("ok")}catch(e){}
- setTimeout(fecha,4200)}
+ setTimeout(fecha,it.missao?5200:4200)}
 
 /* ===== fim da Maestria ===== */
 
@@ -11832,8 +11887,10 @@ function mxSobe(){if(typeof O=="undefined"||!O.db||!O.pid)return;
   .catch(()=>{}).then(()=>{MXUP=0;if(MXUPQ){MXUPQ=0;mxSobe()}})}
 function mxFunde(p){if(!p)return 0;const M=mxLer();let mudou=0;
  Object.keys(p).forEach(k=>{const v=p[k]||{},r=mxDe(k);
-  ["pt","j","v","d","mvp","svp"].forEach(c=>{
+  ["pt","j","v","d","mvp","svp","d10","m10"].forEach(c=>{
    if(typeof v[c]=="number"&&v[c]>(r[c]||0)){r[c]=v[c];mudou=1}});
+  /* registro gravado antes da missao final: quem ja era 10 la continua no 10 */
+  if(typeof v.m10!="number"&&!r.m10&&(r.pt||0)>=MXAC[MXMAX-1]&&(r.mvp||0)+(r.svp||0)>=MXCFG.destaquesAntigo){r.m10=1;mudou=1}
   (v.pr||[]).forEach(n=>{if(r.pr.indexOf(n)<0){r.pr.push(n);mudou=1}});
   if((v.at||0)>(r.at||0))r.at=v.at});
  if(mudou)try{ls("za_mx",JSON.stringify(M))}catch(e){}
@@ -11867,6 +11924,7 @@ function rkFimPartida(forc){const m=G.rkm;if(!m||G.sim)return;
     para o servidor assim que ele responder. */
  if(rkDb()&&!RKMODO.lido){rkPendPoe(m,win,ficha,fc);
   try{zToast("Sem conexão com o servidor: a partida vai contar assim que a conexão voltar.")}catch(e){}
+  setTimeout(()=>{try{mxGanhoShow(MXGID)}catch(e){}},900);
   try{rkModoLer()}catch(e){}return}
  rkFimLocal(m,win,st,ficha,fc)}
 
@@ -11907,6 +11965,7 @@ async function rkFimServidor(m,win,ficha,fc){
  catch(e){
   rkPendPoe(m,win,ficha,fc);
   try{zToast("A conexão com o servidor falhou: a partida vai contar assim que ela voltar.")}catch(x){}
+  setTimeout(()=>{try{mxGanhoShow(MXGID)}catch(x){}},900);
   return}
  if(!res||res.repetida){try{await rkSincroniza()}catch(x){}return}
  const st=rkDoServidor(Object.assign({},res.st,{sea:res.sea}));
@@ -12015,7 +12074,7 @@ function lbPos(){const R=document.querySelector(".lbR"),W=document.querySelector
  /* se precisou subir muito, encolhe os itens e tenta de novo mais perto do lugar certo */
  if(topoNatural-t>8){R.classList.add("compacto");t=poe();
   if(topoNatural-t>8&&!(limite()<w.height))R.classList.remove("compacto")}}
-function showLobby(__mxArgs){try{if(MXSUB&&MXSUB.length){const L=MXSUB.slice();MXSUB=null;setTimeout(()=>mxFesta(L),620)}}catch(e){}
+function showLobby(__mxArgs){
  return showLobby0.apply(this,arguments)}
 function showLobby0(){
  try{oInit()}catch(e){}   /* a fila precisa do banco, e só a tela de salas abria ele */
@@ -12422,7 +12481,7 @@ function pwaAjudaIOS(){
  ov.onclick=e=>{if(e.target===ov)fecha()};
  document.addEventListener("keydown",function k(e){if(e.key=="Escape"){fecha();document.removeEventListener("keydown",k)}});}
 
-function showMenu(){try{if(MXSUB&&MXSUB.length){const L=MXSUB.slice();MXSUB=null;setTimeout(()=>mxFesta(L),620)}}catch(e){}
+function showMenu(){
  try{oInit()}catch(e){}   /* para reconectar sozinho numa partida que ficou aberta */
 dClear();pannOff(1);G.rkm=null;G.rkBlv=null;G.rkNome=null;/* saiu da ranqueada: a próxima partida é comum de novo */if(typeof O!="undefined"&&(O.code||G.online))oLeave();G.scr="m";document.body.classList.remove("bt");document.body.classList.add("dm");const r=$("#dr");r.innerHTML="";
  const go=sub=>{MSUB=sub;MSEL=0;showMenu()},leave=f=>()=>{MSUB=null;MSEL=0;f()};
