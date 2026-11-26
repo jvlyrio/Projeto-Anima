@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png"><link rel="apple-touch-icon" href="icons/icone-180.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#261b33"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script>window.ZA_VER="de7537a16678";</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png"><link rel="apple-touch-icon" href="icons/icone-180.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#261b33"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script>window.ZA_VER="d29618ce729e";</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
 .zlb{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border-radius:10px;padding:11px 14px;font:700 15px system-ui;cursor:pointer;border:1.5px solid #ffffff33;background:#ffffff10;color:#fff}
 .zlb:hover{border-color:#ffd23f}.zl-google{background:#fff;color:#1f1f1f;border-color:#fff}.zl-discord{background:#5865f2;border-color:#5865f2}.zl-out{background:transparent;color:#ff8a80;border-color:#ff8a8066}
 .zlor{display:flex;align-items:center;gap:10px;color:#8fa0c4;font-size:12px}.zlor::before,.zlor::after{content:"";flex:1;height:1px;background:#ffffff26}
@@ -11251,7 +11251,11 @@ function rkBotNome(lv){lv=Math.max(0,Math.min(RKBOTN.length-1,(lv|0)));rkBagLoad
    O estado fica guardado no navegador só para não precisar recalcular tudo de novo. */
 const RKPOP={
  n:420,                           /* quantos adversários vivem a temporada */
- rv:3,                            /* versão das regras: mexeu na pontuação, soma 1 aqui */
+ rv:4,                            /* versão das regras: mexeu na pontuação, soma 1 aqui */
+ /* Ritmo de jogo. Até 26/11/2026 10h (Brasília) valiam 95/46/22 partidas por dia; dali em
+    diante 40/19/9. Na virada, as vitórias e derrotas de cada conta são reduzidas na mesma
+    proporção: o rank e a taxa de vitória ficam como estavam. Mesma conta em qualquer aparelho. */
+ ritmoAntes:[95,46,22],ritmo:[40,19,9],corte:Date.UTC(2026,10,26,13,0,0),
  lanc:Date.UTC(2026,10,19,0,0,0), /* o dia em que a população começou do zero */
  tick:3e5,                        /* o relógio da simulação anda de 5 em 5 minutos: de 15 em 15
                                         a escada ficava parada entre duas partidas seguidas */
@@ -11291,7 +11295,7 @@ function rkPopBase(){const sea=rkSeasonId();
   const e=rkH(sd,i,77);
   /* nem todo mundo cria a conta no primeiro dia: as outras vão chegando ao longo da temporada */
   const ent=e<RKPOP.naLargada?0:Math.floor(Math.pow((e-RKPOP.naLargada)/(1-RKPOP.naLargada),1.7)*RKPOP.entra*rkPopDia());
-  L.push({i:i,hab:RKCFG.mmr0+g*RKPOP.hsd,porDia:r<.12?95:(r<.57?46:22),ent:ent,nome:""})}
+  L.push({i:i,hab:RKCFG.mmr0+g*RKPOP.hsd,tier:r<.12?0:(r<.57?1:2),ent:ent,nome:""})}
  /* o nick combina com a força: os mais fracos ficam com nome de conta nova, os mais fortes com nome de pro player */
  const ord=L.slice().sort((a,b)=>a.hab-b.hab),por=Math.ceil(L.length/RKBOTN.length);
  for(let t=0;t<RKBOTN.length;t++){
@@ -11319,13 +11323,18 @@ function rkPopTop(P){const idx=[];
 
 /* ---- um pedaço da simulação: devolve true quando alcançou o relógio ---- */
 function rkPopAvanca(ate){const P=rkPopLoad(),B=rkPopBase().L,sd=rkSH("sim|"+P.sea),ini=rkPopIni();
+ const corte=Math.max(0,Math.ceil((RKPOP.corte-ini)/RKPOP.tick));
  let fatia=0;
  while(P.t<ate&&fatia<RKPOP.fatia){
   const T=P.t;
+  /* virada do ritmo: o contador de partidas acompanha o ritmo novo, o rank fica */
+  if(T>=corte&&!P.rc){P.rc=1;if(corte>0)for(let i=0;i<RKPOP.n;i++){const s=P.st[i],tr=B[i].tier,f=RKPOP.ritmo[tr]/RKPOP.ritmoAntes[tr];
+   s.w=Math.round((s.w||0)*f);s.l=Math.round((s.l||0)*f);s.n=s.w+s.l}}
+  const RT=T>=corte?RKPOP.ritmo:RKPOP.ritmoAntes;
   if(T%rkPopDia()===0)rkPopTop(P);
   const hb=Math.floor(((((ini+T*RKPOP.tick)/36e5)%24)+21)%24);   /* hora de Brasília (UTC−3) */
   const peso=RKPOP.hora[hb],fila=[];
-  for(let i=0;i<RKPOP.n;i++)if(B[i].ent<=T&&rkH(sd,i,T)<B[i].porDia/rkPopDia()*peso)fila.push(i);
+  for(let i=0;i<RKPOP.n;i++)if(B[i].ent<=T&&rkH(sd,i,T)<RT[B[i].tier]/rkPopDia()*peso)fila.push(i);
   fila.sort((a,b)=>P.st[a].mmr-P.st[b].mmr);                     /* pareia por MMR, como o matchmaking faria */
   for(let k=0;k+1<fila.length;k+=2){
    const a=fila[k],c=fila[k+1],sa=P.st[a],sc=P.st[c];
