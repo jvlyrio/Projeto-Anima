@@ -5,7 +5,7 @@
    e por isso nunca fica desatualizada: se o desenho muda, o nome muda junto.
 
    Gerado pelo build.py — não editar o sw.js da raiz, editar este. */
-const VERSAO = "d29618ce729e";
+const VERSAO = "fa0d89e6d35e";
 const CACHE = "anima-" + VERSAO;
 /* A mídia mora num cache que NÃO muda a cada publicação. Antes ela ficava no
    cache da versão, e toda publicação apagava tudo: os jogadores baixavam de
