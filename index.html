@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png"><link rel="apple-touch-icon" href="icons/icone-180.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#261b33"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script>window.ZA_VER="708a17ece5ce";</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="description" content="Projeto Ânima: jogo de estratégia por turnos no navegador."><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="192x192" href="icons/icone-192.png"><link rel="apple-touch-icon" href="icons/icone-180.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#261b33"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://fpntdutdeisbbgiyjvjk.supabase.co wss://fpntdutdeisbbgiyjvjk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'self'"><meta name="referrer" content="strict-origin-when-cross-origin"><script>window.ZCFG={"url": "https://fpntdutdeisbbgiyjvjk.supabase.co", "key": "sb_publishable_q4e8Cdn50xWHv98_mF98Nw_FqPe9rjB", "providers": ["google"], "email": false};</script><script>window.ZA_VER="203cb8c91bef";</script><script src="lib/supabase.min.js"></script><style>.zlbox{gap:10px}.zlcol{display:flex;flex-direction:column;gap:8px;text-align:left}
 .zlb{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border-radius:10px;padding:11px 14px;font:700 15px system-ui;cursor:pointer;border:1.5px solid #ffffff33;background:#ffffff10;color:#fff}
 .zlb:hover{border-color:#ffd23f}.zl-google{background:#fff;color:#1f1f1f;border-color:#fff}.zl-discord{background:#5865f2;border-color:#5865f2}.zl-out{background:transparent;color:#ff8a80;border-color:#ff8a8066}
 .zlor{display:flex;align-items:center;gap:10px;color:#8fa0c4;font-size:12px}.zlor::before,.zlor::after{content:"";flex:1;height:1px;background:#ffffff26}
@@ -5098,6 +5098,16 @@ body.php #och.min .ochu{font-size:10px!important;min-width:17px;height:17px;line
 <style id="a2n">
 /* caixa de confirmacao sem arte (sair do jogo) */
 #surc .surbox.nim .surt{margin-top:18px}
+/* batalha: flechinha que esconde os botoes flutuantes (fonte, som, render-se,
+   habilidades, chat e amigos) */
+#hudtg{position:fixed;left:0;bottom:calc(64px + env(safe-area-inset-bottom));z-index:650;display:none;
+ width:22px;height:44px;padding:0;border:1px solid #f0c46a66;border-left:0;border-radius:0 10px 10px 0;
+ background:#1b1013d9;color:#f6e7c1;font:900 20px/42px system-ui;cursor:pointer;box-shadow:0 4px 14px #0008;opacity:.8}
+#hudtg:active{opacity:1}
+body.bt #hudtg{display:block}
+#hudtg.nv::after{content:"";position:absolute;top:5px;right:4px;width:7px;height:7px;border-radius:50%;background:#ff5a6a}
+body.bt.hudmin #fsb,body.bt.hudmin #fsbp,body.bt.hudmin #sndb,body.bt.hudmin .sndp,body.bt.hudmin .surfix,
+body.bt.hudmin .skordb,body.bt.hudmin #och,body.bt.hudmin #ofr{display:none!important}
 /* atualizacao obrigatoria: cobre tudo e nao fecha */
 #atzov{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;background:#0b080ce8;backdrop-filter:blur(3px)}
 #atzov .surbox{max-width:420px}
@@ -12835,6 +12845,23 @@ function txTick(){if(!O.db||!O.pid)return;
  if(txViva()&&G.win!=null){txManda();if(!TX.fim){TX.fim=1;setTimeout(()=>{try{txApaga()}catch(e){}},25000)}return}
  txApaga()}
 
+/* ===== Batalha limpa =====
+   Uma flechinha no canto esconde os botoes flutuantes da batalha. No celular a
+   partida ja comeca com eles escondidos; a flecha mostra uma bolinha quando
+   chega mensagem no chat. */
+function hudSet(min){try{document.body.classList.toggle("hudmin",!!min);const t=document.getElementById("hudtg");
+ if(t){t.textContent=min?"›":"‹";t.title=min?"Mostrar os botões":"Esconder os botões";t.setAttribute("aria-label",t.title)}}catch(e){}}
+function hudIni(){if(document.getElementById("hudtg"))return;
+ const t=document.createElement("button");t.id="hudtg";t.type="button";
+ t.onclick=e=>{e.stopPropagation();hudSet(!document.body.classList.contains("hudmin"))};
+ document.body.append(t);hudSet(document.body.classList.contains("hudmin"));
+ /* ao entrar numa partida (o corpo da pagina ganha a classe "bt"), no celular comeca escondido */
+ let emBt=document.body.classList.contains("bt");
+ new MutationObserver(()=>{const b=document.body.classList.contains("bt");
+  if(b&&!emBt&&(document.body.classList.contains("ph")||document.body.classList.contains("php")))hudSet(1);emBt=b}).observe(document.body,{attributes:true,attributeFilter:["class"]});
+ setInterval(()=>{try{t.classList.toggle("nv",document.body.classList.contains("hudmin")&&typeof CH!="undefined"&&CH.unread>0)}catch(e){}},1500)}
+try{if(document.body)hudIni();else document.addEventListener("DOMContentLoaded",hudIni)}catch(e){}
+
 /* ===== Atualizacao obrigatoria (so no site) =====
    O site publica versao.json com a versao no ar; a pagina sabe a propria
    (window.ZA_VER, carimbada no build). Se mudar, o jogador tem de recarregar:
@@ -13184,7 +13211,10 @@ function frSub(){const db=frDb();if(!db||!FR.pid)return;
   const d=sn&&sn.exists?sn.data():null;
   FR.inv=(d&&d.code&&d.at&&Date.now()-d.at<FRINV)?d:null;frInvRender();frRender()},()=>{})}catch(e){}
  try{FR.und=db.collection("dmn/"+FR.pid+"/de").onSnapshot(s=>{const m={};
-  s.docs.forEach(d=>{m[d.id]=d.data()});FR.dmn=m;frRender()},()=>{})}catch(e){}
+  s.docs.forEach(d=>{m[d.id]=d.data()});FR.dmn=m;
+  /* chegou aviso da conversa que esta aberta na tela: ja esta sendo lida */
+  try{if(FRDM.aberto&&m[FRDM.aberto.id])frDmVisto(FRDM.aberto.id)}catch(e){}
+  frRender()},()=>{})}catch(e){}
  try{FR.unl=db.collection("fr/"+FR.pid+"/list").onSnapshot(s=>{
   FR.list=s.docs.map(d=>Object.assign({id:d.id},d.data()));frLePres();frRender()},()=>{})}catch(e){}
  try{FR.unr=db.collection("fr/"+FR.pid+"/req").onSnapshot(s=>{
@@ -13304,8 +13334,10 @@ function frDmAbre(pid,nome){FRDM.aberto={id:pid,n:nome};FRDM.msgs=[];FR.min=0;
    frDmVisto(pid);frRender()},()=>{})}catch(e){}
  frRender()}
 function frDmFecha(){if(FRDM.un){try{FRDM.un()}catch(e){}FRDM.un=null}FRDM.aberto=null;FRDM.msgs=[];frRender()}
-function frDmVisto(pid){const m=FRDM.msgs[FRDM.msgs.length-1];
- FRDM.seen[pid]=m&&m.at?m.at:Date.now();
+function frDmVisto(pid){const m=FRDM.msgs[FRDM.msgs.length-1],av=FR.dmn&&FR.dmn[pid];
+ /* o aviso de mensagem nova e gravado logo depois da mensagem, com a hora um
+    pouco maior: guardar so a hora da mensagem deixava o aviso aceso para sempre */
+ FRDM.seen[pid]=Math.max(FRDM.seen[pid]||0,m&&m.at?m.at:0,av&&av.at?av.at:0)||Date.now();
  try{ls("za_dmseen",JSON.stringify(FRDM.seen))}catch(e){}}
 async function frDmEnvia(txt){const db=frDb(),a=FRDM.aberto;if(!db||!a)return;
  const t=String(txt||"").trim().slice(0,400);if(!t)return;
@@ -13703,9 +13735,17 @@ function chBuild(){const b=mk("div","");b.id="och";b.className="sz-"+chCfg.sz+(C
  st.onclick=()=>{set.hidden=!set.hidden};mn.onclick=()=>{CH.open=CH.open?0:1;b.classList.toggle("min",!CH.open);mn.textContent=CH.open?"–":"▢";if(CH.open){CH.unread=0;chRender()}chPos(b)};
  hd.onclick=e=>{if(!CH.open&&!e.target.closest("button"))mn.onclick()};
  b.append(hd,set,ls,f);return b}
+function chLido(code){try{return +ls("za_chlido_"+code)||0}catch(e){return 0}}
+function chLidoGrava(code,at){try{ls("za_chlido_"+code,String(at))}catch(e){}}
 function chRender(){const b=document.getElementById("och");if(!b)return;const ls=b.querySelector(".ochl"),c0=Math.max(chClr(CH.code),CH.clr||0),L=CH.msgs.filter(m=>(m.at||0)>c0);
  const atBot=ls.scrollHeight-ls.scrollTop-ls.clientHeight<40;
- if(L.length>CH.seen&&!CH.open)CH.unread+=L.length-CH.seen;CH.seen=L.length;const u=b.querySelector(".ochu");u.textContent=CH.unread&&!CH.open?String(CH.unread):"";
+ /* Nao lidas = mensagens dos outros mais novas que a ultima vista. Antes a conta
+    era pelo tamanho da lista e recomecava do zero a cada vez que o jogo abria:
+    todo o historico voltava como "nao lido", mesmo depois de lido. */
+ {const eu=chPid(),ult=L.length?(L[L.length-1].at||0):0;
+  if(CH.open&&ult>chLido(CH.code))chLidoGrava(CH.code,ult);
+  const lido=chLido(CH.code);CH.unread=CH.open?0:L.filter(m=>(m.at||0)>lido&&m.pid!==eu).length;CH.seen=L.length}
+ const u=b.querySelector(".ochu");u.textContent=CH.unread&&!CH.open?String(CH.unread):"";
  ls.innerHTML=L.length?"":"<p class='oche'>Nenhuma mensagem ainda.</p>";
  L.forEach(m=>{const d=new Date(m.at||0),hh=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0"),e=mk("div","ochm"+(m.pid===chPid()?" me":""));e.innerHTML="<time>"+hh+"</time><b style='color:"+chCol(m.pid)+"'>"+escH(m.n||"Jogador")+(m.s==null&&CH.code!="geral"?" 👁":"")+"</b><span>"+chHtml(m.m||"")+"</span>";ls.append(e)});
  if(atBot||L.length&&L[L.length-1].pid===chPid())ls.scrollTop=ls.scrollHeight}
@@ -13713,7 +13753,7 @@ async function chSend(inp){let t=inp.value.trim();const db=chDb();if(!t||!db||!C
  const now=Date.now(),inRoom=CH.code!="geral",doc={n:oNick(),pid:chPid(),s:inRoom&&O.seat!=null?O.seat:null,m:t.slice(0,400),at:now};
  try{await db.collection(chPath(CH.code)).add(doc)}catch(e){inp.value=t;const b=document.getElementById("och");if(b){const er=mk("p","oche","Não foi possível enviar a mensagem.");b.querySelector(".ochl").append(er)}return}
  if(CH.msgs.length>=190){const old=CH.msgs.slice(0,CH.msgs.length-150);old.forEach(m=>{try{db.collection(chPath(CH.code)).doc(m.id).delete().catch(()=>{})}catch(e){}})}}
-function chLink(ik){const k=chKey(ik),inp=document.getElementById("ochin");if(!k||!inp)return false;const b=document.getElementById("och");if(b&&b.classList.contains("min")){CH.open=1;b.classList.remove("min");b.querySelector(".ochh .ochb:last-child").textContent="–"}
+function chLink(ik){const k=chKey(ik),inp=document.getElementById("ochin");if(!k||!inp)return false;const b=document.getElementById("och");if(b&&b.classList.contains("min")){CH.open=1;CH.unread=0;b.classList.remove("min");b.querySelector(".ochh .ochb:last-child").textContent="–";try{chRender()}catch(e){}}
  const nm=String(k.n).replace(/[.!]+$/,"");CH.links.push({ik,n:nm});const p=inp.selectionStart!=null?inp.selectionStart:inp.value.length,ins="["+nm+"] ";inp.value=inp.value.slice(0,p)+ins+inp.value.slice(p);inp.focus();const q=p+ins.length;try{inp.setSelectionRange(q,q)}catch(e){}return true}
 if(typeof document!="undefined"&&document.addEventListener){
  document.addEventListener("click",e=>{if(!e.shiftKey||!document.getElementById("ochin"))return;const el=e.target.closest&&e.target.closest("[data-ik],.w,.chsk,.eis,.bnit,.bnsk img,.ptc");if(!el)return;let ik=el.dataset&&el.dataset.ik;if(!ik){const im=el.tagName=="IMG"?el:el.querySelector("img");ik=im?rimg().get(im.src):null}if(ik&&chLink(ik)){e.preventDefault();e.stopPropagation()}},true);
