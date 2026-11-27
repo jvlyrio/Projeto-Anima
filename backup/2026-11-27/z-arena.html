@@ -4781,10 +4781,10 @@ body.ph .ctaok,body.php .ctaok{padding:8px 12px;font-size:13px}
  background:linear-gradient(180deg,#3d294400,#3d2944e6 28%,#3d2944 60%)}
 #dr .mmobox .mmoft,.mmobox.cfg .mmoft{background:linear-gradient(180deg,#1a141f00,#1a141fe8 28%,#1a141f 60%)}
 .mmobox .mmoft .mmocl{margin-top:0}
-.mmobox .mmoft .mmoout{margin-top:8px}
+
 body.ph .mmobox .mmoft,body.php .mmobox .mmoft{margin:10px -16px -12px;padding:9px 16px 12px}
 body.ph .mmobox .mmoft .mmocl,body.php .mmobox .mmoft .mmocl{padding:8px;font-size:14px}
-body.ph .mmobox .mmoft .mmoout,body.php .mmobox .mmoft .mmoout{margin-top:6px}
+
 /* ===== lista de amigos no celular =====
    Mover e redimensionar passaram a valer no toque: as bordas finas de 5px nao
    servem para o dedo, e o cabecalho precisa de touch-action para o arrasto
@@ -4836,8 +4836,8 @@ body.ph #ofr.fzc .ofrls,body.php #ofr.fzc .ofrls{max-height:none;flex:1 1 auto;m
  .vcd .mxsli b{font-size:clamp(13px,3.4vw,17px)}
  .vcd .mxsl u{font-size:10px;padding:3px 6px 3px 5px}}
 /* o botao de sair da conta, logo abaixo do Voltar */
-.mmobox .mmoout{margin-top:7px;background:transparent;border:1.5px solid #c8a1b455;color:#d8ccc6}
-.mmobox .mmoout:hover{border-color:#e5acb7;color:#f3ece8}
+
+
 /* ===== aviso de amigo que ficou online, logo acima da lista ===== */
 .ofrtst{position:fixed;z-index:18;display:none;flex-direction:column;gap:6px;pointer-events:none}
 .ofrtst:not([style*="display: none"]){display:flex}
@@ -6357,6 +6357,13 @@ body.ph .pf .pfbaim{height:90px}
 .ctxin{width:100%;box-sizing:border-box;padding:10px;border-radius:8px;border:1px solid #e6e2deaa;background:#1d1322;color:#fff;font:800 16px system-ui;letter-spacing:.08em}
 .ctxbt{display:flex;gap:10px;margin-top:12px}.ctxbt button{flex:1;padding:11px;border-radius:8px;font:900 15px system-ui;cursor:pointer}
 #ctxov .ctxno{background:#5a4560!important;color:#fff!important;border:2px solid #e6e2de66!important}#ctxov .ctxok{background:#b8323f!important;color:#fff!important;border:2px solid #5a0f17!important}#ctxov .ctxok:disabled{opacity:.45;cursor:not-allowed}
+
+/* ===== aviso de direitos autorais no menu ===== */
+#dr .dirnt{display:block;flex-basis:100%;width:100%;margin:4px 0 0;padding:0;border:0;background:none;color:#d9ced6;font:600 11.5px/1.3 system-ui;text-align:left;cursor:pointer;opacity:.85;white-space:normal}
+#dr .dirnt u{color:#f0b9c5;margin-left:4px}
+#dr .dirnt:hover{opacity:1;color:#fff}
+@media(max-width:600px){#dr .dirnt{font-size:10.5px;margin-top:2px}}
+@media(max-height:520px) and (orientation:landscape){#dr .dirnt{font-size:10px;max-width:52vw}}
 </style>
 </head><body><main><h1>Projeto Ânima</h1><div id="bar"></div><div id="b"></div><div id="lg"></div></main><div id="dr"></div><div id="tip"></div>
 <script>
@@ -6395,8 +6402,35 @@ O Projeto Ânima está em fase de testes (beta). Personagens, regras, números e
 O seu progresso (nível, Maestria, ranqueada, Zeni e itens) pode ser alterado ou zerado, por exemplo numa nova temporada, numa correção de erro ou numa mudança de sistema. Ninguém tem direito a compensação por isso.
 O jogo pode ficar fora do ar, mudar ou acabar a qualquer momento.
 
-# 5. Mudanças nestes termos
+# 5. Direitos autorais
+Os personagens e as obras que aparecem no jogo têm donos. Veja a parte "Direitos autorais" logo abaixo destes termos.
+
+# 6. Mudanças nestes termos
 Quando estes termos ou a política de privacidade mudarem, o jogo vai pedir que você leia e aceite de novo no próximo acesso.
+`,
+ direitos:`
+# Direitos autorais e marcas
+O Projeto Ânima é um jogo feito por fã, gratuito e sem fins comerciais. Ele não é um produto oficial e não tem nenhum vínculo, autorização, patrocínio ou aprovação dos autores, editoras, estúdios de animação, distribuidoras ou licenciadores das obras abaixo.
+Todos os personagens, nomes, histórias, técnicas, imagens, artes, vídeos, trechos de áudio, vozes, músicas, logotipos e marcas dessas obras pertencem aos seus criadores e detentores de direitos. O Projeto Ânima não reivindica nenhuma propriedade sobre eles. Eles aparecem aqui só como homenagem de fã.
+
+# Obras que aparecem no jogo
+- Dragon Ball, Dragon Ball Z, Dragon Ball GT, Dragon Ball Super e Dragon Ball Daima: criação de Akira Toriyama.
+- Dr. Slump (Arale): criação de Akira Toriyama.
+- Naruto: criação de Masashi Kishimoto.
+- Boruto: Naruto Next Generations e Boruto: Two Blue Vortex: obra derivada de Naruto, de Masashi Kishimoto, Ukyo Kodachi e Mikio Ikemoto.
+- Sword Art Online (Kirito): criação de Reki Kawahara.
+- Solo Leveling (Sung Jin-Woo): criação de Chugong.
+- Attack on Titan / Shingeki no Kyojin (Levi Ackerman): criação de Hajime Isayama.
+Os direitos dessas obras são dos autores acima e das suas editoras, estúdios de animação e licenciadores.
+
+# O que isso quer dizer para você
+- O jogo é e sempre vai ser gratuito. Não há compra, assinatura, anúncio ou qualquer cobrança.
+- Você não pode vender, alugar ou cobrar por nada do jogo, nem usar o jogo, as suas artes ou os personagens para ganhar dinheiro.
+- Não copie as artes, vídeos, sons e textos do jogo para outros projetos como se fossem seus.
+- Vídeos e transmissões de partidas são bem-vindos, desde que deixem claro que é um jogo de fã sem vínculo oficial.
+
+# Pedido de remoção
+Se você é autor ou detentor de direitos de alguma das obras e quer que algum conteúdo seja retirado, fale com a equipe do Projeto Ânima pelos canais do jogo. O conteúdo é removido assim que o pedido for confirmado.
 `,
  privacidade:`
 # 1. O que guardamos
@@ -8476,6 +8510,7 @@ const CFGT=[
  ["fon","Tamanho da letra","Deixe o texto do jogo maior ou menor"],
  ["cur","Cursor","A setinha do mouse dentro do jogo"],
  ["par","Partida","O nível do bot quando você joga contra o computador"],
+ ["dir","Direitos autorais","As obras e os personagens que aparecem no jogo e de quem eles são"],
  ["ter","Termos e Privacidade","Os Termos de Uso e a Política de Privacidade do Projeto Ânima"]];
 function mmOpts(tema){
  const velho=document.querySelector(".mmopt");
@@ -8499,11 +8534,7 @@ function mmOpts(tema){
      la embaixo, so alcancavel rolando */
   const ft=mk("div","mmoft");
   const cl=mk("button","mmocl lam","Voltar");cl.onclick=close;ft.append(cl);
-  {const sa=mk("button","mmocl lam mmoout","Sair da conta");
-   sa.title="Entrar em outra conta ou jogar como convidado";
-   sa.onclick=()=>{mmOpts("cta");setTimeout(()=>{try{
-     const z=document.querySelector(".mmobox .zacc")||document.querySelector(".mmobox .cfgnote");
-     if(z&&z.scrollIntoView)z.scrollIntoView({block:"center",behavior:"smooth"})}catch(e){}},120)};ft.append(sa)}
+  /* "Sair da conta" fica só na aba Conta */
   bx.append(ft);
  }else{
   bx.append(mk("p","cfgint",item[2]));
@@ -8514,6 +8545,7 @@ function mmOpts(tema){
   else if(tema=="img"){const w=mk("div","mmosnd");grfRows(w);d.append(w)}
   else if(tema=="fon"){if(window.ZFS)try{d.append(window.ZFS())}catch(e){}}
   else if(tema=="cur"){d.append(curUI())}
+  else if(tema=="dir"){const t=mk("div","tmtx");t.innerHTML=termosHtml(TERMOS.direitos);d.append(t)}
   else if(tema=="ter"){d.append(termosCorpo());const t=termosLer();if(t&&t.v===TERMOS.versao&&t.at)d.append(mk("p","tmver","Você aceitou esta versão em "+new Date(t.at).toLocaleDateString("pt-BR")+"."))}
   else if(tema=="par"){const r=mk("div","blvrow");r.append(mk("span","","Nível do bot:"),blvSel());d.append(r)}
   bx.append(d);
@@ -13193,6 +13225,7 @@ function pwaAjudaIOS(){
 
 function showMenu(){
  try{oInit()}catch(e){}
+ setTimeout(()=>{try{dirNota()}catch(e){}},0);
  setTimeout(()=>{try{if(G.scr=="m"&&!termosOk())termosShow()}catch(e){}},350);   /* para reconectar sozinho numa partida que ficou aberta */
 dClear();pannOff(1);G.rkm=null;G.rkBlv=null;G.rkNome=null;/* saiu da ranqueada: a próxima partida é comum de novo */if(typeof O!="undefined"&&(O.code||G.online))oLeave();G.scr="m";document.body.classList.remove("bt");document.body.classList.add("dm");const r=$("#dr");r.innerHTML="";
  const go=sub=>{MSUB=sub;MSEL=0;showMenu()},leave=f=>()=>{MSUB=null;MSEL=0;f()};
@@ -14760,7 +14793,7 @@ function termosHtml(txt){const c=escH(TERMOS.contato||"");
   if(x.startsWith("- ")){fp();if(!lista){h+="<ul>";lista=1}h+="<li>"+x.slice(2)+"</li>";return}
   fl();par.push(x)});fp();fl();return h}
 function termosCorpo(){const d=mk("div","tmtx");
- d.innerHTML="<h3>Termos de Uso</h3>"+termosHtml(TERMOS.termos)+"<h3>Política de Privacidade</h3>"+termosHtml(TERMOS.privacidade)+
+ d.innerHTML="<h3>Termos de Uso</h3>"+termosHtml(TERMOS.termos)+"<h3>Direitos autorais</h3>"+termosHtml(TERMOS.direitos)+"<h3>Política de Privacidade</h3>"+termosHtml(TERMOS.privacidade)+
   "<p class='tmver'>Versão de "+escH(TERMOS.data||TERMOS.versao)+"</p>";return d}
 var TMCB=[];
 /* a tela do aceite: rola, a caixa so libera o botao marcada, e nao fecha sem aceitar */
@@ -14790,6 +14823,11 @@ async function termosLe(){try{if(!rkDb())return;const r=await O.db.rpc("termos_m
 ["mmVs","startDraft","showLobby","showOnline","showTut","rkEntraFila","oJoin","oCreate"].forEach(n=>{try{const f=window[n];if(typeof f!="function")return;
  window[n]=function(){if(!termosOk()){termosShow();return}return f.apply(this,arguments)}}catch(e){}});
 {const f=window.oVolta;if(typeof f=="function")window.oVolta=function(){if(!termosOk())return;return f.apply(this,arguments)}}
+
+/* aviso de direitos autorais no rodape do Menu Principal (abre a pagina inteira) */
+function dirNota(){if(G.scr!="m")return;const r=document.querySelector("#dr .mmhd");if(!r||document.querySelector("#dr .dirnt"))return;
+ const b=mk("button","dirnt","Jogo de fã gratuito e sem vínculo oficial · personagens © seus criadores <u>Direitos autorais</u>");
+ b.type="button";b.title="Ver Direitos autorais";b.onclick=()=>mmOpts("dir");r.after(b)}
 </script></body></html>
 
 </body></html>
