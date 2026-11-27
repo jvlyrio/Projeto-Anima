@@ -6358,12 +6358,7 @@ body.ph .pf .pfbaim{height:90px}
 .ctxbt{display:flex;gap:10px;margin-top:12px}.ctxbt button{flex:1;padding:11px;border-radius:8px;font:900 15px system-ui;cursor:pointer}
 #ctxov .ctxno{background:#5a4560!important;color:#fff!important;border:2px solid #e6e2de66!important}#ctxov .ctxok{background:#b8323f!important;color:#fff!important;border:2px solid #5a0f17!important}#ctxov .ctxok:disabled{opacity:.45;cursor:not-allowed}
 
-/* ===== aviso de direitos autorais no menu ===== */
-#dr .dirnt{display:block;flex-basis:100%;width:100%;margin:4px 0 0;padding:0;border:0;background:none;color:#d9ced6;font:600 11.5px/1.3 system-ui;text-align:left;cursor:pointer;opacity:.85;white-space:normal}
-#dr .dirnt u{color:#f0b9c5;margin-left:4px}
-#dr .dirnt:hover{opacity:1;color:#fff}
-@media(max-width:600px){#dr .dirnt{font-size:10.5px;margin-top:2px}}
-@media(max-height:520px) and (orientation:landscape){#dr .dirnt{font-size:10px;max-width:52vw}}
+
 </style>
 </head><body><main><h1>Projeto Ânima</h1><div id="bar"></div><div id="b"></div><div id="lg"></div></main><div id="dr"></div><div id="tip"></div>
 <script>
@@ -13225,7 +13220,6 @@ function pwaAjudaIOS(){
 
 function showMenu(){
  try{oInit()}catch(e){}
- setTimeout(()=>{try{dirNota()}catch(e){}},0);
  setTimeout(()=>{try{if(G.scr=="m"&&!termosOk())termosShow()}catch(e){}},350);   /* para reconectar sozinho numa partida que ficou aberta */
 dClear();pannOff(1);G.rkm=null;G.rkBlv=null;G.rkNome=null;/* saiu da ranqueada: a próxima partida é comum de novo */if(typeof O!="undefined"&&(O.code||G.online))oLeave();G.scr="m";document.body.classList.remove("bt");document.body.classList.add("dm");const r=$("#dr");r.innerHTML="";
  const go=sub=>{MSUB=sub;MSEL=0;showMenu()},leave=f=>()=>{MSUB=null;MSEL=0;f()};
@@ -14824,10 +14818,7 @@ async function termosLe(){try{if(!rkDb())return;const r=await O.db.rpc("termos_m
  window[n]=function(){if(!termosOk()){termosShow();return}return f.apply(this,arguments)}}catch(e){}});
 {const f=window.oVolta;if(typeof f=="function")window.oVolta=function(){if(!termosOk())return;return f.apply(this,arguments)}}
 
-/* aviso de direitos autorais no rodape do Menu Principal (abre a pagina inteira) */
-function dirNota(){if(G.scr!="m")return;const r=document.querySelector("#dr .mmhd");if(!r||document.querySelector("#dr .dirnt"))return;
- const b=mk("button","dirnt","Jogo de fã gratuito e sem vínculo oficial · personagens © seus criadores <u>Direitos autorais</u>");
- b.type="button";b.title="Ver Direitos autorais";b.onclick=()=>mmOpts("dir");r.after(b)}
+
 </script></body></html>
 
 </body></html>
