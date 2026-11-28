@@ -11,6 +11,11 @@
   5. `d5_salas_sorteio_e_draft.sql`: o servidor sorteia quem começa, quem bane primeiro e o desempate do campo,
      e confere o draft no começo da batalha (chave `salas_sorteio`).
   6. `d6_rk_bot_no_servidor.sql`: ranqueada contra bot aberta pelo servidor, com o MMR do bot decidido lá.
+  7. `d7_conferir_partidas_bot.sql`: resultado das partidas contra bot conferido no servidor (chave `conferir_bot`).
+     **Ainda nao aplicada** (esperando a aprovacao do dono no Supabase).
+- `servidor/funcao/conferir-partida.ts`: a funcao do Supabase que refaz a partida com o motor do jogo (publicada).
+- `servidor/motor/dev.js`: o motor desta versao, para testes (no site, o build gera `motor/<versao>.js`).
+- `site/build.py`: o build que tambem gera o motor por versao.
 - `perfil_originais/`: as bandeiras e molduras enviadas em 28/11 (Aurora, Gelo, Lua Roxa, Magma, Maré, Natal e Violeta), no tamanho original.
   O jogo usa versões reduzidas e medidas (bandeira 512×768, moldura 384×384 com o buraco no centro).
 - `midia/`: os 6 vídeos novos de ultimate (Sakura, Turles e Goku Black SSJ Rose, japonês e dublado), já com o nome

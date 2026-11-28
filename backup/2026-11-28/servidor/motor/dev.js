@@ -542,7 +542,7 @@ GL.PURIFICAR="Remove a quantidade de debuffs indicada na habilidade (por exemplo
 /* sorteio da partida: online sai do id da partida e de um contador que viaja no estado,
    entao os dois aparelhos sorteiam a mesma coisa e a jogada pode ser conferida.
    Fora do online (e nas simulacoes do bot) continua o sorteio comum. */
-function grnd(){if(!G.online||G.sim||G.bp)return Math.random();
+function grnd(){if((!G.online&&!G.rsOff)||G.sim||G.bp)return Math.random();
  G.rs=(G.rs||0)+1;const k=String(G.gid||"")+"|"+G.rs;let h=2166136261>>>0;
  for(let i=0;i<k.length;i++){h^=k.charCodeAt(i);h=Math.imul(h,16777619)>>>0}
  let t=(h+0x6D2B79F5)>>>0;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296}
@@ -1705,7 +1705,7 @@ function openOrder(){if(G.win!=null)return;closeOrder();if(G.tutp)setTimeout(coa
  ov.onclick=e=>{if(e.target===ov)closeOrder()};draw()}
 
 function closeSur(){const o=document.getElementById("surc");if(o)o.remove()}
-function doSurrender(){closeSur();if(G.win!=null||(G.online&&G.me<0))return;if(G.online)return oConcede();const L=G.bot?0:G.cur;mtQuit=1;G.win=1-L;G.q=[];G.sel=null;log((ehEu(L)?"Você":pn(L))+" se rendeu");render()}
+function doSurrender(){closeSur();if(G.win!=null||(G.online&&G.me<0))return;if(G.online)return oConcede();const L=G.bot?0:G.cur;recRend(L);mtQuit=1;G.win=1-L;G.q=[];G.sel=null;log((ehEu(L)?"Você":pn(L))+" se rendeu");render()}
 function askSur(yes,msg){closeSur();closeOrder();const ov=document.createElement("div");ov.id="surc";const b=mk("div","surbox");
  b.append(mk("img","surimg"),mk("div","surt","Tem certeza que deseja desistir?"),mk("p","surp",rkEmJogo()&&!G.csm?"A partida termina, a vitória vai para o oponente e você perde pontos na ranqueada.":rkEmJogo()?"A partida termina e a vitória vai para o oponente.":(typeof msg=="function"?msg():msg||(G.online||G.bot?"A partida termina e a vitória vai para o oponente.":"A partida termina e a vitória vai para o Jogador "+(2-G.cur)+"."))));
  b.querySelector("img").src=IMG.ui_goku;b.querySelector("img").alt="";const bt=mk("div","qobt"),y=mk("button","qok","Sim"),n=mk("button","qcn","Cancelar");y.onclick=()=>{closeSur();(typeof yes=="function"?yes:doSurrender)()};n.onclick=closeSur;bt.append(y,n);b.append(bt);ov.append(b);
@@ -5814,7 +5814,7 @@ function rkTentaComeçar(){if(RKQ.aceitei&&RKQ.opAceitou&&RKQ.fase=="aceite"){RK
    Sem servidor (arquivo solto) continua tudo calculado aqui, como antes. */
 async function rkBotSrv(n){n=n||0;
  try{const r=await O.db.rpc("rk_bot_iniciar",{});
-  if(r&&r.ok&&typeof r.partida=="string"&&isFinite(+r.mmr))return{id:r.partida,mmr:Math.round(+r.mmr)};
+  if(r&&r.ok&&typeof r.partida=="string"&&isFinite(+r.mmr))return{id:r.partida,mmr:Math.round(+r.mmr),sv:Number.isInteger(r.sv)?r.sv:null};
   if(r&&r.ok===false)return{erro:r.motivo||"erro"};return null}
  catch(e){if(n<1){await new Promise(z=>setTimeout(z,1200));return rkBotSrv(n+1)}return null}}
 /* o adversário da população com o MMR mais perto do que o servidor sorteou (só nome e rank) */
@@ -5840,7 +5840,7 @@ function rkComeçaCom(sv){const st=rkLoad(),op=RKQ.op;G.csm=null;
  clearInterval(RKQ.timer);clearTimeout(RKQ.botT);clearTimeout(RKQ.pollT);RKQ.on=0;RKQ.fase="";rkUIoff();
  G.rkm={id:(sv&&sv.id)||("rk-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,7)),
   oppMmr:op.mmr,oppNome:op.nome,bot:!!op.bot,pop:(op.pop!=null?op.pop:null),sea:st.sea,mmrAnt:st.mmr,
-  oppRank:op.rank||null,oppDiv:op.div||null,oppPc:(op.pc!=null?op.pc:null)};
+  oppRank:op.rank||null,oppDiv:op.div||null,oppPc:(op.pc!=null?op.pc:null),sv:(sv&&Number.isInteger(sv.sv))?sv.sv:null};
  try{prgIni(G.rkm.id,"rk")}catch(e){}
  G.rkBlv=op.lv;G.rkNome=op.nome;
  /* partida competitiva: draft completo contra o adversário */
@@ -5926,7 +5926,7 @@ function prgDaPartida(){try{
  if(G.online){const d=(typeof O!="undefined"&&O.d)||{};if(!G.gid)return null;
   if(d.rk&&d.rkp)return{id:d.rkp,tipo:"rk"};return{id:"o:"+G.gid,tipo:"pvp"}}
  if(rkEmJogo()&&G.rkm&&G.rkm.id)return{id:G.rkm.id,tipo:"rk"};
- return{id:"l:"+Date.now().toString(36)+Math.random().toString(36).slice(2,7),tipo:"bot"}}catch(e){return null}}
+ return{id:(G.rsOff&&typeof G.gid=="string"&&/^l:/.test(G.gid))?G.gid:("l:"+Date.now().toString(36)+Math.random().toString(36).slice(2,7)),tipo:"bot"}}catch(e){return null}}
 /* partida comecou (chamado depois do newGame e quando a batalha online aparece) */
 function prgComeca(){try{if(G.sim||G.tutp||G.win!=null)return;
  if(G.online&&!(G.me===0||G.me===1))return;
@@ -5936,6 +5936,7 @@ function prgComeca(){try{if(G.sim||G.tutp||G.win!=null)return;
  prgIni(x.id,x.tipo)}catch(e){}}
 /* fim: manda o resultado (o time e o destaque so contam na ranqueada) */
 function prgFimPartida(me){if(!prgOn()||G._prf||!G._prk)return;G._prf=1;
+ if(!G.online&&(G._prt=="bot"||G._prt=="rk"))try{recGuarda(G._prk)}catch(e){}
  const res=(typeof empate=="function"&&empate())||G.win===2?"e":G.win===me?"v":"d";
  let time=null,dest=null;
  if(G._prt=="rk"&&res!="e"){try{time=((G.tm||[])[me]||[]).filter(k=>k&&C[k]).filter((k,i,A)=>A.indexOf(k)===i).slice(0,4);
@@ -5946,7 +5947,8 @@ const PRGMOT={curta:"A partida acabou rápido demais e não contou EXP.",limite:
  sem_inicio:"Esta partida não foi registrada no servidor e não contou EXP."};
 async function prgEnvia(aviso){if(PRG.env||!prgOn())return;const a=prgQLer();if(!a.length)return;PRG.env=1;const fica=[];
  try{for(const x of a){
-  try{const r=await O.db.rpc("partida_fim",{p_id:x.id,p_res:x.res,p_time:x.time||null,p_dest:x.dest||null});
+  try{if(recLer(x.id))await recConfere(x.id);
+   const r=await O.db.rpc("partida_fim",{p_id:x.id,p_res:x.res,p_time:x.time||null,p_dest:x.dest||null});
    if(r&&r.valeu===false&&r.estrito&&aviso&&PRGMOT[r.motivo])try{zToast(PRGMOT[r.motivo])}catch(e){}
    prgAplica(r)}
   catch(e){if(Date.now()-(x.at||0)<7*864e5)fica.push(x)}}}
@@ -6351,7 +6353,8 @@ async function rkPendEnvia(){if(RKPENV||!rkDb()||!RKMODO.lido)return;const a=rkP
  try{for(const x of a){const m=x.m||{};
   if(m.sea&&m.sea!==rkSeasonId())continue;                 /* temporada virou: nao conta mais */
   if(!rkSrv()){rkFimLocal(m,x.win,rkLoad(),x.ficha,x.fc,1);continue}   /* servidor nao conta pontos: conta aqui */
-  try{const res=await O.db.rpc("rk_resultado",{p_partida:m.id,venceu:!!x.win,opp_mmr:(+m.oppMmr||RKCFG.mmr0)});
+  try{if(recLer(m.id))await recConfere(m.id);
+   const res=await O.db.rpc("rk_resultado",{p_partida:m.id,venceu:!!x.win,opp_mmr:(+m.oppMmr||RKCFG.mmr0)});
    if(!res||res.repetida)continue;
    const st=rkDoServidor(Object.assign({},res.st,{sea:res.sea}));rkSave(st);
    rkRegistra(m,x.win,res.r||{},st,x.ficha,x.fc,1)}
@@ -6373,7 +6376,8 @@ const RKMOT={curta:"A partida acabou rápido demais e não valeu pontos na ranqu
  alheia:"Essa partida não é sua: não valeu pontos."};
 async function rkFimServidor(m,win,ficha,fc){
  let res=null;
- try{res=await O.db.rpc("rk_resultado",{p_partida:m.id,venceu:!!win,opp_mmr:(+m.oppMmr||RKCFG.mmr0)})}
+ try{if(recLer(m.id))await recConfere(m.id);
+  res=await O.db.rpc("rk_resultado",{p_partida:m.id,venceu:!!win,opp_mmr:(+m.oppMmr||RKCFG.mmr0)})}
  catch(e){
   rkPendPoe(m,win,ficha,fc);
   try{zToast("A conexão com o servidor falhou: a partida vai contar assim que ela voltar.")}catch(x){}
@@ -7064,7 +7068,10 @@ function dFoto(X){try{if(!X||!X.bans)return null;
 function dBattle(){if(!D)return;G.tm=[0,1].map(t=>[D.lead[t]||"none"].concat(D.act[t]));G.ann=D.ann;const k=G.fd;G.fd=D.fd;
  /* foto do draft: o D some logo abaixo e o historico precisa dela no fim da partida */
  G.dsnapN=dFoto(D);
- D=null;dClear();G.intro=1;newGame();G.fd=k}
+ D=null;dClear();G.intro=1;
+ /* ranqueada contra bot aberta pelo servidor: quem comeca vem do sorteio de la (o servidor confere) */
+ const svc=(!G.online&&rkEmJogo()&&G.rkm&&Number.isInteger(G.rkm.sv))?(G.rkm.sv&1):null;if(svc!=null)G.curF=svc;
+ try{newGame()}finally{if(svc!=null)G.curF=null}G.fd=k}
 function botPre(){if(bOn())return bChoose(D,1,ROS.slice(),blv());return ROS.slice().sort((a,b)=>nz(LRV,b)-nz(LRV,a)).slice(0,3)}
 function botBan(){if(bOn())return bChoose(D,1,dOpts(),blv());return dOpts().sort((a,b)=>nz(DRV,b)-nz(DRV,a))[0]}
 function botPick(){if(bOn())return bChoose(D,1,dOpts(),blv());const mine=D.picks[1],mc=mine.map(k=>cls(k)[0]),sup=mine.some(k=>cls(k).some(c=>c=="Tanque"||c=="Suporte"));
@@ -7587,11 +7594,11 @@ function tEstoura(){try{
  if(!tAtiva())return;
  const s=G.cur,n=G.q.length;
  G.sel=null;   /* habilidade escolhida sem alvo nao entra na jogada */
- oAcMarca("tempo",G.me);
+ oAcMarca("tempo",G.me);recMarca("tempo");
  tFalta(s);
  log((s===tEu()?"Você":pn(s))+" demorou demais: o turno passou"+(n?" com "+n+" habilidade"+(n>1?"s":"")+" já escolhida"+(n>1?"s":""):" sem jogar"));
  try{zToast(s===tEu()?"Tempo esgotado: o turno passou.":"O tempo de "+pn(s)+" acabou.")}catch(e){}
- _endTurn();oPush()
+ G.cl="";_endTurn();if(!G.online)recDepois();oPush()
 }catch(e){}}
 if(typeof setInterval=="function")setInterval(()=>{try{tCheca()}catch(e){}},250);
 let LVL="",LVT=0,LVK="";
@@ -7607,7 +7614,46 @@ function lvUI(L){const ord=document.getElementById("qord"),pv=document.querySele
  if(L.ui=="o"){if(!ord||LVK!==L._v)openOrder()}else if(ord)ord.remove();
  if(L.ui=="p"){if(!pv||LVK!==L._v){if(pv)pv.remove();showPredict()}}else if(pv)pv.remove();LVK=L._v}
 if(typeof setInterval=="function")setInterval(()=>{if(G.online&&G.me>=0&&G.scr=="p")lvSend()},400);
-const _endTurn=endTurn;endTurn=function(){if(G.online&&(G.cur!==G.me||O.sending||O.retry))return;if(G.online){oAcMarca("t",G.me);tZera(G.cur)}const w=G.win;_endTurn();if(G.online&&(G.win!==w||G.scr=="p"))oPush()};
+/* partida contra bot que o servidor confere: o sorteio da batalha sai da mesma semente do online (id da partida),
+   para o servidor conseguir refazer igual. Na ranqueada o id vem do servidor. */
+const recVale=()=>!G.online&&!G.sim&&!G.tutp&&!!G.bot;
+function recNovoId(){return(rkEmJogo()&&G.rkm&&G.rkm.id)?G.rkm.id:("l:"+Date.now().toString(36)+Math.random().toString(36).slice(2,7))}
+const _newGameR=newGame;newGame=function(){const fd=G.fd;
+ /* G.cl (tipo da ultima habilidade) nao pode sobrar da partida anterior: decide anulacoes de dano no comeco */
+ G.cl="";
+ if(recVale()){G.rsOff=1;G.gid=recNovoId();G.afk=[0,0];G.porTempo=0}else if(!G.online)G.rsOff=0;
+ const r=_newGameR.apply(this,arguments);try{recIni(fd)}catch(e){REC=null}return r};
+const _endTurn=endTurn;endTurn=function(){if(G.online&&(G.cur!==G.me||O.sending||O.retry))return;if(G.online){oAcMarca("t",G.me);tZera(G.cur)}else recMarca("t");G.cl="";const w=G.win;_endTurn();if(!G.online)recDepois();if(G.online&&(G.win!==w||G.scr=="p"))oPush()};
+
+/* ===== Partida contra bot conferida no servidor =====
+   O aparelho grava como a partida comecou (o estado e o que foi usado para monta-lo) e cada jogada
+   (a fila de habilidades e o que mudou antes do turno rodar). No fim, manda tudo para a funcao
+   conferir-partida do servidor, que monta o comeco de novo, refaz turno a turno com este mesmo motor
+   (srvConfere) e guarda o resultado conferido. A ranqueada e a EXP passam a valer pelo resultado de la. */
+let REC=null;
+const RECQ="za_recq";
+function recIni(fd){REC=null;if(G.online||G.sim||G.tutp||!G.bot)return;
+ const cp=x=>JSON.parse(JSON.stringify(x==null?null:x));
+ REC={par:{tm:cp(G.tm),fd:fd==null?null:fd,ann:G.ann?1:0,cap:cp(G.cap||[null,null]),cur:G.cur},ini:ser(),st:null,t:[]};REC.st=REC.ini}
+function recOk(){return !!(REC&&!G.online&&!G.sim&&G.scr=="p"&&REC.t.length<400)}
+function recMarca(k){if(!recOk())return;try{REC.t.push({k,by:G.cur,q:oAcQ(),pre:oAcPreDe(REC.st),_t:G.t,_c:G.cur,_w:G.win})}catch(e){REC=null}}
+/* o turno nao andou (botao apertado na hora errada): a jogada nao vale */
+function recDepois(){if(!REC||!REC.t.length)return;const x=REC.t[REC.t.length-1];if(!("_t" in x))return;
+ const andou=G.t!==x._t||G.cur!==x._c||G.win!==x._w;delete x._t;delete x._c;delete x._w;
+ if(!andou){REC.t.pop();return}try{REC.st=ser()}catch(e){REC=null}}
+function recRend(L){if(REC&&!G.online)REC.t.push({k:"rend",by:L})}
+/* fim da partida: o pacote fica guardado ate o servidor conferir (tambem sem internet) */
+function recGuarda(id){if(!REC||!id)return;
+ const pk={id,v:String(window.ZA_VER||"dev"),par:REC.par,ini:REC.ini,t:REC.t.map(x=>({k:x.k,by:x.by,q:x.q,pre:x.pre})),at:Date.now()};REC=null;
+ try{let a=JSON.parse(ls(RECQ)||"[]");if(!Array.isArray(a))a=[];a=a.filter(x=>x&&x.id!==id&&Date.now()-(x.at||0)<7*864e5);a.push(pk);
+  while(a.length>12)a.shift();ls(RECQ,JSON.stringify(a))}catch(e){}}
+function recLer(id){try{const a=JSON.parse(ls(RECQ)||"[]");return(Array.isArray(a)?a:[]).find(x=>x&&x.id===id)||null}catch(e){return null}}
+function recTira(id){try{const a=JSON.parse(ls(RECQ)||"[]");ls(RECQ,JSON.stringify((Array.isArray(a)?a:[]).filter(x=>x&&x.id!==id)))}catch(e){}}
+/* manda para o servidor conferir. Sem resposta (rede): erro, e quem chamou tenta de novo depois.
+   Resposta do servidor (valeu ou recusou): o pacote sai da fila. */
+async function recConfere(id){const pk=recLer(id);if(!pk||!O.db||typeof O.db.fn!="function")return null;
+ const r=await O.db.fn("conferir-partida",pk);recTira(id);return r}
+
 
 
 /* ===== PvP: a jogada que chega e conferida antes de valer =====
@@ -7631,9 +7677,12 @@ function oAcQ(){const ix=x=>G.u.indexOf(x),un=v=>v&&typeof v=="object"&&G.u.incl
   try{if(G.kkc&&G.kkc[kkKey(a.u,a.i)])o.kk=1}catch(e){}return o})}
 function oAcQDes(L){const un=v=>v&&typeof v=="object"&&v.__u!=null?G.u[v.__u]:v;
  return (Array.isArray(L)?L:[]).map(a=>{const o={};Object.keys(a||{}).forEach(k=>{const v=a[k];o[k]=Array.isArray(v)?v.map(un):un(v)});return o})}
-function oAcPre(){try{if(!O.bst)return null;const A=JSON.parse(O.bst),B=JSON.parse(ser()),d={};
+function oAcPre(){return oAcPreDe(O.bst)}
+function oAcPreDe(base){try{if(!base)return null;const A=JSON.parse(base),B=JSON.parse(ser()),d={};
  Object.keys(B).forEach(k=>{if(k=="log"||k=="u"||k=="sth"||k=="lk")return;if(JSON.stringify(A[k])!==JSON.stringify(B[k]))d[k]=B[k]});
- const du={};(B.u||[]).forEach((x,i)=>{const y=(A.u||[])[i]||{};Object.keys(x).forEach(k=>{if(OVSKIPU[k])return;if(oCanon(x[k])!==oCanon(y[k]))(du[i]=du[i]||{})[k]=x[k]})});
+ const du={};(B.u||[]).forEach((x,i)=>{const y=(A.u||[])[i]||{};Object.keys(x).forEach(k=>{if(OVSKIPU[k])return;if(oCanon(x[k])!==oCanon(y[k]))(du[i]=du[i]||{})[k]=x[k]});
+  /* escolha feita fora da fila que foi apagada (ex.: o alvo do Boujack): vai como null, senao o outro lado fica com a antiga */
+  Object.keys(y).forEach(k=>{if(OVPREU[k]&&!(k in x)&&y[k]!=null)(du[i]=du[i]||{})[k]=null})});
  if(Object.keys(du).length)d.u=du;return d}catch(e){return null}}
 function oAcMarca(k,by){try{OAC={k,by,q:k=="rend"?[]:oAcQ(),pre:k=="rend"?null:oAcPre()}}catch(e){OAC={k,by,q:[],pre:null}}}
 /* compara o que importa para a partida */
@@ -7664,14 +7713,67 @@ function oValida(d,euQ){let a=null;try{a=typeof d.ac=="string"?(d.ac?JSON.parse(
  if(a.k=="bot"&&!(bot>=0&&A.cur===bot&&a.by===bot))return "vez";
  if(a.k=="tempo"&&A.cur===eu&&((a.q||[]).length||(a.pre&&Object.keys(a.pre).length)))return "tempo";
  if(!["t","bot","tempo"].includes(a.k))return "tipo";
- /* refaz num canto: nada aparece na tela e o que nao e da partida volta como estava */
+ const r=oRefazTurno(O.bst,a);if(r.why)return r.why;
+ const RP=JSON.parse(r.st),L=oDifere(RP,N);if(L.length){OVAL.dbg={rp:RP,n:N,L};return "resultado:"+L.slice(0,6).join(",")}
+ return ""}
+/* ===== Conferencia no servidor (funcao conferir-partida) =====
+   P: o pacote gravado (recGuarda). Monta o comeco de novo com os mesmos times, campo, Ecos e quem comeca,
+   compara com o estado que o aparelho mandou e refaz cada turno. O jogador e sempre o lado 0.
+   Devolve {ok,res,time,dest,turnos} ou {ok:false,motivo}. */
+function srvConfere(P,opc){opc=opc||{};const out=m=>({ok:false,motivo:m});
+ try{if(!P||typeof P!="object"||!P.par||typeof P.ini!="string"||!Array.isArray(P.t))return out("pacote");
+  if(P.t.length>400||P.ini.length>400000)return out("grande");
+  const par=P.par,tm=par.tm;
+  if(!Array.isArray(tm)||tm.length!==2)return out("times");
+  for(const t of tm){if(!Array.isArray(t)||t.length<2||t.length>5)return out("times");
+   if(!(t[0]==="none"||C[t[0]]))return out("lider");
+   const ps=t.slice(1);if(ps.some(k=>!C[k])||new Set(ps).size!==ps.length)return out("personagem")}
+  if(!(par.cur===0||par.cur===1))return out("vez");
+  if(opc.cur!=null&&par.cur!==opc.cur)return out("sorteio");
+  let I;try{I=JSON.parse(P.ini)}catch(e){return out("estado")}
+  if(!(I.cf==="x"||FDS.some(f=>f.k===I.cf)))return out("campo");
+  if(!Array.isArray(par.cap)||par.cap.length!==2)return out("ecos");
+  /* o comeco, montado aqui */
+  if(typeof I.gid!="string"||!I.gid)return out("semente");if(opc.gid!=null&&I.gid!==opc.gid)return out("semente");
+  const G0={tm:G.tm,ann:G.ann,fd:G.fd,bot:G.bot,online:G.online,capO:G.capO,curF:G.curF,me:G.me,tutp:G.tutp,_tutn:G._tutn,sim:G.sim,mode:G.mode,intro:G.intro,rsOff:G.rsOff,gid:G.gid};
+  let st=null;
+  try{G.tm=tm;G.ann=par.ann?1:0;G.fd=I.cf;G.bot=1;G.online=1;G.capO=par.cap;G.curF=par.cur;G.me=0;G.tutp=0;G._tutn=0;G.sim=0;G.intro=0;
+   G.rsOff=1;G.gid=I.gid;G.afk=[0,0];G.porTempo=0;G.cl="";
+   _newGameR();st=ser()}
+  finally{Object.assign(G,G0)}
+  const semF=X=>{(X.u||[]).forEach(u=>{(u.st||[]).forEach(y=>{delete y.f})});delete X.log;delete X.gid;return X};
+  const L=oDifere(semF(JSON.parse(st)),semF(JSON.parse(P.ini)));if(L.length)return out("inicio:"+L.slice(0,4).join(","));
+  /* turno a turno */
+  st=P.ini;let res=null,n=0;const rs0=G.rsOff,on0=G.online,bot0=G.bot,tut0=G.tutp;G.rsOff=1;G.online=0;G.bot=1;G.tutp=0;
+  try{for(const a of P.t){const A=JSON.parse(st);if(A.win!=null)return out("depois_do_fim");
+   if(!a||typeof a!="object")return out("jogada");
+   if(a.k==="rend"){if(a.by!==0)return out("rendicao");res="d";break}
+   if(!(a.k==="t"||a.k==="tempo"))return out("tipo");
+   if(a.by!==A.cur)return out("vez:"+n);
+   if(a.k==="tempo"&&a.by!==0)return out("tempo");
+   const r=oRefazTurno(st,a,{bot:1,online:0,rsOff:1});if(r.why)return out("turno "+n+": "+r.why);
+   /* so em teste: compara com o estado que o aparelho teve depois de cada turno */
+   if(opc.est&&opc.est[n]){const D1=JSON.parse(r.st),D2=JSON.parse(opc.est[n]),Lx=oDifere(D1,D2);if(Lx.length)return Object.assign(out("diverge "+n+": "+Lx.slice(0,5).map(f=>{const m=/^u(\d+)\.(\w+)$/.exec(f);return f+" srv="+String(JSON.stringify(m?D1.u[m[1]][m[2]]:D1[f])).slice(0,100)+" apar="+String(JSON.stringify(m?D2.u[m[1]][m[2]]:D2[f])).slice(0,100)}).join(" ; ")),{logs:[D1.log.slice(0,8).map(l=>l.m),D2.log.slice(0,8).map(l=>l.m)],acao:a})}
+   st=r.st;n++}}
+  finally{G.rsOff=rs0;G.online=on0;G.bot=bot0;G.tutp=tut0}
+  des(st);Object.assign(G,{bot:1,online:0});if(res==="d"&&G.win==null)G.win=1;
+  if(res==null){if(G.win==null)return out("sem_fim");res=((typeof empate=="function"&&empate())||G.win===2)?"e":G.win===0?"v":"d"}
+  /* o mesmo time que o aparelho manda para a maestria (lider incluido, sem repetir, ate 4) */
+  const time=(tm[0]||[]).filter(k=>k&&C[k]).filter((k,i,A)=>A.indexOf(k)===i).slice(0,4);
+  let dest=null;if(res!=="e"&&G.win!=null){try{const D=mxDestaques();dest={mvp:(D&&D.mvpS===0)?D.mvp:null,svp:(D&&D.svpS===0)?D.svp:null}}catch(e){}}
+  return{ok:true,res,time,dest,turnos:n}}
+ catch(e){return out("erro:"+String(e&&e.message||e).slice(0,80))}}
+/* refaz um turno a partir de um estado (base) e da jogada (a). Devolve {why,st}: why "" = valeu, st = o estado depois.
+   Refaz num canto: nada aparece na tela e o que nao e da partida volta como estava. Usado pelo online (oValida)
+   e pelo servidor, que confere as partidas contra bot (srvConfere). */
+function oRefazTurno(base,a,cx){let A;try{A=JSON.parse(base)}catch(e){return{why:"estado",st:null}}
  const FN=["render","sfx","zToast","phaseAnn","pannOff","showPredict","vPlay","voxPlay","frFaixa"],F0={};
  FN.forEach(n=>{try{if(typeof window[n]=="function"){F0[n]=window[n];window[n]=()=>{}}}catch(e){}});
  const SK=new Set(Object.keys(JSON.parse(ser()))),G0={};Object.keys(G).forEach(k=>{if(!SK.has(k)&&k!=="u")G0[k]=G[k]});
- let why="";
+ let why="",st=null;
  /* um video de ultimate tocando aqui (RFZ) segura o fim de turno na tela; o refazer nao pode esperar por ele */
  const rfz0=RFZ;RFZ=0;
- try{des(O.bst);
+ try{des(base);
   const pre=a.pre||{};
   for(const k of Object.keys(pre)){if(k!=="u"){why="pre:"+k;break}}
   if(!why&&pre.u)for(const i of Object.keys(pre.u)){const u=G.u[+i];if(!u){why="pre:u";break}
@@ -7684,12 +7786,14 @@ function oValida(d,euQ){let a=null;try{a=typeof d.ac=="string"?(d.ac?JSON.parse(
     if(!m){why="fila:ilegal "+(u.c||"")+"#"+x.i;break}
     qpush(Object.assign({},x))}}
   if(!why){if(a.k=="t")tZera(A.cur);if(a.k=="tempo")tFalta(A.cur);
-   G.scr="p";G.win=null;_endTurn();
-   const RP=JSON.parse(ser()),L=oDifere(RP,N);if(L.length){why="resultado:"+L.slice(0,6).join(",");OVAL.dbg={rp:RP,n:N,L}}}}
+   /* des() deixa o jogo com cara de online (sem bot). A partida contra bot roda o turno como foi jogada: com o bot */
+   if(cx)Object.assign(G,cx);
+   /* o tipo da ultima habilidade (G.cl) comeca limpo em todo turno, aqui e em quem jogou */
+   G.cl="";G.scr="p";G.win=null;_endTurn();st=ser()}}
  catch(e){why="erro:"+String(e&&e.message||e).slice(0,60)}
  finally{Object.keys(G).forEach(k=>{if(!SK.has(k)&&k!=="u"&&!(k in G0))delete G[k]});Object.assign(G,G0);
-  try{des(O.bst)}catch(e){}FN.forEach(n=>{if(F0[n])window[n]=F0[n]});RFZ=rfz0}
- return why}
+  try{des(base)}catch(e){}FN.forEach(n=>{if(F0[n])window[n]=F0[n]});RFZ=rfz0}
+ return{why,st}}
 /* ===== Abandono: quem some da partida online por 1 minuto perde =====
    Cada jogador marca na sala que esta presente (hb0/hb1) a cada 15 s. Se a marca do
    adversario para de mudar por 60 s (contados neste aparelho) e este aparelho esta

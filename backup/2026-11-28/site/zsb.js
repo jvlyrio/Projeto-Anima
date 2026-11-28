@@ -129,6 +129,8 @@
   var DB = { doc: doc, collection: function (p) { return query(p, null, 0) } };
   /* chamar uma função do servidor (a ranqueada calcula os pontos lá) */
   DB.rpc = async function (nome, args) { await ensure(); var r = await sb.rpc(nome, args || {}); if (r.error) throw ERR(r.error); return r.data };
+  /* chamar uma funcao do servidor (Edge Function): a conferencia das partidas contra bot */
+  DB.fn = async function (nome, corpo) { await ensure(); var r = await sb.functions.invoke(nome, { body: corpo || {} }); if (r.error) throw ERR(r.error); return r.data };
   /* ler a minha linha numa tabela de "uma por jogador" */
   DB.linha = async function (tabela) { await ensure(); var r = await sb.from(tabela).select("*").eq("uid", USER.id).maybeSingle(); if (r.error) throw ERR(r.error); return r.data };
   var USERAPI = {
