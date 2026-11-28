@@ -11,6 +11,8 @@
   5. `d5_salas_sorteio_e_draft.sql`: o servidor sorteia quem começa, quem bane primeiro e o desempate do campo,
      e confere o draft no começo da batalha (chave `salas_sorteio`).
   6. `d6_rk_bot_no_servidor.sql`: ranqueada contra bot aberta pelo servidor, com o MMR do bot decidido lá.
+- `perfil_originais/`: as bandeiras e molduras enviadas em 28/11 (Aurora, Gelo, Lua Roxa, Magma, Maré, Natal e Violeta), no tamanho original.
+  O jogo usa versões reduzidas e medidas (bandeira 512×768, moldura 384×384 com o buraco no centro).
 - `servidor/LIGAR_NA_POSTAGEM.sql`: o que rodar no dia da postagem (liga `prog_estrito`, `termos_exigir` e `salas_sorteio`).
   Hoje as três estão desligadas.
 - O estado do banco ANTES destas mudanças está no schema `backup_20261127` do próprio Supabase.
