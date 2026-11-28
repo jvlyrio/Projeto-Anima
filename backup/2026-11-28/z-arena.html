@@ -13873,7 +13873,10 @@ function oApply(){const d=O.d;if(!d)return;if(O.eaSeen===undefined)O.eaSeen=d.ea
    if(!mine){try{const N=JSON.parse(d.dr),J=x=>JSON.stringify(x);
     /* draft novo: so o comeco de verdade (nada escolhido ainda) e conferido; quem entra no meio (recarregou) so confere dali em diante */
     if(!V||V.did!==d.did){const novo=J(N.picks)=="[[],[]]"&&J(N.bans)=="[[],[]]"&&J(N.fv)=="[[],[]]"&&J(N.pre)=="[[],[]]"&&!N.si;if(novo)why=oDrInicioValida(d,N)}
-    else if((d.dseq||0)===V.dseq+1&&V.dr!==d.dr)why=oDrValida(JSON.parse(V.dr),N,d)}catch(e){why=""}}
+    else if((d.dseq||0)===V.dseq+1&&V.dr!==d.dr)why=oDrValida(JSON.parse(V.dr),N,d);
+    /* chegou mais de um passo de uma vez (a conexao pulou uma versao): confere o draft inteiro */
+    else if((d.dseq||0)>V.dseq+1)why=oDrEstrutura(JSON.parse(V.dr),N);
+    if(!why&&(!V||V.did!==d.did))why=oDrEstrutura(null,N)}catch(e){why=""}}
    O.drV={did:d.did,dseq:d.dseq||0,dr:d.dr};
    if(why)return oDrInvalido(d,why)}
   G.online=1;G.bot=0;const skip=oDview(d);O.R=D;
@@ -14876,6 +14879,20 @@ function oDrValida(P,N,d){const J=x=>JSON.stringify(x),cp=x=>JSON.parse(J(x)),al
     if(J(R)===alvo)return""}}
  }catch(e){return""}/* se a conferencia nao conseguir rodar, nao acusa ninguem */
  return "draft:"+P.ph}
+/* conferencia do draft inteiro, para quando nao da para refazer passo a passo:
+   bans e picks so crescem, ninguem repete personagem, nada banido ou da pre-selecao e escolhido,
+   e o que ja estava escolhido continua igual */
+function oDrEstrutura(V,N){try{const J=x=>JSON.stringify(x),A=x=>Array.isArray(x)?x:null;
+  const bans=[0,1].map(t=>A(N.bans&&N.bans[t])),picks=[0,1].map(t=>A(N.picks&&N.picks[t]));
+  if(bans.some(x=>!x)||picks.some(x=>!x))return "draft:estrutura";
+  const ex=A(N.ex)||[],vistos=new Set();
+  for(const k of [].concat(bans[0],bans[1],picks[0],picks[1])){if(k==null)continue;if(typeof k!="string"||vistos.has(k)||ex.includes(k))return "draft:estrutura";vistos.add(k)}
+  if(N.cfg){const P=npk(N);if(picks.some(x=>x.length>P))return "draft:estrutura"}
+  if(V){if(J(V.cfg)!==J(N.cfg)||V.bf!==N.bf)return "draft:estrutura";
+   for(const key of ["bans","picks"])for(const t of [0,1]){const a=(V[key]&&V[key][t])||[],c=N[key][t];if(c.length<a.length||J(c.slice(0,a.length))!==J(a))return "draft:estrutura"}}
+  if(N.ph=="done"&&Array.isArray(N.act)&&Array.isArray(N.fb)&&Array.isArray(N.lead))
+   for(const t of [0,1]){const certo=picks[t].filter(k=>k!==N.fb[1-t]&&k!==N.lead[t]);if(J(N.act[t])!==J(certo))return "draft:estrutura"}
+  return ""}catch(e){return ""}}
 /* versao do draft em que eu fiz a minha escolha cega: a anterior a que esta sendo conferida */
 function V0dseq(d){return O.drV&&O.drV.did===d.did?O.drV.dseq:-1}
 function oDrInicioValida(d,N){try{const R=oDrInicio(d).R;/* sem sorteio do servidor, quem bane primeiro foi sorteado no outro aparelho */if(!svOk(d)&&(N.bf===0||N.bf===1))R.bf=N.bf;return JSON.stringify(R)===JSON.stringify(N)?"":"draft:inicio"}catch(e){return""}}
