@@ -12,6 +12,8 @@
 --      6ed200709fc31618c4393bdaecc10552 808ea86ab3680f89e3b68f7600d1fe94 a170c51a21075c437bcd852fb6156295
 --      c1b5ad8f01caf6315f2efd5e491f5ef5   (todas .webp)
 --   6. antes do build, conferir que os 6 videos de backup/2026-11-28/midia/ estao em media/ (o build para se faltar)
+--   7. depois do bloco: jogar 1 partida contra bot (EXP) e 1 ranqueada contra bot com uma conta de teste e ver em
+--      partida_conf uma linha ok=true para cada (se vier 'versao', o motor/<versao>.js ainda nao esta no site)
 -- o motor da conferencia passa a vir do proprio site (o build gera motor/<versao>.js)
 update public.cfg set valor = 'https://jvlyrio.github.io/Projeto-Anima/motor/' where chave = 'motor_base';
 update public.cfg set valor = 'on' where chave in ('prog_estrito', 'termos_exigir', 'salas_sorteio', 'conferir_bot');
