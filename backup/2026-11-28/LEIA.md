@@ -13,6 +13,8 @@
   6. `d6_rk_bot_no_servidor.sql`: ranqueada contra bot aberta pelo servidor, com o MMR do bot decidido lá.
 - `perfil_originais/`: as bandeiras e molduras enviadas em 28/11 (Aurora, Gelo, Lua Roxa, Magma, Maré, Natal e Violeta), no tamanho original.
   O jogo usa versões reduzidas e medidas (bandeira 512×768, moldura 384×384 com o buraco no centro).
+- `midia/`: os 6 vídeos novos de ultimate (Sakura, Turles e Goku Black SSJ Rose, japonês e dublado), já com o nome
+  que o site usa em `media/`. Copiar para `media/` antes do build se não estiverem lá.
 - `servidor/LIGAR_NA_POSTAGEM.sql`: o que rodar no dia da postagem (liga `prog_estrito`, `termos_exigir` e `salas_sorteio`).
   Hoje as três estão desligadas.
 - O estado do banco ANTES destas mudanças está no schema `backup_20261127` do próprio Supabase.

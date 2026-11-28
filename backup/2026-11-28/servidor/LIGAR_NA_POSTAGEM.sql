@@ -10,6 +10,7 @@
 --      3e37028b1d0d0329500d3c7e1b590a31 13ca4487c9e73c99f406cac4fb5b0252 82ae1cd3521dff74e960270f4c0a7ad6
 --      6ed200709fc31618c4393bdaecc10552 808ea86ab3680f89e3b68f7600d1fe94 a170c51a21075c437bcd852fb6156295
 --      c1b5ad8f01caf6315f2efd5e491f5ef5   (todas .webp)
+--   6. antes do build, conferir que os 6 videos de backup/2026-11-28/midia/ estao em media/ (o build para se faltar)
 update public.cfg set valor = 'on' where chave in ('prog_estrito', 'termos_exigir', 'salas_sorteio');
 select chave, valor from public.cfg where chave in ('prog_estrito', 'termos_exigir', 'salas_sorteio', 'termos_versao');
 
