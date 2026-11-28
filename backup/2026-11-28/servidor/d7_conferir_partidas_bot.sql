@@ -128,3 +128,22 @@ begin
   if position('p_res := cf.res' in d) = 0 then raise exception 'partida_fim: trecho nao encontrado'; end if;
   execute d;
 end $$;
+
+-- ===== Correcao aplicada logo depois (migracao conferir_partidas_bot_motivo) =====
+-- partida_fim: o motivo devolvido (sem_conferencia / conferencia) saia trocado porque o UPDATE mudava o FOUND
+do $$
+declare d text;
+begin
+  d := pg_get_functiondef('public.partida_fim(text,text,text[],jsonb)'::regprocedure);
+  d := replace(d, $x$motivo text := null; cf public.partida_conf;$x$, $x$motivo text := null; cf public.partida_conf; cfm text;$x$);
+  d := replace(d, $x$    if not found or not cf.ok then
+      update public.partidas set fim = now(), res = p_res, xp = 0,
+        nota = case when found then 'conferencia' else 'sem_conferencia' end where uid = u and id = p_id;
+      return jsonb_build_object('valeu', false, 'motivo', case when found then 'conferencia' else 'sem_conferencia' end,$x$,
+  $x$    cfm := case when not found then 'sem_conferencia' when not cf.ok then 'conferencia' end;
+    if cfm is not null then
+      update public.partidas set fim = now(), res = p_res, xp = 0, nota = cfm where uid = u and id = p_id;
+      return jsonb_build_object('valeu', false, 'motivo', cfm,$x$);
+  if position('nota = cfm' in d) = 0 then raise exception 'partida_fim: trecho nao encontrado'; end if;
+  execute d;
+end $$;

@@ -12,7 +12,8 @@
      e confere o draft no começo da batalha (chave `salas_sorteio`).
   6. `d6_rk_bot_no_servidor.sql`: ranqueada contra bot aberta pelo servidor, com o MMR do bot decidido lá.
   7. `d7_conferir_partidas_bot.sql`: resultado das partidas contra bot conferido no servidor (chave `conferir_bot`).
-     **Ainda nao aplicada** (esperando a aprovacao do dono no Supabase).
+     **Aplicada em 28/11/2026** (com a correcao do motivo no fim do arquivo). Fica desligada (`conferir_bot = off`) ate a postagem.
+     Testada no banco com contas de teste e tudo desfeito: sem inicio, conta alheia, conferida, recusada, sem conferencia, ranqueada vs bot (o servidor troca a vitoria declarada pela conferida).
 - `servidor/funcao/conferir-partida.ts`: a funcao do Supabase que refaz a partida com o motor do jogo (publicada).
 - `servidor/motor/dev.js`: o motor desta versao, para testes (no site, o build gera `motor/<versao>.js`).
 - `site/build.py`: o build que tambem gera o motor por versao.
